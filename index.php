@@ -1,7 +1,4 @@
 <?
-// Header("Location: /forum/"); // End of an era. - Beatles 2012/04/10
-// die();
-
 define("PROMISANCE", true);
 //ob_start("ob_gzhandler");
 ob_start();
