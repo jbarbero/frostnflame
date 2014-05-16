@@ -1,0 +1,238 @@
+<script src="base64.js"></script>
+
+<script language="JavaScript">
+{literal}
+var uwrap;
+var self;
+var maint;
+var selected = "none";
+var defaultc = 'chatusers';
+var selectedc = 'selectedusers';
+var selectednew;
+var usercount = 0;
+var ucpt;
+var shiftDown = 0;
+var msgbuf = new Array(5);
+msgbuf[0] = "";
+msgbuf[1] = "";
+msgbuf[2] = "";
+msgbuf[3] = "";
+msgbuf[4] = "";
+var bufFull = 0;
+var msgs = 0;
+
+
+document.domain = '{/literal}{$setdomain}{literal}';
+
+function init() {
+	{/literal}
+	uwrap = document.getElementById("uwrap");
+	maint = document.getElementById("maintable");
+	ucpt = document.getElementById("userctp");
+	self = {$unum};
+	{literal}
+}
+
+function divDisappear(id) {
+	var the = document.getElementById(id);
+	the.innerHTML = '';
+	the.style.display = 'none';
+}
+
+function highlight(id, cssclass) {
+	var thediv = document.getElementById('s' + id);
+	thediv.className = cssclass;
+}
+
+function updateCount() {
+	if(usercount == 1)
+		text = '1 user';
+	else
+		text = usercount + ' users';
+	ucpt.innerHTML = text;
+}
+
+
+function addUser(id, name) {
+	var idname = 's' + id;
+	if(document.getElementById(idname)) {
+		theid = document.getElementById(idname);
+		theid.innerHTML = name;
+		theid.style.display = '';
+	}
+	else {
+		uwrap.innerHTML += '<div class="chatusers" id="' + idname + '" onclick="select(\'' + id + '\')">' + name + '<br></div>';
+		eval('user' + id + ' = document.getElementById("' + idname  + '");');
+		var text = '';
+	}
+	usercount++;
+	updateCount();
+}
+
+
+function removeUser(id) {
+	divDisappear('s' + id);
+	eval('user' + id + ' = document.getElementById("blank");');
+	usercount--;
+	updateCount();
+}
+
+function select(id) {
+	selectednew = id;
+	if(selected == "none") {
+		selected = selectednew;
+		highlight(selected, selectedc);
+		return;
+	} else {
+		if(selected == selectednew) {
+			highlight(selected, defaultc);
+			selected = "none";
+		} else {
+			highlight(selected, defaultc);
+			highlight(selectednew, selectedc);
+			selected = selectednew;
+		}
+	}
+}
+
+function block() {
+	if(selected != 0) {
+		constructMsg1('block', selected);
+		highlight(selected, defaultc);
+		selected = 0;
+	}
+}
+
+function boot() {
+	if(selected != 0) { // AND AUTHORITY THRU TEMPLATE
+		constructMsg1('boot', selected);
+		highlight(selected, defaultc);
+		selected = 0;
+	}
+}
+
+function sendMessage(num) {
+	var msg = msgbuf[num];
+	if(selected == "none") {
+		constructMsg1('msgall', msg, num);
+	} else {
+		constructMsg2('msgpriv', msg, num, selected);
+	}
+}
+
+function checkSend(event) {
+	var keycode;
+	if (window.event) keycode = window.event.keyCode;
+	else if (event) keycode = event.which;
+	if(keycode != 13 || shiftDown == 1)
+		return;
+	var tosend = document.chatsend.postbody.value;
+	if(tosend == "") {
+		setTimeout("wipeform()", 1);
+		return;
+	}
+	else {
+		var full = 1;
+		for(i=0; i<msgbuf.length; i++) {
+			if(msgbuf[i] == "") {
+				msgbuf[i] = tosend;
+				full = 0;
+				break;
+			}
+		}
+		if(full == 1) {
+			bufFull = 1;
+		} else {
+			setTimeout("sendMessage(i)", 2);
+		}
+		if(bufFull == 0)
+			setTimeout("wipeform()", 1);
+		return false;
+	}
+}
+
+
+function wipeform() {
+	document.chatsend.postbody.value = "";
+}
+
+function checkDown(event) {
+	var keycode;
+	if (window.event) keycode = window.event.keyCode;
+	else if (event) keycode = event.which;
+	if(keycode == 16)
+		shiftDown = 1;
+}
+
+function checkUp(event) {
+	var keycode;
+	if (window.event) keycode = window.event.keyCode;
+	else if (event) keycode = event.which;
+	if(keycode == 16)
+		shiftDown = 0;
+}
+
+function constructMsg1(type, message, num) {
+	var themsg = '' + message + '';
+	var args = 'type=' + type + '&amp;msg=' + base64_encode(themsg);
+	sockMsg(args, num);
+}
+
+function constructMsg2(type, message, num, to) {
+	var themsg = '' + message + '';
+	var args = 'type=' + type + '&amp;msg=' + base64_encode(themsg) + '&amp;to=' + to;
+	sockMsg(args, num);
+}
+
+function sockMsg(urlargs, num) {
+	var newname = 'spacer' + msgs;
+	msgs++;
+	var url = '{/literal}{$posturl1}{literal}&id=' + newname + '{/literal}{$posturl2}{literal}' + urlargs;
+	var chp = document.getElementById("chatpost" + num);
+	chp.innerHTML = "<img src=\"" + url + "\" width=0 height=0 border=0 id=\"" + newname + "\" onload=\"clearDiv(" + num + ")\" />";
+}
+
+function clearDiv(num) {
+	var chp = document.getElementById("chatpost" + num);
+	chp.innerHTML = "";
+	msgbuf[num] = "";
+}
+
+
+{/literal}
+</script>
+
+<h2>Welcome to the {$chatname} Chat</h2>
+
+<table width="80%" height="500" id="maintable">
+	<tr>
+		<td width="80%" height="400">
+			<div id="chatarea" style="width: 100%; height: 400; background-color: #000000; border: 1px dashed;">
+				<iframe src='{$srvurl}' width=100% height=400 frameborder=NO style="border: 0"></iframe>
+			</div>
+		</td>
+		<td width="20%" valign="top" height="100">
+			<b><div id="userctp" style="display:inline">No users</div></b><br>
+			<div id="uwrap" style="width: 100%; border: 1px dashed;">
+			</div>
+			{if $chatmod} · <a href="boot()">Boot</a>{/if}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<form name="chatsend">
+			<div id="postform" style="width: 100%; height: 100%; border: 1px dashed;">
+				<textarea name="postbody" rows="4" cols="108" style="overflow:auto" onKeyPress="checkSend(event)" onKeyDown="checkDown(event)" onKeyUp="checkUp(event)"></textarea>
+			</div>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<script>init();</script>
+
+<div style="visibility:hidden" id="chatpost0"><img src="about:blank" width=0 height=0 border=0 id="spacera0" onload="clearDiv(0)" /></div>
+<div style="visibility:hidden" id="chatpost1"><img src="about:blank" width=0 height=0 border=0 id="spacera1" onload="clearDiv(1)" /></div>
+<div style="visibility:hidden" id="chatpost2"><img src="about:blank" width=0 height=0 border=0 id="spacera2" onload="clearDiv(2)" /></div>
+<div style="visibility:hidden" id="chatpost3"><img src="about:blank" width=0 height=0 border=0 id="spacera3" onload="clearDiv(3)" /></div>
+<div style="visibility:hidden" id="chatpost4"><img src="about:blank" width=0 height=0 border=0 id="spacera4" onload="clearDiv(4)" /></div>

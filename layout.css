@@ -1,0 +1,286 @@
+/* Default body text */
+body {
+	font-size: 10pt;
+	font-family: Arial,Helvetica,sans-serif;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+
+/* Default link style */
+a {		text-decoration: none;		}
+a:hover {	text-decoration: none;		}
+
+
+/* Various link styles */
+a.new {		text-decoration: none;		}
+a.mally {	text-decoration: underline;	}
+a.mdead {	text-decoration: underline;	}
+a.mnormal {	text-decoration: underline;	}
+a.undecorated {	text-decoration: none;		}
+a.proflinkdk {	text-decoration: underline;	}
+
+/* Table Properties */
+table {
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px;
+}
+td {
+	text-align: left;
+/*	font-size: 10pt; */
+}
+th {
+	text-align: center;
+/*	font-size: 10pt; */
+}
+.sidebar {
+	width:0px;
+	vertical-align:top;
+}
+
+
+/* Different table styles */
+.guide {
+   text-align: left;
+}
+
+.guide td {
+	text-align: left;
+}
+.guide th {
+	background:inherit
+}
+
+.menus td {
+        text-align: center;
+	background:inherit
+}
+.menus th {
+        text-align: left;
+	background:inherit
+}
+
+.ind {	/* Indented */
+        text-align: left;
+        text-indent: 20px;
+}
+
+table.scorestable {
+	width: 100%;
+}
+
+.chatusers {
+	width: 100%;
+	cursor: pointer;
+}
+
+.empstatus td {		text-align: right;	}
+.empstatus th {		text-align: left;	}
+.inputtable td {	background:inherit	}
+.inputtable th {	background:inherit	}
+.race th {		background:inherit	}
+.stocks {		background:inherit	}
+
+.era0, .era1, .era2, .era3, .era4, .era5, .era6, .era7, .era8, .era9, .era10, .era11, .era12 {
+}
+
+/* General-purpose table aligners */
+.aleft {	text-align: left;		}
+.acenter {	text-align: center;		}
+.aright {	text-align: right;		}
+
+
+/* Form fields */
+.not {
+	border: none;
+	background-color: transparent;
+	background-image: none;
+}	  
+
+input {
+/*	font-size: 12px;	*/
+}
+
+select {
+/*	font-size: 12px;	*/
+}
+
+textarea {
+/*	font-size: 12px;	*/
+}
+
+
+.mapP {
+	position: absolute;
+	border: 0px;
+	overflow: hidden;
+}
+
+.mapC {
+	position: absolute;
+	border: #FFFFFF 1px solid
+}
+
+#QUOTE {
+	font-size: 9pt;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+}
+
+
+/**** Stuff for Forums ****/
+
+/* Caption 1 (the one for displaying sub-headers like "topics, posted" etc) */
+td.caption1 {
+	padding: 4px;
+	height: 25px;
+/*	font-size: 12px;	*/
+}
+
+/* Caption 2 color and properties (this one displaying main menu,  New Topic text bg, New Message text bg) */
+td.caption2 {
+	padding: 4px;
+	height: 20px;
+/*	font-size: 11px;	*/
+}
+
+/* Caption 3 (used for Last Discussions, topic titles, Forums selection) */
+td.caption3 {
+	padding: 4px;
+	height: 20px;
+/*	font-size: 11px;	*/
+}
+
+/* Caption 4 (the one for displaying not separate headers like Forum, Topic, Poster etc., Buttons menu, left info cell) */
+td.caption4 {
+	padding: 4px;
+	height: 20px;
+/*	font-size: 11px;	*/
+}
+
+/* Caption 5 (used for user input like password/login and registration etc) */
+td.caption5 {
+	padding: 4px;
+	height: 20px;
+/*	font-size: 11px;	*/
+}
+
+/* Caption 6 (this one is for displaying title headers (language, search). The same color as caption2, but different font size) */
+td.caption6 {
+	padding: 4px;
+	height: 20px;
+/*	font-size: 12px;	*/
+}
+
+/* Simple transparent table without borders and background color (menu navigation, general tables) */
+.tbTransparent{
+	width: 80%;
+	background: transparent;
+/*	font-size: 12px;	*/
+}
+
+/* General smart tables class */
+table.forums {
+	width: 80%;
+	display: table;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+/* Small analog text, used usually with SPAN */
+.txtSm{
+	font-family: Arial,Helvetica,sans-serif;
+	text-decoration: none;	
+/*	font-size: 11px;	*/
+}
+
+DIV {
+	font-family: Arial,Helvetica,sans-serif;
+	text-decoration: none;
+/*	font-size: 12px;	*/
+}
+
+/* Font for displaying username in each thread */
+DIV.username{
+	text-decoration: none;
+/*	font-size: 12px;	*/
+}
+
+/* Class for displaying stuff like -> */
+.bulletHead{
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+}
+
+/* Heading titles */
+.header{
+	font-family: Arial,Helvetica,sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+/*	font-size: 12px;	*/
+}
+
+/* Stats bar */
+.tbStBar{
+	border: 0px;
+	margin: 1px;
+	padding: 1px;
+/*	font-size: 11px;	*/
+}
+
+/* Supscript class */
+.navCell{
+	font-family: Arial,Helvetica,Geneva,sans-serif,Arial,Verdana;
+/*	font-size: 11px;	*/
+}
+
+
+/** Wiki styles **/
+.wiki.edit.FrontPage {
+   background: transparent;
+}
+
+/*-- links to non-existent pages*/
+.NotFound * {
+   text-decoration: none;
+}
+.NotFound a {
+   border-bottom-style: none;
+}
+
+h1 { font-size: 188%; }
+h2 { font-size: 150%; }
+h3 { font-size: 132%; }
+h4 { font-size: 116%; }
+h5 { font-size: 100%; }
+h6 { font-size: 160%;  }
+
+table.toc {
+   float: left; 
+   margin: 0.3em 0.5em 0.5em 0;
+   position:relative;
+}
+
+
+h2, h3, h4, h5, h6 {
+    background: none;
+    font-weight: bold;
+    margin: 0;
+}
+
+h1 { font-size: 150%; }
+h2 { font-size: 132%; }
+h3 { font-size: 116%; }
+h4 { font-size: 100%; }
+h5 { font-size: 80%; }
+
+p { 
+    position: relative;
+    left: 3px;
+}
+

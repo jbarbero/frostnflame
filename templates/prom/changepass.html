@@ -1,0 +1,16 @@
+{if $printmessage != ''}
+<?php echo $printmessage; ?><br>
+<hr>
+{/if}
+
+
+	<form method="post" action="<?php echo $main; ?>?changepass{$authstr}">
+	<table class="inputtable">
+	<tr><th colspan="2">Change Password</th></tr>
+	<tr><td>Password:</td>
+	    <td><input type="password" name="new_password" size="8"></td></tr>
+	<tr><td>Verify:</td>
+	    <td><input type="password" name="new_password_verify" size="8"></td></tr>
+	<tr><th colspan="2"><input type="submit" name="do_changepass" value="Change Password"></th></tr>
+	</table>
+	</form>

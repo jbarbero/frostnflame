@@ -1,0 +1,18 @@
+{if $state == 1}
+	Your account has been marked for deletion. Thanks for playing!<br>
+	<a href="{$config.home}">Home</a>
+{/if}
+
+{if $state == 2}
+	The name you provided was incorrect. Your account remains active.
+{/if}
+
+{if $state == 3}
+	<form method="post" action="?delete<?php echo $authstr; ?>">
+	<div>
+	In order to remove your account, you need to provide your real name as you entered it when you signed up.<br>
+	Real Name: <input type="text" name="delete_name" size="20"><br>
+	<input type="submit" name="do_delete" value="Delete Account">
+	</div>
+	</form>
+{/if}

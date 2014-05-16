@@ -1,0 +1,43 @@
+{if $do_deposit != ""}
+You have deposited <?php echo $deposit; ?> turns into your turn bank.<hr>
+{/if}
+
+{if $do_withdraw!= ""}
+You have withdrawn <?php echo $withdraw; ?> turns from your turn bank.<hr>
+{/if}
+
+<h2>Welcome to the Turn Bank</h2>
+<table>
+    <tr><td>
+    <table class="empstatus" style="width:100%">
+        <tr class="inputtable"><th colspan="2" style="text-align:center">Turns Banked</th></tr>
+        <tr><th>Current Turn Balance:</th><td><?php echo $turnbank; ?>/{$maxbank}</td></tr>
+    </table></td>
+    <td style="width:10%"></td>
+    </tr>
+</table><br>
+<br>
+<table class="inputtable">
+<tr class="inputtable2"><th>Action</th>
+    <th>Amount</th>
+    <th>Max</th>
+    <th>Go!</th></tr>
+<!-- we don't allow turn deposits
+<form method="post" action="?turnbank<?php echo $authstr; ?>">
+    <tr>
+        <th>Deposit into Turn Bank</th>
+        <td>$<input type="text" name="deposit" size="9" value="0"></td>
+        <td><input type="checkbox" name="deposit_max"></td>
+        <td><input type="submit" name="do_deposit" value="Deposit"></td>
+    </tr>
+</form>
+-->
+<form method="post" action="?turnbank<?php echo $authstr; ?>">
+    <tr>
+        <th>Withdraw Turns</th>
+        <td><input type="text" name="withdraw" size="9" value="0"></td>
+        <td><input type="checkbox" name="withdraw_max"></td>
+        <td><input type="submit" name="do_withdraw" value="Withdraw"></td>
+    </tr>
+</form>
+</table>

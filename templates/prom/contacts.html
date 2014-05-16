@@ -1,0 +1,21 @@
+<table class="menus" style="width:100%">
+<tr class="inputtable2"><th style="text-align: center">Tag</th>
+    <th style="text-align: center">Name</th>
+    <th style="text-align: center">Leader</th>
+    <th style="text-align: center">Assistant Leader</th>
+    <th style="text-align: center">Scout/Diplomat 1</th>
+    <th style="text-align: center">Scout/Diplomat 2</th>
+</tr>
+
+{section name=con loop=$clans}
+<tr>
+    <td><a href="?clancrier&sclan={$clans[con].num}<?php echo $authstr; ?>">{$clans[con].tag}</a></td>
+    <td>{$clans[con].name}</td>
+    <td>{$clans[con].founder}</td>
+    <td>{$clans[con].asst}</td>
+    <td>{$clans[con].fa1}</td>
+    <td>{$clans[con].fa2}</td>
+</tr>
+{/section}
+
+</table>

@@ -1,0 +1,20 @@
+<table class="inputtable">
+<tr><th colspan="5">Clan Rankings - By <?php echo $sortd; ?> ({$minm} Member Minimum)</th></tr>
+<tr class="inputtable2"><th>Clan Name</th>
+    <th>Tag</th>
+    <th><a href="?clanstats&amp;sort_type=members<?php echo $authstr; ?>">Members</a></th>
+    <th><a href="?clanstats&amp;sort_type=avgnet<?php echo $authstr; ?>">Average Networth</a></th>
+    <th><a href="?clanstats&amp;sort_type=totalnet<?php echo $authstr; ?>">Total Networth</a></th></tr>
+
+{section name=ran loop=$clans}
+<tr class="acenter">
+    <td>{$clans[ran].name}</td>
+    <td><a href="?clancrier&sclan={$clans[ran].num}<?php echo $authstr; ?>">{$clans[ran].tag}</a></td>
+    <td>{$clans[ran].members}</td>
+    <td>${$clans[ran].avgnet}</td>
+    <td>${$clans[ran].totalnet}</td></tr>
+{/section}
+</table>
+<br>
+<?php echo $notmade; ?> clans don't have enough members to make this list.<br>
+<?php echo $indeps; ?> {$uera.empire}s are independent.<br>

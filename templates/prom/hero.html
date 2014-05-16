@@ -1,0 +1,97 @@
+<style>
+{literal}
+.hero TD {
+	text-align: center;
+}
+{/literal}
+</style>
+
+<h1>Heroes of Old</h1>
+<br>
+<b><?php echo $who; ?></b>
+<br>
+
+<form method="post" action="<?php echo $main; ?>?hero{$authstr}">
+<table class="inputtable hero">
+<tr><th colspan="3"><hr width="400">Acquire a Hero<hr width="400"></th></tr>
+<tr><th>War Heroes</th><th>Peace Heroes</th><th>Special Heroes</th></tr>
+<tr>
+    <td><input type="submit" name="warh1" value="{$war1}"></td>
+    <td><input type="submit" name="peaceh1" value="{$peace1}"></td>
+    <td><input type="submit" name="specialh1" value="{$special1}"></td>
+</tr>
+<tr>
+    <td><input type="submit" name="warh2" value="{$war2}"></td>
+    <td><input type="submit" name="peaceh2" value="{$peace2}"></td>
+    <td><input type="submit" name="specialh2" value="{$special2}"></td>
+</tr>
+<tr>
+    <td><input type="submit" name="warh3" value="{$war3}"></td>
+    <td><input type="submit" name="peaceh3" value="{$peace3}"></td>
+    <td><input type="submit" name="specialh3" value="{$special3}"></td>
+</tr>
+<tr><th colspan="3"><hr width="400"></th></tr>
+</table>
+
+<br><br>
+
+<table class="inputtable" width="600">
+<tr><th colspan="2"><hr width="600">Hero Abilities<hr width="600"></th></tr>
+<tr><th colspan="2">War Heroes</th></tr>
+<tr><th>{$war1}</th><td>{$ward1}</td></tr>
+<tr><th>{$war2}</th><td>{$ward2}</td></tr>
+<tr><th>{$war3}</th><td>{$ward3}</td></tr>
+
+<tr><th colspan="2">Peace Heroes</th></tr>
+<tr><th>{$peace1}</th><td>{$peaced1}</td></tr>
+<tr><th>{$peace2}</th><td>{$peaced2}</td></tr>
+<tr><th>{$peace3}</th><td>{$peaced3}</td></tr>
+
+<tr><th colspan="2">Special Heroes</th></tr>
+<tr><th>{$special1}</th><td>{$speciald1}</td></tr>
+<tr><th>{$special2}</th><td>{$speciald2}</td></tr>
+<tr><th>{$special3}</th><td>{$speciald3}</td></tr>
+
+<tr><th colspan="3"><hr width="600"></th></tr>
+</table>
+
+<br><br>
+
+<table class="inputtable" width="600">
+<tr><th colspan="3"><hr width="600">Requirements<hr width="600"></th></tr>
+<tr><td>
+You can get a hero to aid your {$uera.empire} any time you like. However, you can
+have only one of each type of hero, Warrior, Peaceful, and Special. Also,
+getting a hero destroyes about 40-50% of all your property, including
+troops and land. That said, Heroes are well worth the cost of securing them.
+They do not take your property, not belonging to you, and they bestow
+amazing powers and abilities on your {$uera.empire}. You can't get a hero unless
+you have demonstrated some prowess (see below), and you can't get a hero until
+you have used your first 1000 turns.<br>
+<br>
+<b>Hero Combinations:</b><br>
+If you are strong on attacking, {$war1}-{$peace1}-{$special1} is a good choice.<br>
+If you concentrate on food and wealth, {$war2}-{$peace1}/{$peace3}-{$special2} is worth it, depending on whether you are interested in food or wealth.<br>
+If you really like {$uera.wizards}, we would suggest {$war3}-{$peace2}-{$special3}.<br>
+Of course, mix and match according to your taste - that is the point!
+<br>
+</td></tr>
+<tr><td>
+<br>
+Currently, getting a hero requires:
+<ul>
+{section name=i loop=$req_display}
+	<li><span class="{if $req_display[i].ok == 1}cgood{else}cwarn{/if}"><b>{$req_display[i].reqd}</b> {$req_display[i].name}</span></li>
+{/section}
+
+</ul>
+{if $req_okall == 1}
+	<span class='cgood'>You <i>can</i> get a hero at this time.</span>
+{else}
+	<span class='cwarn'>You <i>can't</i> get a hero at this time.</span>
+{/if}
+</td></tr>
+<tr><th colspan="3"><hr width="600"></th></tr>
+</table>
+</form>
+

@@ -1,0 +1,47 @@
+<script language="JavaScript">
+{literal}
+function checkAll (check){
+	var path = document.pvmb;
+	for (var i=0;i<path.elements.length;i++) {
+		e = path.elements[i];
+		checkname = "maxall";
+		if(check==2) checkname = "maxall2";
+		if( (e.name!=checkname)  && (e.type=="checkbox") ) {
+			 e.checked = path.maxall.checked;
+			 if(check==2) e.checked = path.maxall2.checked;
+		}
+	 }
+}
+{/literal}
+</script>
+
+{if $printmessage != ''}
+<?php echo $printmessage; ?>
+{/if}
+
+Also see: <a href="?guide&amp;section=military&amp;era=<?php echo $uera; ?>{$authstr}">Guide: Military</a><br>
+<form method="post" action="?pvtmarketsell<?php echo $authstr; ?>" name="pvmb">
+<table class="inputtable">
+<tr><td colspan="3"><a href="?pvtmarketbuy<?php echo $authstr; ?>">Buy Goods</a></td>
+    <td colspan="4" class="aright"><a href="?pvtmarketsell<?php echo $authstr; ?>">Sell Goods</a></td></tr>
+<tr class="inputtable2"><th class="aleft">Unit</th>
+    <th class="aright">Owned</th>
+    <th class="aright">Price</th>
+    <th class="aright">Can Sell</th>
+    <th class="aright">Sell</th>
+    <th class="aright">Max <input type="checkbox" name="maxall" onClick="checkAll(1)"></th>
+</tr>
+
+{section name=pvm loop=$types}
+<tr><td>{$types[pvm].name}</td>
+    <td class="aright">{$types[pvm].amt|gamefactor}</td>
+    <td class="aright">${$types[pvm].cost}</td>
+    <td class="aright">{$types[pvm].cansell|gamefactor}</td>
+    <td class="aright"><input type="text" name="sell[{$types[pvm].type}]" size="8" value="0"></td>
+    <td class="aright"><input type="checkbox" name="max[{$types[pvm].type}]" value="{$types[pvm].type}"></td>
+</tr>
+{/section}
+
+<tr><td colspan="7" class="acenter"><input type="submit" name="do_sell" value="Sell Goods"></td></tr>
+</table>
+</form>

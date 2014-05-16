@@ -1,0 +1,42 @@
+From this menu, we can join a clan to possibly offer some protection.<br>
+<form method="post" action="?clanjoin<?php echo $authstr; ?>">
+<table class="inputtable">
+<tr><th colspan="2">Join a Clan</th></tr>
+<tr><td class="aright">Clan:</td>
+
+{if $numcs == 0}
+        <td colspan="2"><b>No Clans</b></td></tr>
+{else}
+	<td><select name="join_num" size="1">
+	{section name=list loop=$ccs}
+		<option value="{$ccs[list].num}">{$ccs[list].tag} - {$ccs[list].name}</option>
+	{/section}
+	</select></td></tr>
+{/if}
+
+<tr><td class="aright">Password:</td>
+    <td><input type="password" name="join_pass" size="8"></td></tr>
+<tr><td colspan="2" class="acenter"><input type="submit" name="do_joinclan" value="Join Clan"></td></tr>
+<tr><td><br></td></tr>
+
+<tr><th colspan="2">Open Clans</th></tr>
+<tr><td class="aright">Clan:</td>
+{if $numocs == 0}
+        <td colspan="2"><b>No open Clans</b></td></tr>
+{else}
+	<td><select name="signup_clan" size="1">
+		<option value="0">No Clan Selected</option>
+	{section name=list loop=$ocs}
+	        <option value="{$ocs[list].num}">{$ocs[list].tag} - {$ocs[list].name}</option>
+	{/section}
+	</select></td></tr>
+{/if}
+
+<tr><td colspan="2" class="acenter"><input type="submit" 
+name="do_joinopenclan" value="Join Clan"></td></tr>
+</table>
+</form>
+<br><br>
+<a href="?clanstats&amp;sort_type=avgnet<?=$authstr?>">Top Clans by Average Networth</a><br>
+<a href="?clanstats&amp;sort_type=totalnet<?=$authstr?>">Top Clans by Total Networth</a><br>
+<a href="?clanstats&amp;sort_type=members<?=$authstr?>">Top Clans by Membership</a><br>

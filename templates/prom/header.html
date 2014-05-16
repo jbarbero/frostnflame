@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><?php echo $gamename; ?> :: {$servname|strip_tags}</title>
+<base href="<?php echo $basehref; ?>">
+<link rel="stylesheet" type="text/css" href="layout.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $stylename; ?>">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="alternate" title="RSS Feed" href="<?php echo $sitedir; ?>?rss&amp;feed=top10{$authstr}" type="application/rss+xml">
+<?php echo $extra_headers; ?>
+</head>
+<body>
+<table style="width:100%" border="0">
+<tr><td style="width:24px;vertical-align:top;text-align:center" valign="top">
+
+<center><span style="font-size:x-large"><?php echo $gamename; ?></span></center>
+
+<table class="menus">
+<tr><th><center><hr>
+<a href="?<?php echo $gaction; ?>&amp;menu=reverse{$authstr}"><img src="{$imgsrc}" border="0" alt="toggle collapse/expand"></a>&nbsp;<a href="?main{$authstr}" class="darklink">Main&nbsp;Menu</a>
+<hr></center></th></tr>
+
+{section name=m loop=$menus}
+{if $menus[m].spec == 1}
+<tr><th>{$menus[m].item}</th></tr>
+{else}
+<tr><td><a href='{$menus[m].link}'{$menus[m].trg}>{$menus[m].item}</a></td></tr>
+{/if}
+{/section}
+
+<tr><th><center><hr><a href="?logout<?php echo $authstr; ?>" class="darklink">Logout</a><hr></center></th></tr>
+</table>
+
+</td>
+<td class="acenter sidebar">
+<img src="spacer.gif" height="0" width="100%" border="0" alt="">
+</td>
+<td class="acenter" style="vertical-align:top">
+
+{if $adminpanel == 'true'}
+{if $root == 1}
+<form method="post" action="?<?php echo $authstr; ?>">
+<div>
+<input type="hidden" name="the_action" value="<?php echo $action; ?>">
+#<input type="text" name="whichuser" size="4">
+<input type="submit" name="do_setuser" value="Set User"><br>
+<input type="submit" name="do_updatenet" value="Update Networths">
+<input type="submit" name="do_updateranks" value="Update Rankings">
+</div>
+{/if}
+<center>
+<table width="80%"><tr width="100%"><td width="50%"><p align="left">
+{if $root == 1}
+<a href="<?php echo $main; ?>?admin{$authstr}">Server Administration</a><br>
+{/if}
+<a href="<?php echo $main; ?>?clanadmin{$authstr}">Clan Administration</a><br>
+<a href="<?php echo $main; ?>?useradmin{$authstr}">User Administration</a><br>
+<a href="<?php echo $main; ?>?msgadmin{$authstr}">View Messages</a><br>
+</p>
+</td>
+<td width="50%"><p align="right">
+{if $root == 1}
+<a href="<?php echo $main; ?>?newsletter{$authstr}">Send Newsletter</a><br>
+{/if}
+<a href="<?php echo $main; ?>?igletter{$authstr}">Mass In-Game Message</a><br>
+<a href="<?php echo $main; ?>?forumadmin{$authstr}">Forums Moderation</a><br>
+<a href="<?php echo $main; ?>?stockpanel{$authstr}">Stock Manipulation</a><br>
+</p></td></tr>
+</table>
+</center>
+</form>
+{/if}
+
+   <center><span style="font-size:x-large"><?php echo $gamename; ?> :: {$servname}</span></center>
+   Currently logged in as <span style="font-size:large"><?php echo $empire; ?></span> <a class=proflink href=?profiles&amp;num={$num}{$authstr}>(#{$num})</a><br><br>
+   <b>Game News:</b> <?php echo $news; ?><br>
+   <a href="<?php echo $main; ?>?guide2&amp;section={$action}{$authstr}"><b>Game Guide</b></a> &middot;
+   <a href="javascript:window.location.reload()">Refresh</a> &middot;
+   <a href="http://frostnflame.org/forum/index.php?showforum=4" target="bugs">Suggestions &middot; Bugs</a>
+   <br>
+
+<table style="width:100%">
+<tr class="era<?php echo $era; ?>" style="font-size:medium" class="darklink">
+    <td class="acenter"><a href="<?php echo $main; ?>?messages{$authstr}">
+    {if $newmail == 'true'}
+      <b>New Mail!</b>
+    {else}
+      Mailbox
+    {/if}
+    </a></td>
+    <td class="acenter">Turns: <?php echo $turns_new; ?>
+    {if $turnsleft > 0}
+        <br><font size="1">Protection: <?php echo $turnsleft; ?></font>
+    {/if}
+    </td>
+    <td class="acenter"><span class="<?php echo $cash_color; ?>">Money: {$cash_new|gamefactor}</span></td>
+    <td class="acenter"><span class="<?php echo $land_color; ?>">Land: {$land_new}</span></td>
+    <td class="acenter"><?php echo $runesname; ?>: {$runes_new|gamefactor}</td>
+    <td class="acenter"><span class="<?php echo $food_color; ?>">{$foodname}: {$food_new|gamefactor}</span></td>
+    <td class="acenter"><span class="<?php echo $health_color; ?>">Health: {$health_new}%</span></td>
+    <td class="acenter">Networth: $<?php echo $networth_new; ?></td></tr>
+</table>
+
+{if $onlined == true}
+	<span class="cwarn">You are under attack from <?php echo $onl_e; ?>!</span><br>
+{/if}
+
+{if $validate1 == 'true' || $validate2 == 'true'}
+It is now necessary to validate your account. If you did not receive your validation email, you can have it resent.<br>
+<form method="post" action="<?php echo $main; ?>?validate{$authstr}">
+<table class="inputtable">
+<tr><td>Enter Validation Code:</td>
+<td class="aright"><input type="text" size="32" name="valcode" value="<?php echo $valcode; ?>"></td></tr>
+<tr><th colspan="2" class="acenter"><input type="submit" name="do_validate" value="Validate"></th></tr>
+</table>
+</form>
+<a href="<?php echo $main; ?>?revalidate{$authstr}">Resend Code</a><br>
+<a href="<?php echo $main; ?>?delete{$authstr}">Delete Account</a>
+{/if}

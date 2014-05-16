@@ -1,0 +1,49 @@
+<?php echo $turnoutput; ?>
+
+{if $message != ''}
+	<table width="50%"><td><center><?php echo $message; ?></center>
+	<tr><td><hr></table>
+{/if}
+
+<center>While producing, your production in that area is increased by 25%.</center><br>
+<form method="post" action="?produce<?php echo $authstr; ?>">
+<table class="inputtable">
+<tr><td colspan=2><center>Spend turns gaining:
+
+{if $produce_array == 0}
+        <b>Unable to produce.</b></td></tr>
+{else}
+	<select name="produce_type" size="1">
+{section name=list loop=$produce_array}
+		<option value="{$produce_array[list]}">{$produce_array[list]}</option>
+	{/section}
+	</select></center></td></tr>
+{/if}
+<tr><td colspan=2><center>Use how many turns? <input type="text" name="use_turns" class="text_area" size="5" value="0">
+	<input type="hidden" name="do_use" value="1"></center></td></tr>
+
+<tr><td><center>Condense turns?</center></td><td><input type="checkbox" name="hide_turns"<?php echo $condense; ?> class="check_box"></td></tr>
+
+<tr class="inputtable2">
+	<th colspan=2>Stop Turns If:</th>
+</tr>
+<tr>
+	<td>Net Income is negative</td>
+	<td><input type="checkbox" name="netincomeneg" class="check_box" value="yes"></td>
+</tr>
+<tr>
+	<td>Net <?php echo $food; ?> production is negative</td>
+	<td><input type="checkbox" name="netfoodneg" class="check_box" value="yes"></td>
+</tr>
+<tr>
+	<td>{$uera.wizards} production is negative</td>
+	<td><input type="checkbox" name="netwizardneg" class="check_box" value="yes"></td>
+</tr>
+<tr>
+	<td>Population production is negative</td>
+	<td><input type="checkbox" name="networkerneg" class="check_box" value="yes"></td>
+</tr>
+<tr><td colspan=2><center><input type="submit" value="Begin"></center></td></tr>
+</table>
+</form>
+

@@ -1,0 +1,168 @@
+{literal}
+<script language="JavaScript">
+
+	function updateMsgNames() {
+		msgnum = document.frmmsg.num.value;
+		nchanged = true
+		for (i = 0; i < document.frmmsg.msg_dest.options.length; i++) {
+			 if (document.frmmsg.msg_dest.options[i].value == msgnum) {
+				document.frmmsg.msg_dest.options[i].selected = true;
+				nchanged = false;
+			}
+		}
+		if (nchanged) {
+			document.frmmsg.do_view.disabled = true;
+		} else {
+			document.frmmsg.do_view.disabled = false;
+		}
+	}
+	function updateMsgNums() {
+		document.frmmsg.num.value = document.frmmsg.msg_dest.value;
+			document.frmmsg.do_view.disabled = false;
+	//	document.frmmsg.submit();
+	}
+
+</script>
+
+
+{/literal}
+
+<div align="center">
+
+		<form method="post" action="<?php echo $main; ?>?profiles{$authstr}" name="frmmsg">
+			Read Profile of: <input type="text" name="num" size="5" maxlength="10" value="<?php echo $selected; ?>" onChange="updateMsgNames()">
+			<select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
+			{section name=dropsel loop=$drop}
+				<option value="{$drop[dropsel].num}" class="m{$drop[dropsel].color}"
+				{if $selected == $drop[dropsel].num} selected {/if}
+				>{$drop[dropsel].num} - {$drop[dropsel].name}</option>
+			{/section}
+			</select>
+
+
+{* war_drop *}
+
+
+			<input type="submit" name="do_view" value="View Profile">
+		</form>
+
+	<br><br>
+
+
+
+	{if $do_view=="true"}
+		<table style="width:100%" align="center">
+
+			<tr>
+				<th colspan="2">
+					<b>{$enemy.empire} <a class="proflink" href="<?php echo $main; ?>?profiles&amp;num={$enemy.num}{$authstr}">(#{$enemy.num})</a></b>
+				</th>
+			</tr>
+
+			<tr>
+				<td style="vertical-align:top;width:40%">
+				<table class="empstatus" style="width:100%">
+					<tr>
+						<td>
+							<table class="empstatus" style="width:100%">
+        						<tr><th colspan="2" class="era{$users.era}" style="text-align:center">In-Game Information</th></tr>
+
+								<tr>
+									<th>Rank: </th>
+									<td>{$enemy.rank}</td>
+								</tr>
+
+								<tr>
+									<th>Networth: </th>
+									<td>${$enemy.networth}</td>
+								</tr>
+
+								<tr>
+									<th>Land: </th>
+									<td>{$enemy.land}</td>
+								</tr>
+
+								<tr>
+									<th>Race: </th>
+									<td>{$erace.name}</td>
+								</tr>
+
+								<tr>
+									<th>Era:</th>
+									<td>{$eera.name}</td>
+								</tr>
+
+								<tr>
+									<th>Clan: </th>
+									<td>
+									{if $clan.num!=0}
+									{$clan.name} <a class="<?php echo $ccolor; ?>" href="{$main}?clancrier&amp;sclan={$clan.num}{$authstr}">({$clan.tag})</a>
+									{else}No Clan
+									{/if}
+									</td>
+								</tr>
+
+								<tr>
+									<th>Allies: </th>
+									<td>{$tags[0]}, {$tags[1]}, {$tags[2]}, {$tags[3]}, {$tags[4]}</td>
+								</tr>
+
+								<tr>
+									<th>Enemies: </th>
+									<td>{$tags[5]}, {$tags[6]}, {$tags[7]}, {$tags[8]}, {$tags[9]}</td>
+								</tr>
+
+								<tr>
+									<th>Offensive Actions: </th>
+									<td>{$enemy.offtotal} (<?php echo $off_percent; ?>%)</td>
+								</tr>
+
+								<tr>
+									<th>Defensive Actions: </th>
+									<td>{$enemy.deftotal} (<?php echo $def_percent; ?>%)</td>
+								</tr>
+								<tr>
+									<th>Signup Date</th>
+									<td>{$enemy.signedup}
+
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<table class="empstatus" style="width:100%">
+        						<tr>
+        							<th colspan="2" class="era{$users.era}" style="text-align:center">Contact Information</th>
+        						</tr>
+
+								<tr>
+									<th>AIM: </th>
+									<td>{$enemy.aim}</td>
+								</tr>
+								<tr>
+									<th>MSN: </th>
+									<td>{$enemy.msn}</td>
+								</tr>
+							</table>
+
+							{if $loggedin==true}<br>
+							<div align="center"><a href="<?php echo $main; ?>?military&amp;prof_target={$enemy.num}{$authstr}">Attack</a> &middot; <a href="{$main}?mercenary&amp;set=1&amp;prof_target={$enemy.num}{$authstr}">Set Bounty On</a> &middot; <a href="{$main}?mercenary&amp;view_prof=1&amp;prof_target={$enemy.num}{$authstr}">View Bounties On {$uera.empireC}</a> &middot; <a href="{$main}?aid&amp;prof_target={$enemy.num}{$authstr}">Aid</a> &middot; <a href="{$main}?messages&amp;prof_target={$enemy.num}{$authstr}">Message</a></div>
+							{/if}
+						</td>
+					</tr>
+				</table>
+				</td>
+
+				<td style="vertical-align:top:width:60%" valign="top">
+					<table class="empstatus" style="width:100%">
+					<tr><th colspan="2" class="era{$users.era}" style="text-align:center">User's Profile:</th></tr>
+					<tr><td><div align="left">{$enemy.profile}</div></td></tr>
+					</table>
+				</td>
+		</tr>
+		</table>
+	{/if}
+
+
+</div>
