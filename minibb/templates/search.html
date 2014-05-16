@@ -1,0 +1,93 @@
+<div align=center>
+
+<table class=forums>
+<tr>
+<td width="100%" class=caption6><div class=header><a href="{$indexphp}">{$sitename}</a> :: {$l_searchSite}</div></td>
+</tr>
+</table>
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent><span class=txtSm><b>{$pageNav}</b></span></td></tr>
+</table>
+
+<table class=tbTransparent><tr><td class=tbTransparent><span class=warning>{$warning}</span></td></tr></table>
+
+<br>
+<form action="{$indexphp}" method=post class=formStyle>
+
+<table class=forums>
+<tr>
+<td width="30%" class=caption4 rowspan=2 valign=top>
+<input type=hidden name=action value=search>
+<b>&raquo; {$l_search[0]}</b>
+</td>
+<td width="28%" align=center colspan=2 class=caption5>
+&nbsp;<input type=text size=38 maxlength=100 name=searchFor value="{$searchFor}" class=textForm>&nbsp;
+</td>
+<td width="6%" align=center class=caption5>
+&nbsp;<input type=submit value="{$l_search[3]}" class=inputButton>&nbsp;
+</td>
+<td width="36%" class=caption5>&nbsp;
+</td>
+</tr>
+
+<!--13-->
+<tr>
+<td colspan=4 class=caption5>
+&nbsp;&nbsp;&nbsp;<span class=txtSm><b>&raquo; </b>{$l_search[11]}</span><input type=checkbox {$eMatch} name=eMatch value=on>
+&nbsp;&nbsp;<span class=txtSm><b>&raquo; </b>{$l_days_within} <input type=text size=4 maxlength=4 name=days value="{$days}" class=textForm> {$l_days}</span>
+</td>
+</tr>
+<!--/13-->
+
+<tr>
+<td class=caption4>
+<b>&raquo; {$l_search[1]} </b>
+</td>
+<td colspan=4 class=caption5>
+&nbsp;<select name=searchWhere size=1 class=selectTxt>
+<option {$SWchk[0]} value=0>{$l_search[4]}</option>
+<option {$SWchk[1]} value=1>{$l_search[5]}</option>
+<option {$SWchk[2]} value=2>{$l_search[6]}</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class=caption4>
+<b>&raquo; {$l_search[2]} </b>
+</td>
+<td colspan=4 class=caption5>
+&nbsp;<select name=searchHow size=1 class=selectTxt>
+<option {$SHchk[0]} value=0>{$l_search[7]}</option>
+<option {$SHchk[1]} value=1>{$l_search[8]}</option>
+<option {$SHchk[2]} value=2>{$l_search[9]}</option>
+</select>
+</td>
+</tr>
+</table>
+</form>
+
+<br>
+<table class=tbTransparent>
+<tr>
+<td width="2%">&nbsp;</td>
+<td width="98%">
+<div>
+
+{$searchResults}
+
+</div>
+</td>
+</tr>
+</table>
+<br>
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent><span class=txtSm><b>{$pageNav}</b></span></td></tr>
+</table>
+
+</div>
+
+<!--
+
+-->

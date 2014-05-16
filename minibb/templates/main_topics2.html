@@ -1,0 +1,68 @@
+<script type="text/javascript">
+function paste_strinL(strinL){ 
+var input=document.postMsg.elements["postText"];
+input.value=input.value+strinL;
+}
+</script>
+
+<div align=center>
+
+<table class=forums>
+<tr>
+<td width=16 valign=top class=caption3></td>
+<td valign=top class=caption3><div class=header>{$forumName}</div></td>
+<td align=right valign=top width="50%" class=caption3><span class=txtSm><b>{$l_sortedBy}&nbsp;{$sortedByT}.<br><i><a href="{$indexphp}action=vtopic&amp;forum={$forum}&amp;sortBy={$sortByNew}">{$l_sortBy}&nbsp;{$sortByT}</a></i></b></span></td>
+<td class=caption2><b>&nbsp;
+{$l_menu[4]}{$l_sepr}</b></td>
+</tr>
+</table>
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent><span class=txtSm><b>{$pageNav}</b></span></td></tr>
+</table>
+
+<table class=forums>
+<tr>
+<td width=18 class=caption4>&nbsp;</td>
+<td width="50%" class=caption4><span class=txtSm><b>{$l_topic}</b></span></td>
+<td width="10%" align=center class=caption4><span class=txtSm><b>{$l_replies}</b></span></td>
+<td width="10%" align=center class=caption4><span class=txtSm><b>{$l_views}</b></span></td>
+<td width="15%" align=center class=caption4><span class=txtSm><b>{$l_author}</b></span></td>
+<td width="15%" align=center class=caption4><span class=txtSm><b>{$l_posted}</b></span></td>
+</tr>
+
+{$list_topics}
+
+</table>
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent><span class=txtSm><b>{$pageNav}</b></span></td></tr>
+</table>
+
+<a name=newtopic></a>
+<form action="{$indexphp}" name=postMsg method=post class=formStyle>
+<table class=forums>
+<tr>
+<td class=caption2>
+<b>:: {$l_new_topic}</b></td>
+</tr>
+<tr>
+<td class=caption5>
+<INPUT TYPE=HIDDEN NAME=action VALUE=ptopic>
+<INPUT TYPE=HIDDEN NAME=forum VALUE="{$forum}">
+<INPUT TYPE=TEXT NAME=topicTitle SIZE=38 MAXLENGTH=100 class=textForm tabindex=1 style="width:450px;">
+</td>
+</tr>
+
+{$mainPostForm}
+
+<tr>
+<td class=caption5>
+<INPUT TYPE=SUBMIT VALUE="{$l_sub_post_tpc}" class=inputButton tabindex=5>
+</td>
+</tr>
+</table>
+</form>
+</div>
+<br>
+
