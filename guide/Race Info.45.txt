@@ -1,0 +1,201 @@
+id: Race Info
+version: 45
+flags: 9
+created: 1133473574
+meta: a:2:{s:10:"user-agent";s:82:"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8) Gecko/20051111 Firefox/1.5";s:5:"title";s:12:"Race Bonuses";}
+hits: 0
+refs: \n\n\n\n
+lastmodified: 1141241635
+author: ds-szg-058.eplt.washington.edu 128.95.217.221:1054
+
+<htm>
+<table class="inputtable">
+<tr><th>Offense:</th>
+    <td>Your offensive power while attacking other warbands.</td></tr>
+<tr><th>Defense:</th>
+    <td>Your defensive power when being attacked by other warbands.</td></tr>
+<tr><th>Build:</th>
+
+    <td>How quickly you can construct (and demolish) structures.</td></tr>
+<tr><th>Expense:</th>
+    <td>The amount of money you must pay for the upkeep of your military units.</td></tr>
+<tr><th>Hawks:</th>
+    <td>Your flying power, used when executing missions and when other warbands execute missions on you.</td></tr>
+<tr><th>Industry:</th>
+    <td>Your ability to produce military units.</td></tr>
+
+<tr><th>Income:</th>
+    <td>Your Per Capita Income, how much your people make each turn.</td></tr>
+<tr><th>Scouting:</th>
+    <td>How much land you gain per turn spent scouting.</td></tr>
+<tr><th>Bazaar:</th>
+    <td>The prices of military units on the bazaar.</td></tr>
+<tr><th>Food:</th>
+
+    <td>How much food your people consume each turn.</td></tr>
+<tr><th>Runes:</th>
+    <td>How many runes your hawks can produce each turn.</td></tr>
+<tr><th>Orchards:</th>
+    <td>How much food your orchards produce each turn.</td></tr>
+</table>
+
+<table class="race" border="1">
+<tr><th>Race</th>
+    <th>Offense</th>
+    <th>Defense</th>
+    <th>Build</th>
+    <th>Expense</th>
+    <th>Hawks</th>
+    <th>Industry</th>
+    <th>Income</th>
+    <th>Scouting</th>
+    <th>Bazaar</th>
+    <th>Food</th>
+    <th>Runes</th>
+    <th>Orchards</th></tr>
+
+<tr><th>Assyrian</th>
+	<td class="cgood">22%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">-5%</td>
+	<td class="cbad">5%</td>
+	<td class="cneutral">0%</td>
+
+	<td class="cgood">5%</td>
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">5%</td>
+	<td class="cbad">7%</td>
+	<td class="cneutral">0%</td>
+
+	<td class="cbad">-5%</td></tr>
+
+<tr><th>Egyptian</th>
+	<td class="cneutral">0%</td>
+	<td class="cgood">12%</td>
+	<td class="cbad">-4%</td>
+	<td class="cbad">3%</td>
+
+	<td class="cbad">-5%</td>
+	<td class="cbad">-3%</td>
+	<td class="cbad">-8%</td>
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">3%</td>
+
+	<td class="cgood">3%</td>
+	<td class="cgood">11%</td></tr>
+
+<tr><th>Etruscan</th>
+	<td class="cbad">-4%</td>
+	<td class="cbad">-4%</td>
+	<td class="cgood">5%</td>
+
+	<td class="cneutral">0%</td>
+	<td class="cbad">-3%</td>
+	<td class="cbad">-4%</td>
+	<td class="cgood">12%</td>
+	<td class="cbad">-10%</td>
+	<td class="cgood">-12%</td>
+
+	<td class="cgood">-5%</td>
+	<td class="cbad">-4%</td>
+	<td class="cbad">-5%</td></tr>
+
+<tr><th>Gallic</th>
+	<td class="cgood">11%</td>
+	<td class="cbad">-9%</td>
+
+	<td class="cgood">5%</td>
+	<td class="cgood">-8%</td>
+	<td class="cbad">-12%</td>
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+
+	<td class="cbad">9%</td>
+	<td class="cgood">-6%</td>
+	<td class="cbad">-8%</td>
+	<td class="cgood">8%</td></tr>
+
+<tr><th>Germanic</th>
+	<td class="cgood">6%</td>
+
+	<td class="cgood">12%</td>
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">-9%</td>
+	<td class="cgood">4%</td>
+	<td class="cneutral">0%</td>
+
+	<td class="cbad">-3%</td>
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">-10%</td>
+	<td class="cneutral">0%</td></tr>
+
+<tr><th>Greek</th>
+
+	<td class="cgood">4%</td>
+	<td class="cgood">14%</td>
+	<td class="cbad">-4%</td>
+	<td class="cgood">-4%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">-2%</td>
+
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">3%</td>
+	<td class="cneutral">0%</td>
+	<td class="cbad">-13%</td></tr>
+
+<tr><th>Macedon</th>
+	<td class="cgood">12%</td>
+	<td class="cneutral">0%</td>
+	<td class="cgood">6%</td>
+	<td class="cbad">5%</td>
+	<td class="cbad">-12%</td>
+
+	<td class="cgood">14%</td>
+	<td class="cgood">5%</td>
+	<td class="cbad">-3%</td>
+	<td class="cbad">3%</td>
+	<td class="cbad">9%</td>
+	<td class="cbad">-12%</td>
+
+	<td class="cgood">7%</td></tr>
+
+<tr><th>Persian</th>
+	<td class="cbad">-4%</td>
+	<td class="cbad">-4%</td>
+	<td class="cgood">5%</td>
+	<td class="cgood">-3%</td>
+
+	<td class="cgood">7%</td>
+	<td class="cbad">-4%</td>
+	<td class="cbad">-2%</td>
+	<td class="cbad">-8%</td>
+	<td class="cbad">6%</td>
+	<td class="cgood">-7%</td>
+
+	<td class="cgood">6%</td>
+	<td class="cneutral">0%</td></tr>
+
+<tr><th>Phoenician</th>
+	<td class="cbad">-13%</td>
+	<td class="cbad">-12%</td>
+	<td class="cgood">9%</td>
+
+	<td class="cbad">4%</td>
+	<td class="cgood">23%</td>
+	<td class="cbad">-13%</td>
+	<td class="cgood">5%</td>
+	<td class="cgood">5%</td>
+	<td class="cbad">3%</td>
+
+	<td class="cbad">7%</td>
+	<td class="cgood">10%</td>
+	<td class="cneutral">0%</td></tr>
+</table>
+</htm>

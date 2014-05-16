@@ -1,0 +1,194 @@
+id: Race Info
+version: 41
+flags: 9
+created: 1133473574
+meta: a:2:{s:10:"user-agent";s:47:"Mozilla/5.0 (X11; Linux i686; U; en) Opera 8.51";s:5:"title";s:12:"Race Bonuses";}
+hits: 0
+refs: \n\n\n\n
+lastmodified: 1134163770
+author: S01060080c828b59f.gv.shawcable.net 24.69.70.225:6564
+
+<htm>
+<table class=\"inputtable\">
+<tr><th>Offense:</th>
+    <td>Your offensive power while attacking other warbands.</td></tr>
+<tr><th>Defense:</th>
+    <td>Your defensive power when being attacked by other warbands.</td></tr>
+<tr><th>Build:</th>
+
+    <td>How quickly you can construct (and demolish) structures.</td></tr>
+<tr><th>Expense:</th>
+    <td>The amount of money you must pay for the upkeep of your military units.</td></tr>
+<tr><th>Magic:</th>
+    <td>Your magical power, used when casting missions and when other warbands cast missions on you.</td></tr>
+<tr><th>Industry:</th>
+    <td>Your ability to produce military units.</td></tr>
+
+<tr><th>Income:</th>
+    <td>Your Per Capita Income, how much your people make each turn.</td></tr>
+<tr><th>Scouting:</th>
+    <td>How much land you gain per turn spent scouting.</td></tr>
+<tr><th>Bazzar:</th>
+    <td>The prices of military units on the bazzar.</td></tr>
+<tr><th>Food:</th>
+
+    <td>How much food your people consume each turn.</td></tr>
+<tr><th>Runes:</th>
+    <td>How many runes your hawks can produce each turn.</td></tr>
+<tr><th>Foragers:</th>
+    <td>How much food your foragers produce each turn.</td></tr>
+</table>
+
+<table class=\"race\" border=\"1\">
+<tr><th>Race</th>
+
+    <th>Offense</th>
+    <th>Defense</th>
+    <th>Build</th>
+    <th>Expense</th>
+    <th>Magic</th>
+    <th>Industry</th>
+
+    <th>Income</th>
+    <th>Scouting</th>
+    <th>Bazzar</th>
+    <th>Food</th>
+    <th>Runes</th>
+    <th>Foragers</th>
+
+<tr><th>Mouse</th>
+    <td class=\"cbad\">-5%</td>
+    <td class=\"cgood\">+5%</td>
+    <td class=\"cgood\">+5%</td>
+    <td class=\"cgood\">-5%</td>
+    <td class=\"cbad\">-5%</td>
+
+    <td class=\"cbad\">-5%</td>
+    <td class=\"cgood\">+5%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cbad\">+5%</td>
+    <td class=\"cbad\">-5%</td>
+
+    <td class=\"cgood\">+5%</td></tr>
+<tr><th>Squirrel</th>
+    <td class=\"cbad\">-14%</td>
+    <td class=\"cbad\">-2%</td>
+    <td class=\"cbad\">-10%</td>
+    <td class=\"cneutral\">-0%</td>
+
+    <td class=\"cgood\">+18%</td>
+    <td class=\"cbad\">-12%</td>
+    <td class=\"cgood\">+2%</td>
+    <td class=\"cgood\">+12%</td>
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cneutral\">-0%</td>
+
+    <td class=\"cgood\">+12%</td>
+    <td class=\"cbad\">-6%</td></tr>
+<tr><th>Shrew</th>
+    <td class=\"cgood\">+6%</td>
+    <td class=\"cgood\">+16%</td>
+    <td class=\"cneutral\">+0%</td>
+
+    <td class=\"cbad\">+8%</td>
+    <td class=\"cbad\">-16%</td>
+    <td class=\"cgood\">+12%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cbad\">-18%</td>
+    <td class=\"cbad\">+6%</td>
+
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cneutral\">+0%</td></tr>
+<tr><th>Otter</th>
+    <td class=\"cgood\">+24%</td>
+    <td class=\"cbad\">-10%</td>
+
+    <td class=\"cgood\">+8%</td>
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cbad\">-12%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cgood\">+4%</td>
+    <td class=\"cgood\">+14%</td>
+
+    <td class=\"cbad\">+12%</td>
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cbad\">-8%</td>
+    <td class=\"cbad\">-8%</td></tr>
+<tr><th>Hedgehog</th>
+    <td class=\"cbad\">-16%</td>
+
+    <td class=\"cgood\">+10%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cbad\">+6%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cbad\">-10%</td>
+    <td class=\"cgood\">+10%</td>
+
+    <td class=\"cgood\">+6%</td>
+    <td class=\"cgood\">-6%</td>
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cneutral\">+0%</td></tr>
+<tr><th>Mole</th>
+
+    <td class=\"cgood\">+10%</td>
+    <td class=\"cbad\">-6%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cbad\">-10%</td>
+    <td class=\"cgood\">+10%</td>
+
+    <td class=\"cbad\">-16%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cbad\">+8%</td>
+    <td class=\"cgood\">-2%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cgood\">+18%</td></tr>
+
+<tr><th>Hare</th>
+    <td class=\"cgood\">+14%</td>
+    <td class=\"cbad\">-2%</td>
+    <td class=\"cgood\">+4%</td>
+    <td class=\"cbad\">+14%</td>
+    <td class=\"cbad\">-4%</td>
+
+    <td class=\"cgood\">+8%</td>
+    <td class=\"cbad\">-4%</td>
+    <td class=\"cgood\">+16%</td>
+    <td class=\"cneutral\">-0%</td>
+    <td class=\"cgood\">-4%</td>
+    <td class=\"cbad\">-14%</td>
+
+    <td class=\"cbad\">-8%</td></tr>
+<tr><th>Badger</th>
+    <td class=\"cgood\">+16%</td>
+    <td class=\"cgood\">+8%</td>
+    <td class=\"cgood\">+4%</td>
+    <td class=\"cbad\">+8%</td>
+
+    <td class=\"cbad\">-8%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cneutral\">+0%</td>
+    <td class=\"cbad\">-12%</td>
+    <td class=\"cbad\">+8%</td>
+    <td class=\"cgood\">-8%</td>
+
+    <td class=\"cgood\">+6%</td>
+    <td class=\"cbad\">-6%</td></tr>
+<tr><th>Vole</th>
+   <td class=\"cbad\">-16%</td>
+   <td class=\"cbad\">-6%</td>
+   <td class=\"cneutral\">+0%</td>
+   <td class=\"cgood\">-14%</td>
+   <td class=\"cbad\">-8%</td>
+   <td class=\"cgood\">+14%</td>
+   <td class=\"cneutral\">+0%</td>
+   <td class=\"cneutral\">+0%</td>
+   <td class=\"cbad\">+8%</td>
+   <td class=\"cgood\">-8%</td>
+   <td class=\"cbad\">-16%</td>
+   <td class=\"cgood\">+4%</td></tr>
+</table>
+</htm>
