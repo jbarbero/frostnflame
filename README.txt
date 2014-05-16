@@ -1,3 +1,10 @@
+###################################### N.B. ######################################
+
+The FAF codebase is NOT currently working. I am working on updating it to run on modern PHP. Please do not try installing this codebase.
+
+##################################################################################
+
+
 Installation steps:
 1. Unzip on your web server
 2. Go through config.php to set up the server (directives are documented there). All you
