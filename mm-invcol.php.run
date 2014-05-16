@@ -1,0 +1,26 @@
+<?php
+
+$file = file('minimyadmin.php');
+
+function mod_color($col) {
+	$c[r] = $col[1]{0} . $col[1]{1};
+	$c[g] = $col[1]{2} . $col[1]{3};
+	$c[b] = $col[1]{4} . $col[1]{5};
+
+	foreach($c as $i => $v)		$c[$i] = hexdec($v);
+	foreach($c as $i => $v)		$c[$i] = 255 - $v;
+	foreach($c as $i => $v)		$c[$i] = dechex($v);
+
+	$n = $c[r] . $c[g] . $c[b];
+
+	return "#$n;";
+}
+
+
+foreach($file as $line) {
+	$matches;
+
+	$line = preg_replace_callback("/#([a-zA-Z0-9]{6,6});/", "mod_color", $line);
+	echo $line;
+}
+?>

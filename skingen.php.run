@@ -1,0 +1,191 @@
+<?php
+$limit = 9;
+function transform_color(&$r, &$g, &$b) {
+	global $interm, $outterm, $which, $inv;
+	$interm = 'green';
+
+	// Many of these are simply permutations in S_3, the symmetric group of 3 elements
+	// i.e. Perm{R, G, B}
+	// Starting from green.css, these are:
+	// 1		green
+	// (12)		red
+	// (13)		forest
+	// (23)		blue
+	// (123)	purple
+	// (132)	forest2
+
+	switch($which) {
+		case 0:		if($r == -1)		$outterm = 'red';
+				$t = $g;
+				$g = $r;
+				$r = $t;
+			break;
+		case 1:		if($r == -1)		$outterm = 'forest';
+				$t = $b;
+				$b = $r;
+				$r = $t;
+			break;
+		case 2:		if($r == -1)		$outterm = 'blue';
+				$t = $g;
+				$g = $b;
+				$b = $t;
+			break;
+		case 3:		if($r == -1)		$outterm = 'purple';
+				$t = $b;
+				$b = $g;
+				$g = $r;
+				$r = $t;
+			break;
+		case 4:		if($r == -1)		$outterm = 'forest2';
+				$t = $b;
+				$b = $r;
+				$r = $g;
+				$g = $t;
+			break;
+		case 5:		if($r == -1)		$outterm = 'gray';
+				$a = round(($r + $g + $b) / 3);
+				$r = $a;
+				$g = $a;
+				$b = $a;
+			break;
+		case 6:		if($r == -1)		$outterm = 'magenta';
+				$t = $g;
+				$b = $r;
+				$g = $r;
+				$r = $t;
+			break;
+		case 7:		if($r == -1)		$outterm = 'cyan';
+				$t = $r;
+				$r = $g;
+				$b = $g;
+				$g = $t;
+			break;
+		case 8:		if($r == -1)		$outterm = 'pink';
+				$t = $b;
+				$r = $g;
+				$b = $g;
+				$g = $t;
+			break;
+//		case 9:		if($r == -1)		$outterm = 'test2';
+//				$t = $b;
+//				$b = $r;
+//				$g = $r;
+//				$r = $t;
+//			break;
+//		case 10:	if($r == -1)		$outterm = 'test5';
+//				$t = $r;
+//				$r = $b;
+//				$g = $b;
+//				$b = $t;
+//			break;
+//		case 11:	if($r == -1)		$outterm = 'test6';
+//				$t = $g;
+//				$r = $b;
+//				$g = $b;
+//				$b = $t;
+//			break;
+	}
+
+	if($inv) {
+		if($r == -1)		$outterm = "inv-$outterm";
+		$r = 255 - $r;
+		$g = 255 - $g;
+		$b = 255 - $b;
+	}
+}
+
+
+function html_get_rgb($cval, &$r, &$g, &$b) {
+	if(strlen($cval) == 6) {
+		$r = hexdec(substr($cval, 0, 2));
+		$g = hexdec(substr($cval, 2, 2));
+		$b = hexdec(substr($cval, 4, 2));
+	} else {
+		$r = $g = $b = -1;
+	}
+}
+
+
+function transform_htmlcolor($color) {
+	$r = 0;
+	$g = 0;
+	$b = 0;
+	html_get_rgb($color, $r, $g, $b);
+	transform_color($r, $g, $b);
+	$new = '';
+	foreach(array($r, $g, $b) as $i) {
+		$i = dechex($i);
+		if(strlen($i) == 1)
+			$i = "0$i";
+		$new .= $i;
+	}
+	return "#$new";
+}
+
+
+function do_transformation() {
+	$images = array('gradient.gif', 'cellpic1.gif', 'cellpic3.gif');
+
+	global $interm, $outterm;
+	$r = -1;
+	transform_color($r, $r, $r);
+
+	$fin = file("$interm.css");
+//	if(file_exists("$outterm.css")) {
+//		echo "File $outterm.css already exists! Not overwriting.\n";
+//		return;
+//	}
+
+	$fout = fopen("$outterm.css", 'w+');
+
+	foreach($fin as $line) {
+		$line = str_replace($interm, $outterm, $line);
+		$line = preg_replace("/#([0-9a-zA-Z]+)/e", "transform_htmlcolor('\\1')", $line);
+		fwrite($fout, $line);
+	}
+
+	fclose($fout);
+
+
+	foreach($images as $image) {
+		$im = imagecreatefromgif("img/$interm-$image");
+		$x = imagesx($im);
+		$y = imagesy($im);
+		for($i=0; $i<$x; $i++) {
+			for($j=0; $j<$y; $j++) {
+				$rgb = imagecolorat($im, $i, $j);
+				if(imageistruecolor($im)) {
+					$r = ($rgb >> 16) & 0xFF;
+					$g = ($rgb >> 8) & 0xFF;
+					$b = $rgb & 0xFF;
+				} else {
+					$ind = imagecolorsforindex($im, $rgb);
+					$r = $ind['red'];
+					$g = $ind['green'];
+					$b = $ind['blue'];
+				}
+//				print "was\t($r, $g, $b)\tat($i, $j)\n";
+				transform_color($r, $g, $b);
+//				print "is\t($r, $g, $b)\tat($i, $j)\n";
+				imagesetpixel($im, $i, $j, imagecolorallocate($im, $r, $g, $b));
+			}
+		}
+
+		imagegif($im, "img/$outterm-$image");
+		imagedestroy($im);
+	}
+}
+
+
+for($i=0; $i<$limit; $i++) {
+	$which = $i;
+	$inv = 0;	do_transformation();
+	$inv = 1;	do_transformation();
+}
+
+//green inverse
+$which = 100;
+$inv = 1;
+$outterm = 'green';
+do_transformation();
+?>

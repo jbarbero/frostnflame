@@ -1,0 +1,35 @@
+<?php
+function transform_dir($dir) {
+	echo "transforming dir: $dir\n";
+	$dh = opendir($dir);
+	while($entry = readdir($dh)) {
+		if(strlen($entry) > 4 && substr($entry, -4) == '.php' && is_readable("$dir/$entry") && is_writable("$dir/$entry")) {
+			$fh = fopen("$dir/$entry", 'r');
+			$conts = "";	$buf = "";
+			while($buf = fread($fh, 2048))
+				$conts .= $buf;
+			fclose($fh);
+
+			$conts = transform_file($conts);
+
+			$fh = fopen("$dir/$entry", 'w+');
+			fwrite($fh, $conts);
+			fclose($fh);
+		} else if($entry != '.' && $entry != '..' && is_dir($entry)) {
+			transform_dir("$dir/$entry");
+		}
+	}
+
+	closedir($dh);
+}
+
+
+function transform_file($conts) {
+//	$conts = eregi_replace('saveuserdatanet', 'saveUserData', $conts);
+
+	return $conts;
+}
+
+
+transform_dir('.');
+?>

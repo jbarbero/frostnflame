@@ -1,0 +1,40 @@
+<table style="width:75%">
+<tr class="era{$user.era}">
+	<th colspan="3">{$user.empire} <a class=proflink href=?profiles&num={$user.num}{$authstr}>(#{$user.num})</a></th>
+</tr>				   
+
+<tr>
+	<td valign="top" style="width:40%">
+	<table class="empstatus" style="width:100%">
+		<tr><th>Turns</th><td>{$user.turns} (max {$config.maxturns})</td></tr>		
+		<tr><th>Turns Stored</th><td>{$user.turnsstored} (max {$config.maxstoredturns})</td></tr>
+		<tr><th>Rank</th><td><span class="{$rank_color}">#{$user.rank}</span></td></tr>
+		<tr><th>{$era.peasantsC}</th><td>{$user.peasants|commas}</td></tr>
+		<tr><th>Land Acres</th><td><span class="{$land_color}">{$user.land|commas}</span></td></tr>
+		<tr><th>Money</th><td>${$user.cash|gamefactor}</td></tr>
+		<tr><th>{$era.food}</th><td>{$user.food|gamefactor}</td></tr>
+		<tr><th>{$era.runes}</th><td>{$user.runes|gamefactor}</td></tr>
+		<tr><th>Networth</th><td>${$user.networth|commas}</td></tr>
+		<!--<tr><th>Experience</th><td>{$user.expdisp|commas}</td></tr>-->
+	</table></td>
+
+	<td style="width:20%"></td>
+
+	<td style="width:40%">
+	<table class="empstatus" style="width:100%">
+		<tr><th>Era</th><td>{$era.name}</td></tr>
+		<tr><th>Race</th><td>{$race.name}</td></tr>
+		<tr><th>Health</th><td><span class="{$health_color}">{$user.health}%</span></td></tr>
+		<tr><th>Tax Rate</th><td>{$user.tax}%</td></tr><?
+		{section name=i loop=$usertrps}
+			<tr><th>{$usertrps[i].name}</th><td>{$usertrps[i].amt|gamefactor}</td></tr>
+		{/section}
+		<tr><th>{$era.wizards}</th><td>{$user.wizards|gamefactor}</td></tr>
+		{if $esp}<tr><td colspan="3" style="text-align: center">{$possible_spells}</td></tr>{/if}
+	</table></td>
+</tr>  
+
+<tr class="era{$user.era}">
+	<th colspan="3">&nbsp;</th>
+</tr>
+</table>
