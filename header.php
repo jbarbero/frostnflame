@@ -12,15 +12,6 @@ $suid = 0;
 $admin = false;
 auth_user();
 
-$tpl->assign('authcode', $authcode);
-$tpl->assign('authstr', $authstr);
-$tpl->assign('sitedir', $config['sitedir']);
-$tpl->assign('unum', $users['num']);
-$tpl->assign('root', $root);
-
-$tpl->assign('gamename', $gamename);
-$tpl->assign('gamename_full', $gamename_full);
-
 global $starttime;
 $starttime = getmicrotime();
 Header("Pragma: no-cache");
@@ -76,32 +67,28 @@ $z++;
 		makeAuthCode($root, $superuser[password], $su, SERVER, $usecookie, $superuser[rsalt]);
 	}
 	$admin = 1;
-	$tpl->assign('adminpanel', 'true');
+    $adminpanel = true;
 }
 
 if($users['basehref'] != '')
 	$basehref = $users['basehref'];
-$tpl->assign('basehref', $basehref);
-$tpl->assign('stylename', getstyle());
+$stylename = getstyle();
 set_incl_path(getTplDir());
 
 $cnd = '';
 if($users['condense'])
 	$cnd = ' checked';
 
-$tpl->assign('condense', $cnd);
+$condense = $cnd;
 
-$tpl->assign('main', $config['main']); 
-//$tpl->assign('action', $action);
-
-$tpl->assign('uera', $uera);
-$tpl->assign('troops', $config[troop]);
+$main = $config['main'];
+$troops = $config['troop'];
 $ctags = loadClanTags();
 
-$tpl->assign('servname', $config['servname']);
-$tpl->assign('empire', $users[empire]);
-$tpl->assign('num', $users[num]);
-$tpl->assign('news', $config['news']);
+$servname = $config['servname'];
+$empire = $users['empire'];
+$num = $users['num'];
+$news = $config['news'];
 
 
 $online_limit = $time - $config['online_warn'] * 60;
@@ -111,12 +98,11 @@ $onlid2 = db_safe_firstval("SELECT id2 FROM $newsdb WHERE ((code>201 AND code<30
 if($onlid2) {
 	$onlined = true;
 	$name2 = db_safe_firstval("SELECT empire FROM $playerdb WHERE num=$onlid2;").' <a class=proflink href=?profiles&num='.$onlid2.$authstr.'>(#'.$onlid2.')</a>';
-	$tpl->assign('onl_e', $name2);
+    $onl_e = $name2;
 } else {
 	$onlined = false;
 }
 
-$tpl->assign('onlined', $onlined);
 
 doStatusBar(false);
 include("menus.php");

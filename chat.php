@@ -44,17 +44,9 @@ switch($_GET['mode']) {
 	case 'gui':
 	default:
 		include("header.php");
-		$tpl->assign('chatname', $chatname);
-		$tpl->assign('setdomain', $config['chatdomain']);
-		$tpl->assign('srvurl', $initialurl);
-		$tpl->assign('posturl1', $posturl1);
-		$tpl->assign('posturl2', $posturl2);
-		$tpl->assign('srv', $s);
-		$tpl->assign('clan', $clan);
-		$tpl->assign('unum', $users['num']);
-		$tpl->assign('uname', $users['name']);
+        $srv = $s;
 
-		$tpl->display('chat.html');
+		template_display('chat.html');
 		TheEnd('');
 
 	case 'runsrv':

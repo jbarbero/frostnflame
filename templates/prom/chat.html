@@ -22,14 +22,14 @@ var bufFull = 0;
 var msgs = 0;
 
 
-document.domain = '<?php echo $GLOBALS["setdomain"]; ?>';
+document.domain = '<?php echo $GLOBALS["config"]["chatdomain"]; ?>';
 
 function init() {
 	
 	uwrap = document.getElementById("uwrap");
 	maint = document.getElementById("maintable");
 	ucpt = document.getElementById("userctp");
-	self = <?php echo $GLOBALS["unum"]; ?>;
+	self = <?php echo $GLOBALS["users"]["num"]; ?>;
 	
 }
 
@@ -208,7 +208,7 @@ function clearDiv(num) {
 	<tr>
 		<td width="80%" height="400">
 			<div id="chatarea" style="width: 100%; height: 400; background-color: #000000; border: 1px dashed;">
-				<iframe src='<?php echo $GLOBALS["srvurl"]; ?>' width=100% height=400 frameborder=NO style="border: 0"></iframe>
+				<iframe src='<?php echo $GLOBALS["initialurl"]; ?>' width=100% height=400 frameborder=NO style="border: 0"></iframe>
 			</div>
 		</td>
 		<td width="20%" valign="top" height="100">
