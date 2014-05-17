@@ -2,24 +2,24 @@
 include("header.php");
 
 if ($users[clan] == 0)
-	TheEnd("You are not in a clan!");
+    TheEnd("You are not in a clan!");
 
 $tpl_prom = $tpl;
 
 function set_var($var, $value)
 {
-	global $_GET, $_POST, $HTTP_GET_VARS, $HTTP_POST_VARS;
-	$_GET[$var] = $value;
-	$_POST[$var] = $value;
-	$HTTP_GET_VARS[$var] = $value;
-	$HTTP_POST_VARS[$var] = $value;
-	global $$var;
-	$$var = $value;
+    global $_GET, $_POST, $HTTP_GET_VARS, $HTTP_POST_VARS;
+    $_GET[$var] = $value;
+    $_POST[$var] = $value;
+    $HTTP_GET_VARS[$var] = $value;
+    $HTTP_POST_VARS[$var] = $value;
+    global $$var;
+    $$var = $value;
 } 
 
 set_var('forum', $users[clan]);
 if (empty($HTTP_GET_VARS['action']) && empty($HTTP_POST_VARS[action]))
-	set_var('action', 'vtopic');
+    set_var('action', 'vtopic');
 
 $cookiename=$prefix.'_forum';
 

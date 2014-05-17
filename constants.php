@@ -8,12 +8,12 @@ unalias grep 2>/dev/null
 # 1. Fetch predefined constants directly from constants.php
 grep PREDEFINED constants.php | grep -v constants.php
 
-echo		# Blank
+echo        # Blank
 
 # 2. Fetch SQL constants     - filter out bogus entries                                             - trim            - sort - filter out duplicates and print define line                     - change " to '
 cat sql-setup.php | grep '`' | grep -v mysql_query | grep -v INSERT | grep -v PRIMARY | grep -v KEY | sed -e 's/`//g' | sort | awk '{if(i != $1) {print "define(\""$1"\", \""$1"\");"}; i=$1}' | sed -e "s/\"/\'/g"
 
-echo		# Blank
+echo        # Blank
 
 # 3. Fetch config constants             - remove the fluff                      - sort - extract the line, filter out duplicates and print define line                     - change " to '
 cat config.php | grep -v array | grep = | sed -e "s/\$config\['//" -e "s/'\]//" | sort | awk -F'([ \t]*|\\\[)' '{if(i != $2) {print "define(\""$2"\", \""$2"\");"}; i=$2}' | sed -e "s/\"/\'/g"
@@ -26,12 +26,12 @@ grep -r "\$do" *.php | sed -e "s/^\(.*\)\(\(\$[a-zA-Z_]*\)\)\(.*\)$/\2/" -e "s/\
 
 CONSTANTS;
 
-define('basehref', 'basehref');			# PREDEFINED
-define('ind', 'ind');				# PREDEFINED
-define('pmkt', 'pmkt');				# PREDEFINED
-define('wpl', 'wpl');				# PREDEFINED
-define('pci', 'pci');				# PREDEFINED
-define('costs', 'costs');			# PREDEFINED
+define('basehref', 'basehref');            # PREDEFINED
+define('ind', 'ind');                # PREDEFINED
+define('pmkt', 'pmkt');                # PREDEFINED
+define('wpl', 'wpl');                # PREDEFINED
+define('pci', 'pci');                # PREDEFINED
+define('costs', 'costs');            # PREDEFINED
 
 define('activity', 'activity');
 define('aidcred_got', 'aidcred_got');

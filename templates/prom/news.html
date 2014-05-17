@@ -2,37 +2,37 @@
 <form method="post" action="?news<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable">
 <tr><th class="aleft">Search by:</th>
-	<td>
-		<label><input type="radio" name="search_by" value="Attacker"> Attacker</label>
-		<label><input type="radio" name="search_by" value="Defender"> Defender</label>
-		<label><input type="radio" name="search_by" value="Either" checked> Doesn't matter</label>
-	</td>
+    <td>
+        <label><input type="radio" name="search_by" value="Attacker"> Attacker</label>
+        <label><input type="radio" name="search_by" value="Defender"> Defender</label>
+        <label><input type="radio" name="search_by" value="Either" checked> Doesn't matter</label>
+    </td>
 </tr><tr>
-	<th class="aright">
-		<label>Items:&nbsp;</th><th class="acenter"><input type="text" name="search_limit" size="6" value="<?php echo $GLOBALS["newslimit"]; ?>"></label>
-	</th></tr>
-	<th class="aleft">
-		<label><input type="radio" name="search_type" value="num" checked> Number</label>
-	</th>
-	<th class="acenter">
-		<input type="text" name="search_num" size="5">
-	</th>
+    <th class="aright">
+        <label>Items:&nbsp;</th><th class="acenter"><input type="text" name="search_limit" size="6" value="<?php echo $GLOBALS["newslimit"]; ?>"></label>
+    </th></tr>
+    <th class="aleft">
+        <label><input type="radio" name="search_type" value="num" checked> Number</label>
+    </th>
+    <th class="acenter">
+        <input type="text" name="search_num" size="5">
+    </th>
 </tr><tr>
-	<th class="aleft"><label><input type="radio" name="search_type" value="clan"> Clan</label></th>
-	<td><select name="search_clan" size="1">
-		<option value="0" selected>None - Unallied Empires</option>
-		<?php foreach($GLOBALS["liveclans"] as $loop_j): ?>
-			<option value="<?php echo $loop_j["num"]; ?>"><?php echo $loop_j["tag"]; ?> - <?php echo $loop_j["name"]; ?></option>
-		<?php endforeach; ?>
-	        <option value="-1">--- Dead Clans: ---</option>
-		<?php foreach($GLOBALS["deadclans"] as $loop_j): ?>
-			<option value="<?php echo $loop_j["num"]; ?>"><?php echo $loop_j["tag"]; ?> - <?php echo $loop_j["name"]; ?></option>
-		<?php endforeach; ?>
-	</select></td>
+    <th class="aleft"><label><input type="radio" name="search_type" value="clan"> Clan</label></th>
+    <td><select name="search_clan" size="1">
+        <option value="0" selected>None - Unallied Empires</option>
+        <?php foreach($GLOBALS["liveclans"] as $loop_j): ?>
+            <option value="<?php echo $loop_j["num"]; ?>"><?php echo $loop_j["tag"]; ?> - <?php echo $loop_j["name"]; ?></option>
+        <?php endforeach; ?>
+            <option value="-1">--- Dead Clans: ---</option>
+        <?php foreach($GLOBALS["deadclans"] as $loop_j): ?>
+            <option value="<?php echo $loop_j["num"]; ?>"><?php echo $loop_j["tag"]; ?> - <?php echo $loop_j["name"]; ?></option>
+        <?php endforeach; ?>
+    </select></td>
 </tr><tr>
-	<td colspan="3" class="acenter">
-		<input type="submit" name="do_search" value="Search News">
-	</td>
+    <td colspan="3" class="acenter">
+        <input type="submit" name="do_search" value="Search News">
+    </td>
 </tr>
 </table>
 <?php endif; ?>
@@ -40,10 +40,10 @@
 <br><br>
 
 <?php if(!$GLOBALS["crier"]): ?><h2>
-	<?php if($GLOBALS["events"] == 0): ?>	No events.	<?php endif; ?>
-	<?php if($GLOBALS["events"] == 1): ?>	1 event:
-	<?php else: ?>			<?php echo $GLOBALS["events"]; ?> events:
-	<?php endif; ?>
+    <?php if($GLOBALS["events"] == 0): ?>    No events.    <?php endif; ?>
+    <?php if($GLOBALS["events"] == 1): ?>    1 event:
+    <?php else: ?>            <?php echo $GLOBALS["events"]; ?> events:
+    <?php endif; ?>
 </h2>
 <?php else: ?><br><?php endif; ?>
 
@@ -51,30 +51,30 @@
 <?php if($GLOBALS["crier"]): ?><tr><th colspan="5">Recent News</th></tr><?php endif; ?>
 
 <tr class="inputtable2">
-	<th>Date/Time</th>
-	<th>Attacker</th>
-	<th>Defender</th>
-	<th>Outcome</th>
-	<th style="width:2">Times</th>
+    <th>Date/Time</th>
+    <th>Attacker</th>
+    <th>Defender</th>
+    <th>Outcome</th>
+    <th style="width:2">Times</th>
 </tr>
 
 <?php foreach($loop_news as $loop_i): ?>
-	<tr>
-		<td><?php echo $loop_i["date"]; ?></td>
-		<td><?php echo $loop_i["name2"]; ?><br>Clan: <?php echo $loop_i["clname2"]; ?></td>
-		<td><?php echo $loop_i["name1"]; ?><br>Clan: <?php echo $loop_i["clname1"]; ?></td>
-		<td><?php echo $loop_i["name"]; ?><?php echo $loop_i["whatfor"]; ?><br><?php echo $loop_i["outcome"]; ?></td>
-		<td><?php echo $loop_i["times"]; ?></td>
-	</tr>
-	<tr>	<td colspan="5"><hr></td>
-	</tr>
+    <tr>
+        <td><?php echo $loop_i["date"]; ?></td>
+        <td><?php echo $loop_i["name2"]; ?><br>Clan: <?php echo $loop_i["clname2"]; ?></td>
+        <td><?php echo $loop_i["name1"]; ?><br>Clan: <?php echo $loop_i["clname1"]; ?></td>
+        <td><?php echo $loop_i["name"]; ?><?php echo $loop_i["whatfor"]; ?><br><?php echo $loop_i["outcome"]; ?></td>
+        <td><?php echo $loop_i["times"]; ?></td>
+    </tr>
+    <tr>    <td colspan="5"><hr></td>
+    </tr>
 
 <?php endforeach; ?>
 
 <tr class="inputtable2">
-	<th>Date/Time</th>
-	<th>Attacker</th>
-	<th>Defender</th>
-	<th>Outcome</th>
-	<th style="width:2">Times</th>
+    <th>Date/Time</th>
+    <th>Attacker</th>
+    <th>Defender</th>
+    <th>Outcome</th>
+    <th style="width:2">Times</th>
 </tr>

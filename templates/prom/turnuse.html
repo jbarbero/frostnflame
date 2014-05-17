@@ -3,7 +3,7 @@
 <?php if($GLOBALS["msg"] != ''): ?>
 
     <div align="center"><?php echo $GLOBALS["msg"]; ?></div>
-	<hr>
+    <hr>
 
 <?php endif; ?>
 <?php echo $GLOBALS["ad"]; ?>
@@ -13,28 +13,28 @@
 <form method="post" action="<?php echo $GLOBALS["main"]; ?>?<?php echo $GLOBALS["action"]; ?><?php echo $GLOBALS["authstr"]; ?>">
 <tr><td colspan=2 nowrap><center>Spend how many turns <?php echo $GLOBALS["suffix"]; ?>?</center></td></tr>
     <tr><td colspan=2><center><input type="text" name="use_turns" size="5" value="0">
-	<input type="hidden" name="do_use" value="1"></center></td></tr>
+    <input type="hidden" name="do_use" value="1"></center></td></tr>
 
 <tr><td><center>Condense turns?</center></td><td><input type="checkbox" name="hide_turns"<?php echo $GLOBALS["condense"]; ?>></td></tr>
 
 <tr class="inputtable2">
-	<th colspan=2>Stop Turns If:</th>
+    <th colspan=2>Stop Turns If:</th>
 </tr>
 <tr>
-	<td>Net Income is negative</td>
-	<td><input type="checkbox" name="netincomeneg" class="check_box" value="yes"></td>
+    <td>Net Income is negative</td>
+    <td><input type="checkbox" name="netincomeneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td>Net <?php echo $GLOBALS["uera"]["food"]; ?> production is negative</td>
-	<td><input type="checkbox" name="netfoodneg" class="check_box" value="yes"></td>
+    <td>Net <?php echo $GLOBALS["uera"]["food"]; ?> production is negative</td>
+    <td><input type="checkbox" name="netfoodneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td><?php echo $GLOBALS["uera"]["wizards"]; ?> production is negative</td>
-	<td><input type="checkbox" name="netwizardneg" class="check_box" value="yes"></td>
+    <td><?php echo $GLOBALS["uera"]["wizards"]; ?> production is negative</td>
+    <td><input type="checkbox" name="netwizardneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td>Population production is negative</td>
-	<td><input type="checkbox" name="networkerneg" class="check_box" value="yes"></td>
+    <td>Population production is negative</td>
+    <td><input type="checkbox" name="networkerneg" class="check_box" value="yes"></td>
 </tr>
 <tr><td colspan=2 class="acenter"><center><input type="submit" value="<?php echo $GLOBALS["button"]; ?>"></center></td></tr>
 </table>

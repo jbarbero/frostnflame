@@ -29,9 +29,9 @@ $experience = floor($offexp*1000)+floor($defexp*1000);
 $offpts = 0;
 $defpts = 0;
 foreach($config[troop] as $num => $mktcost) {
-	//print "$num -> " . ($users[troop][$num] * $uera["o_troop$num"]) . " / " . ($users[troop][$num] * $uera["d_troop$num"]) . "== " . ($users[troop][$num] * $uera["d_troop$num"] + ($users[towers] * $config[towers])) . "<br />";
-	$offpts += $users[troop][$num] * $uera["o_troop$num"];
-	$defpts += $users[troop][$num] * $uera["d_troop$num"];
+    //print "$num -> " . ($users[troop][$num] * $uera["o_troop$num"]) . " / " . ($users[troop][$num] * $uera["d_troop$num"]) . "== " . ($users[troop][$num] * $uera["d_troop$num"] + ($users[towers] * $config[towers])) . "<br />";
+    $offpts += $users[troop][$num] * $uera["o_troop$num"];
+    $defpts += $users[troop][$num] * $uera["d_troop$num"];
 }
 
 $offpts = round($offpts * $urace[offense]);
@@ -75,7 +75,7 @@ $loanpayment = commas(gamefactor($loanpayment));
 $users[savings] = commas(gamefactor($users[savings]));
 $users[loan] = commas(gamefactor($users[loan]));
 foreach($config[troop] as $num => $mktcost) {
-	$users["troop$num"] = commas(gamefactor($users[troop][$num]));
+    $users["troop$num"] = commas(gamefactor($users[troop][$num]));
 }
 $users[wizards] = commas(gamefactor($users[wizards]));
 
@@ -89,15 +89,15 @@ $pci = pci($users,$urace);
 $uclan = loadClan($users[clan]);
 
 foreach($ctags as $id => $tag) {
-	if($id != 0)
-		$ctags[$id] = "<a class=\"proflink\" href=\"?clancrier&sclan=$id$authstr\">$tag</a>";
+    if($id != 0)
+        $ctags[$id] = "<a class=\"proflink\" href=\"?clancrier&sclan=$id$authstr\">$tag</a>";
 }
 
 $tags = array($ctags["$users[clan]"], $ctags["$uclan[ally1]"], $ctags["$uclan[ally2]"], $ctags["$uclan[ally3]"], $ctags["$uclan[war1]"], $ctags["$uclan[war2]"], $ctags["$uclan[war3]"], $ctags["$uclan[ally4]"], $ctags["$uclan[ally5]"], $ctags["$uclan[war4]"], $ctags["$uclan[war5]"]);
 $z = 0;
 while($z<sizeof($tags)) {
-	if($tags[$z] == "") $tags[$z] = "None";
-	$z++;
+    if($tags[$z] == "") $tags[$z] = "None";
+    $z++;
 }
 
 
@@ -114,31 +114,31 @@ $owned = explode("|", $users[stocks]);
 $total_owned = 0;
 $avg_price = 0;
 for($key = 0; $key < sizeof($owned); $key++) {
-	$prep_array = array();
-	$prep_array['name'] = db_safe_firstval("SELECT name FROM $stockdb WHERE id=" . ($key+1));
-	$prep_array['price'] = floor(db_safe_firstval("SELECT price FROM $stockdb WHERE id=" . ($key+1)) / 1000);
-	$prep_array['price'] = max(1, min(500, $prep_array['price']));
-	$prep_array['owned'] = $owned[$key];
-	$prep_array['total_worth'] = commas($prep_array['owned'] * $prep_array['price']);
+    $prep_array = array();
+    $prep_array['name'] = db_safe_firstval("SELECT name FROM $stockdb WHERE id=" . ($key+1));
+    $prep_array['price'] = floor(db_safe_firstval("SELECT price FROM $stockdb WHERE id=" . ($key+1)) / 1000);
+    $prep_array['price'] = max(1, min(500, $prep_array['price']));
+    $prep_array['owned'] = $owned[$key];
+    $prep_array['total_worth'] = commas($prep_array['owned'] * $prep_array['price']);
 
-	if($prep_array['owned'] > 0) {
-		$avg_price += $prep_array['owned'] * $prep_array['price'];
-		$total_owned += $prep_array['owned'];
-	}
-	
-	// Must apply commas after multiplying
-	$prep_array['owned'] = commas($prep_array['owned']);
-	$prep_array['price'] = commas($prep_array['price']); // I'm only doing this incase some server has huge prices
-	
-	
+    if($prep_array['owned'] > 0) {
+        $avg_price += $prep_array['owned'] * $prep_array['price'];
+        $total_owned += $prep_array['owned'];
+    }
+    
+    // Must apply commas after multiplying
+    $prep_array['owned'] = commas($prep_array['owned']);
+    $prep_array['price'] = commas($prep_array['price']); // I'm only doing this incase some server has huge prices
+    
+    
 
-	$stocks[] = $prep_array;
+    $stocks[] = $prep_array;
 }
 
-	if($total_owned == 0)
-		$total_owned = 1;
+    if($total_owned == 0)
+        $total_owned = 1;
 
-	$stocks[] = array('name' => "<b>Total</b>", 'price' => "<b>" . commas(floor($avg_price / ($total_owned))) . "</b>", 'owned' => "<b>" . commas($total_owned) . "</b>", 'total_worth' => "<b>" . commas(floor($total_owned * ($avg_price/($total_owned)))) . "</b>");
+    $stocks[] = array('name' => "<b>Total</b>", 'price' => "<b>" . commas(floor($avg_price / ($total_owned))) . "</b>", 'owned' => "<b>" . commas($total_owned) . "</b>", 'total_worth' => "<b>" . commas(floor($total_owned * ($avg_price/($total_owned)))) . "</b>");
 
 
 
@@ -147,7 +147,7 @@ $numtroops = count($config[troop]);
 
 $troopdisp = array();
 foreach($users[troop] as $num => $have) {
-	$troopdisp[] = array(name=>$uera["troop$num"], have=>commas($have), market=>$users[pubmarket][$num]);
+    $troopdisp[] = array(name=>$uera["troop$num"], have=>commas($have), market=>$users[pubmarket][$num]);
 }
 
 $loanrate = $config[loanbase] + $size;
@@ -155,7 +155,7 @@ $savrate = $config[savebase] - $size;
 
 $showstocks = true;
 if(in_array('stocks', $config['disabled_pages']))
-	$showstocks = false;
+    $showstocks = false;
 
 
 $tpl->assign('troopshave', $troopdisp);

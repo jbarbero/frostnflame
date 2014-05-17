@@ -5,28 +5,28 @@ include("header.php");
 require("lib/libclan.php");
 
 if ($users[disabled] != 2)
-	TheEnd("You are not an administrator!");
+    TheEnd("You are not an administrator!");
 // this function generates the drop down box for ally and war lists
 function listopt ($item)
 {
-	global $clandb, $uclan;
+    global $clandb, $uclan;
 
-	?>
+    ?>
 <select name="<?=$item?>" size="1">
 <option value="0"<?php if ($uclan[$item] == 0) print " selected";
 
-	?>>None</option>
+    ?>>None</option>
 <?php $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
-	while ($clan = mysqli_fetch_array($list)) {
+    while ($clan = mysqli_fetch_array($list)) {
 
-		?>
+        ?>
 <option value="<?=$clan[num]?>"<?php if ($clan[num] == $uclan[$item]) print " selected";
 
-		?>><?=$clan[tag]?>: <?=$clan[name]?></option>
+        ?>><?=$clan[tag]?>: <?=$clan[name]?></option>
 <?php
-	} 
+    } 
 
-	?>
+    ?>
 </select>
 <?php
 } 
@@ -46,10 +46,10 @@ Clan: <select name="adminclan" size="1">
 $clanlist = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
 while ($clan = mysqli_fetch_array($clanlist)) {
 
-	?>
+    ?>
 <option value="<?=$clan[num]?>"<?php if ($clan[num] == $adminclan) print " selected";
 
-	?>><?=$clan[tag]?>: <?=$clan[name]?></option>
+    ?>><?=$clan[tag]?>: <?=$clan[name]?></option>
 
 <?php
 } 
@@ -78,78 +78,78 @@ while ($clan = mysqli_fetch_array($clanlist)) {
 <tr><td colspan="2" class="acenter"><input type="submit" name="do_createclan" value="Create Clan"><br><br>
 <i>Please remember to prefix all URLs with "http://".</i>
 </td></tr>
-</form>	
+</form>    
 <?php
 if (!$GLOBALS[adminclan])
-	TheEnd("");
+    TheEnd("");
 $users[clan] = $GLOBALS[adminclan];
 $uclan = loadClan($users[clan]);
 
 if ($do_removeempire) {
-	$enemy = loadUser($modify_empire);
-	$enemy[clan] = 0;
-	saveUserData($enemy, "clan");
-	addNews(114, array(id1=>$enemy[num], clan1=>$users[clan], id2=>$users[num]));
-	$uclan[members]--;
-	saveClanData($uclan, "members");
-	TheEnd("<b>$enemy[empire] <a class=proflink href=?profiles&num=$enemy[num]$authstr>(#$enemy[num])</a></b> has been removed from $uclan[name].");
+    $enemy = loadUser($modify_empire);
+    $enemy[clan] = 0;
+    saveUserData($enemy, "clan");
+    addNews(114, array(id1=>$enemy[num], clan1=>$users[clan], id2=>$users[num]));
+    $uclan[members]--;
+    saveClanData($uclan, "members");
+    TheEnd("<b>$enemy[empire] <a class=proflink href=?profiles&num=$enemy[num]$authstr>(#$enemy[num])</a></b> has been removed from $uclan[name].");
 } 
 if ($do_changepass) {
-	$uclan[password] = md5($new_password);
-	saveClanData($uclan, "password");
-	TheEnd("Clan password changed.");
+    $uclan[password] = md5($new_password);
+    saveClanData($uclan, "password");
+    TheEnd("Clan password changed.");
 } 
 if ($do_changeflag) {
-	$uclan[pic] = $new_flag;
-	saveClanData($uclan, "pic");
-	TheEnd("Clan flag changed.");
+    $uclan[pic] = $new_flag;
+    saveClanData($uclan, "pic");
+    TheEnd("Clan flag changed.");
 } 
 if ($do_changename) {
-	if (!$new_name)
-		TheEnd("No new name specified!");
-	$uclan[name] = $new_name;
-	saveClanData($uclan, "name");
-	TheEnd("Clan name changed.");
+    if (!$new_name)
+        TheEnd("No new name specified!");
+    $uclan[name] = $new_name;
+    saveClanData($uclan, "name");
+    TheEnd("Clan name changed.");
 } 
 if ($do_changeurl) {
-	$uclan[url] = $new_url;
-	saveClanData($uclan, "url");
-	TheEnd("Clan URL changed.");
+    $uclan[url] = $new_url;
+    saveClanData($uclan, "url");
+    TheEnd("Clan URL changed.");
 } 
 if ($do_changemotd) {
-	$uclan[motd] = $new_motd;
-	$uclan[criernews] = $new_crier;
-	saveClanData($uclan, "motd criernews");
-	TheEnd("Clan MOTD changed.");
+    $uclan[motd] = $new_motd;
+    $uclan[criernews] = $new_crier;
+    saveClanData($uclan, "motd criernews");
+    TheEnd("Clan MOTD changed.");
 } 
 if ($do_makefounder) {
-	$newfounder = loadUser($modify_empire);
-	$uclan[founder] = $newfounder[num];
-	saveClanData($uclan, "founder");
-	addNews(115, array(id2=>$newfounder[num], clan1=>$users[clan], id2=>$users[num]));
-	TheEnd("<b>$newfounder[empire] <a class=proflink href=?profiles&num=$newfounder[num]$authstr>(#$newfounder[num])</a></b> is now the leader of <b>$uclan[name]</b>.");
+    $newfounder = loadUser($modify_empire);
+    $uclan[founder] = $newfounder[num];
+    saveClanData($uclan, "founder");
+    addNews(115, array(id2=>$newfounder[num], clan1=>$users[clan], id2=>$users[num]));
+    TheEnd("<b>$newfounder[empire] <a class=proflink href=?profiles&num=$newfounder[num]$authstr>(#$newfounder[num])</a></b> is now the leader of <b>$uclan[name]</b>.");
 } 
 if ($do_changerelations) {
-	$uclan[ally1] = $ally1;
-	$uclan[ally2] = $ally2;
-	$uclan[ally3] = $ally3;
-	$uclan[war1] = $war1;
-	$uclan[war2] = $war2;
-	$uclan[war3] = $war3;
-	saveClanData($uclan, "ally1 ally2 ally3 war1 war2 war3");
-	TheEnd("Clan relations changed.");
+    $uclan[ally1] = $ally1;
+    $uclan[ally2] = $ally2;
+    $uclan[ally3] = $ally3;
+    $uclan[war1] = $war1;
+    $uclan[war2] = $war2;
+    $uclan[war3] = $war3;
+    saveClanData($uclan, "ally1 ally2 ally3 war1 war2 war3");
+    TheEnd("Clan relations changed.");
 } 
 /*
 if ($do_createclan) {
 ?> THIS IS A TEST <?PHP
-	mkclan()		;
-		
+    mkclan()        ;
+        
 } 
 */
 if(!empty($_POST['do_createclan'])) {
 ?> THIS IS A TEST <?PHP
-	mkclan()		;
-		
+    mkclan()        ;
+        
 } 
 ?>
 <br>
@@ -188,10 +188,10 @@ if(!empty($_POST['do_createclan'])) {
 $dblist = db_safe_query("SELECT empire,num FROM $playerdb WHERE clan=$uclan[num];");
 while ($listclan = mysqli_fetch_array($dblist)) {
 
-	?>
+    ?>
 <tr><td class="acenter"><input type="radio" name="modify_empire" value="<?=$listclan[num]?>"<?php if ($listclan[num] == $uclan[founder]) print " CHECKED";
 
-	?>></td>
+    ?>></td>
     <td class="acenter"><?=$listclan[empire]?> <a class=proflink href=?profiles&num=<?=$listclan[num]?><?=$authstr?>>(#<?=$listclan[num]?>)</a></td></tr>
 <?php
 } 

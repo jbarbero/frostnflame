@@ -25,7 +25,7 @@ function set_var($var, $value)
 
 set_var('forum', -1);
 if (empty($HTTP_GET_VARS['action']) && empty($HTTP_POST_VARS[action]))
-	set_var('action', 'vtopic');
+    set_var('action', 'vtopic');
 
 $cookiename=$prefix.'_forum';
 

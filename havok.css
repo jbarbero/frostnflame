@@ -1,50 +1,50 @@
 
 body {
-	background-color: #000000;
-	color: #FFFFFF;
+    background-color: #000000;
+    color: #FFFFFF;
 
-	scrollbar-face-color:#212121;
-	scrollbar-highlight-color:black;
-	scrollbar-3dlight-color:#606060;
-	scrollbar-darkshadow-color:black;
-	scrollbar-shadow-color:#808080;
-	scrollbar-arrow-color:#808080;
-	scrollbar-track-color:#black;
+    scrollbar-face-color:#212121;
+    scrollbar-highlight-color:black;
+    scrollbar-3dlight-color:#606060;
+    scrollbar-darkshadow-color:black;
+    scrollbar-shadow-color:#808080;
+    scrollbar-arrow-color:#808080;
+    scrollbar-track-color:#black;
 }
 
-a {	color: #D6BF60;			}
+a {    color: #D6BF60;            }
 a:hover {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
-a.new {		color: #FFE44D;		}
-a.mally {	color: #9FBFDF;		}                            
-a.mdead {	color: red;		}
-a.mnormal {	color: white;		}
-a.mnormal:hover {	color: #000000;
-			background: #FFFFFF	}
-a.undecorated {	color: white;		}
-a.undecorated:hover {	color: #000000;
-			background: #FFFFFF	}
+a.new {        color: #FFE44D;        }
+a.mally {    color: #9FBFDF;        }                            
+a.mdead {    color: red;        }
+a.mnormal {    color: white;        }
+a.mnormal:hover {    color: #000000;
+            background: #FFFFFF    }
+a.undecorated {    color: white;        }
+a.undecorated:hover {    color: #000000;
+            background: #FFFFFF    }
 a.proflinkdk { 
-	color: #000000;
-	text-decoration: underline;
+    color: #000000;
+    text-decoration: underline;
 }
 
 
-table {		border: #000000 0px solid;	}
+table {        border: #000000 0px solid;    }
 .guide th {
-	color: white;
-	background-color: #4F4F4F;
+    color: white;
+    background-color: #4F4F4F;
 }
 
 .menus td {
         color: white;
-	 text-align: center;
+     text-align: center;
         background-color: #000000;
 }
 .menus th {
         color: white;
-	 text-align: center;
+     text-align: center;
         background-color: #000000;
 }
 
@@ -53,146 +53,146 @@ table {		border: #000000 0px solid;	}
 .aright { text-align: right; }
 
 .stbl {
-	border:	#FFFFFF 1px solid;
+    border:    #FFFFFF 1px solid;
 }
 .stocks{
-	background-color: black;
-	border:	#FFFFFF 1px solid;
+    background-color: black;
+    border:    #FFFFFF 1px solid;
 }
 
 .sidebar {
         width: 44px;
 }
 
-.inputtable td {	color: white;			
+.inputtable td {    color: white;            
 }
-.inputtable tt {	 background-color: #000000; }
-.inputtable2 tr {	color: white;			
+.inputtable tt {     background-color: #000000; }
+.inputtable2 tr {    color: white;            
 }
 .inputtable2 th { 
-	color: white;
-	background: url("img/darkfade.gif"); 
+    color: white;
+    background: url("img/darkfade.gif"); 
 }
 .inputtable2 td { 
-	color: white;
-	background: url("img/darkfade.gif"); 
+    color: white;
+    background: url("img/darkfade.gif"); 
 }
 .none th { 
-	color: white;
+    color: white;
 }
 .none tr { 
-	color: white;
+    color: white;
 }
 .none td { 
-	color: white;
+    color: white;
 }
 
-.scorestable th {	color: white;			}
+.scorestable th {    color: white;            }
 
 .chatusers {
-	background-color:	#000000;
+    background-color:    #000000;
 }
 
 .selectedusers {
-	background-color:	#AA4444;
+    background-color:    #AA4444;
 }
 
-.mnormal {	color: white;	}
-.mdisabled {	color: yellow;	}
-.mself {	color: aqua;	}
-.mprotected {	color: #9FDF9F;	}
-.mgood {	color: lime;	}
-.mally {	color: #9FBFDF;	}
-.mdead {	color: red;	}
-.madmin {	color: #FF7FFF;	}
+.mnormal {    color: white;    }
+.mdisabled {    color: yellow;    }
+.mself {    color: aqua;    }
+.mprotected {    color: #9FDF9F;    }
+.mgood {    color: lime;    }
+.mally {    color: #9FBFDF;    }
+.mdead {    color: red;    }
+.madmin {    color: #FF7FFF;    }
 
-.cgood {	color: lime;	}
+.cgood {    color: lime;    }
 .cwarn, .warning {
-		color: yellow;	}
-.cbad {		color: red;	}
-.cneutral {	color: white;	}
+        color: yellow;    }
+.cbad {        color: red;    }
+.cneutral {    color: white;    }
 
 .era0 {
-	color: white;
-	background: url("img/darkfade.gif");
+    color: white;
+    background: url("img/darkfade.gif");
 }
 .era1 {
-	color: white;
-	background: url("img/darkfade.gif");
+    color: white;
+    background: url("img/darkfade.gif");
 }
 .era2 {
-	color: white;
-	background: url("img/darkfade.gif");
+    color: white;
+    background: url("img/darkfade.gif");
 }
 .era3 {
-	color: white;
-	background: url("img/darkfade.gif");
+    color: white;
+    background: url("img/darkfade.gif");
 }
 
 input {
-	background: #000000;
-	border: #606062 1px solid;
-	color: #D5D9DE;
+    background: #000000;
+    border: #606062 1px solid;
+    color: #D5D9DE;
 }
 select {
-	color: #FFFFFF;
-	background-color: #000000;
+    color: #FFFFFF;
+    background-color: #000000;
 }
 .dkbg {
-	background: #000000;
-	border: 0px solid #958042;
-	cellpadding: 0px;
-	cellspacing: 0px;
+    background: #000000;
+    border: 0px solid #958042;
+    cellpadding: 0px;
+    cellspacing: 0px;
 }
 
 textarea {
-	background: #000000;
-	border: #606062 1px solid;
-	color: #D5D9DE;
+    background: #000000;
+    border: #606062 1px solid;
+    color: #D5D9DE;
 }
 
 .dark {
-	color: #000000;
+    color: #000000;
 }
 
 input {
-	color: white; 
-	background: #000000;
-	padding: 0px 0px 0px 0px;
-	border: 1px solid #c49500;
-	border-style: line;
-	border-width: small;
+    color: white; 
+    background: #000000;
+    padding: 0px 0px 0px 0px;
+    border: 1px solid #c49500;
+    border-style: line;
+    border-width: small;
 }
 
 input[type=checkbox] {
-	color: white; 
-	background: #000000;
-	padding: 0px 0px 0px 0px;
-	border: 0px solid #000000;
-	border-style: line;
-	border-width: small;
+    color: white; 
+    background: #000000;
+    padding: 0px 0px 0px 0px;
+    border: 0px solid #000000;
+    border-style: line;
+    border-width: small;
 }
 
 input[type=radio] {
-	color: white; 
-	background: #000000;
-	padding: 0px 0px 0px 0px;
-	border: 0px solid #000000;
-	border-style: line;
-	border-width: small;
+    color: white; 
+    background: #000000;
+    padding: 0px 0px 0px 0px;
+    border: 0px solid #000000;
+    border-style: line;
+    border-width: small;
 }
 
 input[type=submit] {
-	border: 2px solid #393939;
-	cellpadding: 0em;
-	cellspacing: 0em;
+    border: 2px solid #393939;
+    cellpadding: 0em;
+    cellspacing: 0em;
 }
 
 
 #QUOTE {
-	color: #333333;
-	background-color: #B5BCC3;
-	border: 1px solid black;
+    color: #333333;
+    background-color: #B5BCC3;
+    border: 1px solid black;
 }
 
 /**** Stuff for Forums ****/
@@ -202,8 +202,8 @@ td.caption1 { border: 1px #353637 solid; }
 
 /* Caption 2 color and properties (this one displaying main menu, New Topic text bg, New Message text bg) */
 td.caption2 {
-	border: 0px #292C31 solid;
-	background: url("img/miniBB/skin/blue_graphic_left.gif");
+    border: 0px #292C31 solid;
+    background: url("img/miniBB/skin/blue_graphic_left.gif");
 }
 
 /* Caption 3 (used for Last Discussions, topic titles, Forums selection, Sort by) */
@@ -211,23 +211,23 @@ td.caption3 { background: url("img/miniBB/skin/black_sprayed_vertical.gif"); }
 
 /* Caption 4 (the one for displaying not separate headers like Forum, Topic, Poster, Replies, etc; Buttons menu, left info cell) */
 td.caption4 {
-	border: 1px #393A3B solid;
-	background: url("img/miniBB/skin/blue_reticulation.gif");
+    border: 1px #393A3B solid;
+    background: url("img/miniBB/skin/blue_reticulation.gif");
 }
 
 /* Table Caption 4 (displays BBcode options) */
 table.caption4 {
-	border: 0px #393A3B solid;
-	cellpadding: 0px;
-	cellspacing: 0px;
-	background: url("img/miniBB/skin/black_waterpaper_beveled.gif");
-	vertical-align: bottom;
+    border: 0px #393A3B solid;
+    cellpadding: 0px;
+    cellspacing: 0px;
+    background: url("img/miniBB/skin/black_waterpaper_beveled.gif");
+    vertical-align: bottom;
 }
 
 /* Caption 5 (used for user input like "Post Topic," password/login, and registration, etc) */
 td.caption5 {
-	border: 0px #292C31 solid;
-	background: url("img/miniBB/skin/black_sprayed_vertical.gif");
+    border: 0px #292C31 solid;
+    background: url("img/miniBB/skin/black_sprayed_vertical.gif");
 }
 
 /* Caption 5 Subject (used for the subject line) */
@@ -238,8 +238,8 @@ td.caption5_form { background: url("img/miniBB/skin/gold_outline.gif"); }
 
 /* Caption 6 (this one is for displaying title headers (language, search). The same color as caption2, but different font size) */
 td.caption6 {
-	background-color: #292C31;
-	border: 0px #303439 solid;
+    background-color: #292C31;
+    border: 0px #303439 solid;
 }
 
 /* Topics/forums/threads content cell color #1 */
@@ -250,9 +250,9 @@ td.caption6 {
 
 /* General smart tables class */
 table.forums {
-	border: 1px #353637 solid;
-	width: 60%;
-	color: #B3B7BC;
+    border: 1px #353637 solid;
+    width: 60%;
+    color: #B3B7BC;
 }
 
 

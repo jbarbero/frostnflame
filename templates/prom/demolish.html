@@ -5,37 +5,37 @@ You demolished <?php echo commas(gamefactor($GLOBALS["totaldestroyed"])); ?> str
 
 <script language="JavaScript">
 function checkAllOne (check){
-	var path = document.demolish;
-	var cnt=0;
-	for (var i=0;i<path.elements.length;i++) {
-		e = path.elements[i];
-		checkname = "maxall";
-		if(check==2) checkname = "maxall2";
-		if( (e.name!=checkname)  && (e.type=="checkbox") && (e.name!="hide_turns") ) {
-			cnt++;
-			if(cnt%2 == 0) {
-				e.checked = path.maxall.checked;
-				if(check==2) e.checked = path.maxall2.checked;
-			}
-		}
-	 }
+    var path = document.demolish;
+    var cnt=0;
+    for (var i=0;i<path.elements.length;i++) {
+        e = path.elements[i];
+        checkname = "maxall";
+        if(check==2) checkname = "maxall2";
+        if( (e.name!=checkname)  && (e.type=="checkbox") && (e.name!="hide_turns") ) {
+            cnt++;
+            if(cnt%2 == 0) {
+                e.checked = path.maxall.checked;
+                if(check==2) e.checked = path.maxall2.checked;
+            }
+        }
+     }
 }
 
 function checkAllTwo (check){
-	var path = document.demolish;
-	var cnt=0;
-	for (var i=0;i<path.elements.length;i++) {
-		e = path.elements[i];
-		checkname = "safeall";
-		if(check==2) checkname = "safeall2";
-		if( (e.name!=checkname)  && (e.type=="checkbox") && (e.name!="hide_turns") ) {
-			cnt++;
-			if(cnt%2 == 1 && cnt != 1) {
-				e.checked = path.safeall.checked;
-				if(check==2) e.checked = path.safeall2.checked;
-			}
-		}
-	 }
+    var path = document.demolish;
+    var cnt=0;
+    for (var i=0;i<path.elements.length;i++) {
+        e = path.elements[i];
+        checkname = "safeall";
+        if(check==2) checkname = "safeall2";
+        if( (e.name!=checkname)  && (e.type=="checkbox") && (e.name!="hide_turns") ) {
+            cnt++;
+            if(cnt%2 == 1 && cnt != 1) {
+                e.checked = path.safeall.checked;
+                if(check==2) e.checked = path.safeall2.checked;
+            }
+        }
+     }
 }
 </script>
 

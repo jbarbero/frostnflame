@@ -111,7 +111,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_forums` (
 
 //server forum
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $prefix"."_forums;")) == 0) {
-	db_safe_query("INSERT INTO `$prefix"."_forums` VALUES ('-1', '$config[servname] Server Forum', 'Server Forum', '0', 'default.gif', '0', '0');");
+    db_safe_query("INSERT INTO `$prefix"."_forums` VALUES ('-1', '$config[servname] Server Forum', 'Server Forum', '0', 'default.gif', '0', '0');");
 }
 
 
@@ -133,16 +133,16 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$lotterydb` (
 ) TYPE=MyISAM ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $lotterydb;")) == 0) {
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 0, 0, 'food');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 1, 2771732307, 'food');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 2, 42, 'food');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 3, 159, 'food');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 4, 2581381133, 'food');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 0, 0, 'cash');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 1, 17670770609, 'cash');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 2, 18, 'cash');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 3, 150, 'cash');");
-	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 4, 13110673839, 'cash');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 0, 0, 'food');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 1, 2771732307, 'food');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 2, 42, 'food');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 3, 159, 'food');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 4, 2581381133, 'food');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 0, 0, 'cash');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 1, 17670770609, 'cash');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 2, 18, 'cash');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 3, 150, 'cash');");
+    db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 4, 13110673839, 'cash');");
 }
 echo mysqli_error($GLOBALS["db_link"]);
 
@@ -324,7 +324,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$playerdb` (
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $playerdb WHERE num=1;")) == 0) {
-	db_safe_query("INSERT INTO `$prefix"."_players` VALUES ('0', 'admin', '73d4df1292b6187fa48894b76497de7b', '1', '23768', 'Administrative Officer', 'jbarbero+faf@gmail.com', '127.0.0.1', '1204417010', '0', '2', '1', '0', '1204417105', '0', '1', 'Administrator', '1', '7', '3', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '150', '1204416600', '1204416000', '250', '0', '147061', '100000', '10000', '500', '0|0|0|0', '', '100', '0', '500', '0', '0', '25|25|25|25', '250', '5', '20', '0', '5', '0', '15', '0', '205', '10', '0', '100', '1204416000', '0', '8333|4167|2083|14', '0', '100000', '0|0|0|0', '0', '5', '0', '10', '0', '1204417010', '1204417010', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'Administrator', '', '', '1000|1000|1000|1000|1000|1000|1000|1000', '0', '0', '0', '1', '1', 'Inbox|Sent', '0', '1', '0', '0', '1', '0', '0');");
+    db_safe_query("INSERT INTO `$prefix"."_players` VALUES ('0', 'admin', '73d4df1292b6187fa48894b76497de7b', '1', '23768', 'Administrative Officer', 'jbarbero+faf@gmail.com', '127.0.0.1', '1204417010', '0', '2', '1', '0', '1204417105', '0', '1', 'Administrator', '1', '7', '3', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '150', '1204416600', '1204416000', '250', '0', '147061', '100000', '10000', '500', '0|0|0|0', '', '100', '0', '500', '0', '0', '25|25|25|25', '250', '5', '20', '0', '5', '0', '15', '0', '205', '10', '0', '100', '1204416000', '0', '8333|4167|2083|14', '0', '100000', '0|0|0|0', '0', '5', '0', '10', '0', '1204417010', '1204417010', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'Administrator', '', '', '1000|1000|1000|1000|1000|1000|1000|1000', '0', '0', '0', '1', '1', 'Inbox|Sent', '0', '1', '0', '0', '1', '0', '0');");
 }
 echo mysqli_error($GLOBALS["db_link"]);
 
@@ -368,14 +368,14 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$stockdb` (
 ) TYPE=MyISAM AUTO_INCREMENT=11 ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $stockdb;")) == 0) {
-	db_safe_query("INSERT INTO `$stockdb` VALUES (1, 'TRP', 'Troops', 75391, 106955, 119687, 169893, 1802, 0);");
-	db_safe_query("INSERT INTO `$stockdb` VALUES (2, 'AIR', 'Aircraft', 76326, 110685, 123929, 173641, 1860, 0);");
-	db_safe_query("INSERT INTO `$stockdb` VALUES (3, 'TNK', 'Tanks', 91006, 115433, 130245, 59135, 1934, 0);");
-	db_safe_query("INSERT INTO `$stockdb` VALUES (4, 'NVL', 'Ships', 74335, 64065, 45281, 98711, 1952, 0);");
-	db_safe_query("INSERT INTO `$stockdb` VALUES (5, 'AGT', 'Agents', 106844, 181334, 189594, 40536, 1872, 0);");
-	db_safe_query("INSERT INTO `$stockdb` VALUES (6, 'LND', 'Land', 49881, 61542, 45782, 93362, 1820, 0);");
-	db_safe_query("INSERT INTO `$stockdb` VALUES (7, 'FD', 'Food', 122387, 58297, 35473, 124809, 1878, 0);");
-	db_safe_query("INSERT INTO `$stockdb` VALUES (8, 'NRG', 'Energy', 123095, 74644, 76824, 155084, 1842, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (1, 'TRP', 'Troops', 75391, 106955, 119687, 169893, 1802, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (2, 'AIR', 'Aircraft', 76326, 110685, 123929, 173641, 1860, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (3, 'TNK', 'Tanks', 91006, 115433, 130245, 59135, 1934, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (4, 'NVL', 'Ships', 74335, 64065, 45281, 98711, 1952, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (5, 'AGT', 'Agents', 106844, 181334, 189594, 40536, 1872, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (6, 'LND', 'Land', 49881, 61542, 45782, 93362, 1820, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (7, 'FD', 'Food', 122387, 58297, 35473, 124809, 1878, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (8, 'NRG', 'Energy', 123095, 74644, 76824, 155084, 1842, 0);");
 }
 
 //table for score icons
@@ -393,7 +393,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_system` (
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $prefix"."_system;")) == 0) {
-	db_safe_query("INSERT INTO `$prefix"."_system` VALUES ('', 0, 0, 0, 0, 0, 0, 0, 0);");
+    db_safe_query("INSERT INTO `$prefix"."_system` VALUES ('', 0, 0, 0, 0, 0, 0, 0, 0);");
 }
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_topics` (

@@ -16,14 +16,14 @@ h2 {
 </style>");
 
 if(!defined("PROMISANCE"))
-	die(" ");
+    die(" ");
 
 if (auth_user(true)) {
-	include("header.php");
-	$attach = $authstr;
+    include("header.php");
+    $attach = $authstr;
 } else {
-	htmlbegincompact("Game Guide");
-	$attach = $skinstr;
+    htmlbegincompact("Game Guide");
+    $attach = $skinstr;
 }
 
 /*
@@ -42,32 +42,32 @@ if (auth_user(true)) {
 
 $ewiki_ring = 3;
 if($users[disabled] == 2)
-	$ewiki_ring = 0;
+    $ewiki_ring = 0;
 
 
 switch($_GET['section']) {
-	case '':	
-	case 'login':	
-	case 'guide2':	
-	case 'features':
-		$section = 'Table of Contents';
-		break;
-	default:
-		$section = $_GET['section'];
+    case '':    
+    case 'login':    
+    case 'guide2':    
+    case 'features':
+        $section = 'Table of Contents';
+        break;
+    default:
+        $section = $_GET['section'];
 }
 
 error_reporting(E_ALL);
-$attach = str_replace('&amp;', '&', $attach);	/** Ewiki kludge **/
+$attach = str_replace('&amp;', '&', $attach);    /** Ewiki kludge **/
 define("EWIKI_SCRIPT", "?guide2$attach&section=");
 define("EWIKI_SCRIPT_BINARY", "?guide2$attach&section=");
 define("EWIKI_IMAGE_MAXSIZE", 256 *1024);
 
 if(strpos($section, "internal://") === 0) {
-	$section = str_replace("internal://", "internal:/", $section);
-	ob_clean();
-	define('DISPLAY', 0);
+    $section = str_replace("internal://", "internal:/", $section);
+    ob_clean();
+    define('DISPLAY', 0);
 } else {
-	define('DISPLAY', 1);
+    define('DISPLAY', 1);
 }
 
 include_once("lib/ewiki.php");
@@ -76,16 +76,16 @@ $content = ewiki_page($section);
 $action = $faf_old_action;
 
 if(DISPLAY) {
-	echo "<table width=\"100%\"><tr><td align='left'>";
-	echo "<h1><a href=\"?guide2$authstr\">Game Guide</a></h1>";
+    echo "<table width=\"100%\"><tr><td align='left'>";
+    echo "<h1><a href=\"?guide2$authstr\">Game Guide</a></h1>";
 }
 
 echo $content;
 
 if(DISPLAY) {
-	echo "</td></tr></table>";
-	TheEnd("");
+    echo "</td></tr></table>";
+    TheEnd("");
 } else {
-	ob_end_flush();
+    ob_end_flush();
 }
 ?>

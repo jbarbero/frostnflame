@@ -2,31 +2,31 @@
 <script language="JavaScript">
 
 function updateMsgNames() {
-	msgnum = document.frmmsg.msg_dest_num.value;
-	nchanged = true
-	for (i = 0; i < document.frmmsg.msg_dest.options.length; i++) {
-		 if (document.frmmsg.msg_dest.options[i].value == msgnum) {
-			document.frmmsg.msg_dest.options[i].selected = true;
-			nchanged = false;
-		}
-	}
+    msgnum = document.frmmsg.msg_dest_num.value;
+    nchanged = true
+    for (i = 0; i < document.frmmsg.msg_dest.options.length; i++) {
+         if (document.frmmsg.msg_dest.options[i].value == msgnum) {
+            document.frmmsg.msg_dest.options[i].selected = true;
+            nchanged = false;
+        }
+    }
 }
 function updateMsgNums() {
-	document.frmmsg.msg_dest_num.value = document.frmmsg.msg_dest.value;
+    document.frmmsg.msg_dest_num.value = document.frmmsg.msg_dest.value;
 }
 
 
 function checkAll (check){
-	var path = document.frmmsg;
-	for (var i=0;i<path.elements.length;i++) {
-		e = path.elements[i];
-		checkname = "maxall";
-		if(check==2) checkname = "maxall2";
-		if( (e.name!=checkname)  && (e.type=="checkbox") && (e.name!="hide_turns") ) {
-			 e.checked = path.maxall.checked;
-			 if(check==2) e.checked = path.maxall2.checked;
-		}
-	 }
+    var path = document.frmmsg;
+    for (var i=0;i<path.elements.length;i++) {
+        e = path.elements[i];
+        checkname = "maxall";
+        if(check==2) checkname = "maxall2";
+        if( (e.name!=checkname)  && (e.type=="checkbox") && (e.name!="hide_turns") ) {
+             e.checked = path.maxall.checked;
+             if(check==2) e.checked = path.maxall2.checked;
+        }
+     }
 }
 </script>
 
@@ -41,9 +41,9 @@ We can send an additional shipment every hour.<br><br>
       <td colspan="2" class="aright">Send aid to which <?php echo $GLOBALS["uera"]["empire"]; ?>?</td>
     <td colspan="3"><input type="text" name="msg_dest_num"  value="<?php echo $GLOBALS["prof_target"]; ?>" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-	<?php foreach($GLOBALS["warquery_array"] as $loop_dropsel): ?>
-		<option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($GLOBALS["prof_target"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
-	<?php endforeach; ?>
+    <?php foreach($GLOBALS["warquery_array"] as $loop_dropsel): ?>
+        <option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($GLOBALS["prof_target"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
+    <?php endforeach; ?>
 </select>
 
 </select>
@@ -55,12 +55,12 @@ We can send an additional shipment every hour.<br><br>
     <th class="aright">Max <input type="checkbox" name="maxall" onClick="checkAll(1)"></th></tr>
 <?php /*Print Row*/ ?>
 <?php foreach($GLOBALS["rows"] as $loop_i): ?>
- 	<tr><td><?php echo $loop_i["name"]; ?></td>
-	    <td class="aright"><?php echo gamefactor($loop_i["owned"]); ?></td>
-	    <td class="aright"><?php echo gamefactor($loop_i["canSend"]); ?></td>
-	    <td class="aright"><input type="text" name="send[<?php echo $loop_i["type"]; ?>]" size="8" value="<?php if($loop_i["type"] == $GLOBALS["sendtroop"].handle): ?><?php echo commas(gamefactor($GLOBALS["convoy"])); ?><?php endif; ?>"></td>
-	    <td class="aright"><input type="checkbox" name="max[<?php echo $loop_i["type"]; ?>]" value="<?php echo $loop_i["type"]; ?>"></td>
-	</tr>
+     <tr><td><?php echo $loop_i["name"]; ?></td>
+        <td class="aright"><?php echo gamefactor($loop_i["owned"]); ?></td>
+        <td class="aright"><?php echo gamefactor($loop_i["canSend"]); ?></td>
+        <td class="aright"><input type="text" name="send[<?php echo $loop_i["type"]; ?>]" size="8" value="<?php if($loop_i["type"] == $GLOBALS["sendtroop"].handle): ?><?php echo commas(gamefactor($GLOBALS["convoy"])); ?><?php endif; ?>"></td>
+        <td class="aright"><input type="checkbox" name="max[<?php echo $loop_i["type"]; ?>]" value="<?php echo $loop_i["type"]; ?>"></td>
+    </tr>
 <?php endforeach; ?>
 
 <tr><td colspan="5" class="acenter"><input type="submit" name="do_sendaid" value="Send Assistance"></td></tr>

@@ -5,7 +5,7 @@ global $config, $users, $prefix, $time;
 $inteldb = $prefix."_intel";
 
 if($do_delete) {
-	$id = $_POST['id'];
+    $id = $_POST['id'];
     mysql_query("DELETE FROM $inteldb WHERE id='$id'") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
     header(str_replace('&amp;', '&', "Location: ".$config[sitedir].$config[main]."?intel$authstr")); 
 }
@@ -14,7 +14,7 @@ $sql = mysql_query("SELECT * FROM $inteldb WHERE num=".$users[num]." ORDER BY sp
 if(mysqli_num_rows($sql) == 0) echo"<center><span class='cwarn'>No intelligence reports exist for this empire.</span></center>";
 else echo"<hr>";
 while($row = mysqli_fetch_array($sql)) {
-   	$spyinfo = explode("|", $row[spyinfo]);
+       $spyinfo = explode("|", $row[spyinfo]);
 
     echo"<table class='inputtable' style='width:75%'><form method='post' action='?intel$authstr' name='deletereport'>
     <tr><th colspan='3'>".$spyinfo[1]."<a class=proflink href=?profiles&num=".$spyinfo[2].">(#".$spyinfo[2].")</a> - 
@@ -42,18 +42,18 @@ while($row = mysqli_fetch_array($sql)) {
 
     // handle troop array, hack could be better
     $tdata = explode(":", $spyinfo[17]);
-	echo"<tr><th>".$config['er'][101]['troop0']."</th><td>".commas($tdata[0])."</td></tr>";
-	echo"<tr><th>".$config['er'][101]['troop1']."</th><td>".commas($tdata[1])."</td></tr>";
-	echo"<tr><th>".$config['er'][101]['troop2']."</th><td>".commas($tdata[2])."</td></tr>";
-	echo"<tr><th>".$config['er'][101]['troop3']."</th><td>".commas($tdata[3])."</td></tr>";
-	
+    echo"<tr><th>".$config['er'][101]['troop0']."</th><td>".commas($tdata[0])."</td></tr>";
+    echo"<tr><th>".$config['er'][101]['troop1']."</th><td>".commas($tdata[1])."</td></tr>";
+    echo"<tr><th>".$config['er'][101]['troop2']."</th><td>".commas($tdata[2])."</td></tr>";
+    echo"<tr><th>".$config['er'][101]['troop3']."</th><td>".commas($tdata[3])."</td></tr>";
+    
     echo"<tr><th>Mages</th><td>".commas($spyinfo[18])."</td></tr>
     </table></th></tr>";
 
     echo"</td></tr><th colspan='3'><br>Effective Spells: ";
     $sdata = explode(":", $spyinfo[19]);
     foreach($sdata as $sval) {
-    	echo" ".$sval;
+        echo" ".$sval;
     }
     echo"</th></tr></table><hr><br>";
 }

@@ -1,9 +1,9 @@
 <?
 if(!defined("PROMISANCE"))
-	die(" ");
+    die(" ");
 function printTop10Header ()
 {
-	global $config, $uera, $authstr;
+    global $config, $uera, $authstr;
 ?>
 <tr class="era0">
     <th style="width:5%" class="aright"><a href="?top10&amp;sort=rank<?=$authstr?>">Rank</a></th>
@@ -25,17 +25,17 @@ HTMLbegincompact("Top 100");
 $uera = loadEra(1,1);
 
 switch ($sort) {
-	case "rank":		$sort = "rank ASC";			break;
-	case "offtotal":	$sort = "offtotal DESC, rank ASC";	break;
-	case "deftotal":	$sort = "deftotal DESC, rank ASC";	break;
-	case "kills":		$sort = "kills DESC, rank ASC";		break;
-	default:		$sort = "rank ASC";			break;
+    case "rank":        $sort = "rank ASC";            break;
+    case "offtotal":    $sort = "offtotal DESC, rank ASC";    break;
+    case "deftotal":    $sort = "deftotal DESC, rank ASC";    break;
+    case "kills":        $sort = "kills DESC, rank ASC";        break;
+    default:        $sort = "rank ASC";            break;
 }
 
 $killed = @db_safe_firstval("SELECT SUM(kills) FROM $playerdb;");
 $deleted = @db_safe_firstval("SELECT COUNT(*) FROM $playerdb WHERE land=0;") - $killed;
 if($deleted < 0)
-	$deleted = 0;
+    $deleted = 0;
 $disabled = @db_safe_firstval("SELECT COUNT(*) FROM $playerdb WHERE disabled=3;");
 ?>
 <b><?=$config[servname]?> Top Player Listing</b><br>
@@ -61,15 +61,15 @@ of <?=$uera[empire]?>s killed<br>
 <table class="scorestable">
 <?
 printTop10Header();
-$users[num] = 0;	// so we can use printScoreLine() and not worry
-$users[clan] = 0;	// about it using the ingame-specific colors
+$users[num] = 0;    // so we can use printScoreLine() and not worry
+$users[clan] = 0;    // about it using the ingame-specific colors
 //$top10 = db_safe_query("SELECT rank,empire,num,land,networth,clan,online,disabled,turnsused,vacation,race,era,offsucc,offtotal,defsucc,deftotal,kills FROM $playerdb 
-//		 WHERE disabled != 2 AND disabled != 3 AND land>0 AND vacation<$config[vacationdelay] ORDER BY $sort LIMIT 100;");
+//         WHERE disabled != 2 AND disabled != 3 AND land>0 AND vacation<$config[vacationdelay] ORDER BY $sort LIMIT 100;");
 $top10 = db_safe_query("SELECT rank,empire,num,land,networth,clan,online,disabled,turnsused,vacation,race,era,offsucc,offtotal,defsucc,deftotal,kills FROM $playerdb 
-		 WHERE disabled != 2 AND disabled != 3 AND land>0 ORDER BY $sort LIMIT 100;");
+         WHERE disabled != 2 AND disabled != 3 AND land>0 ORDER BY $sort LIMIT 100;");
 
 while ($enemy = mysqli_fetch_array($top10))
-	printSearchLine();
+    printSearchLine();
 echo mysqli_error($GLOBALS["db_link"]);
 printTop10Header();
 ?>

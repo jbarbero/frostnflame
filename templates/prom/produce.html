@@ -1,8 +1,8 @@
 <?php echo $GLOBALS["turnoutput"]; ?>
 
 <?php if($GLOBALS["message"] != ''): ?>
-	<table width="50%"><td><center><?php echo $GLOBALS["message"]; ?></center>
-	<tr><td><hr></table>
+    <table width="50%"><td><center><?php echo $GLOBALS["message"]; ?></center>
+    <tr><td><hr></table>
 <?php endif; ?>
 
 <center>While producing, your production in that area is increased by 25%.</center><br>
@@ -13,35 +13,35 @@
 <?php if($GLOBALS["produce_array"] == 0): ?>
         <b>Unable to produce.</b></td></tr>
 <?php else: ?>
-	<select name="produce_type" size="1">
+    <select name="produce_type" size="1">
 <?php foreach($GLOBALS["produce_array"] as $loop_list): ?>
-		<option value="<?php echo $GLOBALS["produce_array"][list]; ?>"><?php echo $GLOBALS["produce_array"][list]; ?></option>
-	<?php endforeach; ?>
-	</select></center></td></tr>
+        <option value="<?php echo $GLOBALS["produce_array"][list]; ?>"><?php echo $GLOBALS["produce_array"][list]; ?></option>
+    <?php endforeach; ?>
+    </select></center></td></tr>
 <?php endif; ?>
 <tr><td colspan=2><center>Use how many turns? <input type="text" name="use_turns" class="text_area" size="5" value="0">
-	<input type="hidden" name="do_use" value="1"></center></td></tr>
+    <input type="hidden" name="do_use" value="1"></center></td></tr>
 
 <tr><td><center>Condense turns?</center></td><td><input type="checkbox" name="hide_turns"<?php echo $GLOBALS["condense"]; ?> class="check_box"></td></tr>
 
 <tr class="inputtable2">
-	<th colspan=2>Stop Turns If:</th>
+    <th colspan=2>Stop Turns If:</th>
 </tr>
 <tr>
-	<td>Net Income is negative</td>
-	<td><input type="checkbox" name="netincomeneg" class="check_box" value="yes"></td>
+    <td>Net Income is negative</td>
+    <td><input type="checkbox" name="netincomeneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td>Net <?php echo $GLOBALS["food"]; ?> production is negative</td>
-	<td><input type="checkbox" name="netfoodneg" class="check_box" value="yes"></td>
+    <td>Net <?php echo $GLOBALS["food"]; ?> production is negative</td>
+    <td><input type="checkbox" name="netfoodneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td><?php echo $GLOBALS["uera"]["wizards"]; ?> production is negative</td>
-	<td><input type="checkbox" name="netwizardneg" class="check_box" value="yes"></td>
+    <td><?php echo $GLOBALS["uera"]["wizards"]; ?> production is negative</td>
+    <td><input type="checkbox" name="netwizardneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td>Population production is negative</td>
-	<td><input type="checkbox" name="networkerneg" class="check_box" value="yes"></td>
+    <td>Population production is negative</td>
+    <td><input type="checkbox" name="networkerneg" class="check_box" value="yes"></td>
 </tr>
 <tr><td colspan=2><center><input type="submit" value="Begin"></center></td></tr>
 </table>

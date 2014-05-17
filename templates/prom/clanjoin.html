@@ -7,11 +7,11 @@ From this menu, we can join a clan to possibly offer some protection.<br>
 <?php if($GLOBALS["numcs"] == 0): ?>
         <td colspan="2"><b>No Clans</b></td></tr>
 <?php else: ?>
-	<td><select name="join_num" size="1">
-	<?php foreach($GLOBALS["ccs"] as $loop_list): ?>
-		<option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
-	<?php endforeach; ?>
-	</select></td></tr>
+    <td><select name="join_num" size="1">
+    <?php foreach($GLOBALS["ccs"] as $loop_list): ?>
+        <option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
+    <?php endforeach; ?>
+    </select></td></tr>
 <?php endif; ?>
 
 <tr><td class="aright">Password:</td>
@@ -24,12 +24,12 @@ From this menu, we can join a clan to possibly offer some protection.<br>
 <?php if($GLOBALS["numocs"] == 0): ?>
         <td colspan="2"><b>No open Clans</b></td></tr>
 <?php else: ?>
-	<td><select name="signup_clan" size="1">
-		<option value="0">No Clan Selected</option>
-	<?php foreach($GLOBALS["ocs"] as $loop_list): ?>
-	        <option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
-	<?php endforeach; ?>
-	</select></td></tr>
+    <td><select name="signup_clan" size="1">
+        <option value="0">No Clan Selected</option>
+    <?php foreach($GLOBALS["ocs"] as $loop_list): ?>
+            <option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
+    <?php endforeach; ?>
+    </select></td></tr>
 <?php endif; ?>
 
 <tr><td colspan="2" class="acenter"><input type="submit" 

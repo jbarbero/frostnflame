@@ -5,46 +5,46 @@
 var curr = -1;
 
 function CheckAll (check){
-	var path = document.messages;
-	 for (var i=0;i<path.elements.length;i++) {
-		e = path.elements[i];
-		checkname = "all";
-		if(check==2) checkname = "all2";
-		if( (e.name!=checkname)  && (e.type=="checkbox") ) {
-			 e.checked = path.all.checked;
-			 if(check==2) e.checked = path.all2.checked;
-		}
-	 }
+    var path = document.messages;
+     for (var i=0;i<path.elements.length;i++) {
+        e = path.elements[i];
+        checkname = "all";
+        if(check==2) checkname = "all2";
+        if( (e.name!=checkname)  && (e.type=="checkbox") ) {
+             e.checked = path.all.checked;
+             if(check==2) e.checked = path.all2.checked;
+        }
+     }
 }
 
 
 function show(which) {
-	if(curr != which) {
-		eval("mess_val = message_" + which);
-		eval("link_val = 'link_" + which + "'");
-		curr = which;
-	 	document.getElementById("show_mess").innerHTML = mess_val;
-		var request = "?m_read&amp;id_num=" + which + "<?php echo $GLOBALS["authstr"]; ?>";
-		var execframe = document.getElementById("theframe");
-		execframe.src = request.replace(/&amp;/g, '&');
-		var readspan = document.getElementById("link_"+which);
-		readspan.style.fontWeight = "normal";
-	}
-	else {
-		curr = -1;
-		document.getElementById("show_mess").innerHTML = "<!---Hold--->";
-	}
+    if(curr != which) {
+        eval("mess_val = message_" + which);
+        eval("link_val = 'link_" + which + "'");
+        curr = which;
+         document.getElementById("show_mess").innerHTML = mess_val;
+        var request = "?m_read&amp;id_num=" + which + "<?php echo $GLOBALS["authstr"]; ?>";
+        var execframe = document.getElementById("theframe");
+        execframe.src = request.replace(/&amp;/g, '&');
+        var readspan = document.getElementById("link_"+which);
+        readspan.style.fontWeight = "normal";
+    }
+    else {
+        curr = -1;
+        document.getElementById("show_mess").innerHTML = "<!---Hold--->";
+    }
 }
 
 
 
 <?php /* TODO: wtf: why two nested for loops with the same variable? */ ?>
 <?php foreach($GLOBALS["jmessage"] as $loop_v): ?>
-	<?php foreach($GLOBALS["jmessage"] as $loop_v): ?>
-		<?php if($loop_v["read"] == 0 ): ?>
-        message_<?php echo $loop_v["id"]; ?> = ' <table class="inputtable">	<tr><th class="acenter">Viewing Message</th></tr><tr><td>	  <form method="post" action="<?php echo $GLOBALS["config"]["sitedir"]; ?><?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">	  <input type="hidden" name="msg_id" value="<?php echo $loop_v["id"]; ?>">	  <input type="hidden" name="msg_src" value="<?php echo $loop_v["from_num"]; ?>">	  <input type="hidden" name="msg_src_name" value="<?php echo $loop_v["from_name"]; ?>">	  <input type="hidden" name="msg_title" value="<?php echo $loop_v["title"]; ?>">	  <input type="hidden" name="msg_body" value="<?php echo escape_javascript($loop_v["msg_escaped"]); ?>">	  <table>	  <tr>	  <td class="aleft">	   <b>From:</b> <?php echo $loop_v["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_v["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_v["from_num"]; ?>)</a><br>	   <b>Subject:</b> <?php echo $loop_v["title"]; ?><br>	   <b>Date:</b> <?php echo escape_javascript($loop_v["date"]); ?><br>	   <br><tt><?php echo escape_quotes($loop_v["msg"]); ?></tt>	  </td>	  </tr>	  <tr><td><div align="center">	  <input type="submit" name="do_reply" value="Reply">	  <input type="submit" name="do_forward" value="Forward">	  <input type="submit" name="do_delete" value="Delete">	  </div></td></tr>	  </table>	  </form>	  </td></tr><tr><th><hr></th></tr></table> ';
-		<?php endif; ?>
-	<?php endforeach; ?>
+    <?php foreach($GLOBALS["jmessage"] as $loop_v): ?>
+        <?php if($loop_v["read"] == 0 ): ?>
+        message_<?php echo $loop_v["id"]; ?> = ' <table class="inputtable">    <tr><th class="acenter">Viewing Message</th></tr><tr><td>      <form method="post" action="<?php echo $GLOBALS["config"]["sitedir"]; ?><?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">      <input type="hidden" name="msg_id" value="<?php echo $loop_v["id"]; ?>">      <input type="hidden" name="msg_src" value="<?php echo $loop_v["from_num"]; ?>">      <input type="hidden" name="msg_src_name" value="<?php echo $loop_v["from_name"]; ?>">      <input type="hidden" name="msg_title" value="<?php echo $loop_v["title"]; ?>">      <input type="hidden" name="msg_body" value="<?php echo escape_javascript($loop_v["msg_escaped"]); ?>">      <table>      <tr>      <td class="aleft">       <b>From:</b> <?php echo $loop_v["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_v["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_v["from_num"]; ?>)</a><br>       <b>Subject:</b> <?php echo $loop_v["title"]; ?><br>       <b>Date:</b> <?php echo escape_javascript($loop_v["date"]); ?><br>       <br><tt><?php echo escape_quotes($loop_v["msg"]); ?></tt>      </td>      </tr>      <tr><td><div align="center">      <input type="submit" name="do_reply" value="Reply">      <input type="submit" name="do_forward" value="Forward">      <input type="submit" name="do_delete" value="Delete">      </div></td></tr>      </table>      </form>      </td></tr><tr><th><hr></th></tr></table> ';
+        <?php endif; ?>
+    <?php endforeach; ?>
 <?php endforeach; ?>
 
 </script>
@@ -62,131 +62,131 @@ function show(which) {
 <br>
 <br>
 <?php if($GLOBALS["do_reply"]): ?>
-	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
-	<div>
-	Sending Reply To <?php echo $GLOBALS["reply_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["reply_src"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["reply_src"]; ?>)</a><br>
-	Message Title: <input type="text" name="msg_title" size="40" value="Re: <?php echo $GLOBALS["reply_title"]; ?>" maxlength="80"><br>
-	<input type="hidden" name="msg_replyto" value="<?php echo $GLOBALS["reply_id"]; ?>">
-	<input type="hidden" name="msg_dest" value="<?php echo $GLOBALS["reply_src"]; ?>">
-	<textarea rows="10" cols="60" name="msg_body"><?php echo $GLOBALS["reply_body"]; ?></textarea><br>
-	<input type="submit" name="do_message" value="Send Reply to <?php echo $GLOBALS["uera"]["empire"]; ?> #<?php echo $GLOBALS["reply_src"]; ?>">
-	</div>
-	</form>
+    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <div>
+    Sending Reply To <?php echo $GLOBALS["reply_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["reply_src"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["reply_src"]; ?>)</a><br>
+    Message Title: <input type="text" name="msg_title" size="40" value="Re: <?php echo $GLOBALS["reply_title"]; ?>" maxlength="80"><br>
+    <input type="hidden" name="msg_replyto" value="<?php echo $GLOBALS["reply_id"]; ?>">
+    <input type="hidden" name="msg_dest" value="<?php echo $GLOBALS["reply_src"]; ?>">
+    <textarea rows="10" cols="60" name="msg_body"><?php echo $GLOBALS["reply_body"]; ?></textarea><br>
+    <input type="submit" name="do_message" value="Send Reply to <?php echo $GLOBALS["uera"]["empire"]; ?> #<?php echo $GLOBALS["reply_src"]; ?>">
+    </div>
+    </form>
 <?php endif; ?>
 
 <?php if($GLOBALS["do_forward"]): ?>
-	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
 
-	Forward To:<select name="forward_num1" size="1">
-	<?php foreach($GLOBALS["numbers"] as $loop_num_go): ?>
-	<option value="<?php echo $loop_num_go["num"]; ?>" class="m<?php echo $loop_num_go["color"]; ?>" <?php if($loop_num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $loop_num_go["num"]; ?> - <?php echo $loop_num_go["empire"]; ?></option>
-	<?php endforeach; ?>
-	</select><br>
-
-
-	Forward To:<select name="forward_num2" size="1">
-	<?php foreach($GLOBALS["numbers"] as $loop_num_go): ?>
-	<option value="<?php echo $loop_num_go["num"]; ?>" class="m<?php echo $loop_num_go["color"]; ?>" <?php if($loop_num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $loop_num_go["num"]; ?> - <?php echo $loop_num_go["empire"]; ?></option>
-	<?php endforeach; ?>
-	</select><br>
-
-	Forward To:<select name="forward_num3" size="1">
-	<?php foreach($GLOBALS["numbers"] as $loop_num_go): ?>
-	<option value="<?php echo $loop_num_go["num"]; ?>" class="m<?php echo $loop_num_go["color"]; ?>" <?php if($loop_num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $loop_num_go["num"]; ?> - <?php echo $loop_num_go["empire"]; ?></option>
-	<?php endforeach; ?>
-	</select><br><br><br>
+    Forward To:<select name="forward_num1" size="1">
+    <?php foreach($GLOBALS["numbers"] as $loop_num_go): ?>
+    <option value="<?php echo $loop_num_go["num"]; ?>" class="m<?php echo $loop_num_go["color"]; ?>" <?php if($loop_num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $loop_num_go["num"]; ?> - <?php echo $loop_num_go["empire"]; ?></option>
+    <?php endforeach; ?>
+    </select><br>
 
 
+    Forward To:<select name="forward_num2" size="1">
+    <?php foreach($GLOBALS["numbers"] as $loop_num_go): ?>
+    <option value="<?php echo $loop_num_go["num"]; ?>" class="m<?php echo $loop_num_go["color"]; ?>" <?php if($loop_num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $loop_num_go["num"]; ?> - <?php echo $loop_num_go["empire"]; ?></option>
+    <?php endforeach; ?>
+    </select><br>
+
+    Forward To:<select name="forward_num3" size="1">
+    <?php foreach($GLOBALS["numbers"] as $loop_num_go): ?>
+    <option value="<?php echo $loop_num_go["num"]; ?>" class="m<?php echo $loop_num_go["color"]; ?>" <?php if($loop_num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $loop_num_go["num"]; ?> - <?php echo $loop_num_go["empire"]; ?></option>
+    <?php endforeach; ?>
+    </select><br><br><br>
 
 
-	<div>
-	Message Title: <input type="text" name="msg_title" size="40" value="<?php echo $GLOBALS["forward_title"]; ?>" maxlength="80"><br>
-	<textarea rows="10" cols="60" name="msg_body"><?php echo $GLOBALS["forward_msg"]; ?></textarea><br>
-	<input type="submit" name="send_forward" value="Forward">
-	</div>
-	</form>
+
+
+    <div>
+    Message Title: <input type="text" name="msg_title" size="40" value="<?php echo $GLOBALS["forward_title"]; ?>" maxlength="80"><br>
+    <textarea rows="10" cols="60" name="msg_body"><?php echo $GLOBALS["forward_msg"]; ?></textarea><br>
+    <input type="submit" name="send_forward" value="Forward">
+    </div>
+    </form>
 <?php endif; ?>
 
 <div id="show_mess">
 <?php if($GLOBALS["view"]!=""): ?>
-	<table class="inputtable">
-	<tr><th class="acenter">Viewing Message</th></tr><tr><td>
-	<?php if($GLOBALS["sent"]==0): ?>
-	  <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <table class="inputtable">
+    <tr><th class="acenter">Viewing Message</th></tr><tr><td>
+    <?php if($GLOBALS["sent"]==0): ?>
+      <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
 
-	  <input type="hidden" name="msg_id" value="<?php echo $GLOBALS["vmessage"]["id"]; ?>">
-	  <input type="hidden" name="msg_src" value="<?php echo $GLOBALS["vmessage"]["src"]; ?>">
-	  <input type="hidden" name="msg_src_name" value="<?php echo $GLOBALS["vsrc"]["empire"]; ?>">
-	  <input type="hidden" name="msg_title" value="<?php echo $GLOBALS["vmessage"]["title"]; ?>">
-	  <input type="hidden" name="msg_body" value="<?php echo $GLOBALS["vmessage"]["msg_escaped"]; ?>">
-	  <table>
-	  <tr>
-	  <td class="aleft">
-	   <b>From:</b> <?php echo $GLOBALS["vsrc"]["empire"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["vsrc"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["vsrc"]["num"]; ?>)</a><br>
-	   <b>Subject:</b> <?php echo $GLOBALS["vmessage"]["title"]; ?><br>
-	   <b>Date:</b> <?php echo $GLOBALS["time"]; ?><br>
-	   <br>
-	   <tt><?php echo $GLOBALS["vmessage"]["msg"]; ?></tt>
-	  </td>
-	  </tr>
+      <input type="hidden" name="msg_id" value="<?php echo $GLOBALS["vmessage"]["id"]; ?>">
+      <input type="hidden" name="msg_src" value="<?php echo $GLOBALS["vmessage"]["src"]; ?>">
+      <input type="hidden" name="msg_src_name" value="<?php echo $GLOBALS["vsrc"]["empire"]; ?>">
+      <input type="hidden" name="msg_title" value="<?php echo $GLOBALS["vmessage"]["title"]; ?>">
+      <input type="hidden" name="msg_body" value="<?php echo $GLOBALS["vmessage"]["msg_escaped"]; ?>">
+      <table>
+      <tr>
+      <td class="aleft">
+       <b>From:</b> <?php echo $GLOBALS["vsrc"]["empire"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["vsrc"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["vsrc"]["num"]; ?>)</a><br>
+       <b>Subject:</b> <?php echo $GLOBALS["vmessage"]["title"]; ?><br>
+       <b>Date:</b> <?php echo $GLOBALS["time"]; ?><br>
+       <br>
+       <tt><?php echo $GLOBALS["vmessage"]["msg"]; ?></tt>
+      </td>
+      </tr>
 
-	  <tr><td><div align="center">
-	  <input type="submit" name="do_reply" value="Reply">
-	  <input type="submit" name="do_forward" value="Forward">
-	  <input type="submit" name="do_delete" value="Delete">
-	  </div></td></tr>
-	  </table>
+      <tr><td><div align="center">
+      <input type="submit" name="do_reply" value="Reply">
+      <input type="submit" name="do_forward" value="Forward">
+      <input type="submit" name="do_delete" value="Delete">
+      </div></td></tr>
+      </table>
 
-	  </form>
-	<?php endif; ?>
+      </form>
+    <?php endif; ?>
 
-	<?php if($GLOBALS["sent"]==1): ?>
-		  <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
-		  <input type="hidden" name="msg_body" value="<?php echo $GLOBALS["smessage"]["msg_escaped"]; ?>">
-		  <input type="hidden" name="msg_id" value="<?php echo $GLOBALS["smessage"]["id"]; ?>">
-		  <input type="hidden" name="msg_src_name" value="<?php echo $GLOBALS["vsrc"]["empire"]; ?>">
-		  <input type="hidden" name="msg_src" value="<?php echo $GLOBALS["smessage"]["src"]; ?>">
-	  	<input type="hidden" name="msg_title" value="<?php echo $GLOBALS["smessage"]["title"]; ?>">
-		  <table>
-		  <tr>
-		  <td class="aleft">
-		   <b>To:</b> <?php echo $GLOBALS["vsrc"]["empire"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["vsrc"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["vsrc"]["num"]; ?>)</a><br>
-		   <b>Subject:</b> <?php echo $GLOBALS["smessage"]["title"]; ?><br>
-		   <b>Date:</b> <?php echo $GLOBALS["time"]; ?><br>
-		   <br>
-		   <tt><?php echo $GLOBALS["smessage"]["msg"]; ?></tt>
-		  </td>
-		  </tr>
+    <?php if($GLOBALS["sent"]==1): ?>
+          <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+          <input type="hidden" name="msg_body" value="<?php echo $GLOBALS["smessage"]["msg_escaped"]; ?>">
+          <input type="hidden" name="msg_id" value="<?php echo $GLOBALS["smessage"]["id"]; ?>">
+          <input type="hidden" name="msg_src_name" value="<?php echo $GLOBALS["vsrc"]["empire"]; ?>">
+          <input type="hidden" name="msg_src" value="<?php echo $GLOBALS["smessage"]["src"]; ?>">
+          <input type="hidden" name="msg_title" value="<?php echo $GLOBALS["smessage"]["title"]; ?>">
+          <table>
+          <tr>
+          <td class="aleft">
+           <b>To:</b> <?php echo $GLOBALS["vsrc"]["empire"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["vsrc"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["vsrc"]["num"]; ?>)</a><br>
+           <b>Subject:</b> <?php echo $GLOBALS["smessage"]["title"]; ?><br>
+           <b>Date:</b> <?php echo $GLOBALS["time"]; ?><br>
+           <br>
+           <tt><?php echo $GLOBALS["smessage"]["msg"]; ?></tt>
+          </td>
+          </tr>
 
-		  <tr><td><div align="center">
-		  <?php if($GLOBALS["smessage"]["deleted"] == 0 || $GLOBALS["smessage"]["deleted"] == 2): ?>
-		  		  <input type="submit" name="do_revoke" value="Revoke">
-		  <?php endif; ?>
-		  <input type="submit" name="do_forward" value="Forward">
-		  <input type="submit" name="do_delete" value="Delete"></div></td></tr>
-		  </table>
-	  </form>
-	<?php endif; ?>
-	</td></tr><tr><th><hr></th></tr></table>
+          <tr><td><div align="center">
+          <?php if($GLOBALS["smessage"]["deleted"] == 0 || $GLOBALS["smessage"]["deleted"] == 2): ?>
+                    <input type="submit" name="do_revoke" value="Revoke">
+          <?php endif; ?>
+          <input type="submit" name="do_forward" value="Forward">
+          <input type="submit" name="do_delete" value="Delete"></div></td></tr>
+          </table>
+      </form>
+    <?php endif; ?>
+    </td></tr><tr><th><hr></th></tr></table>
 <?php endif; ?>
 </div>
 
 <?php if($GLOBALS["sent"]==0 && $GLOBALS["prof_target"]==""): ?>
-	<?php if($GLOBALS["num_msg"]>0): ?>
+    <?php if($GLOBALS["num_msg"]>0): ?>
 
-		<form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"> <?php /* I want access to all the elements therein */ ?>
+        <form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"> <?php /* I want access to all the elements therein */ ?>
 
-		<table class="scorestable">
-		<tr class="era<?php echo $GLOBALS["color"]; ?>"><th colspan="4"><?php echo $GLOBALS["inboxname"]; ?></th></tr>
+        <table class="scorestable">
+        <tr class="era<?php echo $GLOBALS["color"]; ?>"><th colspan="4"><?php echo $GLOBALS["inboxname"]; ?></th></tr>
 
-		<tr class="era<?php echo $GLOBALS["color"]; ?>">
-		<th style="width:30%">
-		<a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
-		</th>
+        <tr class="era<?php echo $GLOBALS["color"]; ?>">
+        <th style="width:30%">
+        <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+        </th>
 
-		<th style="width:30%">
-		<a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
-		</th>
+        <th style="width:30%">
+        <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
+        </th>
 
 
         <th style="width:15%">
@@ -198,91 +198,91 @@ function show(which) {
         </th>
 
         </tr>
-		<?php foreach($GLOBALS["message"] as $loop_sel): ?>
-				<tr>
-				<?php if($loop_sel["read"]==0): ?>
-					<td><a style="font-weight: bold;" id="link_<?php echo $loop_sel["id"]; ?>" href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>" onclick="show(<?php echo $loop_sel["id"]; ?>); return false;"><?php echo $loop_sel["title"]; ?></a></td>
-					<?php /*<td><a class="new" href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>*/ ?>
-				<?php endif; ?>
-				<?php if($loop_sel["read"]!=0): ?>
-					<?php /*<td><a href="JavaScript:show(<?php echo $loop_sel["id"]; ?>)<?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>*/ ?>
-					<td><a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>
-				<?php endif; ?>
-				<td class="acenter"><?php echo $loop_sel["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_sel["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_sel["from_num"]; ?>)</a></td>
-				<td class="acenter"><?php echo $loop_sel["date"]; ?></td>
-				<td class="acenter"><input type="checkbox" name="boxes[]" value="<?php echo $loop_sel["id"]; ?>"></td>
-				</tr>
+        <?php foreach($GLOBALS["message"] as $loop_sel): ?>
+                <tr>
+                <?php if($loop_sel["read"]==0): ?>
+                    <td><a style="font-weight: bold;" id="link_<?php echo $loop_sel["id"]; ?>" href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>" onclick="show(<?php echo $loop_sel["id"]; ?>); return false;"><?php echo $loop_sel["title"]; ?></a></td>
+                    <?php /*<td><a class="new" href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>*/ ?>
+                <?php endif; ?>
+                <?php if($loop_sel["read"]!=0): ?>
+                    <?php /*<td><a href="JavaScript:show(<?php echo $loop_sel["id"]; ?>)<?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>*/ ?>
+                    <td><a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>
+                <?php endif; ?>
+                <td class="acenter"><?php echo $loop_sel["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_sel["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_sel["from_num"]; ?>)</a></td>
+                <td class="acenter"><?php echo $loop_sel["date"]; ?></td>
+                <td class="acenter"><input type="checkbox" name="boxes[]" value="<?php echo $loop_sel["id"]; ?>"></td>
+                </tr>
 
-		<?php endforeach; ?>
+        <?php endforeach; ?>
 
-				<tr class="era<?php echo $GLOBALS["color"]; ?>">
+                <tr class="era<?php echo $GLOBALS["color"]; ?>">
 
-				<th style="width:30%">
-				<a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
-				</th>
+                <th style="width:30%">
+                <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+                </th>
 
-				<th style="width:30%">
-				<a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
-				</th>
+                <th style="width:30%">
+                <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
+                </th>
 
 
-		        <th style="width:15%">
-		        <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
-		        </th>
+                <th style="width:15%">
+                <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
+                </th>
 
-		        <th style="width:15%">
-		        <input name="all2" type="checkbox" value="Check All" onClick="CheckAll(2);">
-		        </th>
+                <th style="width:15%">
+                <input name="all2" type="checkbox" value="Check All" onClick="CheckAll(2);">
+                </th>
 
         </tr>
 
 
-		</table>
+        </table>
 
-		<div>
-		<br><br>
-		<input type="hidden" name="jsenabled">
-		
-		<input type="submit" name="do_deleteall" value="Delete all messages" onClick="
-			temp = window.confirm('Are you sure you want to delete all messages?');
-			if(temp == 1) {
-				document.forms.messages.jsenabled.value = 'jsenabled';
-				document.forms.messages.submit();
-			}
+        <div>
+        <br><br>
+        <input type="hidden" name="jsenabled">
+        
+        <input type="submit" name="do_deleteall" value="Delete all messages" onClick="
+            temp = window.confirm('Are you sure you want to delete all messages?');
+            if(temp == 1) {
+                document.forms.messages.jsenabled.value = 'jsenabled';
+                document.forms.messages.submit();
+            }
 
-			else
-				return false;
-		">
-		
-		<input type="submit" name="do_delete_selected" value="Delete selected">
-		<input type="submit" name="do_delete_read" value="Delete read messages">
-		</div>
-		</form>
-	<?php endif; ?>
+            else
+                return false;
+        ">
+        
+        <input type="submit" name="do_delete_selected" value="Delete selected">
+        <input type="submit" name="do_delete_read" value="Delete read messages">
+        </div>
+        </form>
+    <?php endif; ?>
 
-	<?php if($GLOBALS["num_msg"]==0): ?>
-		No new messages...<hr>
-	<?php endif; ?>
+    <?php if($GLOBALS["num_msg"]==0): ?>
+        No new messages...<hr>
+    <?php endif; ?>
 <?php endif; ?>
 
 <?php /* I've decided to make it so that you only have one template... */ ?>
 
 
 <?php if($GLOBALS["sent"]!=0): ?>
-	<?php if($GLOBALS["num_msg"]>0): ?>
-		<form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>">
+    <?php if($GLOBALS["num_msg"]>0): ?>
+        <form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>">
 
-		<table class="scorestable">
-		<tr class="era<?php echo $GLOBALS["color"]; ?>"><th colspan="4"><?php echo $GLOBALS["sentname"]; ?></th></tr>
+        <table class="scorestable">
+        <tr class="era<?php echo $GLOBALS["color"]; ?>"><th colspan="4"><?php echo $GLOBALS["sentname"]; ?></th></tr>
 
-		<tr class="era<?php echo $GLOBALS["color"]; ?>">
-		<th style="width:30%">
-		<a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
-		</th>
+        <tr class="era<?php echo $GLOBALS["color"]; ?>">
+        <th style="width:30%">
+        <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+        </th>
 
-		<th style="width:30%">
-		<a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
-		</th>
+        <th style="width:30%">
+        <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
+        </th>
 
 
         <th style="width:15%">
@@ -295,51 +295,51 @@ function show(which) {
 
         </tr>
 
-		<?php foreach($GLOBALS["sent_message"] as $loop_s_sel): ?>
-				<tr>
-				<td> <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;view=<?php echo $loop_s_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_s_sel["title"]; ?></a></td>
-				<td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>"> <?php echo $loop_s_sel["to_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_s_sel["to_num"]; ?>)</a> </td>
-				<td class="acenter"><?php echo $loop_s_sel["date"]; ?></td>
-				<td class="acenter"><input type="checkbox" name="boxes[]" value="<?php echo $loop_s_sel["id"]; ?>"></td>
-				 </td></tr>
+        <?php foreach($GLOBALS["sent_message"] as $loop_s_sel): ?>
+                <tr>
+                <td> <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;view=<?php echo $loop_s_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_s_sel["title"]; ?></a></td>
+                <td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>"> <?php echo $loop_s_sel["to_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_s_sel["to_num"]; ?>)</a> </td>
+                <td class="acenter"><?php echo $loop_s_sel["date"]; ?></td>
+                <td class="acenter"><input type="checkbox" name="boxes[]" value="<?php echo $loop_s_sel["id"]; ?>"></td>
+                 </td></tr>
 
-		<?php endforeach; ?>
+        <?php endforeach; ?>
 
-			<tr class="era<?php echo $GLOBALS["color"]; ?>">
+            <tr class="era<?php echo $GLOBALS["color"]; ?>">
 
-			<th style="width:30%">
-			<a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
-			</th>
+            <th style="width:30%">
+            <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+            </th>
 
-			<th style="width:30%">
-			<a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
-			</th>
+            <th style="width:30%">
+            <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
+            </th>
 
 
-	        <th style="width:15%">
-	        <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
-	        </th>
+            <th style="width:15%">
+            <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
+            </th>
 
-	        <th style="width:15%">
-	        <input name="all2" type="checkbox" value="Check All" onClick="CheckAll(2);">
-	        </th>
+            <th style="width:15%">
+            <input name="all2" type="checkbox" value="Check All" onClick="CheckAll(2);">
+            </th>
 
         </tr>
 
 
-		</table>
+        </table>
 
-		<div>
-		<br><br>
-		<input type="submit" name="do_deleteall" value="Delete all messages">
-		<input type="submit" name="do_delete_selected" value="Delete selected">
-		</div>
-		</form>
-	<?php endif; ?>
+        <div>
+        <br><br>
+        <input type="submit" name="do_deleteall" value="Delete all messages">
+        <input type="submit" name="do_delete_selected" value="Delete selected">
+        </div>
+        </form>
+    <?php endif; ?>
 
-	<?php if($GLOBALS["num_msg"]==0): ?>
-		No sent messages...<hr>
-	<?php endif; ?>
+    <?php if($GLOBALS["num_msg"]==0): ?>
+        No sent messages...<hr>
+    <?php endif; ?>
 
 <?php endif; ?>
 
@@ -353,23 +353,23 @@ function show(which) {
 <script language="JavaScript">
 
 function updateMsgNames() {
-	msgnum = document.frmmsg.msg_dest_num.value;
-	nchanged = true
-	for (i = 0; i < document.frmmsg.msg_dest.options.length; i++) {
-		 if (document.frmmsg.msg_dest.options[i].value == msgnum) {
-			document.frmmsg.msg_dest.options[i].selected = true;
-			nchanged = false;
-		}
-	}
-	if (nchanged) {
-		document.frmmsg.do_message.disabled = true;
-	} else {
-		document.frmmsg.do_message.disabled = false;
-	}
+    msgnum = document.frmmsg.msg_dest_num.value;
+    nchanged = true
+    for (i = 0; i < document.frmmsg.msg_dest.options.length; i++) {
+         if (document.frmmsg.msg_dest.options[i].value == msgnum) {
+            document.frmmsg.msg_dest.options[i].selected = true;
+            nchanged = false;
+        }
+    }
+    if (nchanged) {
+        document.frmmsg.do_message.disabled = true;
+    } else {
+        document.frmmsg.do_message.disabled = false;
+    }
 }
 function updateMsgNums() {
-	document.frmmsg.msg_dest_num.value = document.frmmsg.msg_dest.value;
-		document.frmmsg.do_message.disabled = false;
+    document.frmmsg.msg_dest_num.value = document.frmmsg.msg_dest.value;
+        document.frmmsg.do_message.disabled = false;
 }
 </script>
 
@@ -379,17 +379,17 @@ We currently have <?php echo $GLOBALS["msgcreds"]; ?> message credits remaining.
 <div>
 
 <?php if($GLOBALS["clan"] != 0): ?>
-	<INPUT TYPE="checkbox" NAME="allclan"> Message everyone in clan?
-	<BR>(If the above box is checked, the below field will be ignored.)<BR>
+    <INPUT TYPE="checkbox" NAME="allclan"> Message everyone in clan?
+    <BR>(If the above box is checked, the below field will be ignored.)<BR>
 
-	We support bbcode, smilies, and automatic URL conversions.<BR><BR>
+    We support bbcode, smilies, and automatic URL conversions.<BR><BR>
 <?php endif; ?>
 
 Send a message to: <input type="text" value="<?php echo $GLOBALS["prof_target"]; ?>" name="msg_dest_num" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-	<?php foreach($GLOBALS["drop"] as $loop_dropsel): ?>
-		<option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($GLOBALS["prof_target"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
-	<?php endforeach; ?>
+    <?php foreach($GLOBALS["drop"] as $loop_dropsel): ?>
+        <option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($GLOBALS["prof_target"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
+    <?php endforeach; ?>
 </select>
 
 <br>

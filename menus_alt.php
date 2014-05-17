@@ -1,44 +1,44 @@
 <?php
 if (!defined("PROMISANCE"))
-	die(" ");
+    die(" ");
 
 global $GAME_ACTION, $config, $servers, $authstr, $menus;
 $menus = array();
 
 function menu_normal_item($item, $link, $sc = SERVER, $target = false) {
-	global $menus;
-	$srv = '&amp;srv=' . $sc;
-	if(!empty($_GET['skin'])) {
-		fixInputNum($_GET['skin']);
-		$srv .= '&skin=' . $_GET['skin'];
-	}
-	if ($target)
-		$trg = " target=\"$target\"";
-	$item = str_replace(" ", "&nbsp;", $item);
-	$menus[] = array(	'link' => "?$link$srv",
-				'trg'  => $trg,
-				'item' => $item,
-				'spec' => 0);
+    global $menus;
+    $srv = '&amp;srv=' . $sc;
+    if(!empty($_GET['skin'])) {
+        fixInputNum($_GET['skin']);
+        $srv .= '&skin=' . $_GET['skin'];
+    }
+    if ($target)
+        $trg = " target=\"$target\"";
+    $item = str_replace(" ", "&nbsp;", $item);
+    $menus[] = array(    'link' => "?$link$srv",
+                'trg'  => $trg,
+                'item' => $item,
+                'spec' => 0);
 } 
 
 function menu_header_item($item, $sc = SERVER) {
-	global $menus;
-	if($sc == -1) {
-		$srv = '';
-		$link = 'login';
-	} else {
-		$srv = '&amp;srv=' . $sc;
-		$link = 'info';
-	}
+    global $menus;
+    if($sc == -1) {
+        $srv = '';
+        $link = 'login';
+    } else {
+        $srv = '&amp;srv=' . $sc;
+        $link = 'info';
+    }
 
-	if(!empty($_GET['skin'])) {
-		fixInputNum($_GET['skin']);
-		$srv .= '&skin=' . $_GET['skin'];
-	}
-	$item = str_replace(" ", "&nbsp;", $item);
-	$menus[] = array(	'link' => "?$link$srv",
-				'item' => $item,
-				'spec' => 1);
+    if(!empty($_GET['skin'])) {
+        fixInputNum($_GET['skin']);
+        $srv .= '&skin=' . $_GET['skin'];
+    }
+    $item = str_replace(" ", "&nbsp;", $item);
+    $menus[] = array(    'link' => "?$link$srv",
+                'item' => $item,
+                'spec' => 1);
 }
 
 
@@ -55,11 +55,11 @@ menu_normal_item('Download', "source&amp;bundle=tgz");
 #menu_normal_item('Medieval&nbsp;Empires', '?redirect&amp;url=http://www.medievalempires.org/');
 
 foreach($servers as $sc => $name) {
-	menu_header_item($name, $sc);
-	menu_normal_item('Sign Up', 'signup', $sc);
-	menu_normal_item('Top 100', 'top10', $sc);
-	menu_normal_item('Recent News', 'rnews', $sc);
-	menu_normal_item('Server Map', 'map', $sc);
+    menu_header_item($name, $sc);
+    menu_normal_item('Sign Up', 'signup', $sc);
+    menu_normal_item('Top 100', 'top10', $sc);
+    menu_normal_item('Recent News', 'rnews', $sc);
+    menu_normal_item('Server Map', 'map', $sc);
 } 
 
 ?>

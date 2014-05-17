@@ -2,7 +2,7 @@
 include("header.php");
 
 if($users[clan] == 0)
-	TheEnd("You are not in a clan!");
+    TheEnd("You are not in a clan!");
 
 define('CLAN', $users[clan]);
 define('CLANMKT', 1);

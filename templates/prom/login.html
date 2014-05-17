@@ -1,38 +1,38 @@
 <table width="80%"><tr><td>
 <?php foreach($GLOBALS["disp_servers"] as $loop_login): ?>
-	<center>
-	<form method="POST" action="<?php echo $GLOBALS["config"]["sitedir"]; ?>?login&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>" name="lgin">
-	<br>
+    <center>
+    <form method="POST" action="<?php echo $GLOBALS["config"]["sitedir"]; ?>?login&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>" name="lgin">
+    <br>
 
-	<table class="inputtable">
-	<tr><th colspan="2"><h3><?php echo $loop_login["name"]; ?></h3></th></tr>
-	<tr>
-	<td style="text-align: right">Username:</td><td style="text-align: left"><input type="text" name="login_username" size="11"></td>
-	</tr><tr>
-	<td style="text-align: right">Password:</td><td style="text-align: left"><input type="password" name="login_password" size="11"></td>
-	</tr>
-	<tr>
-	<?php if($loop_login["hiddenlogin"]): ?>
-		<td><input type="checkbox" name="nothideon" checked>&nbsp;Show&nbsp;as&nbsp;online?</td>
-		<td><input type="checkbox" name="usecookie" checked>&nbsp;Use&nbsp;Cookies?</td>
-	<?php else: ?>
-		<td colspan="2"><input type="checkbox" name="usecookie" checked>&nbsp;Use&nbsp;Cookies?</td>
-	<?php endif; ?>
-	<tr>
-	<td colspan="2" style="text-align:right"><input type="submit" name="do_login" value="Login"></td>
-	</tr>
-	<tr><td colspan="2" style="text-align:center">
-	<a href="<?php echo $GLOBALS["main"]; ?>?signup&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Create&nbsp;Account</b></a>&nbsp;<b>&middot;</b>&nbsp;<a href="<?php echo $GLOBALS["main"]; ?>?top10&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Top&nbsp;100&nbsp;Players</b></a><br>
-	<a href="<?php echo $GLOBALS["main"]; ?>?info&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Game&nbsp;Info</b></a>
-	</td></tr>
-	</table>
+    <table class="inputtable">
+    <tr><th colspan="2"><h3><?php echo $loop_login["name"]; ?></h3></th></tr>
+    <tr>
+    <td style="text-align: right">Username:</td><td style="text-align: left"><input type="text" name="login_username" size="11"></td>
+    </tr><tr>
+    <td style="text-align: right">Password:</td><td style="text-align: left"><input type="password" name="login_password" size="11"></td>
+    </tr>
+    <tr>
+    <?php if($loop_login["hiddenlogin"]): ?>
+        <td><input type="checkbox" name="nothideon" checked>&nbsp;Show&nbsp;as&nbsp;online?</td>
+        <td><input type="checkbox" name="usecookie" checked>&nbsp;Use&nbsp;Cookies?</td>
+    <?php else: ?>
+        <td colspan="2"><input type="checkbox" name="usecookie" checked>&nbsp;Use&nbsp;Cookies?</td>
+    <?php endif; ?>
+    <tr>
+    <td colspan="2" style="text-align:right"><input type="submit" name="do_login" value="Login"></td>
+    </tr>
+    <tr><td colspan="2" style="text-align:center">
+    <a href="<?php echo $GLOBALS["main"]; ?>?signup&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Create&nbsp;Account</b></a>&nbsp;<b>&middot;</b>&nbsp;<a href="<?php echo $GLOBALS["main"]; ?>?top10&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Top&nbsp;100&nbsp;Players</b></a><br>
+    <a href="<?php echo $GLOBALS["main"]; ?>?info&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Game&nbsp;Info</b></a>
+    </td></tr>
+    </table>
 
-	<br>
+    <br>
 
-	</form>
-	</center>
+    </form>
+    </center>
 
-	</td>
+    </td>
     <?php /* cycle */ echo $GLOBALS["c36"]++ % 2 == 0 ? "<td>" : "</tr><tr><td>"; ?>
 <?php endforeach; ?>
 </td><td></td>
@@ -43,22 +43,22 @@
 <!-- <h3 align="center">News</h3> -->
 
 <?php foreach($GLOBALS["login_news"] as $loop_news): ?>
-	<table class="inputtable" width="80%" border="0">
-	<tr>
-		<th width="90%" style="text-align:left"><a href="<?php echo $loop_news["mlink"]; ?>"><?php echo $loop_news["author"]; ?></a></th>
-		<th style="text-align:right"><?php echo $loop_news["time"]; ?></th>
-	</tr>
-	<tr>
-		<td colspan="2" style="text-align:left"><b><a href="<?php echo $loop_news["link"]; ?>"><?php echo $loop_news["title"]; ?></a></b>
-		<?php if($loop_news["descempty"] == 0): ?>(<?php echo $loop_news["desc"]; ?>)<?php endif; ?>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" style="text-align:left"><?php echo $loop_news["post"]; ?></td>
-	</tr>
-	<tr>
-		<td colspan="2" style="text-align:right"><a href="<?php echo $loop_news["link"]; ?>"><?php echo $loop_news["ctext"]; ?></a></td>
-	</tr>
-	</table>
-	<br>
+    <table class="inputtable" width="80%" border="0">
+    <tr>
+        <th width="90%" style="text-align:left"><a href="<?php echo $loop_news["mlink"]; ?>"><?php echo $loop_news["author"]; ?></a></th>
+        <th style="text-align:right"><?php echo $loop_news["time"]; ?></th>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:left"><b><a href="<?php echo $loop_news["link"]; ?>"><?php echo $loop_news["title"]; ?></a></b>
+        <?php if($loop_news["descempty"] == 0): ?>(<?php echo $loop_news["desc"]; ?>)<?php endif; ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:left"><?php echo $loop_news["post"]; ?></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:right"><a href="<?php echo $loop_news["link"]; ?>"><?php echo $loop_news["ctext"]; ?></a></td>
+    </tr>
+    </table>
+    <br>
 <?php endforeach; ?>

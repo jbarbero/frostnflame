@@ -1,16 +1,16 @@
 <script language="JavaScript">
 
 function checkAll (check){
-	var path = document.unreserve;
-	for (var i=0;i<path.elements.length;i++) {
-		e = path.elements[i];
-		checkname = "maxall";
-		if(check==2) checkname = "maxall2";
-		if( (e.name!=checkname)  && (e.type=="checkbox") ) {
-			 e.checked = path.maxall.checked;
-			 if(check==2) e.checked = path.maxall2.checked;
-		}
-	 }
+    var path = document.unreserve;
+    for (var i=0;i<path.elements.length;i++) {
+        e = path.elements[i];
+        checkname = "maxall";
+        if(check==2) checkname = "maxall2";
+        if( (e.name!=checkname)  && (e.type=="checkbox") ) {
+             e.checked = path.maxall.checked;
+             if(check==2) e.checked = path.maxall2.checked;
+        }
+     }
 }
 
 </script>

@@ -22,7 +22,7 @@ $config['gamename_short'] = 'FAF'; # Game acronym
 $config['gamename_full'] = 'Frost And Flame';# Full game name
 
 
-$config['news']	='<span class="mnormal"></span>'; # Game news
+$config['news']    ='<span class="mnormal"></span>'; # Game news
 
 $config['sitedir'] = automatic_server_url(); # Main site URL, 
 #automatic_server_url() computes this automatically
@@ -43,7 +43,7 @@ $config['servers'][11] = 'War Of Ages';# Full name of each server
 $config['servers'][9] = 'NoLimits';
 $config['servers'][10] = 'Testing (Free-for-All)';
 
-$config['prefixes'][11]	= 'long2'; # Prefix before each server's tables in the db
+$config['prefixes'][11]    = 'long2'; # Prefix before each server's tables in the db
 # $config['prefixes'][2] = 'bfr';
 # $config['prefixes'][3] = 'duels3';
 # $config['prefixes'][4] = 'mvf';
@@ -54,18 +54,18 @@ $config['prefixes'][9] = 'beta';
 $config['prefixes'][10] = 'test';
 
 
-#Chat configuration						
+#Chat configuration                        
 $config['chatdomain'] = 'faf.staronesw.com'; # Chat document.domain
 $config['chathost'] = 'chat.faf.staronesw.com'; # Chat host
-$config['chatport']	= 5405; # Port for your chat -- only use if 5405 is blocked
-$config['proxy_chat'] =	0;# Only use this if you have chat issues due to a server firewall,
+$config['chatport']    = 5405; # Port for your chat -- only use if 5405 is blocked
+$config['proxy_chat'] =    0;# Only use this if you have chat issues due to a server firewall,
 # as it decreases performance
 
 #Some display configurations, such as the template directory
 $config['online_html'] ='*'; # HTML to be displayed next to online users
-$config['online_txt'] =	'*'; # Text to be displayed next to online users, when HTML can't be used (e.g. RSS)
+$config['online_txt'] =    '*'; # Text to be displayed next to online users, when HTML can't be used (e.g. RSS)
 $config['dateformat'] = 'M j \'y, G:i'; # Date format (PHP)
-$config['tpldir'] =	'prom';# Default style directory
+$config['tpldir'] =    'prom';# Default style directory
 $config['hiddenlogin'] = 1;
 
 
@@ -83,15 +83,15 @@ $config['deaddelay'] = 0; # Days before which idle empires are marked dead
 
 $config['max_attacks'] = 20; # Maximum attacks for unallied empires
 $config['wizatk_decr'] = 2; # The number by which the "maximum attacks" count is decremented for spell attacks
-$config['online_warn']=	10; # Minutes within which to warn people that they are under attack
+$config['online_warn']=    10; # Minutes within which to warn people that they are under attack
 
-$config['early_exit'] =	0; # Are players allowed to leave protection early?
+$config['early_exit'] =    0; # Are players allowed to leave protection early?
 
 $config['jackpot'] = 0;# Default raffle jackpot
 $config['maxtickets'] = 5; # Maximum number of raffle tickets per empire
 
 
-$config['maxloan']=	5;# Times networth is the max loan
+$config['maxloan']=    5;# Times networth is the max loan
 $config['maxsave'] = 20;# Times networth is the max savings
 $config['savingsper'] = 10;# how much to remove extra savings per increment (in percent)
 $config['savingsperminutes'] = 5;# how often to remove extra savings (in minutes)
@@ -109,7 +109,7 @@ $config['troop'][3] = 3600;# was 360000
 $config['food_buy'] = 20;
 $config['food_sell'] = 7;
 
-$config['runes_sell'] =	325; # Base price for selling runes
+$config['runes_sell'] =    325; # Base price for selling runes
 
 
 $config['towers'] = 400;# Defensive points provided by guard towers
@@ -148,7 +148,7 @@ $config['savebase'] = 4;# Base loan rate
 $config['buildings'] = 2500; # Base building cost
 
 #Market and Reserve Settings
-$config['market'] =	6;# Hours to arrive on market
+$config['market'] =    6;# Hours to arrive on market
 $config['market_flat_commission'] = 0.90; # Percent of troops you keep when withdrawing troops from the public market
 $config['market_upkeep'] = 1; # Multiplier for upkeep cost on the market vs in camp
 $config['market_nw'] = 1; # Multiplier for networth contribution of market troops vs in camp
@@ -169,7 +169,7 @@ $config['clan_msgcred'] = 1; # Number of credits required to send a message to t
 $config['msgcred_bump'] = 3600; # Increment message credits every X seconds
 
 
-#$config['disabled_pages'][]	= 'hero';# Pages to restrict access to
+#$config['disabled_pages'][]    = 'hero';# Pages to restrict access to
 $config['disabled_pages'][] = 'example';
 
 $config['prot_restr'][] = 'aid'; # Pages players under Protection cannot access
@@ -177,7 +177,7 @@ $config['prot_restr'][] = 'military';
 $config['prot_restr'][] = 'pubmarketbuy';
 $config['prot_restr'][] = 'pubmarketsell';
 $config['prot_restr'][] = 'stocks';
-$config['prot_restr'][]	= 'turnbank';
+$config['prot_restr'][]    = 'turnbank';
 $config['prot_restr'][] = 'treasury';
 
 $config['admin_restr'][] = 'military';# Pages Administrators are not allowed to access
@@ -208,21 +208,21 @@ $config['vacation_pages'][] = 'search';
 $config['vacation_pages'][] = 'map';
 $config['vacation_pages'][] = 'news';
 
-$config['forum_news']	 = 1;# Forum news? (0 or 1)
-$config['news_type']	 = 'ipb';# Forum type
-$config['news_prefix']	 = 'forum'; # Forum table prefix
-$config['news_forum']	 = 2;# From which to take news
-$config['news_length']	 = 5;# How Many posts at once?
+$config['forum_news']     = 1;# Forum news? (0 or 1)
+$config['news_type']     = 'ipb';# Forum type
+$config['news_prefix']     = 'forum'; # Forum table prefix
+$config['news_forum']     = 2;# From which to take news
+$config['news_length']     = 5;# How Many posts at once?
 
-$config['warset'] =	0; # Allow individual war declarations?
-$config['peaceset']	 = 0;# Allow individual alliances?
+$config['warset'] =    0; # Allow individual war declarations?
+$config['peaceset']     = 0;# Allow individual alliances?
 
 
 $config['default_style'] = 1;# Default style to use
 $config['styles'][1]['name'] = 'Black';# Specify styles
-$config['styles'][1]['file'] =	'black.css';
+$config['styles'][1]['file'] =    'black.css';
 $config['styles'][2]['name'] = 'Shadows';
-$config['styles'][2]['file']	=	'shadows.css';
+$config['styles'][2]['file']    =    'shadows.css';
 
 $config['styles'][11]['name'] = 'Red';
 $config['styles'][11]['file'] = 'red.css';
@@ -268,7 +268,7 @@ $config['styles'][84]['file'] = 'pink.css';
 $config['styles'][91]['name'] = 'Magenta Inverse';
 $config['styles'][91]['file'] = 'inv-magenta.css';
 $config['styles'][93]['name'] = 'Cyan Inverse';
-$config['styles'][93]['file']	=	'inv-cyan.css';
+$config['styles'][93]['file']    =    'inv-cyan.css';
 $config['styles'][94]['name'] = 'Pink Inverse';
 $config['styles'][94]['file'] = 'inv-pink.css';
 
@@ -286,24 +286,24 @@ $config['styles'][99]['admin'] = 0;# For admin eyes only
 $config['fear_shame_mult'] = 2.5;# Fear/shame range
 $config['default_cutoff'] = 20;# Default attack range
 $config['clan_cutoff'] = 50;            ;# Clanned war attack range
-$config['war_cutoff']	 = 50;# At war attack range
-$config['attack_decr']	 = 2;# How much to decrement recent attacks after each attack
+$config['war_cutoff']     = 50;# At war attack range
+$config['attack_decr']     = 2;# How much to decrement recent attacks after each attack
 $config['max_land_drop'] = 100;# Percentage of land a player can drop
-$config['hero_turnreq']	 = 1000;# Number of turns to be taken before a hero can be obtained
-$config['hero_landreq']	 = 10000;# Acres needed before a hero can be obtained
+$config['hero_turnreq']     = 1000;# Number of turns to be taken before a hero can be obtained
+$config['hero_landreq']     = 10000;# Acres needed before a hero can be obtained
 
-$config['atknames'][2]	 = 'Standard Attack';# General attacks
-$config['atknames'][3]	 = 'Surprise Attack';
-$config['atknames'][4]		=	'Militia Strike';# Troop attacks
-$config['atknames'][5]	 = 'Bombardment';
-$config['atknames'][6]	 = 'Frontal Assault';
-$config['atknames'][7]	 = 'Naval Attack';
-$config['atknames'][8]	 = 'Boarding Attack';
-$config['atknames'][9]	 = 'Naval Bombardment';
+$config['atknames'][2]     = 'Standard Attack';# General attacks
+$config['atknames'][3]     = 'Surprise Attack';
+$config['atknames'][4]        =    'Militia Strike';# Troop attacks
+$config['atknames'][5]     = 'Bombardment';
+$config['atknames'][6]     = 'Frontal Assault';
+$config['atknames'][7]     = 'Naval Attack';
+$config['atknames'][8]     = 'Boarding Attack';
+$config['atknames'][9]     = 'Naval Bombardment';
 
 #Default number of 'eras' and 'races'
-$config['eras']		 = 3;# Number of eras
-$config['races']	 = 9;# Number of races
+$config['eras']         = 3;# Number of eras
+$config['races']     = 9;# Number of races
 
 #Names of troops and goods for said races and eras
 $config['er'][101]['ename'] = 'Southsward';
@@ -358,18 +358,18 @@ $config['er'][102]['rname'] = 'Squirrel';
 #$config['er'][102]['troop2'] = 'Chariots';
 #$config['er'][102]['troop3'] = 'Triremes';
 #$config['er'][102]['peasants'] = 'Slaves';
-$config['er'][102]['offense']	=	0.86;
-$config['er'][102]['defense']	=	0.98;
-$config['er'][102]['bpt']	=	0.9;
-$config['er'][102]['costs']	=	1;
-$config['er'][102]['magic']	=	1.18;
-$config['er'][102]['ind']	=	0.88;
-$config['er'][102]['pci']	=	1.02;
-$config['er'][102]['expl']	=	1.12;
-$config['er'][102]['mkt']	=	1;
-$config['er'][102]['food']	=	1;
-$config['er'][102]['runes']	=	1.12;
-$config['er'][102]['farms']	=	0.94;
+$config['er'][102]['offense']    =    0.86;
+$config['er'][102]['defense']    =    0.98;
+$config['er'][102]['bpt']    =    0.9;
+$config['er'][102]['costs']    =    1;
+$config['er'][102]['magic']    =    1.18;
+$config['er'][102]['ind']    =    0.88;
+$config['er'][102]['pci']    =    1.02;
+$config['er'][102]['expl']    =    1.12;
+$config['er'][102]['mkt']    =    1;
+$config['er'][102]['food']    =    1;
+$config['er'][102]['runes']    =    1.12;
+$config['er'][102]['farms']    =    0.94;
 
 $config['er'][103]['rname'] = 'Shrew';
 #$config['er'][103]['troop0'] = 'Swordsmen';
@@ -377,18 +377,18 @@ $config['er'][103]['rname'] = 'Shrew';
 #$config['er'][103]['troop2'] = 'Spearmen';
 #$config['er'][103]['troop3'] = 'Triremes';
 #$config['er'][103]['peasants'] = 'Citizens';
-$config['er'][103]['offense']	=	1.06;
-$config['er'][103]['defense']	=	1.16;
-$config['er'][103]['bpt']	=	1;
-$config['er'][103]['costs']	=	1.08;
-$config['er'][103]['magic']	=	0.84;
-$config['er'][103]['ind']	=	1.12;
-$config['er'][103]['pci']	=	1;
-$config['er'][103]['expl']	=	0.82;
-$config['er'][103]['mkt']	=	1.06;
-$config['er'][103]['food']	=	1;
-$config['er'][103]['runes']	=	1;
-$config['er'][103]['farms']	=	1;
+$config['er'][103]['offense']    =    1.06;
+$config['er'][103]['defense']    =    1.16;
+$config['er'][103]['bpt']    =    1;
+$config['er'][103]['costs']    =    1.08;
+$config['er'][103]['magic']    =    0.84;
+$config['er'][103]['ind']    =    1.12;
+$config['er'][103]['pci']    =    1;
+$config['er'][103]['expl']    =    0.82;
+$config['er'][103]['mkt']    =    1.06;
+$config['er'][103]['food']    =    1;
+$config['er'][103]['runes']    =    1;
+$config['er'][103]['farms']    =    1;
 
 $config['er'][104]['rname'] = 'Otter';
 #$config['er'][104]['troop0'] = 'Warriors';
@@ -396,18 +396,18 @@ $config['er'][104]['rname'] = 'Otter';
 #$config['er'][104]['troop2'] = 'Berserkers';
 #$config['er'][104]['troop3'] = 'Warships';
 #$config['er'][104]['peasants'] = 'Workers';
-$config['er'][104]['offense']	=	1.24;
-$config['er'][104]['defense']	=	0.9;
-$config['er'][104]['bpt']	=	1.08;
-$config['er'][104]['costs']	=	1;
-$config['er'][104]['magic']	=	0.88;
-$config['er'][104]['ind']	=	1;
-$config['er'][104]['pci']	=	1.04;
-$config['er'][104]['expl']	=	1.14;
-$config['er'][104]['mkt']	=	1.12;
-$config['er'][104]['food']	=	1;
-$config['er'][104]['runes']	=	0.92;
-$config['er'][104]['farms']	=	0.92;
+$config['er'][104]['offense']    =    1.24;
+$config['er'][104]['defense']    =    0.9;
+$config['er'][104]['bpt']    =    1.08;
+$config['er'][104]['costs']    =    1;
+$config['er'][104]['magic']    =    0.88;
+$config['er'][104]['ind']    =    1;
+$config['er'][104]['pci']    =    1.04;
+$config['er'][104]['expl']    =    1.14;
+$config['er'][104]['mkt']    =    1.12;
+$config['er'][104]['food']    =    1;
+$config['er'][104]['runes']    =    0.92;
+$config['er'][104]['farms']    =    0.92;
 
 $config['er'][105]['rname'] = 'Hedgehog';
 #$config['er'][105]['troop0'] = 'Warriors';
@@ -415,18 +415,18 @@ $config['er'][105]['rname'] = 'Hedgehog';
 #$config['er'][105]['troop2'] = 'Berserkers';
 #$config['er'][105]['troop3'] = 'Warships';
 #$config['er'][105]['peasants'] = 'Workers';
-$config['er'][105]['offense']	=	0.84;
-$config['er'][105]['defense']	=	1.1;
-$config['er'][105]['bpt']	=	1;
-$config['er'][105]['costs']	=	1.06;
-$config['er'][105]['magic']	=	1;
-$config['er'][105]['ind']	=	0.9;
-$config['er'][105]['pci']	=	1.1;
-$config['er'][105]['expl']	=	1.06;
-$config['er'][105]['mkt']	=	0.94;
-$config['er'][105]['food']	=	1;
-$config['er'][105]['runes']	=	1;
-$config['er'][105]['farms']	=	1;
+$config['er'][105]['offense']    =    0.84;
+$config['er'][105]['defense']    =    1.1;
+$config['er'][105]['bpt']    =    1;
+$config['er'][105]['costs']    =    1.06;
+$config['er'][105]['magic']    =    1;
+$config['er'][105]['ind']    =    0.9;
+$config['er'][105]['pci']    =    1.1;
+$config['er'][105]['expl']    =    1.06;
+$config['er'][105]['mkt']    =    0.94;
+$config['er'][105]['food']    =    1;
+$config['er'][105]['runes']    =    1;
+$config['er'][105]['farms']    =    1;
 
 
 $config['er'][106]['rname'] = 'Mole';
@@ -435,18 +435,18 @@ $config['er'][106]['rname'] = 'Mole';
 #$config['er'][106]['troop2'] = 'Hoplites';
 #$config['er'][106]['troop3'] = 'Triremes';
 #$config['er'][106]['peasants'] = 'Slaves';
-$config['er'][106]['offense']	=	1.1;
-$config['er'][106]['defense']	=	0.94;
-$config['er'][106]['bpt']	=	1;
-$config['er'][106]['costs']	=	1;
-$config['er'][106]['magic']	=	0.9;
-$config['er'][106]['ind']	=	1.1;	
-$config['er'][106]['pci']	=	0.84;
-$config['er'][106]['expl']	=	1;
-$config['er'][106]['mkt']	=	1.08;
-$config['er'][106]['food']	=	0.98;
-$config['er'][106]['runes']	=	1;
-$config['er'][106]['farms']	=	1.18;
+$config['er'][106]['offense']    =    1.1;
+$config['er'][106]['defense']    =    0.94;
+$config['er'][106]['bpt']    =    1;
+$config['er'][106]['costs']    =    1;
+$config['er'][106]['magic']    =    0.9;
+$config['er'][106]['ind']    =    1.1;    
+$config['er'][106]['pci']    =    0.84;
+$config['er'][106]['expl']    =    1;
+$config['er'][106]['mkt']    =    1.08;
+$config['er'][106]['food']    =    0.98;
+$config['er'][106]['runes']    =    1;
+$config['er'][106]['farms']    =    1.18;
 
 $config['er'][107]['rname'] = 'Hare';
 #$config['er'][107]['troop0'] = 'Pikemen';
@@ -454,18 +454,18 @@ $config['er'][107]['rname'] = 'Hare';
 #$config['er'][107]['troop2'] = 'Cavalrymen';
 #$config['er'][107]['troop3'] = 'Triremes';
 #$config['er'][107]['peasants'] = 'Slaves';
-$config['er'][107]['offense']	=	1.14;
-$config['er'][107]['defense']	=	0.98;
-$config['er'][107]['bpt']	=	1.04;
-$config['er'][107]['costs']	=	1.14;
-$config['er'][107]['magic']	=	0.96;
-$config['er'][107]['ind']	=	1.08;
-$config['er'][107]['pci']	=	0.96;
-$config['er'][107]['expl']	=	1.16;
-$config['er'][107]['mkt']	=	1;
-$config['er'][107]['food']	=	0.96;
-$config['er'][107]['runes']	=	0.86;
-$config['er'][107]['farms']	=	0.92;
+$config['er'][107]['offense']    =    1.14;
+$config['er'][107]['defense']    =    0.98;
+$config['er'][107]['bpt']    =    1.04;
+$config['er'][107]['costs']    =    1.14;
+$config['er'][107]['magic']    =    0.96;
+$config['er'][107]['ind']    =    1.08;
+$config['er'][107]['pci']    =    0.96;
+$config['er'][107]['expl']    =    1.16;
+$config['er'][107]['mkt']    =    1;
+$config['er'][107]['food']    =    0.96;
+$config['er'][107]['runes']    =    0.86;
+$config['er'][107]['farms']    =    0.92;
 
 $config['er'][108]['rname'] = 'Badger';
 #$config['er'][108]['troop0'] = 'Spearmen';
@@ -473,18 +473,18 @@ $config['er'][108]['rname'] = 'Badger';
 #$config['er'][108]['troop2'] = 'Chariots';
 #$config['er'][108]['troop3'] = 'Triremes';
 #$config['er'][108]['peasants'] = 'Citizens';
-$config['er'][108]['offense']	=	1.16;
-$config['er'][108]['defense']	=	1.08;
-$config['er'][108]['bpt']	=	1.04;
-$config['er'][108]['costs']	=	1.08;
-$config['er'][108]['magic']	=	0.92;
-$config['er'][108]['ind']	=	1;
-$config['er'][108]['pci']	=	1;
-$config['er'][108]['expl']	=	0.88;
-$config['er'][108]['mkt']	=	1.08;
-$config['er'][108]['food']	=	0.92;
-$config['er'][108]['runes']	=	1.06;
-$config['er'][108]['farms']	=	0.94;
+$config['er'][108]['offense']    =    1.16;
+$config['er'][108]['defense']    =    1.08;
+$config['er'][108]['bpt']    =    1.04;
+$config['er'][108]['costs']    =    1.08;
+$config['er'][108]['magic']    =    0.92;
+$config['er'][108]['ind']    =    1;
+$config['er'][108]['pci']    =    1;
+$config['er'][108]['expl']    =    0.88;
+$config['er'][108]['mkt']    =    1.08;
+$config['er'][108]['food']    =    0.92;
+$config['er'][108]['runes']    =    1.06;
+$config['er'][108]['farms']    =    0.94;
 
 $config['er'][109]['rname'] = 'Vole';
 #$config['er'][109]['troop0'] = 'Spearmen';
@@ -492,50 +492,50 @@ $config['er'][109]['rname'] = 'Vole';
 #$config['er'][109]['troop2'] = 'Chariots';
 #$config['er'][109]['troop3'] = 'Quinqiremes';
 #$config['er'][109]['peasants'] = 'Workers';
-$config['er'][109]['offense']	=	0.84;
-$config['er'][109]['defense']	=	0.94;
-$config['er'][109]['bpt']	=	1;
-$config['er'][109]['costs']	=	0.86;
-$config['er'][109]['magic']	=	0.92;
-$config['er'][109]['ind']	=	1.14;
-$config['er'][109]['pci']	=	1;
-$config['er'][109]['expl']	=	1;
-$config['er'][109]['mkt']	=	1.08;
-$config['er'][109]['food']	=	0.92;
-$config['er'][109]['runes']	=	0.84;
-$config['er'][109]['farms']	=	1.04;
+$config['er'][109]['offense']    =    0.84;
+$config['er'][109]['defense']    =    0.94;
+$config['er'][109]['bpt']    =    1;
+$config['er'][109]['costs']    =    0.86;
+$config['er'][109]['magic']    =    0.92;
+$config['er'][109]['ind']    =    1.14;
+$config['er'][109]['pci']    =    1;
+$config['er'][109]['expl']    =    1;
+$config['er'][109]['mkt']    =    1.08;
+$config['er'][109]['food']    =    0.92;
+$config['er'][109]['runes']    =    0.84;
+$config['er'][109]['farms']    =    1.04;
 
 #Magic/Leader Mission names
-$config['missionspy']	 = 'Espionage';
-$config['missionblast']	 = 'Murder';
+$config['missionspy']     = 'Espionage';
+$config['missionblast']     = 'Murder';
 $config['missionshield'] = 'Raise Defenses';
-$config['missionstorm']	 = 'Poison Crops';
-$config['missionrunes']	 = 'Destroy Runes';
+$config['missionstorm']     = 'Poison Crops';
+$config['missionrunes']     = 'Destroy Runes';
 $config['missionstruct'] = 'Destroy Structures';
-$config['missionfood']	 = 'Forage';
-$config['missiongold']	 = 'Loot';
-$config['missioned']	 = 'Explore';
-$config['missionheal']	 = 'Heal';
+$config['missionfood']     = 'Forage';
+$config['missiongold']     = 'Loot';
+$config['missioned']     = 'Explore';
+$config['missionheal']     = 'Heal';
 $config['missionpeasant'] = 'Recruit';
-$config['missionprod']	 = 'Prod Market';
-$config['missionkill']	 = 'Seppuku';
-$config['missiongate']	 = 'Prepare Hawks';
+$config['missionprod']     = 'Prod Market';
+$config['missionkill']     = 'Seppuku';
+$config['missiongate']     = 'Prepare Hawks';
 $config['missionungate'] = 'Recall Hawks';
-$config['missionfight']	 = 'Hawk Battle';
-$config['missionsteal']	 = 'Steal Cash';
-$config['missionrob']	 = 'Rob Granaries';
+$config['missionfight']     = 'Hawk Battle';
+$config['missionsteal']     = 'Steal Cash';
+$config['missionrob']     = 'Rob Granaries';
 $config['missionadvance'] = 'Move North';
-$config['missionback']	 = 'Move South';
+$config['missionback']     = 'Move South';
 
-$config['roundend']	 = "Feb. 1, 2006.";# An English representation of the time of the round's end
+$config['roundend']     = "Feb. 1, 2006.";# An English representation of the time of the round's end
 
-$config['turnsper']	 = 3;# And some defaults...
-$config['perminutes']	 = 15;
-$config['turnbankper']	 = 1;
+$config['turnsper']     = 3;# And some defaults...
+$config['perminutes']     = 15;
+$config['turnbankper']     = 1;
 $config['bankperminutes'] = 30;
-$config['maxturnbank']	 = 100;
-$config['turnoffset']		=	0;
-$config['autolastweek'] 	=	0;
+$config['maxturnbank']     = 100;
+$config['turnoffset']        =    0;
+$config['autolastweek']     =    0;
 
 $config['landmult'] = 2.5; #Multiplier for the amount of land gained while scouting
 $config['cashmult'] = 1.3; #Multiplier for the amount of cash gained while cashing
@@ -552,7 +552,7 @@ $config['shopmult'] = 1.6; #Multiplier for for the cash gained per shop (market)
 #$config['runestock'] = 2500000; // 25,000 runes sold 
 
 
-end_global_config();										
+end_global_config();                                        
 ####################################
 # END OF GLOBAL CONFIGURATION SECTON #
 ####################################
@@ -563,62 +563,62 @@ end_global_config();
 
 #WOA
 server_specific_config(11);
-$config['maxturns']	 = 500;# Max accumulated turns
+$config['maxturns']     = 500;# Max accumulated turns
 $config['maxstoredturns'] = 250;# Max stored turns
 
 $config['strat_balance'] = 1;# Some changes for strat balancing.
 $config['signupsclosed'] = 0;# Signups closed?
-$config['lockdb']	 = 0;# Lock the database?
-$config['lastweek']	 = 0;# Last week? (No loans)
+$config['lockdb']     = 0;# Lock the database?
+$config['lastweek']     = 0;# Last week? (No loans)
 
-$config['turnsper']	 = 3;# X turns
-$config['perminutes']	 = 15;# per Y minutes
-$config['turnbankper']	 = 1;# And for the turn bank 
+$config['turnsper']     = 3;# X turns
+$config['perminutes']     = 15;# per Y minutes
+$config['turnbankper']     = 1;# And for the turn bank 
 $config['bankperminutes'] = 30; 
-$config['maxturnbank']	 = 100;# Maximum size of turn bank
-$config['turnoffset']	 = 0;# Correct for server lag
+$config['maxturnbank']     = 100;# Maximum size of turn bank
+$config['turnoffset']     = 0;# Correct for server lag
 
-$config['resetvote']	 = 1;# Allow reset voting?
-$config['votepercent']	 = 75;# Percent before notifying admins?
+$config['resetvote']     = 1;# Allow reset voting?
+$config['votepercent']     = 75;# Percent before notifying admins?
 
-#$config['news']	= 'If you are a new player, you may find it helpful to visit our <a href="/forum">forums</a>, where you can find anything from general strategy guides to personal teachers.';
+#$config['news']    = 'If you are a new player, you may find it helpful to visit our <a href="/forum">forums</a>, where you can find anything from general strategy guides to personal teachers.';
 $config['news'] = '<span class="mnormal">Troops on the public and clan markets now require upkeep and contribute to your networth.</span>';
-$config['roundend']	 = "Never";# An English representation of the time of the round's end
+$config['roundend']     = "Never";# An English representation of the time of the round's end
 $config['disabled_pages'][] = 'stocks';
 $config['forcestandard'] = 1;
 
 #BFR
 server_specific_config(2);
 $config['strat_balance'] = 1;# Some changes for strategy balancing.
-$config['maxturns']	 = 500;# Max accumulated turns
+$config['maxturns']     = 500;# Max accumulated turns
 $config['maxstoredturns'] = 250;# Max stored turns
 
 $config['signupsclosed'] = 0;# Signups closed?
-$config['lockdb']	 = 0;# Lock the database?
-$config['lastweek']	 = 0;# Last week? (No loans)
+$config['lockdb']     = 0;# Lock the database?
+$config['lastweek']     = 0;# Last week? (No loans)
 $config['autolastweek']; # Automatically set lastweek
 
 $config['forcestandard'] = 1;
 
-$config['turnsper']	 = 5;# X turns
-$config['perminutes']	 = 10;# per Y minutes
-$config['turnoffset']	 = 0;# Correct for server lag
+$config['turnsper']     = 5;# X turns
+$config['perminutes']     = 10;# per Y minutes
+$config['turnoffset']     = 0;# Correct for server lag
 
-$config['resetvote']	 = 1;# Allow reset voting?
-$config['votepercent']	 = 75;# Percent before notifying admins?
+$config['resetvote']     = 1;# Allow reset voting?
+$config['votepercent']     = 75;# Percent before notifying admins?
 
-$config['max_attacks']		=	21;# Maximum attacks for unallied empires
+$config['max_attacks']        =    21;# Maximum attacks for unallied empires
 
 #$config['news'] = '<span class="mnormal">Battle for Redwall is a fast-paced game that resets monthly.</span>';
 $config['news'] = '<span class="mnormal">Troops on the public and clan markets now require upkeep and contribute to your networth. Boats have been modified, but not broken.</span>';
 
-#	$config['alt_networth']		=	1;# Use an alternative networth-calculation formula?
-#	$config['sackmodifier']		=	0.1;# Cash and food attack gains are multiplied by this amount
-#	$config['towers']		=	1000;
-#	$config['blddef']		=	100;# Defensive points provided by other buildings
+#    $config['alt_networth']        =    1;# Use an alternative networth-calculation formula?
+#    $config['sackmodifier']        =    0.1;# Cash and food attack gains are multiplied by this amount
+#    $config['towers']        =    1000;
+#    $config['blddef']        =    100;# Defensive points provided by other buildings
 
-#$config['disabled_pages'][]	=	'stocks';
-$config['roundend']		=	next_month();# An English representation of the time of the round's end
+#$config['disabled_pages'][]    =    'stocks';
+$config['roundend']        =    next_month();# An English representation of the time of the round's end
 
 #$config['landmult'] = 2.5; #Multiplier for the amount of land gained while scouting
 #$config['cashmult'] = 1.0; #Multiplier for the amount of cash gained while cashing
@@ -629,19 +629,19 @@ $config['roundend']		=	next_month();# An English representation of the time of t
 
 #Duels
 server_specific_config(3);
-$config['maxturns']	 = 400;# Max accumulated turns
+$config['maxturns']     = 400;# Max accumulated turns
 $config['maxstoredturns'] = 200;# Max stored turns
 
 $config['signupsclosed'] = 1;# Signups closed?
-$config['lockdb']	 = 0;# Lock the database?
-$config['lastweek']	 = 1;# Last week? (No loans)
+$config['lockdb']     = 0;# Lock the database?
+$config['lastweek']     = 1;# Last week? (No loans)
 
-$config['turnsper']	 = 1;# X turns
-$config['perminutes']	 = 10;# per Y minutes
-$config['turnoffset']	 = 0;# Correct for server lag
+$config['turnsper']     = 1;# X turns
+$config['perminutes']     = 10;# per Y minutes
+$config['turnoffset']     = 0;# Correct for server lag
 
-$config['resetvote']	 = 1;# Allow reset voting?
-$config['votepercent']	 = 75;# Percent before notifying admins?
+$config['resetvote']     = 1;# Allow reset voting?
+$config['votepercent']     = 75;# Percent before notifying admins?
 
 $config['news'] = '<span class="mnormal">Welcome to FAF Duels!</span>';
 $config['disabled_pages'][] = 'stocks';
@@ -654,19 +654,19 @@ $config['disabled_pages'][] = 'raffle';
 $config['disabled_pages'][] = 'clanjoin';
 
 server_specific_config(4);
-$config['maxturns']	 = 4; # Max accumulated turns
+$config['maxturns']     = 4; # Max accumulated turns
 $config['maxstoredturns'] = 200;# Max stored turns
 
 $config['signupsclosed'] = 1;# Signups closed?
-$config['lockdb']	 = 1;# Lock the database?
-$config['lastweek']	 = 1;# Last week? (No loans)
+$config['lockdb']     = 1;# Lock the database?
+$config['lastweek']     = 1;# Last week? (No loans)
 
-$config['turnsper']	 = 5;# X turns
+$config['turnsper']     = 5;# X turns
 $config['perminutes'] = 15;# per Y minutes
 $config['turnoffset'] = 0;# Correct for server lag
 
-$config['resetvote'] =	1;# Allow reset voting?
-$config['votepercent']=	75;# Percent before notifying admins?
+$config['resetvote'] =    1;# Allow reset voting?
+$config['votepercent']=    75;# Percent before notifying admins?
 
 
 $config['news'] = '<span class="mnormal">World Cup Finals: ME vs FAF</span>';
@@ -680,104 +680,104 @@ $config['disabled_pages'][] = 'raffle';
 $config['disabled_pages'][] = 'clanjoin';
 
 server_specific_config(8);
-$config['protection']	 = -1;
-$config['initturns']	 = 10000;
-$config['max_attacks']	 = pow(2,20);
+$config['protection']     = -1;
+$config['initturns']     = 10000;
+$config['max_attacks']     = pow(2,20);
 
-$config['maxturns']	 = 10000;# Max accumulated turns
+$config['maxturns']     = 10000;# Max accumulated turns
 $config['maxstoredturns'] = 0;# Max stored turns
 
 $config['signupsclosed'] = 0;# Signups closed?
-$config['lockdb']	 = 0;# Lock the database?
-$config['lastweek']	 = 1;# Last week? (No loans)
+$config['lockdb']     = 0;# Lock the database?
+$config['lastweek']     = 1;# Last week? (No loans)
 
-$config['turnsper']	 = 0;# X turns
-$config['perminutes']	 = 10;# per Y minutes
-$config['turnoffset']	 = 0;# Correct for server lag
+$config['turnsper']     = 0;# X turns
+$config['perminutes']     = 10;# per Y minutes
+$config['turnoffset']     = 0;# Correct for server lag
 
-$config['resetvote']	 = 0;# Allow reset voting?
+$config['resetvote']     = 0;# Allow reset voting?
 
 $config['disabled_pages'][] = 'clans';
 $config['disabled_pages'][] = 'clan';
-$config['disabled_pages'][]	=	'clanstats';
+$config['disabled_pages'][]    =    'clanstats';
 $config['disabled_pages'][] = 'contacts';
 $config['disabled_pages'][] = 'clanjoin';
 
 $config['news'] = '<span class="mnormal">After spending your initial turns completely, you will be saved to the Hall Of Fame and locked out of your account.<br>You may only sign up for a new account when your current one has died.</span>';
-$config['nolimit_mode']	 = 1;
+$config['nolimit_mode']     = 1;
 $config['nolimit_table'] = 'faf_hfame';
 
 server_specific_config(5);
-$config['maxturns']	 = 400;# Max accumulated turns
+$config['maxturns']     = 400;# Max accumulated turns
 $config['maxstoredturns'] = 300;# Max stored turns
 
 $config['signupsclosed'] = 0;# Signups closed?
-$config['lockdb']	 = 0;# Lock the database?
-$config['lastweek']	 = 1;# Last week? (No loans)
+$config['lockdb']     = 0;# Lock the database?
+$config['lastweek']     = 1;# Last week? (No loans)
 
-$config['turnsper']	 = 5;# X turns
-$config['perminutes']	 = 15;# per Y minutes
-$config['turnoffset']	 = 0;# Correct for server lag
-$config['warset']	 = 1;# Allow individual war declarations?
+$config['turnsper']     = 5;# X turns
+$config['perminutes']     = 15;# per Y minutes
+$config['turnoffset']     = 0;# Correct for server lag
+$config['warset']     = 1;# Allow individual war declarations?
 
 $config['resetvote'] = 1; # Allow reset voting?
-$config['votepercent']	=	75;# Percent before notifying admins?
+$config['votepercent']    =    75;# Percent before notifying admins?
 
 $config['news'] = '<span class="mnormal">The objective is to kill the Flag players for the huge bounties.</span>';
 $config['disabled_pages'][] = 'stocks';
 $config['disabled_pages'][] = 'raffle';
 
 server_specific_config(7);
-$config['maxturns']	 = 5;# Max accumulated turns
+$config['maxturns']     = 5;# Max accumulated turns
 $config['maxstoredturns'] = 250;# Max stored turns
 
 $config['signupsclosed'] = 1;# Signups closed?
-$config['lockdb']	 = 1;# Lock the database?
-$config['lastweek']	 = 1;# Last week? (No loans)
+$config['lockdb']     = 1;# Lock the database?
+$config['lastweek']     = 1;# Last week? (No loans)
 
 $config['forcestandard'] = 1;
 
-$config['turnsper']	 = 5; # X turns
-$config['perminutes']	 = 10; # per Y minutes
-$config['turnoffset']	 = 0; # Correct for server lag
+$config['turnsper']     = 5; # X turns
+$config['perminutes']     = 10; # per Y minutes
+$config['turnoffset']     = 0; # Correct for server lag
 
 $config['resetvote'] = 1;# Allow reset voting?
 $config['votepercent'] = 75;# Percent before notifying admins?
 
-#	$config['alt_networth']		=	1;# Use an alternative networth-calculation formula?
-#	$config['sackmodifier']		=	0.1;# Cash and food attack gains are multiplied by this amount
-#	$config['towers']		=	1000;
-#	$config['blddef']		=	100;# Defensive points provided by other buildings
+#    $config['alt_networth']        =    1;# Use an alternative networth-calculation formula?
+#    $config['sackmodifier']        =    0.1;# Cash and food attack gains are multiplied by this amount
+#    $config['towers']        =    1000;
+#    $config['blddef']        =    100;# Defensive points provided by other buildings
 $config['disabled_pages'][] = 'stocks';
 
 server_specific_config(9);
-$config['initturns']	 = 500;
-$config['maxturns']	 = 500;# Max accumulated turns
+$config['initturns']     = 500;
+$config['maxturns']     = 500;# Max accumulated turns
 $config['maxstoredturns'] = 0;# Max stored turns
-$config['max_attacks']	 = 200;
+$config['max_attacks']     = 200;
 
 $config['signupsclosed'] = 1;# Signups closed?
-$config['lockdb']	 = 1;# Lock the database?
-$config['lastweek']	 = 0;# Last week? (No loans)
+$config['lockdb']     = 1;# Lock the database?
+$config['lastweek']     = 0;# Last week? (No loans)
 
 $config['forcestandard'] = 1;
 
 $config['multi_max'] = 10;# Maximum number of accounts a player can have
 
 $config['turnsper']  = 1; # X turns
-$config['perminutes'] =	1; # per Y minutes
-$config['turnoffset'] =	0; # Correct for server lag
+$config['perminutes'] =    1; # per Y minutes
+$config['turnoffset'] =    0; # Correct for server lag
 
-$config['resetvote']	 = 1;# Allow reset voting?
-$config['votepercent']	 = 75;# Percent before notifying admins?
+$config['resetvote']     = 1;# Allow reset voting?
+$config['votepercent']     = 75;# Percent before notifying admins?
 
-$config['max_attacks']	 = 30;# Maximum attacks for unallied empires
+$config['max_attacks']     = 30;# Maximum attacks for unallied empires
 
 $config['news'] = '<span class="mnormal">Testing server. Up to 5 accounts per player allowed.</span>';
 
-$config['disabled_pages'][]	= 'stocks';
+$config['disabled_pages'][]    = 'stocks';
 $config['roundend'] = next_month();# An English representation of the time of the round's end
-$config['multi_max']		=	5;# Maximum number of accounts a player can have
+$config['multi_max']        =    5;# Maximum number of accounts a player can have
 
 
 ?>

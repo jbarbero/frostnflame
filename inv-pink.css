@@ -1,7 +1,7 @@
 body {
-	background-color: #213921;
-/*	color: #ff88ff;	*/
-	color: #ffffff;
+    background-color: #213921;
+/*    color: #ff88ff;    */
+    color: #ffffff;
 }
 
 /* Inherit Backgrounds */
@@ -9,31 +9,31 @@ a, a.new, a.mally, a.mdead, a.proflinkdk, a:hover {
         background: inherit;
 }
 
-a {	color: #ff88ff;		}
+a {    color: #ff88ff;        }
 
 a:hover {
-	color: #ff00ff;
-	background-color: #0d320d;
+    color: #ff00ff;
+    background-color: #0d320d;
 }
 
-a.new {		color: #ff00ff;		}
-a.mally {	color: #402040;		}
-a.mdead {	color: #ffffff;		}
-a.mnormal {	color: #000000;		background: inherit		}
-a.undecorated {	color: #000000;		background: inherit;		}
+a.new {        color: #ff00ff;        }
+a.mally {    color: #402040;        }
+a.mdead {    color: #ffffff;        }
+a.mnormal {    color: #000000;        background: inherit        }
+a.undecorated {    color: #000000;        background: inherit;        }
 a.undecorated:hover {
-	color: #ffffff;
-	background: #000000;
+    color: #ffffff;
+    background: #000000;
 }
 a.proflinkdk {
-	color: #ffffff;
-	text-decoration: underline;
+    color: #ffffff;
+    text-decoration: underline;
 }
 
-table {		border: #ffffff 0px solid;	}
+table {        border: #ffffff 0px solid;    }
 .guide th {
-	color: #ffffff;
-	background: url("img/inv-pink-cellpic1.gif");
+    color: #ffffff;
+    background: url("img/inv-pink-cellpic1.gif");
 }
 
 .menus td {
@@ -42,104 +42,104 @@ table {		border: #ffffff 0px solid;	}
 }
 .menus th {
         color: #ffffff;
-        background: url("img/inv-pink-cellpic1.gif");	
+        background: url("img/inv-pink-cellpic1.gif");    
 }
 .stbl {
-	border: #ffffff 1px solid;
+    border: #ffffff 1px solid;
 }
 .stocks{
-	border: #ffffff 1px solid;
+    border: #ffffff 1px solid;
 }
 
 .stocks {
-	background-color: #003300;
-	color: inherit;
+    background-color: #003300;
+    color: inherit;
 }
 
 .inputtable td {
-	color: #ffffff;
-	
+    color: #ffffff;
+    
 }
 .inputtable th {
-	color: #ffffff;
-	background: url("img/inv-pink-cellpic1.gif");
+    color: #ffffff;
+    background: url("img/inv-pink-cellpic1.gif");
 }
 
 .race th {
-	color: #ffffff;
-	background: url("img/inv-pink-cellpic1.gif");
+    color: #ffffff;
+    background: url("img/inv-pink-cellpic1.gif");
 }
 
 .chatusers {
-	background-color:       #213921;
-	color:			inherit;
+    background-color:       #213921;
+    color:            inherit;
 }
 
 .selectedusers {
-	background-color:       #777777;
-	color: inherit;
+    background-color:       #777777;
+    color: inherit;
 }
 
 
-.mnormal {	color: #ffffff;	background: inherit;	}
-.mdisabled {	color: #00aa00;	background: inherit;	}
-.mself {	color: #ed44ed;	background: inherit;	}
-.mprotected {	color: #74dd74;	background: inherit;	}
-.mgood {	color: #32cd32;	background: inherit;	}
-.mally {	color: #eba6eb;	background: inherit;	}
-.mdead {	color: #ffffff;	background: inherit;	}
-.madmin {	color: #806680;	background: inherit;	}
+.mnormal {    color: #ffffff;    background: inherit;    }
+.mdisabled {    color: #00aa00;    background: inherit;    }
+.mself {    color: #ed44ed;    background: inherit;    }
+.mprotected {    color: #74dd74;    background: inherit;    }
+.mgood {    color: #32cd32;    background: inherit;    }
+.mally {    color: #eba6eb;    background: inherit;    }
+.mdead {    color: #ffffff;    background: inherit;    }
+.madmin {    color: #806680;    background: inherit;    }
 
-.cgood {	color: #32cd32;	background: inherit;	}
-.cwarn {	color: #00aa00;	background: inherit;	}
-.cbad {		color: #ffffff;	background: inherit;	}
-.cneutral {	color: #ffffff;	background: inherit;	}
+.cgood {    color: #32cd32;    background: inherit;    }
+.cwarn {    color: #00aa00;    background: inherit;    }
+.cbad {        color: #ffffff;    background: inherit;    }
+.cneutral {    color: #ffffff;    background: inherit;    }
 
 .era0 {
-	color: #000000;
-	background-color: #cf9fcf;
-	background: url("img/inv-pink-gradient.gif");
+    color: #000000;
+    background-color: #cf9fcf;
+    background: url("img/inv-pink-gradient.gif");
 }
 .era1 {
-	color: #000000;
-	background-color: #cf9fcf;
-	background: url("img/inv-pink-cellpic1.gif");
+    color: #000000;
+    background-color: #cf9fcf;
+    background: url("img/inv-pink-cellpic1.gif");
 }
 .era2 {
-	color: #000000;
-	background-color: #a0ffa0;
-	background: url("img/inv-pink-cellpic1.gif");
+    color: #000000;
+    background-color: #a0ffa0;
+    background: url("img/inv-pink-cellpic1.gif");
 }
 .era3 {
-	color: #000000;
-	background-color: #ff7fff;
-	background: url("img/inv-pink-cellpic1.gif");
+    color: #000000;
+    background-color: #ff7fff;
+    background: url("img/inv-pink-cellpic1.gif");
 }
 
 
 input {
-	background: #262126;
-	border: #9f9d9f 1px solid;
-	color: #ffffff;
+    background: #262126;
+    border: #9f9d9f 1px solid;
+    color: #ffffff;
 }
 
 select {
-	background-color: #262126;
-	color: #ffffff;
+    background-color: #262126;
+    color: #ffffff;
 }
 .dkbg {
-	background-color: #262126;
-	color: #ffffff;
+    background-color: #262126;
+    color: #ffffff;
 }
 textarea {
-	background: #262126;
-	border: #9f9d9f 1px solid;
-	color: #ffffff;
+    background: #262126;
+    border: #9f9d9f 1px solid;
+    color: #ffffff;
 }
 
 .dark {
-	background-color: inherit;
-	color: #ffffff;
+    background-color: inherit;
+    color: #ffffff;
 }
 
 
@@ -147,65 +147,65 @@ textarea {
 
 /* Caption 1 (the one for displaying sub-headers like "topics, posted" etc) */
 td.caption1 {
-	border: none;
-	background-color: inherit;
-	color: inherit;
+    border: none;
+    background-color: inherit;
+    color: inherit;
 }
 
 /* Caption 2 color and properties (this one displaying main menu,  New Topic text bg, New Message text bg) */
 td.caption2 {
-	background: url("img/inv-pink-cellpic1.gif");
-	background-color: #2f122f;
-	border: none;
-	color: inherit;
+    background: url("img/inv-pink-cellpic1.gif");
+    background-color: #2f122f;
+    border: none;
+    color: inherit;
 }
 
 /* Caption 3 (used for Last Discussions, topic titles, Forums selection) */
 td.caption3 {
-	background: url("img/inv-pink-cellpic1.gif");
-	background-color: #d3ced3;
-	border: none;
-	color: inherit;
+    background: url("img/inv-pink-cellpic1.gif");
+    background-color: #d3ced3;
+    border: none;
+    color: inherit;
 }
 
 /* Caption 4 (the one for displaying not separate headers like Forum, Topic, Poster etc., Buttons menu, left info cell) */
 td.caption4 {
-	background: url("img/inv-pink-cellpic1.gif");
-	background-color: #cbc6cb;
-	border: none;
-	color: inherit;
+    background: url("img/inv-pink-cellpic1.gif");
+    background-color: #cbc6cb;
+    border: none;
+    color: inherit;
 }
 
 /* Caption 5 (used for user input like password/login and registration etc) */
 td.caption5 {
-	border: none;
-	background-color: inherit;
-	color: inherit;
+    border: none;
+    background-color: inherit;
+    color: inherit;
 }
 
 /* Caption 6 (this one is for displaying title headers (language, search). The same color as caption2, but different font size) */
 td.caption6 {
-	background-color: #d3ced3;
-	border: none;
-	color: inherit;
+    background-color: #d3ced3;
+    border: none;
+    color: inherit;
 }
 
 /* Topics/forums/threads content cell color 1 */
 .tbCel1{
-/*	 background: url("img/inv-pink-cellpic3.gif");	*/
-	background-color: #102e10;
-	color: inherit;
+/*     background: url("img/inv-pink-cellpic3.gif");    */
+    background-color: #102e10;
+    color: inherit;
 }
 
 /* Topics/forums/threads content cell color 2 */
 .tbCel2{
-/*	background: url("img/inv-pink-cellpic3.gif");	*/
-	background-color: #0b1e0b;
-	color: inherit;
+/*    background: url("img/inv-pink-cellpic3.gif");    */
+    background-color: #0b1e0b;
+    color: inherit;
 }
 
 /* General smart tables class */
 table.forums {
-/*	color: #5a655a;*/
+/*    color: #5a655a;*/
 } 
 

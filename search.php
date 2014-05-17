@@ -2,77 +2,77 @@
 include("header.php");
 
 if ($do_search) {
-	$query = "";
+    $query = "";
 
-	$search_string = preg_replace('/[^a-zA-Z0-9 ]/', '', $search_string);
-	fixInputNum($search_num);
-	fixInputNum($search_clan);
-	if ($search_type == "string")
-		$query .= " empire LIKE '%$search_string%'";
-	elseif ($search_type == "num")
-		if ($search_num)
-			$query .= " num=$search_num";
-		else
-			TheEnd("No ".$uera[empire]." number specified!");
-	elseif ($search_type == "clan")
-		$query .= " clan=$search_clan";
-	elseif ($search_type == "online")
-		$query .= " online=1";
-	else
-		TheEnd("No search type specified!");
+    $search_string = preg_replace('/[^a-zA-Z0-9 ]/', '', $search_string);
+    fixInputNum($search_num);
+    fixInputNum($search_clan);
+    if ($search_type == "string")
+        $query .= " empire LIKE '%$search_string%'";
+    elseif ($search_type == "num")
+        if ($search_num)
+            $query .= " num=$search_num";
+        else
+            TheEnd("No ".$uera[empire]." number specified!");
+    elseif ($search_type == "clan")
+        $query .= " clan=$search_clan";
+    elseif ($search_type == "online")
+        $query .= " online=1";
+    else
+        TheEnd("No search type specified!");
 
-	fixInputNum($search_era);
-	if ($search_era > 0)
-		$query .= " AND era=$search_era";
+    fixInputNum($search_era);
+    if ($search_era > 0)
+        $query .= " AND era=$search_era";
 
-	fixInputNum($search_race);
-	if ($search_race > 0)
-		$query .= " and race=$search_race";
+    fixInputNum($search_race);
+    if ($search_race > 0)
+        $query .= " and race=$search_race";
 
-	fixInputNum($search_max_nw);
-	if ($search_max_nw > 0)
-		$query .= " and networth<=$search_max_nw";
+    fixInputNum($search_max_nw);
+    if ($search_max_nw > 0)
+        $query .= " and networth<=$search_max_nw";
 
-	fixInputNum($search_min_nw);
-	if ($search_min_nw > 0)
-		$query .= " and networth>=$search_min_nw";
+    fixInputNum($search_min_nw);
+    if ($search_min_nw > 0)
+        $query .= " and networth>=$search_min_nw";
 
-	if ($search_dead)
-		$query .= " and land!=0";
-
-
-	$order_by = preg_replace('/[^a-z]/', '', $order_by);
-	$valid_orders = array('networth', 'num', 'empire', 'clan', 'rank');
-	if(!in_array($order_by, $valid_orders))
-		$order_by = 'rank';
-
-	fixInputNum($searchlimit);
-	if ($searchlimit == 0)
-		$searchlimit = 25;
-
-	$dbstr = db_safe_query("SELECT rank,empire,num,land,networth,clan,race,era,online,disabled,turnsused,vacation,offsucc,offtotal,defsucc,deftotal,kills 
-				FROM $playerdb WHERE $query ORDER BY $order_by LIMIT $searchlimit;");
+    if ($search_dead)
+        $query .= " and land!=0";
 
 
-	if ($numrows = @mysqli_num_rows($dbstr)) {
+    $order_by = preg_replace('/[^a-z]/', '', $order_by);
+    $valid_orders = array('networth', 'num', 'empire', 'clan', 'rank');
+    if(!in_array($order_by, $valid_orders))
+        $order_by = 'rank';
 
-		?>
+    fixInputNum($searchlimit);
+    if ($searchlimit == 0)
+        $searchlimit = 25;
+
+    $dbstr = db_safe_query("SELECT rank,empire,num,land,networth,clan,race,era,online,disabled,turnsused,vacation,offsucc,offtotal,defsucc,deftotal,kills 
+                FROM $playerdb WHERE $query ORDER BY $order_by LIMIT $searchlimit;");
+
+
+    if ($numrows = @mysqli_num_rows($dbstr)) {
+
+        ?>
 Color Key: <span class="mprotected">Protected/Vacation</span>, <span class="mdead">Dead</span>, <span class="mally">Ally</span>, <span class="mdisabled">Disabled</span>, <span class="madmin">Administrator</span>, <span class="mself">You</span><br>
 Stats Key: O = Offensive Actions (success%), D = Defenses (success%), K = Number of <?=$uera[empire]?>s killed<br>
 <table class="scorestable">
 <?php
-		printSearchHeader($users[era]);
-		while ($enemy = mysqli_fetch_array($dbstr))
-		printSearchLine();
-		printSearchHeader($users[era]);
+        printSearchHeader($users[era]);
+        while ($enemy = mysqli_fetch_array($dbstr))
+        printSearchLine();
+        printSearchHeader($users[era]);
 
-		?>
+        ?>
 </table>
 <?php
-		if ($numrows > $searchlimit)
-			print "Search limit reached.<br>\n";
-		else print "Found $numrows ".$uera[empire]."s matching your criteria.<br>\n";
-	} else print "No empires found.<br>\n";
+        if ($numrows > $searchlimit)
+            print "Search limit reached.<br>\n";
+        else print "Found $numrows ".$uera[empire]."s matching your criteria.<br>\n";
+    } else print "No empires found.<br>\n";
 } 
 
 ?>
@@ -86,7 +86,7 @@ Stats Key: O = Offensive Actions (success%), D = Defenses (success%), K = Number
 <?php 
 foreach($etags as $id => $era) {
 
-	?>
+    ?>
         <option value="<?=$id?>"><?=$era?></option>
 <?php
 } 
@@ -99,7 +99,7 @@ foreach($etags as $id => $era) {
 <?php 
 foreach($rtags as $id => $race) {
 
-	?>
+    ?>
             <option value="<?=$id?>"><?=$race?></option>
 <?php
 } 
@@ -150,7 +150,7 @@ else echo 25;
 $clanlist = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num;");
 while ($clan = mysqli_fetch_array($clanlist)) {
 
-	?>
+    ?>
                 <option value="<?=$clan[num]?>"><?=$clan[tag]?> - <?=$clan[name]?></option>
 <?php
 } 

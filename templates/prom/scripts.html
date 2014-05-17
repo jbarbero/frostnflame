@@ -3,24 +3,24 @@
 
 
 function enableOnce() {
-	document.addscript.once.checked = true;
-	document.addscript.pdate.disabled = true;
-	document.addscript.ptime.disabled = true;
-	document.addscript.interval_value.disabled = true;
-	document.addscript.interval_type.disabled = true;
-	document.addscript.odate.disabled = false;
-	document.addscript.otime.disabled = false;
-	document.addscript.period.checked = false;
+    document.addscript.once.checked = true;
+    document.addscript.pdate.disabled = true;
+    document.addscript.ptime.disabled = true;
+    document.addscript.interval_value.disabled = true;
+    document.addscript.interval_type.disabled = true;
+    document.addscript.odate.disabled = false;
+    document.addscript.otime.disabled = false;
+    document.addscript.period.checked = false;
 }
 
 function enablePeriod() {
-	document.addscript.pdate.disabled = false;
-	document.addscript.ptime.disabled = false;
-	document.addscript.interval_value.disabled = false;
-	document.addscript.interval_type.disabled = false;
-	document.addscript.odate.disabled = true;
-	document.addscript.otime.disabled = true;
-	document.addscript.once.checked = false;
+    document.addscript.pdate.disabled = false;
+    document.addscript.ptime.disabled = false;
+    document.addscript.interval_value.disabled = false;
+    document.addscript.interval_type.disabled = false;
+    document.addscript.odate.disabled = true;
+    document.addscript.otime.disabled = true;
+    document.addscript.once.checked = false;
 }
 
 window.onload = enableOnce;
@@ -53,64 +53,64 @@ window.onload = enableOnce;
 <br>
 <form method="post" name="addscript" action="?script<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable">
-	<tr>
-		<th colspan="3">Write a Script</th>
-	</tr>
-	<tr>
-		<th colspan="1">Enter Code:</th>
-		<th colspan="2">Timing:</th>
-	</tr>
-	<tr>
-		<td rowspan="3">
-			<b>Title:</b><br>
-			<input type="text" size="80" maxlength="80" name="title"><br>
-			<b>Script:</b><br>
-			<textarea rows="30" cols="80" name="input_code"></textarea><br>
-		</td>
-	<tr>
-		<td>
-			<img src="spacer.gif" width="150" height="0" border="0"><br>
-			<input type="radio" name="once" selected onClick="enableOnce()"> Once
-		</td>
-		<td>
-			<b>When to run:</b><br>
-			<b>Date:</b> (MONTH/DAY)<br>
-			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="odate"><br>
-			<b>Time:</b> (HOUR: MINUTE)<br>
-			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="otime">
-			<br>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<input type="radio" name="period" selected onClick="enablePeriod()"> Regularly
-			
-		</td>
-		<td>
-			<b>Run every:</b><br>
-			<input type="text" length="5" name="interval_value">
-			<select name="interval_type">
-				<option value="60">Minute(s)</option>
-				<option value="3600">Hour(s)</option>
-				<option value="86400">Day(s)</option>
-				<option value="604800">Week(s)</option>
-			</select>
-			<br>
-			<b>Starting from:</b><br>
-			<b>Date:</b> (MONTH/DAY)<br>
-			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="pdate"><br>
-			<b>Time:</b> (HOUR: MINUTE)<br>
-			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="ptime">
-			<br>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="left"><input type="reset" value="Reset"></td>
-		<td colspan="1" align="right"><input type="submit" name="do_add" value="Add Script"></td>
-	</tr>
-	<tr>
-		<th colspan="3">&nbsp;</th>
-	</tr>
+    <tr>
+        <th colspan="3">Write a Script</th>
+    </tr>
+    <tr>
+        <th colspan="1">Enter Code:</th>
+        <th colspan="2">Timing:</th>
+    </tr>
+    <tr>
+        <td rowspan="3">
+            <b>Title:</b><br>
+            <input type="text" size="80" maxlength="80" name="title"><br>
+            <b>Script:</b><br>
+            <textarea rows="30" cols="80" name="input_code"></textarea><br>
+        </td>
+    <tr>
+        <td>
+            <img src="spacer.gif" width="150" height="0" border="0"><br>
+            <input type="radio" name="once" selected onClick="enableOnce()"> Once
+        </td>
+        <td>
+            <b>When to run:</b><br>
+            <b>Date:</b> (MONTH/DAY)<br>
+            <input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="odate"><br>
+            <b>Time:</b> (HOUR: MINUTE)<br>
+            <input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="otime">
+            <br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="period" selected onClick="enablePeriod()"> Regularly
+            
+        </td>
+        <td>
+            <b>Run every:</b><br>
+            <input type="text" length="5" name="interval_value">
+            <select name="interval_type">
+                <option value="60">Minute(s)</option>
+                <option value="3600">Hour(s)</option>
+                <option value="86400">Day(s)</option>
+                <option value="604800">Week(s)</option>
+            </select>
+            <br>
+            <b>Starting from:</b><br>
+            <b>Date:</b> (MONTH/DAY)<br>
+            <input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="pdate"><br>
+            <b>Time:</b> (HOUR: MINUTE)<br>
+            <input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="ptime">
+            <br>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="left"><input type="reset" value="Reset"></td>
+        <td colspan="1" align="right"><input type="submit" name="do_add" value="Add Script"></td>
+    </tr>
+    <tr>
+        <th colspan="3">&nbsp;</th>
+    </tr>
 </table>
 </form>
 

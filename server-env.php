@@ -1,15 +1,15 @@
 <?
 function set_incl_path($utd="") {
-	global $config, $TPL_PATH;
-	$localdir = "local";			// Don't touch
-	if(isset($config['dev_mode']))
-		$localdir = "dev";
+    global $config, $TPL_PATH;
+    $localdir = "local";            // Don't touch
+    if(isset($config['dev_mode']))
+        $localdir = "dev";
 
-	$IPATH = "./$localdir" . PATH_SEPARATOR . ".";
-	ini_set("include_path", $IPATH);
-	set_include_path($IPATH);
+    $IPATH = "./$localdir" . PATH_SEPARATOR . ".";
+    ini_set("include_path", $IPATH);
+    set_include_path($IPATH);
 
-	$TPL_PATH = "./$localdir/templates/$utd" . PATH_SEPARATOR . "./templates/$utd";
+    $TPL_PATH = "./$localdir/templates/$utd" . PATH_SEPARATOR . "./templates/$utd";
 }
 
 

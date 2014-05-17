@@ -4,8 +4,8 @@ define("PROMISANCE", true);
 ob_start();
 
 // These two must be included from our own code, so as to make the rest work
-require_once("conf-proc.php");		// This below file manually tries to see if local/config.php exists, so no worries there
-require_once("server-env.php");		// This makes 'local' work
+require_once("conf-proc.php");        // This below file manually tries to see if local/config.php exists, so no worries there
+require_once("server-env.php");        // This makes 'local' work
 
 // From here on they can all be local
 include("ip.php");
@@ -19,48 +19,48 @@ $uri = urldecode($_SERVER['REQUEST_URI']);
 $action = substr($uri,strpos($uri,'?')+1);
 $p = strpos($action, '&');
 if($p > 0) 
-	$action = substr($action,0,$p);
+    $action = substr($action,0,$p);
 
 $action = preg_replace("/[^a-z0-9_]/", "", strtolower($action));
 
 $legal_actions = array('login', 'signup', 'guide', 'top10', 'credits', 'forums', 'source', 'profiles', 'rnews', 'features', 'hfame', 'license');
 
 if(!stristr($config[sitedir], $_SERVER['HTTP_HOST'])) {
-	Header("Location: $config[sitedir]");
-	exit;
+    Header("Location: $config[sitedir]");
+    exit;
 }
 
 
 if($config['pconnect'])
-	$db_link = @mysqli_connect("p:$dbhost",$dbuser,$dbpass);
+    $db_link = @mysqli_connect("p:$dbhost",$dbuser,$dbpass);
 else
-	$db_link = @mysqli_connect($dbhost,$dbuser,$dbpass);
+    $db_link = @mysqli_connect($dbhost,$dbuser,$dbpass);
 
 if (mysqli_connect_error()) {
-	include("html.php");
-	HTMLbegincompact("Database Error!");
-	print "The game database is currently unavailable. Please try again later.\n";
-	HTMLendcompact();
-	exit;
+    include("html.php");
+    HTMLbegincompact("Database Error!");
+    print "The game database is currently unavailable. Please try again later.\n";
+    HTMLendcompact();
+    exit;
 }
 
 mysqli_select_db($GLOBALS["db_link"], $dbname);
 require_once("sql-setup.php");
 
 if ($action == "game")
-	$action = "main";
+    $action = "main";
 if(empty($action))
-	$action = "login";
+    $action = "login";
 
 $file = $action . ".php";
 
 if(!is_file($file) || $file == 'login.php') {
-	$action = isset($_POST['the_action']) ? $_POST['the_action'] : '';
-	$file2 = $action.'.php';
-	if(!is_file($file2))
-		$file = "login.php";
-	else
-		$file = $file2;
+    $action = isset($_POST['the_action']) ? $_POST['the_action'] : '';
+    $file2 = $action.'.php';
+    if(!is_file($file2))
+        $file = "login.php";
+    else
+        $file = $file2;
 }
 
 $action = substr($file, 0, -4);

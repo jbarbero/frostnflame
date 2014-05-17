@@ -1,7 +1,7 @@
 <style>
 
 .hero TD {
-	text-align: center;
+    text-align: center;
 }
 
 </style>
@@ -81,14 +81,14 @@ Of course, mix and match according to your taste - that is the point!
 Currently, getting a hero requires:
 <ul>
 <?php foreach($GLOBALS["req_display"] as $loop_i): ?>
-	<li><span class="<?php if($loop_i["ok"] == 1): ?>cgood<?php else: ?>cwarn<?php endif; ?>"><b><?php echo $loop_i["reqd"]; ?></b> <?php echo $loop_i["name"]; ?></span></li>
+    <li><span class="<?php if($loop_i["ok"] == 1): ?>cgood<?php else: ?>cwarn<?php endif; ?>"><b><?php echo $loop_i["reqd"]; ?></b> <?php echo $loop_i["name"]; ?></span></li>
 <?php endforeach; ?>
 
 </ul>
 <?php if($GLOBALS["req_okall"] == 1): ?>
-	<span class='cgood'>You <i>can</i> get a hero at this time.</span>
+    <span class='cgood'>You <i>can</i> get a hero at this time.</span>
 <?php else: ?>
-	<span class='cwarn'>You <i>can't</i> get a hero at this time.</span>
+    <span class='cwarn'>You <i>can't</i> get a hero at this time.</span>
 <?php endif; ?>
 </td></tr>
 <tr><th colspan="3"><hr width="600"></th></tr>

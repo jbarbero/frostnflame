@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Medieval Empires Hall of Fame</title>		
+<title>Medieval Empires Hall of Fame</title>        
 <link rel="stylesheet" type="text/css" href="layout.css">
 <link rel="stylesheet" type="text/css" href="black.css">
 </head>

@@ -2,7 +2,7 @@
 include("header.php");
 
 if ($users[num] != 1)
-	TheEnd("You are not the root administrator!");
+    TheEnd("You are not the root administrator!");
 
 session_start();
 

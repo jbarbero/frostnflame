@@ -1,7 +1,7 @@
 <pre>
 <?
 if(!defined("PROMISANCE"))
-	die(" ");
+    die(" ");
 function fixInputNum (&$num)
 {
         $num = round(str_replace(",","",$num));

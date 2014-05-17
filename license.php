@@ -1,6 +1,6 @@
 <?
 if(!defined("PROMISANCE"))
-	die(" ");
+    die(" ");
 if (auth_user(true))
         include("header.php");
 else

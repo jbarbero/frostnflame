@@ -6,55 +6,55 @@ EndNow("Global signups are currently disabled -- please get a WOA account first.
 
 function EndNow ($reason)
 {
-	print "$reason<br>\n";
-	HTMLendcompact();
-	exit;
+    print "$reason<br>\n";
+    HTMLendcompact();
+    exit;
 }
 
 $uera = loadEra(1,1);
 
-$lockdb = 0;							// need to allow DB modifications for signups
+$lockdb = 0;                            // need to allow DB modifications for signups
 if ($do_signup) {
-	if($signup_igname == '')
-		$signup_igname = $signup_empire;
+    if($signup_igname == '')
+        $signup_igname = $signup_empire;
 
-	$chk_u = $signup_username;
-	$chk_e = $signup_empire;
-	$chk_i = $signup_igname;
-	$chk_m = $signup_email;
-	sqlQuotes($chk_u);
-	sqlQuotes($chk_e);
-	sqlQuotes($chk_i);
-	sqlQuotes($chk_m);
+    $chk_u = $signup_username;
+    $chk_e = $signup_empire;
+    $chk_i = $signup_igname;
+    $chk_m = $signup_email;
+    sqlQuotes($chk_u);
+    sqlQuotes($chk_e);
+    sqlQuotes($chk_i);
+    sqlQuotes($chk_m);
 
-	if (!strstr($signup_name," "))
-		EndNow("Sorry, you cannot signup without FULL and CORRECT information.<br>
-			Everybody has a last name, and I doubt you're an exception.<br>
-			Why do we ask?  Prevent cheating, that's all.");
-	if (stristr($signup_name,"the "))
-		EndNow("Nice try, but nobody has 'The' as part of their name.");
-	if ($signup_username == "")
-		EndNow("You must specify a username!");
-	if ($signup_password == "")
-		EndNow("You must select a password!");
-	if ($signup_password != $signup_password2)
-		EndNow("Passwords don't match!");
-	if(!(eregi("^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$",$signup_email,$matches)))
-		EndNow("Please enter a valid E-mail address.");
-	if ($signup_email != $signup_email_verify)
-		EndNow("Your E-mail address does not match!");
+    if (!strstr($signup_name," "))
+        EndNow("Sorry, you cannot signup without FULL and CORRECT information.<br>
+            Everybody has a last name, and I doubt you're an exception.<br>
+            Why do we ask?  Prevent cheating, that's all.");
+    if (stristr($signup_name,"the "))
+        EndNow("Nice try, but nobody has 'The' as part of their name.");
+    if ($signup_username == "")
+        EndNow("You must specify a username!");
+    if ($signup_password == "")
+        EndNow("You must select a password!");
+    if ($signup_password != $signup_password2)
+        EndNow("Passwords don't match!");
+    if(!(eregi("^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$",$signup_email,$matches)))
+        EndNow("Please enter a valid E-mail address.");
+    if ($signup_email != $signup_email_verify)
+        EndNow("Your E-mail address does not match!");
 
-	if (db_safe_firstval("SELECT COUNT(*) FROM global_users WHERE username='$chk_u';"))
-		EndNow("Sorry, that username is already being used!");
-	if (db_safe_firstval("SELECT COUNT(*) FROM global_users WHERE empire='$chk_e';"))
-		EndNow("Sorry, that ".$uera[empire]." default name is already being used!");
-	if (db_safe_firstval("SELECT COUNT(*) FROM global_users WHERE igname='$chk_i';"))
-		EndNow("Sorry, that leader name is already being used!");
+    if (db_safe_firstval("SELECT COUNT(*) FROM global_users WHERE username='$chk_u';"))
+        EndNow("Sorry, that username is already being used!");
+    if (db_safe_firstval("SELECT COUNT(*) FROM global_users WHERE empire='$chk_e';"))
+        EndNow("Sorry, that ".$uera[empire]." default name is already being used!");
+    if (db_safe_firstval("SELECT COUNT(*) FROM global_users WHERE igname='$chk_i';"))
+        EndNow("Sorry, that leader name is already being used!");
 
-	$ip = realip();
+    $ip = realip();
 
-	db_safe_query("INSERT INTO global_users (num) VALUES (NULL);");	// add a new user entry (with defaults)
-	$users[num] = mysql_insert_id();
+    db_safe_query("INSERT INTO global_users (num) VALUES (NULL);");    // add a new user entry (with defaults)
+    $users[num] = mysql_insert_id();
 
         $users[username] = $signup_username;
         $users[name] = $signup_name;
@@ -63,15 +63,15 @@ if ($do_signup) {
 
         $users[signedup] = $time;
         $users[password] = md5($signup_password);
-	$users[passchanged] = 1;
-	$users[rsalt] = rand_nonce(0);
-	$users[disabled] = 0;
-	$users[style] = 1;
-	$users[empire] = htmlspecialchars(swear_filter($signup_empire), ENT_QUOTES);
+    $users[passchanged] = 1;
+    $users[rsalt] = rand_nonce(0);
+    $users[disabled] = 0;
+    $users[style] = 1;
+    $users[empire] = htmlspecialchars(swear_filter($signup_empire), ENT_QUOTES);
 
-	saveGlobalData($users, "username name email IP signedup password passchanged rsalt disabled style empire");
+    saveGlobalData($users, "username name email IP signedup password passchanged rsalt disabled style empire");
 
-	mail($signup_email,"Signup for $config[gamename_full] - $users[empire]","
+    mail($signup_email,"Signup for $config[gamename_full] - $users[empire]","
 <p>Thank you for signing up with $config[gamename_full]!</p>
 
 <p>If you did not sign up for an account with us, please let us know
@@ -107,7 +107,7 @@ Welcome to <?=$gamename_full?>, <b><?=$users[empire]?>!</b><br>
 <br>
 
 <?
-	EndNow("");
+    EndNow("");
 }
 ?>
 

@@ -2,8 +2,8 @@
 <big><b>Welcome to the <?php echo $GLOBALS["merc_name"]; ?></big></b>
 
 <?php if($GLOBALS["bountyset"] != ""): ?>
-	<?php echo $GLOBALS["bountyset"]; ?>
-	<hr><br><br>
+    <?php echo $GLOBALS["bountyset"]; ?>
+    <hr><br><br>
 <?php endif; ?>
 
 <?php /* I decided against doing impure templates here */ ?>
@@ -18,39 +18,39 @@
 
 
     <?php foreach($GLOBALS["bounty"] as $loop_num): ?>
-		<tr class="c<?php echo $loop_num["color"]; ?>">
-		<td class="acenter"><?php echo $loop_num["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_num["t_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_num["t_num"]; ?>)</a></td>
-		<td class="acenter"><?php echo $loop_num["s_name"]; ?><br /><?php echo $loop_num["editable"]; ?></td>
-		<td class="aright">
-		<?php if($loop_num["cash"]): ?>
-			$<?php echo $loop_num["cash"]; ?>
-		<?php endif; ?>
-		<?php echo $loop_num["rune"]; ?>
-		<?php echo $loop_num["food"]; ?>
-		<?php foreach($loop_num["troops"] as $loop_troopnum): ?>
+        <tr class="c<?php echo $loop_num["color"]; ?>">
+        <td class="acenter"><?php echo $loop_num["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_num["t_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_num["t_num"]; ?>)</a></td>
+        <td class="acenter"><?php echo $loop_num["s_name"]; ?><br /><?php echo $loop_num["editable"]; ?></td>
+        <td class="aright">
+        <?php if($loop_num["cash"]): ?>
+            $<?php echo $loop_num["cash"]; ?>
+        <?php endif; ?>
+        <?php echo $loop_num["rune"]; ?>
+        <?php echo $loop_num["food"]; ?>
+        <?php foreach($loop_num["troops"] as $loop_troopnum): ?>
             <?php echo $loop_troopnum; ?>
-		<?php endforeach; ?>
-		<td class="aright"><?php echo $loop_num["land"]; ?> <?php /* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' */ ?>
-		<?php echo $loop_num["rank"]; ?>
-		<?php echo $loop_num["net"]; ?>
-		</td>
-		<td class="acenter"><?php echo $loop_num["time"]; ?></td>
-		</tr>
-		<tr><td colspan="5"><hr></td></tr>
-	<?php endforeach; ?>
+        <?php endforeach; ?>
+        <td class="aright"><?php echo $loop_num["land"]; ?> <?php /* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' */ ?>
+        <?php echo $loop_num["rank"]; ?>
+        <?php echo $loop_num["net"]; ?>
+        </td>
+        <td class="acenter"><?php echo $loop_num["time"]; ?></td>
+        </tr>
+        <tr><td colspan="5"><hr></td></tr>
+    <?php endforeach; ?>
 
 
-	<?php /* <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
+    <?php /* <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
     <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
-	</form>
-	</table>
+    </form>
+    </table>
 
 
 
 
 <?php if($GLOBALS["view"] == ""): ?>
-	<a href="<?php echo $GLOBALS["main"]; ?>?mercenary&amp;view=true<?php echo $GLOBALS["authstr"]; ?>">View Current Bounties</a><br><br><br>
+    <a href="<?php echo $GLOBALS["main"]; ?>?mercenary&amp;view=true<?php echo $GLOBALS["authstr"]; ?>">View Current Bounties</a><br><br><br>
 <?php endif; ?>
 
 
@@ -130,7 +130,7 @@ function updateMsgNums() {
     <?php /* TODO: wtf syntax is this? */
 <?php if($GLOBALS["smarty"].section.give.index==0): ?>
 <th>Post Anonymously***</th>
-	<td> <input type="checkbox" name="anon" value="1"></td>
+    <td> <input type="checkbox" name="anon" value="1"></td>
 <?php endif; ?>
     <?php /* TODO: wtf syntax is this? */
 <?php if($GLOBALS["smarty"].section.give.index!=0): ?>
@@ -165,63 +165,63 @@ function updateMsgNums() {
     <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 
-		<tr class="c<?php echo $GLOBALS["edit_bounty"]["color"]; ?>">
-		<td class="acenter"><?php echo $GLOBALS["edit_bounty"]["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["edit_bounty"]["t_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["edit_bounty"]["t_num"]; ?>)</a></td>
-		<td class="acenter"><?php echo $GLOBALS["edit_bounty"]["s_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["edit_bounty"]["s_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["edit_bounty"]["s_num"]; ?>) </a><br /></td>
-		<td class="aright">
-		<?php if($GLOBALS["edit_bounty"]["cash"] != 0): ?>$<?php endif; ?><?php echo $GLOBALS["edit_bounty"]["cash"]; ?>
-		<?php echo $GLOBALS["edit_bounty"]["rune"]; ?> <?php /* See below for drop point handling */ ?>
-		<?php echo $GLOBALS["edit_bounty"]["food"]; ?>
-		<?php foreach($GLOBALS["edit_bounty"]["troops"] as $loop_edit_troopnum): ?>
+        <tr class="c<?php echo $GLOBALS["edit_bounty"]["color"]; ?>">
+        <td class="acenter"><?php echo $GLOBALS["edit_bounty"]["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["edit_bounty"]["t_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["edit_bounty"]["t_num"]; ?>)</a></td>
+        <td class="acenter"><?php echo $GLOBALS["edit_bounty"]["s_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["edit_bounty"]["s_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["edit_bounty"]["s_num"]; ?>) </a><br /></td>
+        <td class="aright">
+        <?php if($GLOBALS["edit_bounty"]["cash"] != 0): ?>$<?php endif; ?><?php echo $GLOBALS["edit_bounty"]["cash"]; ?>
+        <?php echo $GLOBALS["edit_bounty"]["rune"]; ?> <?php /* See below for drop point handling */ ?>
+        <?php echo $GLOBALS["edit_bounty"]["food"]; ?>
+        <?php foreach($GLOBALS["edit_bounty"]["troops"] as $loop_edit_troopnum): ?>
             <?php echo $loop_edit_troopnum; ?>
-		<?php endforeach; ?>
-		<td class="aright"><?php echo $GLOBALS["edit_bounty"]["land"]; ?> <?php /* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' */ ?>
-		<?php echo $GLOBALS["edit_bounty"]["rank"]; ?>
-		<?php echo $GLOBALS["edit_bounty"]["net"]; ?>
-		<?php /* <?php echo $GLOBALS["edit_bounty"]["all"]; ?> */ ?></td>
-		<td class="acenter"><?php echo $GLOBALS["edit_bounty"]["time"]; ?></td>
-		</tr>
-		<tr><td colspan="5"></td></tr>
+        <?php endforeach; ?>
+        <td class="aright"><?php echo $GLOBALS["edit_bounty"]["land"]; ?> <?php /* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' */ ?>
+        <?php echo $GLOBALS["edit_bounty"]["rank"]; ?>
+        <?php echo $GLOBALS["edit_bounty"]["net"]; ?>
+        <?php /* <?php echo $GLOBALS["edit_bounty"]["all"]; ?> */ ?></td>
+        <td class="acenter"><?php echo $GLOBALS["edit_bounty"]["time"]; ?></td>
+        </tr>
+        <tr><td colspan="5"></td></tr>
 
 
-	<?php /* <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
+    <?php /* <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
     <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
-	</form>
-	</table>
+    </form>
+    </table>
 
 
-	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
-	<table class="inputtable">
-	<tr>
-	<th>Add Cash (Max: <?php echo gamefactor($GLOBALS["cansend"]["cas"]); ?>)</th>
-	    <td> <input type="text" name="cash_give" size="9"></td>
+    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
+    <table class="inputtable">
+    <tr>
+    <th>Add Cash (Max: <?php echo gamefactor($GLOBALS["cansend"]["cas"]); ?>)</th>
+        <td> <input type="text" name="cash_give" size="9"></td>
 
-	</tr>
+    </tr>
 
-	<tr>
-	<th>Add Runes (Max: <?php echo gamefactor($GLOBALS["cansend"]["runes"]); ?>)</th>
-	    <td> <input type="text" name="rune_give" size="9"></td>
+    <tr>
+    <th>Add Runes (Max: <?php echo gamefactor($GLOBALS["cansend"]["runes"]); ?>)</th>
+        <td> <input type="text" name="rune_give" size="9"></td>
 
-	</tr>
+    </tr>
 
-	<tr>
-	<th>Add Food (Max: <?php echo gamefactor($GLOBALS["cansend"]["food"]); ?>)</th>
-	    <td> <input type="text" name="food_give" size="9"></td>
+    <tr>
+    <th>Add Food (Max: <?php echo gamefactor($GLOBALS["cansend"]["food"]); ?>)</th>
+        <td> <input type="text" name="food_give" size="9"></td>
 
-	</tr>
+    </tr>
 
-	<?php foreach($GLOBALS["givetroops"] as $loop_give2): ?>
-	<tr>
-	<th> Add <?php echo $loop_give2["name"]; ?> (Max: <?php echo gamefactor($loop_give2["cansend"]); ?>)</th>
-	<td> <input type="text" name="troop[<?php echo $loop_give2["id"]; ?>]" size="9"></td>
-	</tr>
-	<?php endforeach; ?>
+    <?php foreach($GLOBALS["givetroops"] as $loop_give2): ?>
+    <tr>
+    <th> Add <?php echo $loop_give2["name"]; ?> (Max: <?php echo gamefactor($loop_give2["cansend"]); ?>)</th>
+    <td> <input type="text" name="troop[<?php echo $loop_give2["id"]; ?>]" size="9"></td>
+    </tr>
+    <?php endforeach; ?>
 
-	</table><br /><br />
-	<input type="hidden" name="bounty_id" value="<?php echo $GLOBALS["bounty_id"]; ?>">
-	<input type="submit" name="do_add" value="Add to Above Bounty (Edit number: <?php echo $GLOBALS["edit"]; ?>)">
+    </table><br /><br />
+    <input type="hidden" name="bounty_id" value="<?php echo $GLOBALS["bounty_id"]; ?>">
+    <input type="submit" name="do_add" value="Add to Above Bounty (Edit number: <?php echo $GLOBALS["edit"]; ?>)">
 
 
-	</form>
+    </form>
 <?php endif; ?>
