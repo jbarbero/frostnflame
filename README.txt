@@ -7,8 +7,9 @@ The FAF codebase is NOT currently working. I am working on updating it to run on
 
 Installation steps:
 1. Unzip on your web server
-2. Go through config.php to set up the server (directives are documented there). All you
-   need to do to get a running game is to change the pertinent MySQL variables.
+2. Copy config.php to local/ and edit it to set up your server.
+Directives are documented within the file.
+All you need to do to get a running game is to change the pertinent MySQL variables, but you may customize the game to your liking in detail if you wish.
 You do not need to do anything in the database, servers and everything are transparently installed.
       Note: if you have MySQL troubles, double-check your connection info
       and try setting $config['pconnect'] to 0 in config.php
