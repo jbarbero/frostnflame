@@ -24,7 +24,7 @@
     <table class="inputtable">
     <tr><th colspan="2">Change Tax</th></tr>
     <tr><td>Tax Rate:</td>
-        <td class="aright"><input type="text" name="new_tax" size="3" value="<?php echo $GLOBALS["tax"]; ?>">%</td></tr>
+        <td class="aright"><input type="text" name="new_tax" size="3" value="<?php echo $GLOBALS["users"]["tax"]; ?>">%</td></tr>
     <tr><th colspan="2"><input type="submit" name="do_changetax" value="Change Tax Rate"></th></tr>
     </table>
     </form>
@@ -32,8 +32,8 @@
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th colspan="2">Industry Settings</th></tr>
-    <?php foreach($GLOBALS["troops"] as $loop_ind): ?>
-    <tr><td><?php echo $GLOBALS["troops"][ind]; ?></td>
+    <?php foreach($GLOBALS["troopnames"] as $loop_ind): ?>
+    <tr><td><?php echo $loop_ind; ?></td>
         <td class="aright"><input type="text" name="ind_troop<?php echo $GLOBALS["numbers"][ind]; ?>" size="3" value="<?php echo $GLOBALS["uind"][ind]; ?>">%</td></tr>
     <?php endforeach; ?>
     <tr><th colspan="2"><input type="submit" name="do_changeindustry" value="Update Training"></th></tr>
@@ -89,9 +89,9 @@
     <table class="inputtable">
     <tr><th>Vacation</th></tr>
     <tr><td class="acenter">
-        Vacation mode will be set for a minimum of <?php echo $GLOBALS["minvacation"]; ?> hours.<br>
+        Vacation mode will be set for a minimum of <?php echo $GLOBALS["config"]["minvacation"]; ?> hours.<br>
         When set, you will be immediately locked out of your account,<br>
-        and your empire will be frozen after <?php echo $GLOBALS["vacationdelay"]; ?> hours.</td></tr>
+        and your empire will be frozen after <?php echo $GLOBALS["config"]["vacationdelay"]; ?> hours.</td></tr>
     <tr><td class="acenter"><label><input type="checkbox" name="yes_vacation" value="1">Yes, I really want to go on vacation!</label></td></tr>
     <tr><th><input type="submit" name="do_setvacation" value="Go on Vacation"></th></tr>
     </table>
@@ -109,10 +109,10 @@
     <tr><th>Profile settings</th></tr>
     <tr><td><table>
     <form method='post' action="?manage<?php echo $GLOBALS["authstr"]; ?>">
-    <tr><td>Email</td><td><input type='text' cols='5' name='email' value='<?php echo $GLOBALS["email"]; ?>'></td></tr>
-    <tr><td>AIM&nbsp;name</td><td><input type='text' cols='5' name='aim' value='<?php echo $GLOBALS["aim"]; ?>'></td></tr>
-    <tr><td>MSN&nbsp;name</td><td><input type='text' cols='5' name='msn' value='<?php echo $GLOBALS["msn"]; ?>'></td></tr>
-    <tr><td>Profile</td><td><textarea name='profile' rows='15' cols='60'><?php echo $GLOBALS["profile"]; ?></textarea></td></tr>
+    <tr><td>Email</td><td><input type='text' cols='5' name='email' value='<?php echo $GLOBALS["users"]["email"]; ?>'></td></tr>
+    <tr><td>AIM&nbsp;name</td><td><input type='text' cols='5' name='aim' value='<?php echo $GLOBALS["users"]["aim"]; ?>'></td></tr>
+    <tr><td>MSN&nbsp;name</td><td><input type='text' cols='5' name='msn' value='<?php echo $GLOBALS["users"]["msn"]; ?>'></td></tr>
+    <tr><td>Profile</td><td><textarea name='profile' rows='15' cols='60'><?php echo str_replace("\n", "", $GLOBALS["users"]["profile"]); ?></textarea></td></tr>
     <tr><th colspan="2"><input type='submit' value='Update Information' name='do_profile'></th></tr>
     </form>
     </table></td></tr>
@@ -125,7 +125,7 @@
     <form method="post" action="?manage<?php echo $GLOBALS["authstr"]; ?>">
     <tr><th>Notepad</th></tr>
     <tr><td>
-    <textarea rows="25" cols="105" name="upd_notes"><?php echo $GLOBALS["notes"]; ?></textarea>
+    <textarea rows="25" cols="105" name="upd_notes"><?php echo $GLOBALS["users"]["notes"]; ?></textarea>
     </td></tr>
     <tr><th><input type='submit' value='Update Notepad' name='do_notes'></th></tr>
     </form>

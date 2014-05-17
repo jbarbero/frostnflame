@@ -1,4 +1,4 @@
-<?php if($loop_index == 'true'): ?>
+<?php if($index == true): ?>
 <h1><a href="?new_guide">Promisance Guide</a></h1>
 <table class="guide" style="width:90%">
 
@@ -52,5 +52,5 @@
     <th>Management</th></tr>
 </table>
 <?php else: ?>
-<?php echo $GLOBALS["text"]; ?>
+<?php echo $GLOBALS["buf"]; ?>
 <?php endif; ?>

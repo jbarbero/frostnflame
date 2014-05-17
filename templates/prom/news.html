@@ -40,9 +40,9 @@
 <br><br>
 
 <?php if(!$GLOBALS["crier"]): ?><h2>
-    <?php if($GLOBALS["events"] == 0): ?>    No events.    <?php endif; ?>
-    <?php if($GLOBALS["events"] == 1): ?>    1 event:
-    <?php else: ?>            <?php echo $GLOBALS["events"]; ?> events:
+    <?php if($GLOBALS["count"] == 0): ?>    No events.    <?php endif; ?>
+    <?php if($GLOBALS["count"] == 1): ?>    1 event:
+    <?php else: ?>            <?php echo $GLOBALS["count"]; ?> events:
     <?php endif; ?>
 </h2>
 <?php else: ?><br><?php endif; ?>
@@ -58,7 +58,7 @@
     <th style="width:2">Times</th>
 </tr>
 
-<?php foreach($loop_news as $loop_i): ?>
+<?php foreach($news_disp as $loop_i): ?>
     <tr>
         <td><?php echo $loop_i["date"]; ?></td>
         <td><?php echo $loop_i["name2"]; ?><br>Clan: <?php echo $loop_i["clname2"]; ?></td>

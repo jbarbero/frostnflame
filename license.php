@@ -6,6 +6,6 @@ if (auth_user(true))
 else
         htmlbegincompact("License");
 
-$tpl->display('license.html');
+template_display('license.html');
 TheEnd("");
 ?>

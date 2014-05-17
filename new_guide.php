@@ -13,17 +13,15 @@ else
     $section = 'index';
 
 if($fh = @fopen("guide/$section.txt", 'r')) {
-    $tpl->assign('section', $section);
     $buf = "";
     while($b = fread($fh, 2048))
         $buf .= $b;
     fclose($fh);
-    $tpl->assign('text', $buf);
 } else {
-    $tpl->assign('index', 'true');
+    $index = true;
 }
 
-$tpl->display('guide.html');
+template_display('guide.html');
 TheEnd('');
 
 ?>

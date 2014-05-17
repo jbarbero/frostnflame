@@ -141,22 +141,19 @@ $specialdesc[3] = "Major Perigord of the Long Patrol. With him, less troops and 
 $warname; $peacename; $specialname; $count = 0;
 
 foreach($warh as $num => $name) {
-    $tpl->assign("war$num", $name);
-    $tpl->assign("ward$num", $wardesc[$num]);
+    $GLOBALS["war$num"] = $name;
+    $GLOBALS["ward$num"] = $wardesc[$num];
 }
 foreach($peaceh as $num => $name) {
-    $tpl->assign("peace$num", $name);
-    $tpl->assign("peaced$num", $peacedesc[$num]);
+    $GLOBALS["peace$num"] = $name;
+    $GLOBALS["peaced$num"] = $peacedesc[$num];
 }
 foreach($specialh as $num => $name) {
-    $tpl->assign("special$num", $name);
-    $tpl->assign("speciald$num", $specialdesc[$num]);
+    $GLOBALS["special$num"] = $name;
+    $GLOBALS["speciald$num"] = $specialdesc[$num];
 }
 
 if($users['turnsused'] < 1000)  $req_okall = 0;
-
-$tpl->assign('health', $req['health']);
-$tpl->assign('reqland', commas($reqland));
 
 foreach($config['troop'] as $num => $mktcost)
 $req["troop$num"] = gamefactor($req["troop$num"]);
@@ -170,11 +167,7 @@ foreach($req as $stuff => $reqd) {
 $req[health] = $req['health'].'%';
 # TODO: This display code seems half-baked. What happened?
 # For instance, the display isn't gamefactored, health isn't shown with a %, also no config code sets healthreq or turnsreq -- what gives?
-$tpl->assign('tr', $tr);
-$tpl->assign('req_display', array_merge($tr, $tr1, $tr2));
-$tpl->assign('req_okall', $req_okall);
-$tpl->assign('initturns', $config['initturns']);
-$tpl->assign('turnsused', $users['turnsused']);
+$req_display = array_merge($tr, $tr1, $tr2);
 
 $who = 'The following Heroes are helping you: <br>';
 if($users['hero_war']) {
@@ -188,9 +181,7 @@ if($users['hero_special']) {
 }
 
 $who .= '<br>';
-$tpl->assign('who', $who);
-$tpl->assign('uera', $uera);
 
-$tpl->display('hero.html');
+template_display('hero.html');
 TheEnd("");
 ?>

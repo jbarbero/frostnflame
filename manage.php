@@ -105,7 +105,7 @@ if (($do_polymorph) && ($yes_polymorph)) {
         $users[race] = $new_race;
         $urace = loadRace($users[race], $users[era]);
         $users[networth] = getNetworth($users);
-        $tpl->assign('printmessage', $display_str);
+        $printmessage = $display_str;
         saveUserData($users,"networth troops wizards homes shops industry barracks labs farms towers freeland food runes cash turns health race");
     }
 }
@@ -117,7 +117,7 @@ if ($do_changetax) {
         TheEnd("Cannot set your tax that high!");
     $users[tax] = $new_tax;
     saveUserData($users,"tax");
-    $tpl->assign('printmessage', 'Tax rate updated!');
+    $printmessage = 'Tax rate updated!';
 }
 if ($do_changestyle) {
     $users[style] = $color_setting;
@@ -142,7 +142,7 @@ if ($do_changeindustry) {
 
     // if we got here okay, we can save
     saveUserData($users,"production");
-    $tpl->assign('printmessage', 'Training settings updated!');
+    $printmessage = 'Training settings updated!';
 }
 
 if (($do_setvacation) && ($yes_vacation)) {
@@ -154,19 +154,15 @@ if (($do_setvacation) && ($yes_vacation)) {
 }
 
 if($lastweek == true)
-    $tpl->assign('lastweek', 'true');
+    $lastweek = true;
 if($users['turnsused'] < $config['protection'])
-    $tpl->assign('protection', 'true');
+    $protection = true;
 
 $base = '';
 $base = str_replace("file:///", "", $users['basehref']);
 $base = str_replace("//", "\\", $base);
 $base = str_replace("/", "\\", $base);
 
-$tpl->assign('ubase', $base);
-$tpl->assign('initturns', $config['initturns']);
-$tpl->assign('land', gamefactor($users['land']));
-$tpl->assign('wizards', $uera[wizards]);
 $troopnames = array();
 $uind = array();
 $numbers = array();
@@ -177,30 +173,13 @@ foreach($config[troop] as $num => $mktcost) {
     $numbers[$an] = $num;
 }
 
-$tpl->assign('troops', $troopnames);
-$tpl->assign('minvacation', $config['minvacation']);
-$tpl->assign('vacationdelay', $config['vacationdelay']);
-$tpl->assign('tax', $users['tax']);
-$tpl->assign('email', $users['email']);
-$tpl->assign('aim', $users['aim']);
-$tpl->assign('msn', $users['msn']);
-$tpl->assign('profile', str_replace("\n", "", $users['profile']));
-$tpl->assign('igname', $users['igname']);
-$tpl->assign('notes', $users['notes']);
-if($config['early_exit'])
-    $tpl->assign('early_exit', 'true');
-else
-    $tpl->assign('early_exit', 'false');
-
 foreach($rtags as $id => $race)
     $racearray[] = array('id' => $id, 'name' => $race);
-$tpl->assign('races', $racearray);
 
 $stylearray = array();
 foreach($stylenames as $i => $name)
     if(empty($adminstyles[$i]) || $users[disabled] == 2)
         $stylearray[] = array('id' => $i, 'name' => $name);
-$tpl->assign('styles', $stylearray);
-$tpl->display('manage.html');
+template_display('manage.html');
 TheEnd("");
 ?>

@@ -39,8 +39,8 @@ function show(which) {
 
 
 <?php /* TODO: wtf: why two nested for loops with the same variable? */ ?>
-<?php foreach($GLOBALS["jmessage"] as $loop_v): ?>
-    <?php foreach($GLOBALS["jmessage"] as $loop_v): ?>
+<?php foreach($GLOBALS["message_array"] as $loop_v): ?>
+    <?php foreach($GLOBALS["message_array"] as $loop_v): ?>
         <?php if($loop_v["read"] == 0 ): ?>
         message_<?php echo $loop_v["id"]; ?> = ' <table class="inputtable">    <tr><th class="acenter">Viewing Message</th></tr><tr><td>      <form method="post" action="<?php echo $GLOBALS["config"]["sitedir"]; ?><?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">      <input type="hidden" name="msg_id" value="<?php echo $loop_v["id"]; ?>">      <input type="hidden" name="msg_src" value="<?php echo $loop_v["from_num"]; ?>">      <input type="hidden" name="msg_src_name" value="<?php echo $loop_v["from_name"]; ?>">      <input type="hidden" name="msg_title" value="<?php echo $loop_v["title"]; ?>">      <input type="hidden" name="msg_body" value="<?php echo escape_javascript($loop_v["msg_escaped"]); ?>">      <table>      <tr>      <td class="aleft">       <b>From:</b> <?php echo $loop_v["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_v["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_v["from_num"]; ?>)</a><br>       <b>Subject:</b> <?php echo $loop_v["title"]; ?><br>       <b>Date:</b> <?php echo escape_javascript($loop_v["date"]); ?><br>       <br><tt><?php echo escape_quotes($loop_v["msg"]); ?></tt>      </td>      </tr>      <tr><td><div align="center">      <input type="submit" name="do_reply" value="Reply">      <input type="submit" name="do_forward" value="Forward">      <input type="submit" name="do_delete" value="Delete">      </div></td></tr>      </table>      </form>      </td></tr><tr><th><hr></th></tr></table> ';
         <?php endif; ?>
@@ -54,9 +54,9 @@ function show(which) {
 
 <table class="inputtable" width="100%">
 <tr><th class="acenter">
-<a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["inboxname"]; ?></a>
+<a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["inbox"]; ?></a>
 </th><th class="acenter">
-<a href="<?php echo $GLOBALS["main"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["sentname"]; ?></a>
+<a href="<?php echo $GLOBALS["main"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["sent"]; ?></a>
 </th></tr>
 </table>
 <br>
@@ -64,12 +64,12 @@ function show(which) {
 <?php if($GLOBALS["do_reply"]): ?>
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
     <div>
-    Sending Reply To <?php echo $GLOBALS["reply_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["reply_src"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["reply_src"]; ?>)</a><br>
-    Message Title: <input type="text" name="msg_title" size="40" value="Re: <?php echo $GLOBALS["reply_title"]; ?>" maxlength="80"><br>
-    <input type="hidden" name="msg_replyto" value="<?php echo $GLOBALS["reply_id"]; ?>">
-    <input type="hidden" name="msg_dest" value="<?php echo $GLOBALS["reply_src"]; ?>">
-    <textarea rows="10" cols="60" name="msg_body"><?php echo $GLOBALS["reply_body"]; ?></textarea><br>
-    <input type="submit" name="do_message" value="Send Reply to <?php echo $GLOBALS["uera"]["empire"]; ?> #<?php echo $GLOBALS["reply_src"]; ?>">
+    Sending Reply To <?php echo $GLOBALS["replyname"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["replysrc"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["replysrc"]; ?>)</a><br>
+    Message Title: <input type="text" name="msg_title" size="40" value="Re: <?php echo $GLOBALS["replytitle"]; ?>" maxlength="80"><br>
+    <input type="hidden" name="msg_replyto" value="<?php echo $GLOBALS["replyid"]; ?>">
+    <input type="hidden" name="msg_dest" value="<?php echo $GLOBALS["replysrc"]; ?>">
+    <textarea rows="10" cols="60" name="msg_body"><?php echo $GLOBALS["replybody"]; ?></textarea><br>
+    <input type="submit" name="do_message" value="Send Reply to <?php echo $GLOBALS["uera"]["empire"]; ?> #<?php echo $GLOBALS["replysrc"]; ?>">
     </div>
     </form>
 <?php endif; ?>
@@ -172,14 +172,14 @@ function show(which) {
 </div>
 
 <?php if($GLOBALS["sent"]==0 && $GLOBALS["prof_target"]==""): ?>
-    <?php if($GLOBALS["num_msg"]>0): ?>
+    <?php if($GLOBALS["num_msgs"]>0): ?>
 
         <form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"> <?php /* I want access to all the elements therein */ ?>
 
         <table class="scorestable">
-        <tr class="era<?php echo $GLOBALS["color"]; ?>"><th colspan="4"><?php echo $GLOBALS["inboxname"]; ?></th></tr>
+        <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th colspan="4"><?php echo $GLOBALS["inbox"]; ?></th></tr>
 
-        <tr class="era<?php echo $GLOBALS["color"]; ?>">
+        <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
         <th style="width:30%">
         <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
         </th>
@@ -215,7 +215,7 @@ function show(which) {
 
         <?php endforeach; ?>
 
-                <tr class="era<?php echo $GLOBALS["color"]; ?>">
+                <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
 
                 <th style="width:30%">
                 <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
@@ -260,7 +260,7 @@ function show(which) {
         </form>
     <?php endif; ?>
 
-    <?php if($GLOBALS["num_msg"]==0): ?>
+    <?php if($GLOBALS["num_msgs"]==0): ?>
         No new messages...<hr>
     <?php endif; ?>
 <?php endif; ?>
@@ -269,13 +269,13 @@ function show(which) {
 
 
 <?php if($GLOBALS["sent"]!=0): ?>
-    <?php if($GLOBALS["num_msg"]>0): ?>
+    <?php if($GLOBALS["num_msgs"]>0): ?>
         <form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>">
 
         <table class="scorestable">
-        <tr class="era<?php echo $GLOBALS["color"]; ?>"><th colspan="4"><?php echo $GLOBALS["sentname"]; ?></th></tr>
+        <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th colspan="4"><?php echo $GLOBALS["sent"]; ?></th></tr>
 
-        <tr class="era<?php echo $GLOBALS["color"]; ?>">
+        <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
         <th style="width:30%">
         <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
         </th>
@@ -305,7 +305,7 @@ function show(which) {
 
         <?php endforeach; ?>
 
-            <tr class="era<?php echo $GLOBALS["color"]; ?>">
+            <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
 
             <th style="width:30%">
             <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
@@ -337,7 +337,7 @@ function show(which) {
         </form>
     <?php endif; ?>
 
-    <?php if($GLOBALS["num_msg"]==0): ?>
+    <?php if($GLOBALS["num_msgs"]==0): ?>
         No sent messages...<hr>
     <?php endif; ?>
 
@@ -374,11 +374,11 @@ function updateMsgNums() {
 </script>
 
 
-We currently have <?php echo $GLOBALS["msgcreds"]; ?> message credits remaining.<br><br>
+We currently have <?php echo $GLOBALS["users"]["msgcred"]; ?> message credits remaining.<br><br>
 <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
 <div>
 
-<?php if($GLOBALS["clan"] != 0): ?>
+<?php if($GLOBALS["users"]["clan"] != 0): ?>
     <INPUT TYPE="checkbox" NAME="allclan"> Message everyone in clan?
     <BR>(If the above box is checked, the below field will be ignored.)<BR>
 
@@ -387,7 +387,7 @@ We currently have <?php echo $GLOBALS["msgcreds"]; ?> message credits remaining.
 
 Send a message to: <input type="text" value="<?php echo $GLOBALS["prof_target"]; ?>" name="msg_dest_num" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-    <?php foreach($GLOBALS["drop"] as $loop_dropsel): ?>
+    <?php foreach($GLOBALS["warquery_array"] as $loop_dropsel): ?>
         <option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($GLOBALS["prof_target"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
     <?php endforeach; ?>
 </select>

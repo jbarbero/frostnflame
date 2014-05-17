@@ -66,7 +66,7 @@ if($_POST['type'] == 'global') {
 function login_page() {
     HTMLbegincompact("Login");
 
-    global $servers, $config, $tpl, $prefixes, $dateformat, $global;
+    global $servers, $config, $prefixes, $dateformat, $global;
     $disp_servers = array();
     foreach($servers as $i => $s) {
         $n = array('num' => $i, 'name' => str_replace(' ', '&nbsp;', $s));
@@ -124,12 +124,9 @@ function login_page() {
     }
 
 
-    $tpl->assign('login_news', doForumNews());
-    $tpl->assign('servers', $disp_servers);
+    $login_news = doForumNews();
 
-    $tpl->assign('servname', $config['servname']);
-    $tpl->assign('sitedir', $config['sitedir']);
-    $tpl->display('login2.html');
+    template_display('login2.html');
     HTMLendcompact();
 }
 

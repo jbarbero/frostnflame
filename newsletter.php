@@ -1,7 +1,7 @@
 <?
 include("header.php");
 
-$tpl->assign('state', 1);
+$state = 1;
 if($send_msg) {
     $warlords = db_safe_query("SELECT * FROM $playerdb ORDER BY networth DESC;");
 
@@ -22,10 +22,10 @@ if($send_msg) {
     }
 
     // something for game message here
-    $tpl->assign('state', 2);
+    $state = 2;
 }
 
-$tpl->assign('whatsend', 'Newsletter');
-$tpl->display('newsletter.html');
+$whatsend = 'Newsletter';
+template_display('newsletter.html');
 TheEnd();
 ?>

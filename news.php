@@ -151,14 +151,7 @@ $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members=-1 ORDER B
 while($clan = mysqli_fetch_array($list))
     $deadclans[] = $clan;
 
-$tpl->assign('crier', $crier);
-$tpl->assign('events', $count);
-$tpl->assign('news', $news_disp);
-$tpl->assign('newslimit', $newslimit);
-$tpl->assign('liveclans', $liveclans);
-$tpl->assign('deadclans', $deadclans);
-
-$tpl->display('news.html');
+template_display('news.html');
 
 if(!$crier)
     TheEnd();

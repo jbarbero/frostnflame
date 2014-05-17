@@ -21,13 +21,6 @@ if($endtime == -1)
 else
     $enddisp = date($dateformat, $endtime);
 
-$tpl->assign('etime', $endtime);
-$tpl->assign('roundend', $enddisp);
-$tpl->assign('config', $config);
-$tpl->assign('numplayers', $numplayers);
-$tpl->assign('avgnet', commas($avgnet));
-$tpl->assign('lastweek', $lastweek);
-
-$tpl->display('info.html');
+template_display('info.html');
 TheEnd("");
 ?>

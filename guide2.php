@@ -1,6 +1,6 @@
 <?php
 require_once("funcs.php");
-$tpl->assign('extra_headers', "<style>
+$extra_headers = "<style>
 /* Wiki Styling */  
 h2, h3, h4, h5, h6 {
     background: none;
@@ -13,7 +13,7 @@ h2 {
     border-bottom: 1px solid #aaa;
 }
 
-</style>");
+</style>";
 
 if(!defined("PROMISANCE"))
     die(" ");

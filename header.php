@@ -112,7 +112,7 @@ if (($action != "delete")) {
     case 0:    if ($users[land] == 0) {
             if ($action == "messages" || $action == "scores" || $action == "sentmail" || $action == "news")
                 break;
-            $tpl->display('header.html');
+            template_display('header.html');
             $users[idle] = $time;
             $users[disabled] = 1;
             if (!$suid)
@@ -127,7 +127,7 @@ if (($action != "delete")) {
     case 1:    if ($users[land] == 0) {
             if ($action == "messages" || $action == "scores" || $action == "sentmail" || $action == "news")
                 break;
-            $tpl->display('header.html');
+            template_display('header.html');
             echo     'Your '.$uera[empire].' has been destroyed.<br>' .
                 'There is nothing more to do here except recall the events that led to your destruction...<br><br>';
             printNews($users);
@@ -136,13 +136,13 @@ if (($action != "delete")) {
         }
         break;
     case 2:    break;
-    case 3:    $tpl->display('header.html');
+    case 3:    template_display('header.html');
         if ($users[ismulti])
             print "This account has been disabled due to usage of multiple accounts.<br>\n";
         else    print "This account has been disabled due to cheating.<br>\n";
         TheEnd("Please contact $config[adminemail] to explain your actions and possibly regain control of your account.");
         break;
-    case 4:    $tpl->display('header.html');
+    case 4:    template_display('header.html');
         TheEnd("Your account has been marked for deletion and will be erased shortly. Thanks for playing!");
         break;
     }
@@ -158,17 +158,17 @@ if (($action != "delete")) {
 }
 
 if(in_array($action, $config['disabled_pages'])) {
-    $tpl->display('header.html');
+    template_display('header.html');
     TheEnd("Sorry, that page is not accessible on this server.");
 }
 
 if($admin && in_array($action, $config['admin_restr'])) {
-    $tpl->display('header.html');
+    template_display('header.html');
     TheEnd("Sorry, Administrators may not access that page on this server.");
 }
 
 if($users[turnsused] < $config[protection] && in_array($action, $config['prot_restr'])) {
-    $tpl->display('header.html');
+    template_display('header.html');
     TheEnd("Sorry, you are not allowed to access that page while you are under protection on this server.");
 }
 
@@ -177,17 +177,17 @@ if (is_on_vacation($users)) {
     $msg = "This account is in vacation mode and cannot be played for another ". vac_hours_left($users) . " hours.";
 
     if(!in_array($GAME_ACTION, $config['vacation_pages'])) {
-        $tpl->display('header.html');
+        template_display('header.html');
         TheEnd($msg);
     } else {
-        $tpl->display('header.html');
+        template_display('header.html');
         echo "$msg<br><br>";
     }
 } else {
     $users[vacation] = 0;
     $users[idle] = $time;
     saveUserData($users, "vacation idle");
-    $tpl->display('header.html');
+    template_display('header.html');
 }
 
 if($users[passchanged] == 0) {

@@ -9,9 +9,6 @@ $folders = explode("|", $users['folders']);
 $inbox = $folders[0];
 $sent = $folders[1];
 
-$tpl->assign('inboxname', $inbox);
-$tpl->assign('sentname', $sent);
-
 function message ($msg_body, $msg_title, $msg_dest, $msg_replyto) {
     global $time, $users, $messagedb, $playerdb, $allclan, $search, $replace, $authstr, $config;
     $msg_title = trim($msg_title);
@@ -291,37 +288,10 @@ while ($wardrop = @mysqli_fetch_array($warquery_result)) {
                     $color = "ally";
         $warquery_array[] = array('num' => $wardrop['num'], 'color' => $color, 'name' => $wardrop['empire']);
 }
-$tpl->assign('do_forward', $do_forward);
-$tpl->assign('forward_title', $forward_title);
-$tpl->assign('forward_msg', $forward_msg);
-$tpl->assign('numbers', $numbers);
-$tpl->assign('do_reply', $do_reply);
-$tpl->assign('view', $view);
-$tpl->assign('vsrc', $vsrc);
-$tpl->assign('time', date($dateformat,$vmessage[time]));
-$tpl->assign('msgcreds', $users[msgcred]);
-$tpl->assign('vmessage', $vmessage);
-$tpl->assign('clan', $users[clan]);
-$tpl->assign('num_msg', $num_msgs);
-$tpl->assign('message', $message_array);
-$tpl->assign('jmessage', $message_array);
-$tpl->assign('title_order', $title_order);
-$tpl->assign('from_order', $from_order);
-$tpl->assign('prof_target', $prof_target);
-$tpl->assign('date_order', $date_order);
-$tpl->assign('reply_body', $replybody);
-$tpl->assign('reply_name', $replyname);
-$tpl->assign('prof_target', $prof_target);
-$tpl->assign('reply_id', $replyid);
-$tpl->assign('reply_src', $replysrc);
-$tpl->assign('color', $users[era]);
-$tpl->assign('reply_title', $replytitle);
-$tpl->assign('drop', $warquery_array);
-$tpl->assign('sent', 0); // VITAL!
-$tpl->assign('uera', $uera);
+$time = date($dateformat,$vmessage[time]);
+$sent = 0; // VITAL!
 
-$tpl->display('messages.html');
-
+template_display('messages.html');
 
 TheEnd("");
 ?>

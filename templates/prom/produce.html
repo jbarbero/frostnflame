@@ -1,7 +1,7 @@
 <?php echo $GLOBALS["turnoutput"]; ?>
 
-<?php if($GLOBALS["message"] != ''): ?>
-    <table width="50%"><td><center><?php echo $GLOBALS["message"]; ?></center>
+<?php if($GLOBALS["msg"] != ''): ?>
+    <table width="50%"><td><center><?php echo $GLOBALS["msg"]; ?></center>
     <tr><td><hr></table>
 <?php endif; ?>
 
@@ -10,12 +10,12 @@
 <table class="inputtable">
 <tr><td colspan=2><center>Spend turns gaining:
 
-<?php if($GLOBALS["produce_array"] == 0): ?>
+<?php if(!$GLOBALS["produce"]): ?>
         <b>Unable to produce.</b></td></tr>
 <?php else: ?>
     <select name="produce_type" size="1">
-<?php foreach($GLOBALS["produce_array"] as $loop_list): ?>
-        <option value="<?php echo $GLOBALS["produce_array"][list]; ?>"><?php echo $GLOBALS["produce_array"][list]; ?></option>
+<?php foreach($GLOBALS["produce"] as $loop_list): ?>
+        <option value="<?php echo $loop_list; ?>"><?php echo $loop_list; ?></option>
     <?php endforeach; ?>
     </select></center></td></tr>
 <?php endif; ?>
@@ -32,7 +32,7 @@
     <td><input type="checkbox" name="netincomeneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-    <td>Net <?php echo $GLOBALS["food"]; ?> production is negative</td>
+    <td>Net <?php echo $GLOBALS["uera"]["food"]; ?> production is negative</td>
     <td><input type="checkbox" name="netfoodneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
