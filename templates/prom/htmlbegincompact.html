@@ -1,29 +1,24 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo $gamename; ?> :: <?php echo $title; ?></title>
+<title><?php echo $GLOBALS["gamename"]; ?> :: <?php echo $GLOBALS["title"]; ?></title>
 <link rel="stylesheet" type="text/css" href="layout.css">
-<link rel="stylesheet" type="text/css" href="<?php echo $stylename; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS["stylename"]; ?>">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="alternate" title="RSS Feed" href="<?php echo $config["sitedir"]; ?>?rss" type="application/rss+xml">
-<?php echo $extra_headers; ?>
+<link rel="alternate" title="RSS Feed" href="<?php echo $GLOBALS["config"]["sitedir"]; ?>?rss" type="application/rss+xml">
+<?php echo $GLOBALS["extra_headers"]; ?>
 </head>
 <body> 
 <div class="acenter">
 <table width="100%" border="0">
 <tr><td style="width:24px;vertical-align:top;text-align:center" valign="top">
-<center><span style="font-size:x-large"><?php echo $gamename; ?></span></center>
+<center><span style="font-size:x-large"><?php echo $GLOBALS["gamename"]; ?></span></center>
 
 <table class="menus">
-<tr><th><center><hr><a href="?login<?php echo $authstr; ?>" class="darklink">Main&nbsp;Menu</a><hr></center></th></tr>
+<tr><th><center><hr><a href="?login<?php echo $GLOBALS["authstr"]; ?>" class="darklink">Main&nbsp;Menu</a><hr></center></th></tr>
 
-<?php
-//global $menus;
-debug_print_backtrace();
-print_r($menus);
-?>
-<?php foreach($menus as $loop_m): ?>
+<?php foreach($GLOBALS["menus"] as $loop_m): ?>
 <?php if($loop_m["spec"] == 1): ?>
 <tr><th><a class='undecorated' href='<?php echo $loop_m["link"]; ?>'><?php echo $loop_m["item"]; ?></a></th></tr>
 <?php else: ?>
@@ -40,24 +35,24 @@ print_r($menus);
 </td>
 <td class="acenter" style="vertical-align:top">
 
-<center><a href="http://www.frostnflame.org"><img src="img/logo.gif" border="0" alt="<?php echo strip_tags($gamename_full); ?> Promisance" /></a></center>
+<center><a href="http://www.frostnflame.org"><img src="img/logo.gif" border="0" alt="<?php echo strip_tags($GLOBALS["gamename_full"]); ?> Promisance" /></a></center>
 
 <table width="80%"><tr width="100%">
 <td style="text-align:left; vertical-align:top"><b><font size=2>
-<?php if($loggedin ): ?>
-<strong>Welcome, <?php echo $global["empire"]; ?>!
+<?php if($GLOBALS["loggedin"] ): ?>
+<strong>Welcome, <?php echo $GLOBALS["global"]["empire"]; ?>!
 <?php else: ?>
-<?php echo $gamename_full; ?> Promisance
+<?php echo $GLOBALS["gamename_full"]; ?> Promisance
 <?php endif; ?>
 </font></b></td>
 <td style="text-align:right">
-<?php if($loggedin ): ?>
+<?php if($GLOBALS["loggedin"] ): ?>
 <a href="?globalout">[Logout]</a>
 <?php else: ?>
 <br />
 <!--
-<form action='?login<?php echo $skinstr; ?>' method="POST">
-<strong><a href="?globalsignup<?php echo $skinstr; ?>">[Register]</a> &middot; </strong>
+<form action='?login<?php echo $GLOBALS["skinstr"]; ?>' method="POST">
+<strong><a href="?globalsignup<?php echo $GLOBALS["skinstr"]; ?>">[Register]</a> &middot; </strong>
 <strong>Log In</strong>
 <input type='hidden' name='type' value='global' />
 <input type='text' size='10' name='user' onfocus="this.value=''" value='Username' />

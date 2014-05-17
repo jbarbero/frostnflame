@@ -1,47 +1,47 @@
 <br><br>
 <table class="inputtable" width="400">
 
-<tr>	<th colspan="2"><?php echo $config["servname"]; ?> :: Game Info</th></tr>
+<tr>	<th colspan="2"><?php echo $GLOBALS["config"]["servname"]; ?> :: Game Info</th></tr>
 
 <tr>	<td>Turns</td>
-	<td><?php echo $config["turnsper"]; ?> every <?php echo $config["perminutes"]; ?> minutes</td></tr>
+	<td><?php echo $GLOBALS["config"]["turnsper"]; ?> every <?php echo $GLOBALS["config"]["perminutes"]; ?> minutes</td></tr>
 
 <tr>	<td>Max Turns</td>
-	<td><?php echo $config["maxturns"]; ?></td></tr>
+	<td><?php echo $GLOBALS["config"]["maxturns"]; ?></td></tr>
 
 <tr>	<td>Max Stored Turns</td>
-	<td><?php echo $config["maxstoredturns"]; ?></td></tr>
+	<td><?php echo $GLOBALS["config"]["maxstoredturns"]; ?></td></tr>
 
 <tr>	<td>New Player Protection</td>
-	<td><?php echo $config["protection"]; ?></td></tr>
+	<td><?php echo $GLOBALS["config"]["protection"]; ?></td></tr>
 
 <tr>	<td colspan="2" height="0"><hr></td></tr>
 
 <tr>	<td>Signups</td>
-	<td><?php if($config["signupsclosed"]==1): ?>Closed<?php else: ?>Open<?php endif; ?></td></tr>
+	<td><?php if($GLOBALS["config"]["signupsclosed"]==1): ?>Closed<?php else: ?>Open<?php endif; ?></td></tr>
 
 <tr>	<td>Database</td>
-	<td><?php if($config["lockdb"]==1): ?>Locked<?php else: ?>Open<?php endif; ?></td></tr>
+	<td><?php if($GLOBALS["config"]["lockdb"]==1): ?>Locked<?php else: ?>Open<?php endif; ?></td></tr>
 
 <tr>	<td>Last week?</td>
-	<td><?php if($lastweek==1): ?>Yes<?php else: ?>No<?php endif; ?></td></tr>
+	<td><?php if($GLOBALS["lastweek"]==1): ?>Yes<?php else: ?>No<?php endif; ?></td></tr>
 
 <tr>	<td>Round End</td>
-	<td><?php echo $roundend; ?></td></tr>
-<!-- <?php echo $etime; ?> -->
+	<td><?php echo $GLOBALS["roundend"]; ?></td></tr>
+<!-- <?php echo $GLOBALS["etime"]; ?> -->
 
 <tr>	<td colspan="2" height="0"><hr></td></tr>
 
 <tr>	<td>Number of Players</td>
-	<td><?php echo $numplayers; ?></td></tr>
+	<td><?php echo $GLOBALS["numplayers"]; ?></td></tr>
 
 <tr>	<td>Average Networth</td>
-	<td>$<?php echo $avgnet; ?></td></tr>
+	<td>$<?php echo $GLOBALS["avgnet"]; ?></td></tr>
 
 <tr>	<td colspan="2" height="0"><hr></td></tr>
 
-<tr>	<td colspan="2" height="0" style="text-align: center"><?php echo $config["news"]; ?></td></tr>
+<tr>	<td colspan="2" height="0" style="text-align: center"><?php echo $GLOBALS["config"]["news"]; ?></td></tr>
 
-<tr>	<th colspan="2"><?php echo $config["servname"]; ?> :: Game Info</th></tr>
+<tr>	<th colspan="2"><?php echo $GLOBALS["config"]["servname"]; ?> :: Game Info</th></tr>
 
 </table>

@@ -1,10 +1,10 @@
-<?php if($printmessage != ''): ?>
-<?php echo $printmessage; ?><br>
+<?php if($GLOBALS["printmessage"] != ''): ?>
+<?php echo $GLOBALS["printmessage"]; ?><br>
 <hr>
 <?php endif; ?>
 
 
-	<form method="post" action="<?php echo $main; ?>?changepass<?php echo $authstr; ?>">
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?changepass<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Password</th></tr>
 	<tr><td>Password:</td>

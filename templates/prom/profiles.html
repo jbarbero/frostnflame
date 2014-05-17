@@ -29,12 +29,12 @@
 
 <div align="center">
 
-		<form method="post" action="<?php echo $main; ?>?profiles<?php echo $authstr; ?>" name="frmmsg">
-			Read Profile of: <input type="text" name="num" size="5" maxlength="10" value="<?php echo $selected; ?>" onChange="updateMsgNames()">
+		<form method="post" action="<?php echo $GLOBALS["main"]; ?>?profiles<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
+			Read Profile of: <input type="text" name="num" size="5" maxlength="10" value="<?php echo $GLOBALS["selected"]; ?>" onChange="updateMsgNames()">
 			<select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-			<?php foreach($drop as $loop_dropsel): ?>
+			<?php foreach($GLOBALS["drop"] as $loop_dropsel): ?>
 				<option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"
-				<?php if($selected == $loop_dropsel["num"]): ?> selected <?php endif; ?>
+				<?php if($GLOBALS["selected"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>
 				><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
 			<?php endforeach; ?>
 			</select>
@@ -50,12 +50,12 @@
 
 
 
-	<?php if($do_view=="true"): ?>
+	<?php if($GLOBALS["do_view"]=="true"): ?>
 		<table style="width:100%" align="center">
 
 			<tr>
 				<th colspan="2">
-					<b><?php echo $enemy["empire"]; ?> <a class="proflink" href="<?php echo $main; ?>?profiles&amp;num=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">(#<?php echo $enemy["num"]; ?>)</a></b>
+					<b><?php echo $GLOBALS["enemy"]["empire"]; ?> <a class="proflink" href="<?php echo $GLOBALS["main"]; ?>?profiles&amp;num=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">(#<?php echo $GLOBALS["enemy"]["num"]; ?>)</a></b>
 				</th>
 			</tr>
 
@@ -65,38 +65,38 @@
 					<tr>
 						<td>
 							<table class="empstatus" style="width:100%">
-        						<tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">In-Game Information</th></tr>
+        						<tr><th colspan="2" class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="text-align:center">In-Game Information</th></tr>
 
 								<tr>
 									<th>Rank: </th>
-									<td><?php echo $enemy["rank"]; ?></td>
+									<td><?php echo $GLOBALS["enemy"]["rank"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Networth: </th>
-									<td>$<?php echo $enemy["networth"]; ?></td>
+									<td>$<?php echo $GLOBALS["enemy"]["networth"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Land: </th>
-									<td><?php echo $enemy["land"]; ?></td>
+									<td><?php echo $GLOBALS["enemy"]["land"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Race: </th>
-									<td><?php echo $erace["name"]; ?></td>
+									<td><?php echo $GLOBALS["erace"]["name"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Era:</th>
-									<td><?php echo $eera["name"]; ?></td>
+									<td><?php echo $GLOBALS["eera"]["name"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Clan: </th>
 									<td>
-									<?php if($clan["num"]!=0): ?>
-									<?php echo $clan["name"]; ?> <a class="<?php echo $ccolor; ?>" href="<?php echo $main; ?>?clancrier&amp;sclan=<?php echo $clan["num"]; ?><?php echo $authstr; ?>">(<?php echo $clan["tag"]; ?>)</a>
+									<?php if($GLOBALS["clan"]["num"]!=0): ?>
+									<?php echo $GLOBALS["clan"]["name"]; ?> <a class="<?php echo $GLOBALS["ccolor"]; ?>" href="<?php echo $GLOBALS["main"]; ?>?clancrier&amp;sclan=<?php echo $GLOBALS["clan"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">(<?php echo $GLOBALS["clan"]["tag"]; ?>)</a>
 									<?php else: ?>No Clan
 									<?php endif; ?>
 									</td>
@@ -104,26 +104,26 @@
 
 								<tr>
 									<th>Allies: </th>
-									<td><?php echo $tags[0]; ?>, <?php echo $tags[1]; ?>, <?php echo $tags[2]; ?>, <?php echo $tags[3]; ?>, <?php echo $tags[4]; ?></td>
+									<td><?php echo $GLOBALS["tags"][0]; ?>, <?php echo $GLOBALS["tags"][1]; ?>, <?php echo $GLOBALS["tags"][2]; ?>, <?php echo $GLOBALS["tags"][3]; ?>, <?php echo $GLOBALS["tags"][4]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Enemies: </th>
-									<td><?php echo $tags[5]; ?>, <?php echo $tags[6]; ?>, <?php echo $tags[7]; ?>, <?php echo $tags[8]; ?>, <?php echo $tags[9]; ?></td>
+									<td><?php echo $GLOBALS["tags"][5]; ?>, <?php echo $GLOBALS["tags"][6]; ?>, <?php echo $GLOBALS["tags"][7]; ?>, <?php echo $GLOBALS["tags"][8]; ?>, <?php echo $GLOBALS["tags"][9]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Offensive Actions: </th>
-									<td><?php echo $enemy["offtotal"]; ?> (<?php echo $off_percent; ?>%)</td>
+									<td><?php echo $GLOBALS["enemy"]["offtotal"]; ?> (<?php echo $GLOBALS["off_percent"]; ?>%)</td>
 								</tr>
 
 								<tr>
 									<th>Defensive Actions: </th>
-									<td><?php echo $enemy["deftotal"]; ?> (<?php echo $def_percent; ?>%)</td>
+									<td><?php echo $GLOBALS["enemy"]["deftotal"]; ?> (<?php echo $GLOBALS["def_percent"]; ?>%)</td>
 								</tr>
 								<tr>
 									<th>Signup Date</th>
-									<td><?php echo $enemy["signedup"]; ?>
+									<td><?php echo $GLOBALS["enemy"]["signedup"]; ?>
 
 							</table>
 						</td>
@@ -133,21 +133,21 @@
 						<td>
 							<table class="empstatus" style="width:100%">
         						<tr>
-        							<th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Contact Information</th>
+        							<th colspan="2" class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="text-align:center">Contact Information</th>
         						</tr>
 
 								<tr>
 									<th>AIM: </th>
-									<td><?php echo $enemy["aim"]; ?></td>
+									<td><?php echo $GLOBALS["enemy"]["aim"]; ?></td>
 								</tr>
 								<tr>
 									<th>MSN: </th>
-									<td><?php echo $enemy["msn"]; ?></td>
+									<td><?php echo $GLOBALS["enemy"]["msn"]; ?></td>
 								</tr>
 							</table>
 
-							<?php if($loggedin==true): ?><br>
-							<div align="center"><a href="<?php echo $main; ?>?military&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Attack</a> &middot; <a href="<?php echo $main; ?>?mercenary&amp;set=1&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Set Bounty On</a> &middot; <a href="<?php echo $main; ?>?mercenary&amp;view_prof=1&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">View Bounties On <?php echo $uera["empireC"]; ?></a> &middot; <a href="<?php echo $main; ?>?aid&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Aid</a> &middot; <a href="<?php echo $main; ?>?messages&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Message</a></div>
+							<?php if($GLOBALS["loggedin"]==true): ?><br>
+							<div align="center"><a href="<?php echo $GLOBALS["main"]; ?>?military&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Attack</a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?mercenary&amp;set=1&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Set Bounty On</a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?mercenary&amp;view_prof=1&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">View Bounties On <?php echo $GLOBALS["uera"]["empireC"]; ?></a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?aid&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Aid</a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Message</a></div>
 							<?php endif; ?>
 						</td>
 					</tr>
@@ -156,8 +156,8 @@
 
 				<td style="vertical-align:top:width:60%" valign="top">
 					<table class="empstatus" style="width:100%">
-					<tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">User's Profile:</th></tr>
-					<tr><td><div align="left"><?php echo $enemy["profile"]; ?></div></td></tr>
+					<tr><th colspan="2" class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="text-align:center">User's Profile:</th></tr>
+					<tr><td><div align="left"><?php echo $GLOBALS["enemy"]["profile"]; ?></div></td></tr>
 					</table>
 				</td>
 		</tr>

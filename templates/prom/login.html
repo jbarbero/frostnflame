@@ -1,7 +1,7 @@
 <table width="80%"><tr><td>
-<?php foreach($servers as $loop_login): ?>
+<?php foreach($GLOBALS["disp_servers"] as $loop_login): ?>
 	<center>
-	<form method="POST" action="<?php echo $config["sitedir"]; ?>?login&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $skinstr; ?>" name="lgin">
+	<form method="POST" action="<?php echo $GLOBALS["config"]["sitedir"]; ?>?login&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>" name="lgin">
 	<br>
 
 	<table class="inputtable">
@@ -22,8 +22,8 @@
 	<td colspan="2" style="text-align:right"><input type="submit" name="do_login" value="Login"></td>
 	</tr>
 	<tr><td colspan="2" style="text-align:center">
-	<a href="<?php echo $main; ?>?signup&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $skinstr; ?>"><b>Create&nbsp;Account</b></a>&nbsp;<b>&middot;</b>&nbsp;<a href="<?php echo $main; ?>?top10&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $skinstr; ?>"><b>Top&nbsp;100&nbsp;Players</b></a><br>
-	<a href="<?php echo $main; ?>?info&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $skinstr; ?>"><b>Game&nbsp;Info</b></a>
+	<a href="<?php echo $GLOBALS["main"]; ?>?signup&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Create&nbsp;Account</b></a>&nbsp;<b>&middot;</b>&nbsp;<a href="<?php echo $GLOBALS["main"]; ?>?top10&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Top&nbsp;100&nbsp;Players</b></a><br>
+	<a href="<?php echo $GLOBALS["main"]; ?>?info&amp;srv=<?php echo $loop_login["num"]; ?><?php echo $GLOBALS["skinstr"]; ?>"><b>Game&nbsp;Info</b></a>
 	</td></tr>
 	</table>
 
@@ -33,7 +33,7 @@
 	</center>
 
 	</td>
-    <?php /* cycle */ echo $c36++ % 2 == 0 ? "<td>" : "</tr><tr><td>"; ?>
+    <?php /* cycle */ echo $GLOBALS["c36"]++ % 2 == 0 ? "<td>" : "</tr><tr><td>"; ?>
 <?php endforeach; ?>
 </td><td></td>
 </tr>
@@ -42,7 +42,7 @@
 <br>
 <!-- <h3 align="center">News</h3> -->
 
-<?php foreach($login_news as $loop_news): ?>
+<?php foreach($GLOBALS["login_news"] as $loop_news): ?>
 	<table class="inputtable" width="80%" border="0">
 	<tr>
 		<th width="90%" style="text-align:left"><a href="<?php echo $loop_news["mlink"]; ?>"><?php echo $loop_news["author"]; ?></a></th>

@@ -7,9 +7,9 @@
     <th style="text-align: center">Scout/Diplomat 2</th>
 </tr>
 
-<?php foreach($clans as $loop_con): ?>
+<?php foreach($GLOBALS["clans"] as $loop_con): ?>
 <tr>
-    <td><a href="?clancrier&sclan=<?php echo $loop_con["num"]; ?><?php echo $authstr; ?>"><?php echo $loop_con["tag"]; ?></a></td>
+    <td><a href="?clancrier&sclan=<?php echo $loop_con["num"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_con["tag"]; ?></a></td>
     <td><?php echo $loop_con["name"]; ?></td>
     <td><?php echo $loop_con["founder"]; ?></td>
     <td><?php echo $loop_con["asst"]; ?></td>

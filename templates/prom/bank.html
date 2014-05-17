@@ -1,17 +1,17 @@
-<?php if($do_borrow != ""): ?>
-You have taken out a loan for $<?php echo gamefactor($borrow); ?>. 0.5% of the loan will be paid off each turn.<hr>
+<?php if($GLOBALS["do_borrow"] != ""): ?>
+You have taken out a loan for $<?php echo gamefactor($GLOBALS["borrow"]); ?>. 0.5% of the loan will be paid off each turn.<hr>
 <?php endif; ?>
 
-<?php if($do_repay != ""): ?>
-Thank you for your $<?php echo gamefactor($repay); ?> payment! It will be credited to your account immediately.<hr>
+<?php if($GLOBALS["do_repay"] != ""): ?>
+Thank you for your $<?php echo gamefactor($GLOBALS["repay"]); ?> payment! It will be credited to your account immediately.<hr>
 <?php endif; ?>
 
-<?php if($do_deposit != ""): ?>
-You have deposited $<?php echo gamefactor($deposit); ?> into your savings account.<hr>
+<?php if($GLOBALS["do_deposit"] != ""): ?>
+You have deposited $<?php echo gamefactor($GLOBALS["deposit"]); ?> into your savings account.<hr>
 <?php endif; ?>
 
-<?php if($do_withdraw!= ""): ?>
-You have withdrawn $<?php echo gamefactor($withdraw); ?> from your savings.<hr>
+<?php if($GLOBALS["do_withdraw"]!= ""): ?>
+You have withdrawn $<?php echo gamefactor($GLOBALS["withdraw"]); ?> from your savings.<hr>
 <?php endif; ?>
 
 <h2>Welcome to the Bank</h2>
@@ -19,22 +19,22 @@ You have withdrawn $<?php echo gamefactor($withdraw); ?> from your savings.<hr>
     <tr><td>
     <table class="empstatus" style="width:100%">
         <tr class="inputtable2"><th colspan="2" style="text-align:center">Savings</th></tr>
-        <tr><th>Interest APR:</th>   <td><?php echo $savrate; ?>%</td></tr>
-        <tr><th>Maximum Balance:</th><td>$<?php echo gamefactor($maxsave); ?></td></tr>
-        <tr><th>Current Balance:</th><td>$<?php echo gamefactor($savings); ?></td></tr>
+        <tr><th>Interest APR:</th>   <td><?php echo $GLOBALS["savrate"]; ?>%</td></tr>
+        <tr><th>Maximum Balance:</th><td>$<?php echo gamefactor($GLOBALS["maxsave"]); ?></td></tr>
+        <tr><th>Current Balance:</th><td>$<?php echo gamefactor($GLOBALS["savings"]); ?></td></tr>
     </table></td>
     <td style="width:10%"></td>
     <td>
     <table class="empstatus" style="width:100%">
         <tr class="inputtable2"><th colspan="2" style="text-align:center">Loan</th></tr>
-        <tr><th>Interest APR:</th>   <td><?php echo $loanrate; ?>%</td></tr>
-        <tr><th>Maximum Balance:</th><td>$<?php echo gamefactor($maxloan); ?></td></tr>
-        <tr><th>Current Balance:</th><td>$<?php echo gamefactor($loan); ?></td></tr>
+        <tr><th>Interest APR:</th>   <td><?php echo $GLOBALS["loanrate"]; ?>%</td></tr>
+        <tr><th>Maximum Balance:</th><td>$<?php echo gamefactor($GLOBALS["maxloan"]); ?></td></tr>
+        <tr><th>Current Balance:</th><td>$<?php echo gamefactor($GLOBALS["loan"]); ?></td></tr>
     </table></td></tr>
 </table><br>
 Interest is calculated per turn (52 turns = 1 APR year)<br>
 
-<?php if($protectnotice): ?>
+<?php if($GLOBALS["protectnotice"]): ?>
 <b>(Savings is NOT calculated during protection)</b><br>
 <?php endif; ?>
 
@@ -46,12 +46,12 @@ Interest is calculated per turn (52 turns = 1 APR year)<br>
     <th>Max</th>
     <th>Go!</th></tr>
 
-<?php if($lastweek): ?>
+<?php if($GLOBALS["lastweek"]): ?>
 <tr><td colspan="3">Loans unavailable during last week.</td></tr>
 <?php endif; ?>
 
-<?php if(!$lastweek): ?>
-<form method="post" action="?bank<?php echo $authstr; ?>">
+<?php if(!$GLOBALS["lastweek"]): ?>
+<form method="post" action="?bank<?php echo $GLOBALS["authstr"]; ?>">
     <tr>
         <th>Take out a Loan</th>
         <td>$<input type="text" name="borrow" size="9" value="0"></td>
@@ -61,7 +61,7 @@ Interest is calculated per turn (52 turns = 1 APR year)<br>
 </form>
 <?php endif; ?>
 
-<form method="post" action="?bank<?php echo $authstr; ?>">
+<form method="post" action="?bank<?php echo $GLOBALS["authstr"]; ?>">
     <tr>
         <th>Pay Toward Loan</th>
         <td>$<input type="text" name="repay" size="9" value="0"></td>
@@ -70,7 +70,7 @@ Interest is calculated per turn (52 turns = 1 APR year)<br>
     </tr>
 </form>
 
-<form method="post" action="?bank<?php echo $authstr; ?>">
+<form method="post" action="?bank<?php echo $GLOBALS["authstr"]; ?>">
     <tr>
         <th>Deposit into Savings</th>
         <td>$<input type="text" name="deposit" size="9" value="0"></td>
@@ -79,7 +79,7 @@ Interest is calculated per turn (52 turns = 1 APR year)<br>
     </tr>
 </form>
 
-<form method="post" action="?bank<?php echo $authstr; ?>">
+<form method="post" action="?bank<?php echo $GLOBALS["authstr"]; ?>">
     <tr>
         <th>Withdraw from Savings</th>
         <td>$<input type="text" name="withdraw" size="9" value="0"></td>

@@ -1,20 +1,20 @@
 <table class="inputtable">
-<tr><th colspan="5">Clan Rankings - By <?php echo $sortd; ?> (<?php echo $minm; ?> Member Minimum)</th></tr>
+<tr><th colspan="5">Clan Rankings - By <?php echo $GLOBALS["sortd"]; ?> (<?php echo $GLOBALS["minm"]; ?> Member Minimum)</th></tr>
 <tr class="inputtable2"><th>Clan Name</th>
     <th>Tag</th>
-    <th><a href="?clanstats&amp;sort_type=members<?php echo $authstr; ?>">Members</a></th>
-    <th><a href="?clanstats&amp;sort_type=avgnet<?php echo $authstr; ?>">Average Networth</a></th>
-    <th><a href="?clanstats&amp;sort_type=totalnet<?php echo $authstr; ?>">Total Networth</a></th></tr>
+    <th><a href="?clanstats&amp;sort_type=members<?php echo $GLOBALS["authstr"]; ?>">Members</a></th>
+    <th><a href="?clanstats&amp;sort_type=avgnet<?php echo $GLOBALS["authstr"]; ?>">Average Networth</a></th>
+    <th><a href="?clanstats&amp;sort_type=totalnet<?php echo $GLOBALS["authstr"]; ?>">Total Networth</a></th></tr>
 
-<?php foreach($clans as $loop_ran): ?>
+<?php foreach($GLOBALS["clans"] as $loop_ran): ?>
 <tr class="acenter">
     <td><?php echo $loop_ran["name"]; ?></td>
-    <td><a href="?clancrier&sclan=<?php echo $loop_ran["num"]; ?><?php echo $authstr; ?>"><?php echo $loop_ran["tag"]; ?></a></td>
+    <td><a href="?clancrier&sclan=<?php echo $loop_ran["num"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_ran["tag"]; ?></a></td>
     <td><?php echo $loop_ran["members"]; ?></td>
     <td>$<?php echo $loop_ran["avgnet"]; ?></td>
     <td>$<?php echo $loop_ran["totalnet"]; ?></td></tr>
 <?php endforeach; ?>
 </table>
 <br>
-<?php echo $notmade; ?> clans don't have enough members to make this list.<br>
-<?php echo $indeps; ?> <?php echo $uera["empire"]; ?>s are independent.<br>
+<?php echo $GLOBALS["notmade"]; ?> clans don't have enough members to make this list.<br>
+<?php echo $GLOBALS["indeps"]; ?> <?php echo $GLOBALS["uera"]["empire"]; ?>s are independent.<br>

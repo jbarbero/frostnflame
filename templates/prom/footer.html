@@ -1,36 +1,36 @@
 <br>
-<?php if($endbar == 'true'): ?>
+<?php if($GLOBALS["endbar"] == 'true'): ?>
 <table style="width:100%">
-<tr class="era<?php echo $era; ?>" style="font-size:medium" class="darklink">
-    <td class="acenter"><a href="<?php echo $main; ?>?messages<?php echo $authstr; ?>">
-    <?php if($newmail == 'true'): ?>
+<tr class="era<?php echo $GLOBALS["era"]; ?>" style="font-size:medium" class="darklink">
+    <td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <?php if($GLOBALS["newmail"] == 'true'): ?>
       <b>New Mail!</b>
     <?php else: ?>
       Mailbox
     <?php endif; ?>
     </a></td>
-    <td class="acenter">Turns: <?php echo $turns_new; ?>
-    <?php if($turnsleft > 0): ?>
-        <br><font size="1">Protection: <?php echo $turnsleft; ?></font>
+    <td class="acenter">Turns: <?php echo $GLOBALS["turns_new"]; ?>
+    <?php if($GLOBALS["turnsleft"] > 0): ?>
+        <br><font size="1">Protection: <?php echo $GLOBALS["turnsleft"]; ?></font>
     <?php endif; ?>
     </td>
-    <td class="acenter"><span class="<?php echo $cash_color; ?>">Gold: <?php echo gamefactor($cash_new); ?></span></td>
-    <td class="acenter"><span class="<?php echo $land_color; ?>">Land: <?php echo $land_new; ?></span></td>
-    <td class="acenter"><?php echo $runesname; ?>: <?php echo gamefactor($runes_new); ?></td>
-    <td class="acenter"><span class="<?php echo $food_color; ?>"><?php echo $foodname; ?>: <?php echo gamefactor($food_new); ?></span></td>
-    <td class="acenter"><span class="<?php echo $health_color; ?>">Health: <?php echo $health_new; ?>%</span></td>
-    <td class="acenter">Networth: $<?php echo $networth_new; ?></td></tr>
+    <td class="acenter"><span class="<?php echo $GLOBALS["cash_color"]; ?>">Gold: <?php echo gamefactor($GLOBALS["cash_new"]); ?></span></td>
+    <td class="acenter"><span class="<?php echo $GLOBALS["land_color"]; ?>">Land: <?php echo $GLOBALS["land_new"]; ?></span></td>
+    <td class="acenter"><?php echo $GLOBALS["runesname"]; ?>: <?php echo gamefactor($GLOBALS["runes_new"]); ?></td>
+    <td class="acenter"><span class="<?php echo $GLOBALS["food_color"]; ?>"><?php echo $GLOBALS["foodname"]; ?>: <?php echo gamefactor($GLOBALS["food_new"]); ?></span></td>
+    <td class="acenter"><span class="<?php echo $GLOBALS["health_color"]; ?>">Health: <?php echo $GLOBALS["health_new"]; ?>%</span></td>
+    <td class="acenter">Networth: $<?php echo $GLOBALS["networth_new"]; ?></td></tr>
 </table>
 
-<b>Frost And Flame <?php echo $gameversion; ?></b> - by 
+<b>Frost And Flame <?php echo $GLOBALS["gameversion"]; ?></b> - by 
 <a href="mailto:jbarbero+faf@gmail.com">Beatles</a>, 
 <a href="mailto:earthgoroundsun@gmail.com">Veranor</a>, 
 <a href="mailto:devari@gmail.com">Devari</a>, 
 <a href="mailto:nevadacow@nvbell.net">Nevadacow</a>
 <br>
-<a href="<?php echo $main; ?>?credits<?php echo $authstr; ?>">Full Credits</a> &middot;
-<a href="<?php echo $main; ?>?license<?php echo $authstr; ?>">License</a> &middot;
-<a href="<?php echo $main; ?>?source&amp;script=<?php echo $action; ?>">Source</a>
+<a href="<?php echo $GLOBALS["main"]; ?>?credits<?php echo $GLOBALS["authstr"]; ?>">Full Credits</a> &middot;
+<a href="<?php echo $GLOBALS["main"]; ?>?license<?php echo $GLOBALS["authstr"]; ?>">License</a> &middot;
+<a href="<?php echo $GLOBALS["main"]; ?>?source&amp;script=<?php echo $GLOBALS["action"]; ?>">Source</a>
 
 <?php endif; ?>
 

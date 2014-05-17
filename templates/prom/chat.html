@@ -22,14 +22,14 @@ var bufFull = 0;
 var msgs = 0;
 
 
-document.domain = '<?php echo $setdomain; ?>';
+document.domain = '<?php echo $GLOBALS["setdomain"]; ?>';
 
 function init() {
 	
 	uwrap = document.getElementById("uwrap");
 	maint = document.getElementById("maintable");
 	ucpt = document.getElementById("userctp");
-	self = <?php echo $unum; ?>;
+	self = <?php echo $GLOBALS["unum"]; ?>;
 	
 }
 
@@ -187,7 +187,7 @@ function constructMsg2(type, message, num, to) {
 function sockMsg(urlargs, num) {
 	var newname = 'spacer' + msgs;
 	msgs++;
-	var url = '<?php echo $posturl1; ?>&id=' + newname + '<?php echo $posturl2; ?>' + urlargs;
+	var url = '<?php echo $GLOBALS["posturl1"]; ?>&id=' + newname + '<?php echo $GLOBALS["posturl2"]; ?>' + urlargs;
 	var chp = document.getElementById("chatpost" + num);
 	chp.innerHTML = "<img src=\"" + url + "\" width=0 height=0 border=0 id=\"" + newname + "\" onload=\"clearDiv(" + num + ")\" />";
 }
@@ -202,20 +202,20 @@ function clearDiv(num) {
 
 </script>
 
-<h2>Welcome to the <?php echo $chatname; ?> Chat</h2>
+<h2>Welcome to the <?php echo $GLOBALS["chatname"]; ?> Chat</h2>
 
 <table width="80%" height="500" id="maintable">
 	<tr>
 		<td width="80%" height="400">
 			<div id="chatarea" style="width: 100%; height: 400; background-color: #000000; border: 1px dashed;">
-				<iframe src='<?php echo $srvurl; ?>' width=100% height=400 frameborder=NO style="border: 0"></iframe>
+				<iframe src='<?php echo $GLOBALS["srvurl"]; ?>' width=100% height=400 frameborder=NO style="border: 0"></iframe>
 			</div>
 		</td>
 		<td width="20%" valign="top" height="100">
 			<b><div id="userctp" style="display:inline">No users</div></b><br>
 			<div id="uwrap" style="width: 100%; border: 1px dashed;">
 			</div>
-			<?php if($chatmod): ?> · <a href="boot()">Boot</a><?php endif; ?>
+			<?php if($GLOBALS["chatmod"]): ?> · <a href="boot()">Boot</a><?php endif; ?>
 		</td>
 	</tr>
 	<tr>

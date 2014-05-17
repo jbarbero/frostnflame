@@ -1,14 +1,14 @@
-<?php if($state == 1): ?>
+<?php if($GLOBALS["state"] == 1): ?>
 	Your account has been marked for deletion. Thanks for playing!<br>
-	<a href="<?php echo $config["home"]; ?>">Home</a>
+	<a href="<?php echo $GLOBALS["config"]["home"]; ?>">Home</a>
 <?php endif; ?>
 
-<?php if($state == 2): ?>
+<?php if($GLOBALS["state"] == 2): ?>
 	The name you provided was incorrect. Your account remains active.
 <?php endif; ?>
 
-<?php if($state == 3): ?>
-	<form method="post" action="?delete<?php echo $authstr; ?>">
+<?php if($GLOBALS["state"] == 3): ?>
+	<form method="post" action="?delete<?php echo $GLOBALS["authstr"]; ?>">
 	<div>
 	In order to remove your account, you need to provide your real name as you entered it when you signed up.<br>
 	Real Name: <input type="text" name="delete_name" size="20"><br>

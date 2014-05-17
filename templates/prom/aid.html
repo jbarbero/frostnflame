@@ -32,17 +32,17 @@ function checkAll (check){
 
 
 <big><b>Sending Aid</b></big><br><br>
-Sending aid requires 2 turns and at least <?php echo gamefactor($convoy); ?> <?php echo $sendtroop["name"]; ?>.<br>
-We can send up to <?php echo $users["aidcred"]; ?> shipments.<br>
+Sending aid requires 2 turns and at least <?php echo commas(gamefactor($GLOBALS["convoy"])); ?> <?php echo $GLOBALS["sendtroop"]["name"]; ?>.<br>
+We can send up to <?php echo $GLOBALS["users"]["aidcred"]; ?> shipments.<br>
 We can send an additional shipment every hour.<br><br>
-<form method="post" action="?aid<?php echo $authstr; ?>" name="frmmsg">
+<form method="post" action="?aid<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
 <table class="inputtable">
 <tr>
-      <td colspan="2" class="aright">Send aid to which <?php echo $uera["empire"]; ?>?</td>
-    <td colspan="3"><input type="text" name="msg_dest_num"  value="<?php echo $prof_target; ?>" size="3" maxlength="4" onChange="updateMsgNames()">
+      <td colspan="2" class="aright">Send aid to which <?php echo $GLOBALS["uera"]["empire"]; ?>?</td>
+    <td colspan="3"><input type="text" name="msg_dest_num"  value="<?php echo $GLOBALS["prof_target"]; ?>" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-	<?php foreach($drop as $loop_dropsel): ?>
-		<option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($prof_target == $loop_dropsel["num"]): ?> selected <?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
+	<?php foreach($GLOBALS["warquery_array"] as $loop_dropsel): ?>
+		<option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($GLOBALS["prof_target"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
 	<?php endforeach; ?>
 </select>
 
@@ -54,16 +54,16 @@ We can send an additional shipment every hour.<br><br>
     <th class="aright">Send</th>
     <th class="aright">Max <input type="checkbox" name="maxall" onClick="checkAll(1)"></th></tr>
 <?php /*Print Row*/ ?>
-<?php foreach($row as $loop_i): ?>
+<?php foreach($GLOBALS["rows"] as $loop_i): ?>
  	<tr><td><?php echo $loop_i["name"]; ?></td>
 	    <td class="aright"><?php echo gamefactor($loop_i["owned"]); ?></td>
 	    <td class="aright"><?php echo gamefactor($loop_i["canSend"]); ?></td>
-	    <td class="aright"><input type="text" name="send[<?php echo $loop_i["type"]; ?>]" size="8" value="<?php if($loop_i["type"] == $sendtroop.handle): ?><?php echo gamefactor($convoy); ?><?php endif; ?>"></td>
+	    <td class="aright"><input type="text" name="send[<?php echo $loop_i["type"]; ?>]" size="8" value="<?php if($loop_i["type"] == $GLOBALS["sendtroop"].handle): ?><?php echo commas(gamefactor($GLOBALS["convoy"])); ?><?php endif; ?>"></td>
 	    <td class="aright"><input type="checkbox" name="max[<?php echo $loop_i["type"]; ?>]" value="<?php echo $loop_i["type"]; ?>"></td>
 	</tr>
 <?php endforeach; ?>
 
 <tr><td colspan="5" class="acenter"><input type="submit" name="do_sendaid" value="Send Assistance"></td></tr>
-<tr><td colspan="5" class="acenter">Condense turns?<input type="checkbox" name="hide_turns" <?php echo $cnd; ?>></td></tr>
+<tr><td colspan="5" class="acenter">Condense turns?<input type="checkbox" name="hide_turns" <?php echo $GLOBALS["cnd"]; ?>></td></tr>
 </table>
 </form>

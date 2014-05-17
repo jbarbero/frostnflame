@@ -1,14 +1,14 @@
 From this menu, we can join a clan to possibly offer some protection.<br>
-<form method="post" action="?clanjoin<?php echo $authstr; ?>">
+<form method="post" action="?clanjoin<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable">
 <tr><th colspan="2">Join a Clan</th></tr>
 <tr><td class="aright">Clan:</td>
 
-<?php if($numcs == 0): ?>
+<?php if($GLOBALS["numcs"] == 0): ?>
         <td colspan="2"><b>No Clans</b></td></tr>
 <?php else: ?>
 	<td><select name="join_num" size="1">
-	<?php foreach($ccs as $loop_list): ?>
+	<?php foreach($GLOBALS["ccs"] as $loop_list): ?>
 		<option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
 	<?php endforeach; ?>
 	</select></td></tr>
@@ -21,12 +21,12 @@ From this menu, we can join a clan to possibly offer some protection.<br>
 
 <tr><th colspan="2">Open Clans</th></tr>
 <tr><td class="aright">Clan:</td>
-<?php if($numocs == 0): ?>
+<?php if($GLOBALS["numocs"] == 0): ?>
         <td colspan="2"><b>No open Clans</b></td></tr>
 <?php else: ?>
 	<td><select name="signup_clan" size="1">
 		<option value="0">No Clan Selected</option>
-	<?php foreach($ocs as $loop_list): ?>
+	<?php foreach($GLOBALS["ocs"] as $loop_list): ?>
 	        <option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
 	<?php endforeach; ?>
 	</select></td></tr>
@@ -37,6 +37,6 @@ name="do_joinopenclan" value="Join Clan"></td></tr>
 </table>
 </form>
 <br><br>
-<a href="?clanstats&amp;sort_type=avgnet<?=$authstr?>">Top Clans by Average Networth</a><br>
-<a href="?clanstats&amp;sort_type=totalnet<?=$authstr?>">Top Clans by Total Networth</a><br>
-<a href="?clanstats&amp;sort_type=members<?=$authstr?>">Top Clans by Membership</a><br>
+<a href="?clanstats&amp;sort_type=avgnet<?=$GLOBALS["authstr"]?>">Top Clans by Average Networth</a><br>
+<a href="?clanstats&amp;sort_type=totalnet<?=$GLOBALS["authstr"]?>">Top Clans by Total Networth</a><br>
+<a href="?clanstats&amp;sort_type=members<?=$GLOBALS["authstr"]?>">Top Clans by Membership</a><br>

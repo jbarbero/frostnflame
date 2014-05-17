@@ -1,9 +1,9 @@
-<?php if($do_deposit != ""): ?>
-You have deposited <?php echo $deposit; ?> turns into your turn bank.<hr>
+<?php if($GLOBALS["do_deposit"] != ""): ?>
+You have deposited <?php echo $GLOBALS["deposit"]; ?> turns into your turn bank.<hr>
 <?php endif; ?>
 
-<?php if($do_withdraw!= ""): ?>
-You have withdrawn <?php echo $withdraw; ?> turns from your turn bank.<hr>
+<?php if($GLOBALS["do_withdraw"]!= ""): ?>
+You have withdrawn <?php echo $GLOBALS["withdraw"]; ?> turns from your turn bank.<hr>
 <?php endif; ?>
 
 <h2>Welcome to the Turn Bank</h2>
@@ -11,7 +11,7 @@ You have withdrawn <?php echo $withdraw; ?> turns from your turn bank.<hr>
     <tr><td>
     <table class="empstatus" style="width:100%">
         <tr class="inputtable"><th colspan="2" style="text-align:center">Turns Banked</th></tr>
-        <tr><th>Current Turn Balance:</th><td><?php echo $turnbank; ?>/<?php echo $maxbank; ?></td></tr>
+        <tr><th>Current Turn Balance:</th><td><?php echo $GLOBALS["turnbank"]; ?>/<?php echo $GLOBALS["maxbank"]; ?></td></tr>
     </table></td>
     <td style="width:10%"></td>
     </tr>
@@ -23,7 +23,7 @@ You have withdrawn <?php echo $withdraw; ?> turns from your turn bank.<hr>
     <th>Max</th>
     <th>Go!</th></tr>
 <!-- we don't allow turn deposits
-<form method="post" action="?turnbank<?php echo $authstr; ?>">
+<form method="post" action="?turnbank<?php echo $GLOBALS["authstr"]; ?>">
     <tr>
         <th>Deposit into Turn Bank</th>
         <td>$<input type="text" name="deposit" size="9" value="0"></td>
@@ -32,7 +32,7 @@ You have withdrawn <?php echo $withdraw; ?> turns from your turn bank.<hr>
     </tr>
 </form>
 -->
-<form method="post" action="?turnbank<?php echo $authstr; ?>">
+<form method="post" action="?turnbank<?php echo $GLOBALS["authstr"]; ?>">
     <tr>
         <th>Withdraw Turns</th>
         <td><input type="text" name="withdraw" size="9" value="0"></td>

@@ -1,13 +1,13 @@
-<h1>The Map by <?php echo $type; ?></h1>
-<a href="?<?php echo $action; ?>&amp;by=1<?php echo $authstr; ?>">By Networth</a> &middot;
-<a href="?<?php echo $action; ?>&amp;by=2<?php echo $authstr; ?>">By Land</a>
+<h1>The Map by <?php echo $GLOBALS["type"]; ?></h1>
+<a href="?<?php echo $GLOBALS["action"]; ?>&amp;by=1<?php echo $GLOBALS["authstr"]; ?>">By Networth</a> &middot;
+<a href="?<?php echo $GLOBALS["action"]; ?>&amp;by=2<?php echo $GLOBALS["authstr"]; ?>">By Land</a>
 <br>
 
-<table class="inputtable" width=<?php echo $width; ?> height=<?php echo $height; ?>>
+<table class="inputtable" width=<?php echo $GLOBALS["width"]; ?> height=<?php echo $GLOBALS["height"]; ?>>
 <tr><th>Map</th></tr>
 <tr><td width=100% height=100%>
-<div style="position: relative; width:<?php echo $width; ?>px; height: <?php echo $height; ?>px; border: 1px; background-color: #777700">
-<?php echo $mapbuffer; ?>
+<div style="position: relative; width:<?php echo $GLOBALS["width"]; ?>px; height: <?php echo $GLOBALS["height"]; ?>px; border: 1px; background-color: #777700">
+<?php echo $GLOBALS["mapbuffer"]; ?>
 </div>
 </td></tr>
 <tr><th>&nbsp;</th></tr>

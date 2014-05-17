@@ -1,40 +1,40 @@
 <table style="width:75%">
-<tr class="era<?php echo $user["era"]; ?>">
-	<th colspan="3"><?php echo $user["empire"]; ?> <a class=proflink href=?profiles&num=<?php echo $user["num"]; ?><?php echo $authstr; ?>>(#<?php echo $user["num"]; ?>)</a></th>
+<tr class="era<?php echo $GLOBALS["user"]["era"]; ?>">
+	<th colspan="3"><?php echo $GLOBALS["user"]["empire"]; ?> <a class=proflink href=?profiles&num=<?php echo $GLOBALS["user"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["user"]["num"]; ?>)</a></th>
 </tr>				   
 
 <tr>
 	<td valign="top" style="width:40%">
 	<table class="empstatus" style="width:100%">
-		<tr><th>Turns</th><td><?php echo $user["turns"]; ?> (max <?php echo $config["maxturns"]; ?>)</td></tr>		
-		<tr><th>Turns Stored</th><td><?php echo $user["turnsstored"]; ?> (max <?php echo $config["maxstoredturns"]; ?>)</td></tr>
-		<tr><th>Rank</th><td><span class="<?php echo $rank_color; ?>">#<?php echo $user["rank"]; ?></span></td></tr>
-		<tr><th><?php echo $era["peasantsC"]; ?></th><td><?php echo commas($user["peasants"]); ?></td></tr>
-		<tr><th>Land Acres</th><td><span class="<?php echo $land_color; ?>"><?php echo commas($user["land"]); ?></span></td></tr>
-		<tr><th>Money</th><td>$<?php echo gamefactor($user["cash"]); ?></td></tr>
-		<tr><th><?php echo $era["food"]; ?></th><td><?php echo gamefactor($user["food"]); ?></td></tr>
-		<tr><th><?php echo $era["runes"]; ?></th><td><?php echo gamefactor($user["runes"]); ?></td></tr>
-		<tr><th>Networth</th><td>$<?php echo commas($user["networth"]); ?></td></tr>
-		<!--<tr><th>Experience</th><td><?php echo commas($user["expdisp"]); ?></td></tr>-->
+		<tr><th>Turns</th><td><?php echo $GLOBALS["user"]["turns"]; ?> (max <?php echo $GLOBALS["config"]["maxturns"]; ?>)</td></tr>		
+		<tr><th>Turns Stored</th><td><?php echo $GLOBALS["user"]["turnsstored"]; ?> (max <?php echo $GLOBALS["config"]["maxstoredturns"]; ?>)</td></tr>
+		<tr><th>Rank</th><td><span class="<?php echo $GLOBALS["rank_color"]; ?>">#<?php echo $GLOBALS["user"]["rank"]; ?></span></td></tr>
+		<tr><th><?php echo $GLOBALS["era"]["peasantsC"]; ?></th><td><?php echo commas($GLOBALS["user"]["peasants"]); ?></td></tr>
+		<tr><th>Land Acres</th><td><span class="<?php echo $GLOBALS["land_color"]; ?>"><?php echo commas($GLOBALS["user"]["land"]); ?></span></td></tr>
+		<tr><th>Money</th><td>$<?php echo gamefactor($GLOBALS["user"]["cash"]); ?></td></tr>
+		<tr><th><?php echo $GLOBALS["era"]["food"]; ?></th><td><?php echo gamefactor($GLOBALS["user"]["food"]); ?></td></tr>
+		<tr><th><?php echo $GLOBALS["era"]["runes"]; ?></th><td><?php echo gamefactor($GLOBALS["user"]["runes"]); ?></td></tr>
+		<tr><th>Networth</th><td>$<?php echo commas($GLOBALS["user"]["networth"]); ?></td></tr>
+		<!--<tr><th>Experience</th><td><?php echo commas($GLOBALS["user"]["expdisp"]); ?></td></tr>-->
 	</table></td>
 
 	<td style="width:20%"></td>
 
 	<td style="width:40%">
 	<table class="empstatus" style="width:100%">
-		<tr><th>Era</th><td><?php echo $era["name"]; ?></td></tr>
-		<tr><th>Race</th><td><?php echo $race["name"]; ?></td></tr>
-		<tr><th>Health</th><td><span class="<?php echo $health_color; ?>"><?php echo $user["health"]; ?>%</span></td></tr>
-		<tr><th>Tax Rate</th><td><?php echo $user["tax"]; ?>%</td></tr><?
-		<?php foreach($usertrps as $loop_i): ?>
+		<tr><th>Era</th><td><?php echo $GLOBALS["era"]["name"]; ?></td></tr>
+		<tr><th>Race</th><td><?php echo $GLOBALS["race"]["name"]; ?></td></tr>
+		<tr><th>Health</th><td><span class="<?php echo $GLOBALS["health_color"]; ?>"><?php echo $GLOBALS["user"]["health"]; ?>%</span></td></tr>
+		<tr><th>Tax Rate</th><td><?php echo $GLOBALS["user"]["tax"]; ?>%</td></tr><?
+		<?php foreach($GLOBALS["usertrps"] as $loop_i): ?>
 			<tr><th><?php echo $loop_i["name"]; ?></th><td><?php echo gamefactor($loop_i["amt"]); ?></td></tr>
 		<?php endforeach; ?>
-		<tr><th><?php echo $era["wizards"]; ?></th><td><?php echo gamefactor($user["wizards"]); ?></td></tr>
-		<?php if($esp): ?><tr><td colspan="3" style="text-align: center"><?php echo $possible_spells; ?></td></tr><?php endif; ?>
+		<tr><th><?php echo $GLOBALS["era"]["wizards"]; ?></th><td><?php echo gamefactor($GLOBALS["user"]["wizards"]); ?></td></tr>
+		<?php if($GLOBALS["esp"]): ?><tr><td colspan="3" style="text-align: center"><?php echo $GLOBALS["possible_spells"]; ?></td></tr><?php endif; ?>
 	</table></td>
 </tr>  
 
-<tr class="era<?php echo $user["era"]; ?>">
+<tr class="era<?php echo $GLOBALS["user"]["era"]; ?>">
 	<th colspan="3">&nbsp;</th>
 </tr>
 </table>

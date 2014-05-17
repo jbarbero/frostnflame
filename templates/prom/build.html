@@ -1,16 +1,16 @@
-<?php if($do_build != ""): ?>
-You built <span class="cgood"><?php echo commas($totalbuild); ?></span> total structures in <span class="cwarn"><?php echo commas($turns); ?></span> turns and spent <span class="cgood">$<?php echo commas(gamefactor($totalspent)); ?></span>.<hr>
+<?php if($GLOBALS["do_build"] != ""): ?>
+You built <span class="cgood"><?php echo commas($GLOBALS["totalbuild"]); ?></span> total structures in <span class="cwarn"><?php echo commas($GLOBALS["turns"]); ?></span> turns and spent <span class="cgood">$<?php echo commas(gamefactor($GLOBALS["totalspent"])); ?></span>.<hr>
 <?php endif; ?>
 
 <big><b>Build Structures</b></big><br><br>
-Each structure consumes one acre of free land and costs approximately $<?php echo commas(gamefactor($buildcost)); ?> to build.<br>
-You can build <?php echo commas($buildrate); ?> structures per turn.<br>
-With our resources, we can build <span class="cgood"><?php echo commas($canbuild); ?></span> structures.<br><br>
-<form method="post" action="?build<?php echo $authstr; ?>" name="build">
+Each structure consumes one acre of free land and costs approximately $<?php echo commas(gamefactor($GLOBALS["buildcost"])); ?> to build.<br>
+You can build <?php echo commas($GLOBALS["buildrate"]); ?> structures per turn.<br>
+With our resources, we can build <span class="cgood"><?php echo commas($GLOBALS["canbuild"]); ?></span> structures.<br><br>
+<form method="post" action="?build<?php echo $GLOBALS["authstr"]; ?>" name="build">
 <table class="inputtable">
 <?php /* Header */ ?>
-<tr><td colspan="2" class="aleft"><a href='?build<?php echo $authstr; ?>'>Build</a></td>
-    <td colspan="3" class="aright"><a href='?demolish<?php echo $authstr; ?>'>Demolish</a></td></tr>
+<tr><td colspan="2" class="aleft"><a href='?build<?php echo $GLOBALS["authstr"]; ?>'>Build</a></td>
+    <td colspan="3" class="aright"><a href='?demolish<?php echo $GLOBALS["authstr"]; ?>'>Demolish</a></td></tr>
 <tr class="inputtable2"><th class="aleft">Structure</th>
     <th class="aright">We Own</th>
     <th class="aright">We Can Build</th>
@@ -18,7 +18,7 @@ With our resources, we can build <span class="cgood"><?php echo commas($canbuild
     <th class="aright">Max</th></tr>
 
     <?php /* Printing row stuffs */ ?>
-	<?php foreach($dbuild as $loop_i): ?>
+	<?php foreach($GLOBALS["dbuild"] as $loop_i): ?>
 		<tr><td><?php echo $loop_i["name"]; ?></td>
 	    <td class="aright"><?php echo $loop_i["userAmount"]; ?></td>
 	    <td class="aright"><?php echo $loop_i["canBuild"]; ?></td>
@@ -28,10 +28,10 @@ With our resources, we can build <span class="cgood"><?php echo commas($canbuild
     <?php /* Footer */ ?>
 
  <tr><td>Unused Land</td>
-     <td class="aright"><?php echo commas($users[freeland]); ?></td>
+     <td class="aright"><?php echo commas($GLOBALS["users"][freeland]); ?></td>
      <td colspan="2"></td></tr>
  <tr><td colspan="5" class="acenter"><input type="submit" name="do_build" value="Begin Construction"></td></tr>
- <tr><td colspan="5" class="acenter">Condense turns?<input type="checkbox" name="hide_turns"<?php echo $cnd; ?>></td></tr>
+ <tr><td colspan="5" class="acenter">Condense turns?<input type="checkbox" name="hide_turns"<?php echo $GLOBALS["cnd"]; ?>></td></tr>
  </table>
  </form>
  <br>

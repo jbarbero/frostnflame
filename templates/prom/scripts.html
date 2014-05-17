@@ -28,8 +28,8 @@ window.onload = enableOnce;
 
 </script>
 
-<?php if($mode == 'default'): ?>
-<?php foreach($codes as $loop_code): ?>
+<?php if($GLOBALS["mode"] == 'default'): ?>
+<?php foreach($GLOBALS["codes"] as $loop_code): ?>
    <table class="inputtable" width="80%">
       <tr>
          <th colspan="2"><?php echo $loop_code["title"]; ?></th>
@@ -51,7 +51,7 @@ window.onload = enableOnce;
 
 
 <br>
-<form method="post" name="addscript" action="?script<?php echo $authstr; ?>">
+<form method="post" name="addscript" action="?script<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable">
 	<tr>
 		<th colspan="3">Write a Script</th>
@@ -75,9 +75,9 @@ window.onload = enableOnce;
 		<td>
 			<b>When to run:</b><br>
 			<b>Date:</b> (MONTH/DAY)<br>
-			<input type="text" length="9" value="<?php echo $today; ?>" name="odate"><br>
+			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="odate"><br>
 			<b>Time:</b> (HOUR: MINUTE)<br>
-			<input type="text" length="9" value="<?php echo $today; ?>" name="otime">
+			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="otime">
 			<br>
 		</td>
 	</tr>
@@ -98,9 +98,9 @@ window.onload = enableOnce;
 			<br>
 			<b>Starting from:</b><br>
 			<b>Date:</b> (MONTH/DAY)<br>
-			<input type="text" length="9" value="<?php echo $today; ?>" name="pdate"><br>
+			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="pdate"><br>
 			<b>Time:</b> (HOUR: MINUTE)<br>
-			<input type="text" length="9" value="<?php echo $today; ?>" name="ptime">
+			<input type="text" length="9" value="<?php echo $GLOBALS["today"]; ?>" name="ptime">
 			<br>
 		</td>
 	</tr>

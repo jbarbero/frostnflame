@@ -8,27 +8,27 @@
 
 <h1>Heroes of Old</h1>
 <br>
-<b><?php echo $who; ?></b>
+<b><?php echo $GLOBALS["who"]; ?></b>
 <br>
 
-<form method="post" action="<?php echo $main; ?>?hero<?php echo $authstr; ?>">
+<form method="post" action="<?php echo $GLOBALS["main"]; ?>?hero<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable hero">
 <tr><th colspan="3"><hr width="400">Acquire a Hero<hr width="400"></th></tr>
 <tr><th>War Heroes</th><th>Peace Heroes</th><th>Special Heroes</th></tr>
 <tr>
-    <td><input type="submit" name="warh1" value="<?php echo $war1; ?>"></td>
-    <td><input type="submit" name="peaceh1" value="<?php echo $peace1; ?>"></td>
-    <td><input type="submit" name="specialh1" value="<?php echo $special1; ?>"></td>
+    <td><input type="submit" name="warh1" value="<?php echo $GLOBALS["war1"]; ?>"></td>
+    <td><input type="submit" name="peaceh1" value="<?php echo $GLOBALS["peace1"]; ?>"></td>
+    <td><input type="submit" name="specialh1" value="<?php echo $GLOBALS["special1"]; ?>"></td>
 </tr>
 <tr>
-    <td><input type="submit" name="warh2" value="<?php echo $war2; ?>"></td>
-    <td><input type="submit" name="peaceh2" value="<?php echo $peace2; ?>"></td>
-    <td><input type="submit" name="specialh2" value="<?php echo $special2; ?>"></td>
+    <td><input type="submit" name="warh2" value="<?php echo $GLOBALS["war2"]; ?>"></td>
+    <td><input type="submit" name="peaceh2" value="<?php echo $GLOBALS["peace2"]; ?>"></td>
+    <td><input type="submit" name="specialh2" value="<?php echo $GLOBALS["special2"]; ?>"></td>
 </tr>
 <tr>
-    <td><input type="submit" name="warh3" value="<?php echo $war3; ?>"></td>
-    <td><input type="submit" name="peaceh3" value="<?php echo $peace3; ?>"></td>
-    <td><input type="submit" name="specialh3" value="<?php echo $special3; ?>"></td>
+    <td><input type="submit" name="warh3" value="<?php echo $GLOBALS["war3"]; ?>"></td>
+    <td><input type="submit" name="peaceh3" value="<?php echo $GLOBALS["peace3"]; ?>"></td>
+    <td><input type="submit" name="specialh3" value="<?php echo $GLOBALS["special3"]; ?>"></td>
 </tr>
 <tr><th colspan="3"><hr width="400"></th></tr>
 </table>
@@ -38,19 +38,19 @@
 <table class="inputtable" width="600">
 <tr><th colspan="2"><hr width="600">Hero Abilities<hr width="600"></th></tr>
 <tr><th colspan="2">War Heroes</th></tr>
-<tr><th><?php echo $war1; ?></th><td><?php echo $ward1; ?></td></tr>
-<tr><th><?php echo $war2; ?></th><td><?php echo $ward2; ?></td></tr>
-<tr><th><?php echo $war3; ?></th><td><?php echo $ward3; ?></td></tr>
+<tr><th><?php echo $GLOBALS["war1"]; ?></th><td><?php echo $GLOBALS["ward1"]; ?></td></tr>
+<tr><th><?php echo $GLOBALS["war2"]; ?></th><td><?php echo $GLOBALS["ward2"]; ?></td></tr>
+<tr><th><?php echo $GLOBALS["war3"]; ?></th><td><?php echo $GLOBALS["ward3"]; ?></td></tr>
 
 <tr><th colspan="2">Peace Heroes</th></tr>
-<tr><th><?php echo $peace1; ?></th><td><?php echo $peaced1; ?></td></tr>
-<tr><th><?php echo $peace2; ?></th><td><?php echo $peaced2; ?></td></tr>
-<tr><th><?php echo $peace3; ?></th><td><?php echo $peaced3; ?></td></tr>
+<tr><th><?php echo $GLOBALS["peace1"]; ?></th><td><?php echo $GLOBALS["peaced1"]; ?></td></tr>
+<tr><th><?php echo $GLOBALS["peace2"]; ?></th><td><?php echo $GLOBALS["peaced2"]; ?></td></tr>
+<tr><th><?php echo $GLOBALS["peace3"]; ?></th><td><?php echo $GLOBALS["peaced3"]; ?></td></tr>
 
 <tr><th colspan="2">Special Heroes</th></tr>
-<tr><th><?php echo $special1; ?></th><td><?php echo $speciald1; ?></td></tr>
-<tr><th><?php echo $special2; ?></th><td><?php echo $speciald2; ?></td></tr>
-<tr><th><?php echo $special3; ?></th><td><?php echo $speciald3; ?></td></tr>
+<tr><th><?php echo $GLOBALS["special1"]; ?></th><td><?php echo $GLOBALS["speciald1"]; ?></td></tr>
+<tr><th><?php echo $GLOBALS["special2"]; ?></th><td><?php echo $GLOBALS["speciald2"]; ?></td></tr>
+<tr><th><?php echo $GLOBALS["special3"]; ?></th><td><?php echo $GLOBALS["speciald3"]; ?></td></tr>
 
 <tr><th colspan="3"><hr width="600"></th></tr>
 </table>
@@ -60,19 +60,19 @@
 <table class="inputtable" width="600">
 <tr><th colspan="3"><hr width="600">Requirements<hr width="600"></th></tr>
 <tr><td>
-You can get a hero to aid your <?php echo $uera["empire"]; ?> any time you like. However, you can
+You can get a hero to aid your <?php echo $GLOBALS["uera"]["empire"]; ?> any time you like. However, you can
 have only one of each type of hero, Warrior, Peaceful, and Special. Also,
 getting a hero destroyes about 40-50% of all your property, including
 troops and land. That said, Heroes are well worth the cost of securing them.
 They do not take your property, not belonging to you, and they bestow
-amazing powers and abilities on your <?php echo $uera["empire"]; ?>. You can't get a hero unless
+amazing powers and abilities on your <?php echo $GLOBALS["uera"]["empire"]; ?>. You can't get a hero unless
 you have demonstrated some prowess (see below), and you can't get a hero until
 you have used your first 1000 turns.<br>
 <br>
 <b>Hero Combinations:</b><br>
-If you are strong on attacking, <?php echo $war1; ?>-<?php echo $peace1; ?>-<?php echo $special1; ?> is a good choice.<br>
-If you concentrate on food and wealth, <?php echo $war2; ?>-<?php echo $peace1; ?>/<?php echo $peace3; ?>-<?php echo $special2; ?> is worth it, depending on whether you are interested in food or wealth.<br>
-If you really like <?php echo $uera["wizards"]; ?>, we would suggest <?php echo $war3; ?>-<?php echo $peace2; ?>-<?php echo $special3; ?>.<br>
+If you are strong on attacking, <?php echo $GLOBALS["war1"]; ?>-<?php echo $GLOBALS["peace1"]; ?>-<?php echo $GLOBALS["special1"]; ?> is a good choice.<br>
+If you concentrate on food and wealth, <?php echo $GLOBALS["war2"]; ?>-<?php echo $GLOBALS["peace1"]; ?>/<?php echo $GLOBALS["peace3"]; ?>-<?php echo $GLOBALS["special2"]; ?> is worth it, depending on whether you are interested in food or wealth.<br>
+If you really like <?php echo $GLOBALS["uera"]["wizards"]; ?>, we would suggest <?php echo $GLOBALS["war3"]; ?>-<?php echo $GLOBALS["peace2"]; ?>-<?php echo $GLOBALS["special3"]; ?>.<br>
 Of course, mix and match according to your taste - that is the point!
 <br>
 </td></tr>
@@ -80,12 +80,12 @@ Of course, mix and match according to your taste - that is the point!
 <br>
 Currently, getting a hero requires:
 <ul>
-<?php foreach($req_display as $loop_i): ?>
+<?php foreach($GLOBALS["req_display"] as $loop_i): ?>
 	<li><span class="<?php if($loop_i["ok"] == 1): ?>cgood<?php else: ?>cwarn<?php endif; ?>"><b><?php echo $loop_i["reqd"]; ?></b> <?php echo $loop_i["name"]; ?></span></li>
 <?php endforeach; ?>
 
 </ul>
-<?php if($req_okall == 1): ?>
+<?php if($GLOBALS["req_okall"] == 1): ?>
 	<span class='cgood'>You <i>can</i> get a hero at this time.</span>
 <?php else: ?>
 	<span class='cwarn'>You <i>can't</i> get a hero at this time.</span>

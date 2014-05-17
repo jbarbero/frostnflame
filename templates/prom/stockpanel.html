@@ -1,9 +1,9 @@
-<h1><?php echo $config["servname"]; ?> Stock Manipulator</h1>
+<h1><?php echo $GLOBALS["config"]["servname"]; ?> Stock Manipulator</h1>
 <br>
 
-<?php if($trans != ''): ?>
+<?php if($GLOBALS["trans"] != ''): ?>
 	<hr>
-	<?php echo $trans; ?>
+	<?php echo $GLOBALS["trans"]; ?>
 	<hr>
 	<br>
 <?php endif; ?>
@@ -11,12 +11,12 @@
 <table class="inputtable stocks" width="50" border="1" cellSpacing="0" bordercolor="#000000">
 <tr>
 <td></td>
-<?php foreach($stocknames as $loop_names): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_names): ?>
 	<th width="25"><?php echo $loop_names["symbol"]; ?></th>
 <?php endforeach; ?>
 </tr><tr>
 <td><p align='right'><img src="img/scale.jpg" height="400" width="36"></p></td>
-<?php foreach($stocknames as $loop_index): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_index): ?>
 	<td>
 	<img src="img/redfade.gif" width="100%" height="<?php echo $loop_index["bprice"]; ?>" /><img src="spacer.gif" height="0" width="0" /><br>
 	<img src="img/greenfade.gif" width="100%" height="<?php echo $loop_index["price"]; ?>" /><br>
@@ -25,23 +25,23 @@
 </tr><tr>
 
 <td class="stbl">Boost:</td>
-<?php foreach($stocknames as $loop_price): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_price): ?>
 	<td class="stbl">
-	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $loop_price["id"]; ?>&amp;boost=1">/\</a>
+	<a href="?stockpanel<?php echo $GLOBALS["authstr"]; ?>&amp;change=<?php echo $loop_price["id"]; ?>&amp;boost=1">/\</a>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Reduce:</td>
-<?php foreach($stocknames as $loop_price): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_price): ?>
 	<td class="stbl">
-	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $loop_price["id"]; ?>&amp;reduce=1">\/</a>
+	<a href="?stockpanel<?php echo $GLOBALS["authstr"]; ?>&amp;change=<?php echo $loop_price["id"]; ?>&amp;reduce=1">\/</a>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Change:</td>
-<?php foreach($stocknames as $loop_price): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_price): ?>
 	<td class="stbl">
 	<?php echo cnum($loop_price["boost"]); ?>
 	</td>
@@ -49,7 +49,7 @@
 </tr><tr>
 
 <td class="stbl">Price:</td>
-<?php foreach($stocknames as $loop_price): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_price): ?>
 	<td class="stbl">
 	$<?php echo $loop_price["lprice"]; ?>
 	</td>
@@ -57,7 +57,7 @@
 </tr><tr>
 
 <td class="stbl">Yesterday:</td>
-<?php foreach($stocknames as $loop_price): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_price): ?>
 	<td class="stbl">
     <?php echo cnum($loop_price["lprice"] - $loop_price["days_1"]); ?>
 	</td>
@@ -65,7 +65,7 @@
 </tr><tr>
 
 <td class="stbl"><nobr>2 days ago:</nobr></td>
-<?php foreach($stocknames as $loop_price): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_price): ?>
 	<td class="stbl">
     <?php echo cnum($loop_price["days_1"] - $loop_price["days_2"]); ?>
 	</td>
@@ -73,7 +73,7 @@
 </tr>
 
 <td class="stbl"><nobr>3 days ago:</nobr></td>
-<?php foreach($stocknames as $loop_price): ?>
+<?php foreach($GLOBALS["stocknames"] as $loop_price): ?>
 	<td class="stbl">
     <?php echo cnum($loop_price["days_2"] - $loop_price["days_3"]); ?>
 	</td>

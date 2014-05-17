@@ -1,17 +1,17 @@
-<?php if($printmessage != ''): ?>
-<?php echo $printmessage; ?><br>
+<?php if($GLOBALS["printmessage"] != ''): ?>
+<?php echo $GLOBALS["printmessage"]; ?><br>
 <hr>
 <?php endif; ?>
 
 <table style="width:100%">
 <tr>
     <td class="acenter" style="width:30%">
-	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>" id="raceselform">
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>" id="raceselform">
 	<table class="inputtable">
 	<tr><th>Change Race</th></tr>
-	<tr><td class="acenter">Requires <?php echo $initturns; ?> turns,<br><?php echo $land*3; ?> <?php echo $wizards; ?>, and<br>at least 75% health</td></tr>
-	<?php foreach($races as $loop_racesel): ?>
-		<tr><td><label><input type="radio" name="new_race" value="<?php echo $loop_racesel["id"]; ?>"<?php if($loop_racesel["id"] == $users["race"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_racesel["name"]; ?></label></td></tr>
+	<tr><td class="acenter">Requires <?php echo $GLOBALS["initturns"]; ?> turns,<br><?php echo $GLOBALS["land"]*3; ?> <?php echo $GLOBALS["wizards"]; ?>, and<br>at least 75% health</td></tr>
+	<?php foreach($GLOBALS["races"] as $loop_racesel): ?>
+		<tr><td><label><input type="radio" name="new_race" value="<?php echo $loop_racesel["id"]; ?>"<?php if($loop_racesel["id"] == $GLOBALS["users"]["race"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_racesel["name"]; ?></label></td></tr>
 	<?php endforeach; ?>
 	<tr><td class="acenter"><label><input type="checkbox" name="yes_polymorph" value="1">Yes, I really<br>want to change race!</td></tr>
 	<tr><th><input type="submit" name="do_polymorph" value="Change Race"></th></tr>
@@ -20,39 +20,39 @@
 
     </td>
     <td class="acenter" style="width:30%">
-	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Tax</th></tr>
 	<tr><td>Tax Rate:</td>
-	    <td class="aright"><input type="text" name="new_tax" size="3" value="<?php echo $tax; ?>">%</td></tr>
+	    <td class="aright"><input type="text" name="new_tax" size="3" value="<?php echo $GLOBALS["tax"]; ?>">%</td></tr>
 	<tr><th colspan="2"><input type="submit" name="do_changetax" value="Change Tax Rate"></th></tr>
 	</table>
 	</form>
 
-	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Industry Settings</th></tr>
-	<?php foreach($troops as $loop_ind): ?>
-	<tr><td><?php echo $troops[ind]; ?></td>
-	    <td class="aright"><input type="text" name="ind_troop<?php echo $numbers[ind]; ?>" size="3" value="<?php echo $uind[ind]; ?>">%</td></tr>
+	<?php foreach($GLOBALS["troops"] as $loop_ind): ?>
+	<tr><td><?php echo $GLOBALS["troops"][ind]; ?></td>
+	    <td class="aright"><input type="text" name="ind_troop<?php echo $GLOBALS["numbers"][ind]; ?>" size="3" value="<?php echo $GLOBALS["uind"][ind]; ?>">%</td></tr>
 	<?php endforeach; ?>
 	<tr><th colspan="2"><input type="submit" name="do_changeindustry" value="Update Training"></th></tr>
 	</table>
 	</form>
 
-	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable">
 	<tr><th>Color Scheme</th></tr>
-	<?php foreach($styles as $loop_stylesel): ?>
-		<tr><td><label><input type="radio" name="color_setting" value="<?php echo $loop_stylesel["id"]; ?>"<?php if($loop_stylesel["id"] == $users["style"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_stylesel["name"]; ?></label></td></tr>
+	<?php foreach($GLOBALS["styles"] as $loop_stylesel): ?>
+		<tr><td><label><input type="radio" name="color_setting" value="<?php echo $loop_stylesel["id"]; ?>"<?php if($loop_stylesel["id"] == $GLOBALS["users"]["style"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_stylesel["name"]; ?></label></td></tr>
 	<?php endforeach; ?>
 	<tr><th><input type="submit" name="do_changestyle" value="Change Style"></th></tr>
 	</table>
 	</form>
     </td>
     <td class="acenter" style="width:40%">
-	<?php if($protection == 'true' && $early_exit == 'true'): ?>
-	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
+	<?php if($GLOBALS["protection"] == 'true' && $GLOBALS["early_exit"] == 'true'): ?>
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable"><tr><th>
 	<input type="submit" name="leave_protection" value="Leave Protection">
 	</th></tr></table>
@@ -60,11 +60,11 @@
 	<?php endif; ?>
 
 {*
-	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Styles Directory</th></tr>
 	<tr><td colspan="2">New Directory:</td></tr>
-	<tr><td colspan="2"><input type="text" name="new_basehref" size="65" value="<?php echo $ubase; ?>"></td></tr>
+	<tr><td colspan="2"><input type="text" name="new_basehref" size="65" value="<?php echo $GLOBALS["ubase"]; ?>"></td></tr>
 	<tr>
 	    <th><input type="submit" name="reset_basehref" value="Reset"></th>
 	    <th><input type="submit" name="change_basehref" value="Change"></th>
@@ -73,7 +73,7 @@
 	</form>
 *}	
 
-	<form method="post" action="<?php echo $main; ?>?changepass<?php echo $authstr; ?>">
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?changepass<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Password</th></tr>
 	<tr><td>New:</td>
@@ -84,14 +84,14 @@
 	</table>
 	</form>
 
-	<?php if($lastweek != 'true'): ?>
-	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
+	<?php if($GLOBALS["lastweek"] != 'true'): ?>
+	<form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
 	<table class="inputtable">
 	<tr><th>Vacation</th></tr>
 	<tr><td class="acenter">
-		Vacation mode will be set for a minimum of <?php echo $minvacation; ?> hours.<br>
+		Vacation mode will be set for a minimum of <?php echo $GLOBALS["minvacation"]; ?> hours.<br>
 		When set, you will be immediately locked out of your account,<br>
-		and your empire will be frozen after <?php echo $vacationdelay; ?> hours.</td></tr>
+		and your empire will be frozen after <?php echo $GLOBALS["vacationdelay"]; ?> hours.</td></tr>
 	<tr><td class="acenter"><label><input type="checkbox" name="yes_vacation" value="1">Yes, I really want to go on vacation!</label></td></tr>
 	<tr><th><input type="submit" name="do_setvacation" value="Go on Vacation"></th></tr>
 	</table>
@@ -108,11 +108,11 @@
 	<table class='inputtable'>
 	<tr><th>Profile settings</th></tr>
 	<tr><td><table>
-	<form method='post' action="?manage<?php echo $authstr; ?>">
-	<tr><td>Email</td><td><input type='text' cols='5' name='email' value='<?php echo $email; ?>'></td></tr>
-	<tr><td>AIM&nbsp;name</td><td><input type='text' cols='5' name='aim' value='<?php echo $aim; ?>'></td></tr>
-	<tr><td>MSN&nbsp;name</td><td><input type='text' cols='5' name='msn' value='<?php echo $msn; ?>'></td></tr>
-	<tr><td>Profile</td><td><textarea name='profile' rows='15' cols='60'><?php echo $profile; ?></textarea></td></tr>
+	<form method='post' action="?manage<?php echo $GLOBALS["authstr"]; ?>">
+	<tr><td>Email</td><td><input type='text' cols='5' name='email' value='<?php echo $GLOBALS["email"]; ?>'></td></tr>
+	<tr><td>AIM&nbsp;name</td><td><input type='text' cols='5' name='aim' value='<?php echo $GLOBALS["aim"]; ?>'></td></tr>
+	<tr><td>MSN&nbsp;name</td><td><input type='text' cols='5' name='msn' value='<?php echo $GLOBALS["msn"]; ?>'></td></tr>
+	<tr><td>Profile</td><td><textarea name='profile' rows='15' cols='60'><?php echo $GLOBALS["profile"]; ?></textarea></td></tr>
 	<tr><th colspan="2"><input type='submit' value='Update Information' name='do_profile'></th></tr>
 	</form>
 	</table></td></tr>
@@ -122,10 +122,10 @@
 <tr>
     <td colspan="4">
 	<table class='inputtable'>
-	<form method="post" action="?manage<?php echo $authstr; ?>">
+	<form method="post" action="?manage<?php echo $GLOBALS["authstr"]; ?>">
 	<tr><th>Notepad</th></tr>
 	<tr><td>
-	<textarea rows="25" cols="105" name="upd_notes"><?php echo $notes; ?></textarea>
+	<textarea rows="25" cols="105" name="upd_notes"><?php echo $GLOBALS["notes"]; ?></textarea>
 	</td></tr>
 	<tr><th><input type='submit' value='Update Notepad' name='do_notes'></th></tr>
 	</form>

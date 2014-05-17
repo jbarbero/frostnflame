@@ -1,30 +1,30 @@
-Buying a raffle ticket is a good way to make extra <?php echo $uera["food_lc"]; ?> or cash for our <?php echo $uera["empire"]; ?>.<br>
+Buying a raffle ticket is a good way to make extra <?php echo $GLOBALS["uera"]["food_lc"]; ?> or cash for our <?php echo $GLOBALS["uera"]["empire"]; ?>.<br>
 When we buy a raffle ticket, the amount goes into the jackpot, which will be given out to someone at the drawing.<br>
 Raffle drawings are held every day at noon, server time.<br>
-Cash tickets cost $<?php echo gamefactor($cashcost); ?> and <?php echo $uera["food_lc"]; ?> tickets cost <?php echo gamefactor($foodcost); ?> <?php echo $uera["food_lc"]; ?>. They are valid for one drawing.<br><br>
-Current Cash Jackpot: $<?php echo gamefactor($cashpot); ?><br>
-Current <?php echo $uera["nfood"]; ?> Jackpot: <?php echo gamefactor($foodpot); ?> <?php echo $uera["food_lc"]; ?><br><br>
-<?php if($numcasht == 0): ?>	No	<?php else: ?>	<?php echo $numcasht; ?>	<?php endif; ?> cash tickets have been bought for the next drawing.<br>
-<?php if($numfoodt == 0): ?>	No	<?php else: ?>	<?php echo $numfoodt; ?>	<?php endif; ?> <?php echo $uera["food_lc"]; ?> tickets have been bought for the next drawing.<br>
+Cash tickets cost $<?php echo gamefactor($GLOBALS["cashcost"]); ?> and <?php echo $GLOBALS["uera"]["food_lc"]; ?> tickets cost <?php echo gamefactor($GLOBALS["foodcost"]); ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?>. They are valid for one drawing.<br><br>
+Current Cash Jackpot: $<?php echo gamefactor($GLOBALS["cashpot"]); ?><br>
+Current <?php echo $GLOBALS["uera"]["nfood"]; ?> Jackpot: <?php echo gamefactor($GLOBALS["foodpot"]); ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?><br><br>
+<?php if($GLOBALS["numcasht"] == 0): ?>	No	<?php else: ?>	<?php echo $GLOBALS["numcasht"]; ?>	<?php endif; ?> cash tickets have been bought for the next drawing.<br>
+<?php if($GLOBALS["numfoodt"] == 0): ?>	No	<?php else: ?>	<?php echo $GLOBALS["numfoodt"]; ?>	<?php endif; ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?> tickets have been bought for the next drawing.<br>
 <br>
 
-The last cash ticket was <?php echo $last_cashn; ?>, which <?php echo $last_cashe; ?> had, winning a total of $<?php echo gamefactor($last_cashw); ?>!<br>
-The last <?php echo $uera["food_lc"]; ?> ticket was <?php echo $last_foodn; ?>, which <?php echo $last_foode; ?> had, winning a total of <?php echo gamefactor($last_foodw); ?> <?php echo $uera["food_lc"]; ?>!<br>
+The last cash ticket was <?php echo $GLOBALS["last_cashn"]; ?>, which <?php echo $GLOBALS["last_cashe"]; ?> had, winning a total of $<?php echo gamefactor($GLOBALS["last_cashw"]); ?>!<br>
+The last <?php echo $GLOBALS["uera"]["food_lc"]; ?> ticket was <?php echo $GLOBALS["last_foodn"]; ?>, which <?php echo $GLOBALS["last_foode"]; ?> had, winning a total of <?php echo gamefactor($GLOBALS["last_foodw"]); ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?>!<br>
 <br>
 
-<?php if(count($cash_ticks) != 0): ?>
+<?php if(count($GLOBALS["cash_ticks"]) != 0): ?>
 	You have the following cash tickets:
-	<?php foreach($cash_ticks as $loop_ct): ?>
+	<?php foreach($GLOBALS["cash_ticks"] as $loop_ct): ?>
 		#<?php echo $loop_ct["ticket"]; ?>
 	<?php endforeach; ?>
 <?php else: ?>
 	You currently have no cash tickets.
 <?php endif; ?>
 
-<?php if($ucash < $cashcost): ?>
+<?php if($GLOBALS["ucash"] < $GLOBALS["cashcost"]): ?>
 	You don't have enough for a cash ticket. <br>
-<?php elseif($numuct < $maxtickets): ?>
-	<form method="post" action="?raffle<?php echo $authstr; ?>">
+<?php elseif($GLOBALS["numuct"] < $GLOBALS["maxtickets"]): ?>
+	<form method="post" action="?raffle<?php echo $GLOBALS["authstr"]; ?>">
 	<input type="hidden" name="do_ticket" value="1"> 
 	<div><input type="submit" name="lbcash" value="Buy a cash ticket!"></div>
 	</form>
@@ -32,21 +32,21 @@ The last <?php echo $uera["food_lc"]; ?> ticket was <?php echo $last_foodn; ?>, 
 
 <br>
 
-<?php if(count($food_ticks) != 0): ?>
-	You have the following <?php echo $uera["food_lc"]; ?> tickets:
-	<?php foreach($food_ticks as $loop_ct): ?>
+<?php if(count($GLOBALS["food_ticks"]) != 0): ?>
+	You have the following <?php echo $GLOBALS["uera"]["food_lc"]; ?> tickets:
+	<?php foreach($GLOBALS["food_ticks"] as $loop_ct): ?>
 		#<?php echo $loop_ct["ticket"]; ?>
 	<?php endforeach; ?>
 <?php else: ?>
-	You currently have no <?php echo $uera["food_lc"]; ?> tickets.
+	You currently have no <?php echo $GLOBALS["uera"]["food_lc"]; ?> tickets.
 <?php endif; ?>
 
-<?php if($ufood < $foodcost): ?>
-	You don't have enough for a <?php echo $uera["food_lc"]; ?> ticket. <br>
-<?php elseif($numuct < $maxtickets): ?>
-	<form method="post" action="?raffle<?php echo $authstr; ?>">
+<?php if($GLOBALS["ufood"] < $GLOBALS["foodcost"]): ?>
+	You don't have enough for a <?php echo $GLOBALS["uera"]["food_lc"]; ?> ticket. <br>
+<?php elseif($GLOBALS["numuct"] < $GLOBALS["maxtickets"]): ?>
+	<form method="post" action="?raffle<?php echo $GLOBALS["authstr"]; ?>">
 	<input type="hidden" name="do_ticket" value="1"> 
-	<div><input type="submit" name="lbfood" value="Buy a <?php echo $uera["food_lc"]; ?> ticket!"></div>
+	<div><input type="submit" name="lbfood" value="Buy a <?php echo $GLOBALS["uera"]["food_lc"]; ?> ticket!"></div>
 	</form>
 <?php endif; ?>
 
