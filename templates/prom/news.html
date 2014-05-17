@@ -21,12 +21,12 @@
 	<th class="aleft"><label><input type="radio" name="search_type" value="clan"> Clan</label></th>
 	<td><select name="search_clan" size="1">
 		<option value="0" selected>None - Unallied Empires</option>
-		<?php foreach($liveclans as $j): ?>
-			<option value="<?php echo $j["num"]; ?>"><?php echo $j["tag"]; ?> - <?php echo $j["name"]; ?></option>
+		<?php foreach($liveclans as $loop_j): ?>
+			<option value="<?php echo $loop_j["num"]; ?>"><?php echo $loop_j["tag"]; ?> - <?php echo $loop_j["name"]; ?></option>
 		<?php endforeach; ?>
 	        <option value="-1">--- Dead Clans: ---</option>
-		<?php foreach($deadclans as $j): ?>
-			<option value="<?php echo $j["num"]; ?>"><?php echo $j["tag"]; ?> - <?php echo $j["name"]; ?></option>
+		<?php foreach($deadclans as $loop_j): ?>
+			<option value="<?php echo $loop_j["num"]; ?>"><?php echo $loop_j["tag"]; ?> - <?php echo $loop_j["name"]; ?></option>
 		<?php endforeach; ?>
 	</select></td>
 </tr><tr>
@@ -58,13 +58,13 @@
 	<th style="width:2">Times</th>
 </tr>
 
-<?php foreach($news as $i): ?>
+<?php foreach($loop_news as $loop_i): ?>
 	<tr>
-		<td><?php echo $i["date"]; ?></td>
-		<td><?php echo $i["name2"]; ?><br>Clan: <?php echo $i["clname2"]; ?></td>
-		<td><?php echo $i["name1"]; ?><br>Clan: <?php echo $i["clname1"]; ?></td>
-		<td><?php echo $i["name"]; ?><?php echo $i["whatfor"]; ?><br><?php echo $i["outcome"]; ?></td>
-		<td><?php echo $i["times"]; ?></td>
+		<td><?php echo $loop_i["date"]; ?></td>
+		<td><?php echo $loop_i["name2"]; ?><br>Clan: <?php echo $loop_i["clname2"]; ?></td>
+		<td><?php echo $loop_i["name1"]; ?><br>Clan: <?php echo $loop_i["clname1"]; ?></td>
+		<td><?php echo $loop_i["name"]; ?><?php echo $loop_i["whatfor"]; ?><br><?php echo $loop_i["outcome"]; ?></td>
+		<td><?php echo $loop_i["times"]; ?></td>
 	</tr>
 	<tr>	<td colspan="5"><hr></td>
 	</tr>

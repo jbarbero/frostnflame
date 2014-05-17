@@ -28,9 +28,9 @@
     <td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
         <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Military</th></tr>
-	<?php foreach($troopshave as $have): ?>
-        <tr><th><?php echo $have["name"]; ?>:</th>
-            <td><b><?php echo gamefactor($have["have"]); ?></b> <?php if($troopshave[have]["market"]): ?>(<?php echo gamefactor($have["market"]); ?>)<?php endif; ?></td></tr>
+	<?php foreach($troopshave as $loop_have): ?>
+        <tr><th><?php echo $loop_have["name"]; ?>:</th>
+            <td><b><?php echo gamefactor($loop_have["have"]); ?></b> <?php if($troopshave[have]["market"]): ?>(<?php echo gamefactor($loop_have["market"]); ?>)<?php endif; ?></td></tr>
 	<?php endforeach; ?>
         <tr><th><?php echo $uera["wizards"]; ?>:</th>
         <td><?php echo $users["wizards"]; ?></td></tr>
@@ -125,10 +125,10 @@
     <td colspan="1" style="vertical-align:top; width:33%">
 	<table class="empstatus" style="width:100%">
         <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Stocks</th></tr>
-        <?php foreach($stocks as $stock_id): ?>
+        <?php foreach($stocks as $loop_stock_id): ?>
         	<tr>
-        		<td style="text-align:left"><b><?php echo $stock_id["name"]; ?></b> ($<?php echo $stock_id["price"]; ?>):</td>
-        		<td style="text-align:right">$<?php echo gamefactor($stock_id["total_worth"]); ?></td>
+        		<td style="text-align:left"><b><?php echo $loop_stock_id["name"]; ?></b> ($<?php echo $loop_stock_id["price"]; ?>):</td>
+        		<td style="text-align:right">$<?php echo gamefactor($loop_stock_id["total_worth"]); ?></td>
         	</tr>
        	<?php endforeach; ?>
 	</table>

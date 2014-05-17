@@ -35,16 +35,16 @@ Current Game Time: <?php echo $datetime; ?><br>
     <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=6&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Location</a></th>
     <th style="width:4%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=7&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Kills</a></th></tr>
 
-<?php foreach($scores1 as $i): ?>
-<tr class="<?php echo $i["mcolor"]; ?>">
-    <td class="aright"><?php echo $i["online"]; ?><?php echo $i["rank"]; ?></td>
-    <td class="acenter"><?php echo $i["topoff"]; ?><?php echo $i["topdef"]; ?><?php echo $i["empire"]; ?> <a class="proflink" href="?profiles&amp;num=<?php echo $i["num"]; ?><?php echo $authstr; ?>">(#<?php echo $i["num"]; ?>)</a></td>
-    <td class="aright"><?php echo $i["topland"]; ?><?php echo $i["land"]; ?></td>
-    <td class="aright"><?php echo $i["topnet1"]; ?><?php echo $i["topnet2"]; ?><?php echo $i["topnet3"]; ?>$<?php echo $i["networth"]; ?></td>
-    <td class="acenter"><?php echo $i["clan"]; ?></td>
-    <td class="acenter"><?php echo $i["rcs"]; ?><?php echo $i["race"]; ?><?php echo $i["rce"]; ?></td>
-    <td class="acenter"><?php echo $i["era"]; ?></td>
-    <td class="acenter"><?php echo $i["topkills"]; ?><?php echo $i["kills"]; ?></td></tr>
+<?php foreach($scores1 as $loop_i): ?>
+<tr class="<?php echo $loop_i["mcolor"]; ?>">
+    <td class="aright"><?php echo $loop_i["online"]; ?><?php echo $loop_i["rank"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["topoff"]; ?><?php echo $loop_i["topdef"]; ?><?php echo $loop_i["empire"]; ?> <a class="proflink" href="?profiles&amp;num=<?php echo $loop_i["num"]; ?><?php echo $authstr; ?>">(#<?php echo $loop_i["num"]; ?>)</a></td>
+    <td class="aright"><?php echo $loop_i["topland"]; ?><?php echo $loop_i["land"]; ?></td>
+    <td class="aright"><?php echo $loop_i["topnet1"]; ?><?php echo $loop_i["topnet2"]; ?><?php echo $loop_i["topnet3"]; ?>$<?php echo $loop_i["networth"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["clan"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["rcs"]; ?><?php echo $loop_i["race"]; ?><?php echo $loop_i["rce"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["era"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["topkills"]; ?><?php echo $loop_i["kills"]; ?></td></tr>
 <?php endforeach; ?>
 <?php endif; ?>
 
@@ -61,16 +61,16 @@ Current Game Time: <?php echo $datetime; ?><br>
 <?php endif; ?>
 
 <?php if($sc2e != 1): ?>
-<?php foreach($scores2 as $i): ?>
-<tr class="<?php echo $i["mcolor"]; ?>">
-    <td class="aright"><?php echo $i["online"]; ?><?php echo $i["rank"]; ?></td>
-    <td class="acenter"><?php echo $i["topoff"]; ?><?php echo $i["topdef"]; ?><?php echo $i["empire"]; ?> <a class="proflink" href="?profiles&amp;num=<?php echo $i["num"]; ?><?php echo $authstr; ?>">(#<?php echo $i["num"]; ?>)</a></td>
-    <td class="aright"><?php echo $i["topland"]; ?><?php echo $i["land"]; ?></td>
-    <td class="aright"><?php echo $i["topnet1"]; ?><?php echo $i["topnet2"]; ?><?php echo $i["topnet3"]; ?>$<?php echo $i["networth"]; ?></td>
-    <td class="acenter"><?php echo $i["clan"]; ?></td>
-    <td class="acenter"><?php echo $i["rcs"]; ?><?php echo $i["race"]; ?><?php echo $i["rce"]; ?></td>
-    <td class="acenter"><?php echo $i["era"]; ?></td>
-    <td class="acenter"><?php echo $i["topkills"]; ?><?php echo $i["kills"]; ?></td></tr>
+<?php foreach($scores2 as $loop_i): ?>
+<tr class="<?php echo $loop_i["mcolor"]; ?>">
+    <td class="aright"><?php echo $loop_i["online"]; ?><?php echo $loop_i["rank"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["topoff"]; ?><?php echo $loop_i["topdef"]; ?><?php echo $loop_i["empire"]; ?> <a class="proflink" href="?profiles&amp;num=<?php echo $loop_i["num"]; ?><?php echo $authstr; ?>">(#<?php echo $loop_i["num"]; ?>)</a></td>
+    <td class="aright"><?php echo $loop_i["topland"]; ?><?php echo $loop_i["land"]; ?></td>
+    <td class="aright"><?php echo $loop_i["topnet1"]; ?><?php echo $loop_i["topnet2"]; ?><?php echo $loop_i["topnet3"]; ?>$<?php echo $loop_i["networth"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["clan"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["rcs"]; ?><?php echo $loop_i["race"]; ?><?php echo $loop_i["rce"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["era"]; ?></td>
+    <td class="acenter"><?php echo $loop_i["topkills"]; ?><?php echo $loop_i["kills"]; ?></td></tr>
 <?php endforeach; ?>
 
 <tr class="era<?php echo $era; ?>">

@@ -29,17 +29,17 @@ window.onload = enableOnce;
 </script>
 
 <?php if($mode == 'default'): ?>
-<?php foreach($codes as $code): ?>
+<?php foreach($codes as $loop_code): ?>
    <table class="inputtable" width="80%">
       <tr>
-         <th colspan="2"><?php echo $code["title"]; ?></th>
+         <th colspan="2"><?php echo $loop_code["title"]; ?></th>
       </tr>
       <tr>
-         <td><pre><div style="width: 100%; overflow: auto;"><?php echo $code["code"]; ?></pre></div></td>
+         <td><pre><div style="width: 100%; overflow: auto;"><?php echo $loop_code["code"]; ?></pre></div></td>
          <td>buttons!</td>
       </tr>
       <tr>
-         <td><pre><div style="width: 100%; overflow: auto;"><?php echo $code["compiled"]; ?></pre></div></td>
+         <td><pre><div style="width: 100%; overflow: auto;"><?php echo $loop_code["compiled"]; ?></pre></div></td>
          <td>buttons!</td>
       </tr>
       <tr>

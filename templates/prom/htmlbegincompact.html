@@ -18,11 +18,16 @@
 <table class="menus">
 <tr><th><center><hr><a href="?login<?php echo $authstr; ?>" class="darklink">Main&nbsp;Menu</a><hr></center></th></tr>
 
-<?php foreach($menus as $m): ?>
-<?php if($m["spec"] == 1): ?>
-<tr><th><a class='undecorated' href='<?php echo $m["link"]; ?>'><?php echo $m["item"]; ?></a></th></tr>
+<?php
+//global $menus;
+debug_print_backtrace();
+print_r($menus);
+?>
+<?php foreach($menus as $loop_m): ?>
+<?php if($loop_m["spec"] == 1): ?>
+<tr><th><a class='undecorated' href='<?php echo $loop_m["link"]; ?>'><?php echo $loop_m["item"]; ?></a></th></tr>
 <?php else: ?>
-<tr><td><a href='<?php echo $m["link"]; ?>'<?php echo $m["trg"]; ?>><?php echo $m["item"]; ?></a></td></tr>
+<tr><td><a href='<?php echo $loop_m["link"]; ?>'<?php echo $loop_m["trg"]; ?>><?php echo $loop_m["item"]; ?></a></td></tr>
 <?php endif; ?>
 <?php endforeach; ?>
 

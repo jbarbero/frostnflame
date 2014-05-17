@@ -26,8 +26,8 @@
 		<tr><th>Race</th><td><?php echo $race["name"]; ?></td></tr>
 		<tr><th>Health</th><td><span class="<?php echo $health_color; ?>"><?php echo $user["health"]; ?>%</span></td></tr>
 		<tr><th>Tax Rate</th><td><?php echo $user["tax"]; ?>%</td></tr><?
-		<?php foreach($usertrps as $i): ?>
-			<tr><th><?php echo $i["name"]; ?></th><td><?php echo gamefactor($i["amt"]); ?></td></tr>
+		<?php foreach($usertrps as $loop_i): ?>
+			<tr><th><?php echo $loop_i["name"]; ?></th><td><?php echo gamefactor($loop_i["amt"]); ?></td></tr>
 		<?php endforeach; ?>
 		<tr><th><?php echo $era["wizards"]; ?></th><td><?php echo gamefactor($user["wizards"]); ?></td></tr>
 		<?php if($esp): ?><tr><td colspan="3" style="text-align: center"><?php echo $possible_spells; ?></td></tr><?php endif; ?>

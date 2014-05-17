@@ -14,8 +14,8 @@ The last <?php echo $uera["food_lc"]; ?> ticket was <?php echo $last_foodn; ?>, 
 
 <?php if(count($cash_ticks) != 0): ?>
 	You have the following cash tickets:
-	<?php foreach($cash_ticks as $ct): ?>
-		#<?php echo $ct["ticket"]; ?>
+	<?php foreach($cash_ticks as $loop_ct): ?>
+		#<?php echo $loop_ct["ticket"]; ?>
 	<?php endforeach; ?>
 <?php else: ?>
 	You currently have no cash tickets.
@@ -34,8 +34,8 @@ The last <?php echo $uera["food_lc"]; ?> ticket was <?php echo $last_foodn; ?>, 
 
 <?php if(count($food_ticks) != 0): ?>
 	You have the following <?php echo $uera["food_lc"]; ?> tickets:
-	<?php foreach($food_ticks as $ct): ?>
-		#<?php echo $ct["ticket"]; ?>
+	<?php foreach($food_ticks as $loop_ct): ?>
+		#<?php echo $loop_ct["ticket"]; ?>
 	<?php endforeach; ?>
 <?php else: ?>
 	You currently have no <?php echo $uera["food_lc"]; ?> tickets.

@@ -11,71 +11,71 @@
 <table class="inputtable stocks" width="50" border="1" cellSpacing="0" bordercolor="#000000">
 <tr>
 <td></td>
-<?php foreach($stocknames as $names): ?>
-	<th width="25"><?php echo $names["symbol"]; ?></th>
+<?php foreach($stocknames as $loop_names): ?>
+	<th width="25"><?php echo $loop_names["symbol"]; ?></th>
 <?php endforeach; ?>
 </tr><tr>
 <td><p align='right'><img src="img/scale.jpg" height="400" width="36"></p></td>
-<?php foreach($stocknames as $index): ?>
+<?php foreach($stocknames as $loop_index): ?>
 	<td>
-	<img src="img/redfade.gif" width="100%" height="<?php echo $index["bprice"]; ?>" /><img src="spacer.gif" height="0" width="0" /><br>
-	<img src="img/greenfade.gif" width="100%" height="<?php echo $index["price"]; ?>" /><br>
+	<img src="img/redfade.gif" width="100%" height="<?php echo $loop_index["bprice"]; ?>" /><img src="spacer.gif" height="0" width="0" /><br>
+	<img src="img/greenfade.gif" width="100%" height="<?php echo $loop_index["price"]; ?>" /><br>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Boost:</td>
-<?php foreach($stocknames as $price): ?>
+<?php foreach($stocknames as $loop_price): ?>
 	<td class="stbl">
-	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $price["id"]; ?>&amp;boost=1">/\</a>
+	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $loop_price["id"]; ?>&amp;boost=1">/\</a>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Reduce:</td>
-<?php foreach($stocknames as $price): ?>
+<?php foreach($stocknames as $loop_price): ?>
 	<td class="stbl">
-	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $price["id"]; ?>&amp;reduce=1">\/</a>
+	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $loop_price["id"]; ?>&amp;reduce=1">\/</a>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Change:</td>
-<?php foreach($stocknames as $price): ?>
+<?php foreach($stocknames as $loop_price): ?>
 	<td class="stbl">
-	<?php echo cnum($price["boost"]); ?>
+	<?php echo cnum($loop_price["boost"]); ?>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Price:</td>
-<?php foreach($stocknames as $price): ?>
+<?php foreach($stocknames as $loop_price): ?>
 	<td class="stbl">
-	$<?php echo $price["lprice"]; ?>
+	$<?php echo $loop_price["lprice"]; ?>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Yesterday:</td>
-<?php foreach($stocknames as $price): ?>
+<?php foreach($stocknames as $loop_price): ?>
 	<td class="stbl">
-    <?php echo cnum($price["lprice"] - $price["days_1"]); ?>
+    <?php echo cnum($loop_price["lprice"] - $loop_price["days_1"]); ?>
 	</td>
 <?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl"><nobr>2 days ago:</nobr></td>
-<?php foreach($stocknames as $price): ?>
+<?php foreach($stocknames as $loop_price): ?>
 	<td class="stbl">
-    <?php echo cnum($price["days_1"] - $price["days_2"]); ?>
+    <?php echo cnum($loop_price["days_1"] - $loop_price["days_2"]); ?>
 	</td>
 <?php endforeach; ?>
 </tr>
 
 <td class="stbl"><nobr>3 days ago:</nobr></td>
-<?php foreach($stocknames as $price): ?>
+<?php foreach($stocknames as $loop_price): ?>
 	<td class="stbl">
-    <?php echo cnum($price["days_2"] - $price["days_3"]); ?>
+    <?php echo cnum($loop_price["days_2"] - $loop_price["days_3"]); ?>
 	</td>
 <?php endforeach; ?>
 </tr>

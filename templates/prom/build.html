@@ -1,11 +1,11 @@
 <?php if($do_build != ""): ?>
-You built <span class="cgood"><?php echo $totalbuild; ?></span> total structures in <span class="cwarn"><?php echo $turns; ?></span> turns and spent <span class="cgood">$<?php echo gamefactor($totalspent); ?></span>.<hr>
+You built <span class="cgood"><?php echo commas($totalbuild); ?></span> total structures in <span class="cwarn"><?php echo commas($turns); ?></span> turns and spent <span class="cgood">$<?php echo commas(gamefactor($totalspent)); ?></span>.<hr>
 <?php endif; ?>
 
 <big><b>Build Structures</b></big><br><br>
-Each structure consumes one acre of free land and costs approximately $<?php echo gamefactor($buildcost); ?> to build.<br>
-You can build <?php echo $buildrate; ?> structures per turn.<br>
-With our resources, we can build <span class="cgood"><?php echo $canbuild; ?></span> structures.<br><br>
+Each structure consumes one acre of free land and costs approximately $<?php echo commas(gamefactor($buildcost)); ?> to build.<br>
+You can build <?php echo commas($buildrate); ?> structures per turn.<br>
+With our resources, we can build <span class="cgood"><?php echo commas($canbuild); ?></span> structures.<br><br>
 <form method="post" action="?build<?php echo $authstr; ?>" name="build">
 <table class="inputtable">
 <?php /* Header */ ?>
@@ -18,17 +18,17 @@ With our resources, we can build <span class="cgood"><?php echo $canbuild; ?></s
     <th class="aright">Max</th></tr>
 
     <?php /* Printing row stuffs */ ?>
-	<?php foreach($build as $i): ?>
-		<tr><td><?php echo $i["name"]; ?></td>
-	    <td class="aright"><?php echo $i["userAmount"]; ?></td>
-	    <td class="aright"><?php echo $i["canBuild"]; ?></td>
-	    <td class="aright"><input type="text" name="build[<?php echo $i["type"]; ?>]" size="5" value="0"></td>
-	    <td class="aright"><input type="checkbox" name="max[<?php echo $i["type"]; ?>]" value="<?php echo $i["type"]; ?>"></td></tr>
+	<?php foreach($dbuild as $loop_i): ?>
+		<tr><td><?php echo $loop_i["name"]; ?></td>
+	    <td class="aright"><?php echo $loop_i["userAmount"]; ?></td>
+	    <td class="aright"><?php echo $loop_i["canBuild"]; ?></td>
+	    <td class="aright"><input type="text" name="build[<?php echo $loop_i["type"]; ?>]" size="5" value="0"></td>
+	    <td class="aright"><input type="checkbox" name="max[<?php echo $loop_i["type"]; ?>]" value="<?php echo $loop_i["type"]; ?>"></td></tr>
 	<?php endforeach; ?>
     <?php /* Footer */ ?>
 
  <tr><td>Unused Land</td>
-     <td class="aright"><?php echo $freeland; ?></td>
+     <td class="aright"><?php echo commas($users[freeland]); ?></td>
      <td colspan="2"></td></tr>
  <tr><td colspan="5" class="acenter"><input type="submit" name="do_build" value="Begin Construction"></td></tr>
  <tr><td colspan="5" class="acenter">Condense turns?<input type="checkbox" name="hide_turns"<?php echo $cnd; ?>></td></tr>

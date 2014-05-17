@@ -1,13 +1,13 @@
 <h1 align="center">Servers</h1>
 <table width="80%" class="inputtable" cellspacing=10 style="border-spacing: 10px 0px">
-<?php foreach($servers as $login): ?>
+<?php foreach($servers as $loop_login): ?>
 	</tr><tr>
 	<th colspan="8"><hr /></td>
 	</tr><tr>
 	<td colspan="8"</td>
 	</tr><tr>
 	<tr>
-		<th colspan="2"><h3><?php echo $login["name"]; ?></h3></th>
+		<th colspan="2"><h3><?php echo $loop_login["name"]; ?></h3></th>
 		<th width="15%" colspan="2"><h3>Info</h3></th>
 		<th width="15%" colspan="2"><h3>Turns</h3></th>
 		<th width="15%" colspan="2"><h3>Stats</h3></th>
@@ -16,36 +16,36 @@
 	<tr>
 	<td colspan="2" rowspan="3" style="text-align:center">&nbsp;
 
-	<?php echo $login["news"]; ?>
+	<?php echo $loop_login["news"]; ?>
 	</td>
 
 	<td style="white-space:nowrap;text-align: left">Signups</td>
-	<td style="white-space:nowrap;text-align: right"><?php if($login["signupsclosed"]==1): ?>Closed<?php else: ?>Open<?php endif; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php if($loop_login["signupsclosed"]==1): ?>Closed<?php else: ?>Open<?php endif; ?></td>
 
 	<td style="white-space:nowrap;text-align: left">Turns</td>
-	<td style="white-space:nowrap;text-align: right"><?php echo $login["turnsper"]; ?> every <?php echo $login["perminutes"]; ?> minutes</td>
+	<td style="white-space:nowrap;text-align: right"><?php echo $loop_login["turnsper"]; ?> every <?php echo $loop_login["perminutes"]; ?> minutes</td>
 
 	<td style="white-space:nowrap;text-align: left">Number of Players</td>
-	<td style="white-space:nowrap;text-align: right"><?php echo $login["numplayers"]; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php echo $loop_login["numplayers"]; ?></td>
 
 	</tr><tr>
 
 	<td style="white-space:nowrap;text-align: left">Database</td>
-	<td style="white-space:nowrap;text-align: right"><?php if($login["lockdb"]==1): ?>Locked<?php else: ?>Open<?php endif; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php if($loop_login["lockdb"]==1): ?>Locked<?php else: ?>Open<?php endif; ?></td>
 
 	<td style="white-space:nowrap;text-align: left">Max Turns</td>
-	<td style="white-space:nowrap;text-align: right"><?php echo $login["maxturns"]; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php echo $loop_login["maxturns"]; ?></td>
 
 	<td style="white-space:nowrap;text-align: left">Average Networth</td>
-	<td style="white-space:nowrap;text-align: right">$<?php echo $login["avgnet"]; ?></td>
+	<td style="white-space:nowrap;text-align: right">$<?php echo $loop_login["avgnet"]; ?></td>
 
 	</tr><tr>
 
 	<td style="white-space:nowrap;text-align: left">Last week?</td>
-	<td style="white-space:nowrap;text-align: right"><?php if($login["lastweek"]==1): ?>Yes<?php else: ?>No<?php endif; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php if($loop_login["lastweek"]==1): ?>Yes<?php else: ?>No<?php endif; ?></td>
 
 	<td style="white-space:nowrap;text-align: left">Max Stored Turns</td>
-	<td style="white-space:nowrap;text-align: right"><?php echo $login["maxstoredturns"]; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php echo $loop_login["maxstoredturns"]; ?></td>
 
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>
@@ -53,16 +53,16 @@
 	</tr><tr>
 
 	<td colspan="2" style="text-align:center">
-		<?php if($login["empire"] != ""): ?>
-		<form action='?play<?php echo $skinstr; ?>&srv=<?php echo $login["num"]; ?>' method="POST">
+		<?php if($loop_login["empire"] != ""): ?>
+		<form action='?play<?php echo $skinstr; ?>&srv=<?php echo $loop_login["num"]; ?>' method="POST">
 		<strong>Name:</strong>
-		<strong><?php echo $login["empire"]; ?>:</strong>
+		<strong><?php echo $loop_login["empire"]; ?>:</strong>
 		<input type='submit' value='Play' /> |
 		<input type="checkbox" name="usecookie" checked>&nbsp;Use&nbsp;Cookies? |
 		<input type="checkbox" name="hideon" checked>&nbsp;Show&nbsp;as&nbsp;online?
 		</form>
 		<?php else: ?>
-		<form action='?signup<?php echo $skinstr; ?>&srv=<?php echo $login["num"]; ?>' method="POST">
+		<form action='?signup<?php echo $skinstr; ?>&srv=<?php echo $loop_login["num"]; ?>' method="POST">
 		<strong>Name:</strong>
 		<input type='text' size='24' name='user' onfocus="this.value=''" value='<?php echo $global["empire"]; ?>' />
 		<input type='submit' value='Sign Up' />
@@ -71,10 +71,10 @@
 	</td>
 
 	<td style="white-space:nowrap;text-align: left">Round End</td>
-	<td style="white-space:nowrap;text-align: right"><?php echo $login["roundend"]; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php echo $loop_login["roundend"]; ?></td>
 
 	<td style="white-space:nowrap;text-align: left">New Player Protection</td>
-	<td style="white-space:nowrap;text-align: right"><?php echo $login["protection"]; ?></td>
+	<td style="white-space:nowrap;text-align: right"><?php echo $loop_login["protection"]; ?></td>
 
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>
@@ -90,22 +90,22 @@
 <br>
 <h1 align="center">News</h1>
 
-<?php foreach($login_news as $news): ?>
+<?php foreach($login_news as $loop_news): ?>
 	<table class="inputtable" width="80%" border="0">
 	<tr>
-		<th width="90%" style="text-align:left"><a href="<?php echo $news["mlink"]; ?>"><?php echo $news["author"]; ?></a></th>
-		<th style="text-align:right"><?php echo $news["time"]; ?></th>
+		<th width="90%" style="text-align:left"><a href="<?php echo $loop_news["mlink"]; ?>"><?php echo $loop_news["author"]; ?></a></th>
+		<th style="text-align:right"><?php echo $loop_news["time"]; ?></th>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align:left"><b><a href="<?php echo $news["link"]; ?>"><?php echo $news["title"]; ?></a></b>
-		<?php if($news["descempty"] == 0): ?>(<?php echo $news["desc"]; ?>)<?php endif; ?>
+		<td colspan="2" style="text-align:left"><b><a href="<?php echo $loop_news["link"]; ?>"><?php echo $loop_news["title"]; ?></a></b>
+		<?php if($loop_news["descempty"] == 0): ?>(<?php echo $loop_news["desc"]; ?>)<?php endif; ?>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align:left"><?php echo $news["post"]; ?></td>
+		<td colspan="2" style="text-align:left"><?php echo $loop_news["post"]; ?></td>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align:right"><a href="<?php echo $news["link"]; ?>"><?php echo $news["ctext"]; ?></a></td>
+		<td colspan="2" style="text-align:right"><a href="<?php echo $loop_news["link"]; ?>"><?php echo $loop_news["ctext"]; ?></a></td>
 	</tr>
 	</table>
 	<br>

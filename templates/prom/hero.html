@@ -80,8 +80,8 @@ Of course, mix and match according to your taste - that is the point!
 <br>
 Currently, getting a hero requires:
 <ul>
-<?php foreach($req_display as $i): ?>
-	<li><span class="<?php if($i["ok"] == 1): ?>cgood<?php else: ?>cwarn<?php endif; ?>"><b><?php echo $i["reqd"]; ?></b> <?php echo $i["name"]; ?></span></li>
+<?php foreach($req_display as $loop_i): ?>
+	<li><span class="<?php if($loop_i["ok"] == 1): ?>cgood<?php else: ?>cwarn<?php endif; ?>"><b><?php echo $loop_i["reqd"]; ?></b> <?php echo $loop_i["name"]; ?></span></li>
 <?php endforeach; ?>
 
 </ul>

@@ -32,10 +32,10 @@
 		<form method="post" action="<?php echo $main; ?>?profiles<?php echo $authstr; ?>" name="frmmsg">
 			Read Profile of: <input type="text" name="num" size="5" maxlength="10" value="<?php echo $selected; ?>" onChange="updateMsgNames()">
 			<select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-			<?php foreach($drop as $dropsel): ?>
-				<option value="<?php echo $dropsel["num"]; ?>" class="m<?php echo $dropsel["color"]; ?>"
-				<?php if($selected == $dropsel["num"]): ?> selected <?php endif; ?>
-				><?php echo $dropsel["num"]; ?> - <?php echo $dropsel["name"]; ?></option>
+			<?php foreach($drop as $loop_dropsel): ?>
+				<option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"
+				<?php if($selected == $loop_dropsel["num"]): ?> selected <?php endif; ?>
+				><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
 			<?php endforeach; ?>
 			</select>
 

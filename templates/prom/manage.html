@@ -10,8 +10,8 @@
 	<table class="inputtable">
 	<tr><th>Change Race</th></tr>
 	<tr><td class="acenter">Requires <?php echo $initturns; ?> turns,<br><?php echo $land*3; ?> <?php echo $wizards; ?>, and<br>at least 75% health</td></tr>
-	<?php foreach($races as $racesel): ?>
-		<tr><td><label><input type="radio" name="new_race" value="<?php echo $racesel["id"]; ?>"<?php if($racesel["id"] == $users["race"]): ?> checked="checked"<?php endif; ?>><?php echo $racesel["name"]; ?></label></td></tr>
+	<?php foreach($races as $loop_racesel): ?>
+		<tr><td><label><input type="radio" name="new_race" value="<?php echo $loop_racesel["id"]; ?>"<?php if($loop_racesel["id"] == $users["race"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_racesel["name"]; ?></label></td></tr>
 	<?php endforeach; ?>
 	<tr><td class="acenter"><label><input type="checkbox" name="yes_polymorph" value="1">Yes, I really<br>want to change race!</td></tr>
 	<tr><th><input type="submit" name="do_polymorph" value="Change Race"></th></tr>
@@ -32,7 +32,7 @@
 	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Industry Settings</th></tr>
-	<?php foreach($troops as $ind): ?>
+	<?php foreach($troops as $loop_ind): ?>
 	<tr><td><?php echo $troops[ind]; ?></td>
 	    <td class="aright"><input type="text" name="ind_troop<?php echo $numbers[ind]; ?>" size="3" value="<?php echo $uind[ind]; ?>">%</td></tr>
 	<?php endforeach; ?>
@@ -43,8 +43,8 @@
 	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th>Color Scheme</th></tr>
-	<?php foreach($styles as $stylesel): ?>
-		<tr><td><label><input type="radio" name="color_setting" value="<?php echo $stylesel["id"]; ?>"<?php if($stylesel["id"] == $users["style"]): ?> checked="checked"<?php endif; ?>><?php echo $stylesel["name"]; ?></label></td></tr>
+	<?php foreach($styles as $loop_stylesel): ?>
+		<tr><td><label><input type="radio" name="color_setting" value="<?php echo $loop_stylesel["id"]; ?>"<?php if($loop_stylesel["id"] == $users["style"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_stylesel["name"]; ?></label></td></tr>
 	<?php endforeach; ?>
 	<tr><th><input type="submit" name="do_changestyle" value="Change Style"></th></tr>
 	</table>

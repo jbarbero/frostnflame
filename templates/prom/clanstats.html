@@ -6,13 +6,13 @@
     <th><a href="?clanstats&amp;sort_type=avgnet<?php echo $authstr; ?>">Average Networth</a></th>
     <th><a href="?clanstats&amp;sort_type=totalnet<?php echo $authstr; ?>">Total Networth</a></th></tr>
 
-<?php foreach($clans as $ran): ?>
+<?php foreach($clans as $loop_ran): ?>
 <tr class="acenter">
-    <td><?php echo $ran["name"]; ?></td>
-    <td><a href="?clancrier&sclan=<?php echo $ran["num"]; ?><?php echo $authstr; ?>"><?php echo $ran["tag"]; ?></a></td>
-    <td><?php echo $ran["members"]; ?></td>
-    <td>$<?php echo $ran["avgnet"]; ?></td>
-    <td>$<?php echo $ran["totalnet"]; ?></td></tr>
+    <td><?php echo $loop_ran["name"]; ?></td>
+    <td><a href="?clancrier&sclan=<?php echo $loop_ran["num"]; ?><?php echo $authstr; ?>"><?php echo $loop_ran["tag"]; ?></a></td>
+    <td><?php echo $loop_ran["members"]; ?></td>
+    <td>$<?php echo $loop_ran["avgnet"]; ?></td>
+    <td>$<?php echo $loop_ran["totalnet"]; ?></td></tr>
 <?php endforeach; ?>
 </table>
 <br>

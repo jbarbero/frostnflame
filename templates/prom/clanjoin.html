@@ -8,8 +8,8 @@ From this menu, we can join a clan to possibly offer some protection.<br>
         <td colspan="2"><b>No Clans</b></td></tr>
 <?php else: ?>
 	<td><select name="join_num" size="1">
-	<?php foreach($ccs as $list): ?>
-		<option value="<?php echo $list["num"]; ?>"><?php echo $list["tag"]; ?> - <?php echo $list["name"]; ?></option>
+	<?php foreach($ccs as $loop_list): ?>
+		<option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
 	<?php endforeach; ?>
 	</select></td></tr>
 <?php endif; ?>
@@ -26,8 +26,8 @@ From this menu, we can join a clan to possibly offer some protection.<br>
 <?php else: ?>
 	<td><select name="signup_clan" size="1">
 		<option value="0">No Clan Selected</option>
-	<?php foreach($ocs as $list): ?>
-	        <option value="<?php echo $list["num"]; ?>"><?php echo $list["tag"]; ?> - <?php echo $list["name"]; ?></option>
+	<?php foreach($ocs as $loop_list): ?>
+	        <option value="<?php echo $loop_list["num"]; ?>"><?php echo $loop_list["tag"]; ?> - <?php echo $loop_list["name"]; ?></option>
 	<?php endforeach; ?>
 	</select></td></tr>
 <?php endif; ?>

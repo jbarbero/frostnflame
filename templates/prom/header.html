@@ -18,14 +18,14 @@
 
 <table class="menus">
 <tr><th><center><hr>
-<a href="?<?php echo $gaction; ?>&amp;menu=reverse<?php echo $authstr; ?>"><img src="<?php echo $imgsrc; ?>" border="0" alt="toggle collapse/expand"></a>&nbsp;<a href="?main<?php echo $authstr; ?>" class="darklink">Main&nbsp;Menu</a>
+<a href="?<?php echo $GAME_ACTION; ?>&amp;menu=reverse<?php echo $authstr; ?>"><img src="<?php echo $imgsrc; ?>" border="0" alt="toggle collapse/expand"></a>&nbsp;<a href="?main<?php echo $authstr; ?>" class="darklink">Main&nbsp;Menu</a>
 <hr></center></th></tr>
 
-<?php foreach($menus as $m): ?>
-<?php if($m["spec"] == 1): ?>
-<tr><th><?php echo $m["item"]; ?></th></tr>
+<?php foreach($menus as $loop_m): ?>
+<?php if($loop_m["spec"] == 1): ?>
+<tr><th><?php echo $loop_m["item"]; ?></th></tr>
 <?php else: ?>
-<tr><td><a href='<?php echo $m["link"]; ?>'<?php echo $m["trg"]; ?>><?php echo $m["item"]; ?></a></td></tr>
+<tr><td><a href='<?php echo $loop_m["link"]; ?>'<?php echo $loop_m["trg"]; ?>><?php echo $loop_m["item"]; ?></a></td></tr>
 <?php endif; ?>
 <?php endforeach; ?>
 
@@ -73,8 +73,8 @@
 <?php endif; ?>
 
    <center><span style="font-size:x-large"><?php echo $gamename; ?> :: <?php echo $config["servname"]; ?></span></center>
-   Currently logged in as <span style="font-size:large"><?php echo $empire; ?></span> <a class=proflink href=?profiles&amp;num=<?php echo $num; ?><?php echo $authstr; ?>>(#<?php echo $num; ?>)</a><br><br>
-   <b>Game News:</b> <?php echo $news; ?><br>
+   Currently logged in as <span style="font-size:large"><?php echo $empire; ?></span> <a class=proflink href=?profiles&amp;num=<?php echo $loop_num; ?><?php echo $authstr; ?>>(#<?php echo $loop_num; ?>)</a><br><br>
+   <b>Game News:</b> <?php echo $loop_news; ?><br>
    <a href="<?php echo $main; ?>?guide2&amp;section=<?php echo $action; ?><?php echo $authstr; ?>"><b>Game Guide</b></a> &middot;
    <a href="javascript:window.location.reload()">Refresh</a> &middot;
    <a href="http://frostnflame.org/forum/index.php?showforum=4" target="bugs">Suggestions &middot; Bugs</a>

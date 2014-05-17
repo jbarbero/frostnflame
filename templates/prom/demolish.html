@@ -62,14 +62,14 @@ The <i>Safe</i> checkboxes will demolish the most of your buildings possible bef
     <th class="aright">Safe <input type="checkbox" name="safeall" onclick="checkAllTwo(1)" class="safe"></th></tr>
 
 <?php /* Printing row stuffs */ ?>
-<?php foreach($demolish as $i): ?>
-<tr><td><?php echo $i["name"]; ?></td>
-    <td class="aright"><?php echo $i["userAmount"]; ?></td>
-    <td class="aright"><?php echo $i["canDestroy"]; ?></td>
-    <td class="aright"><?php echo $i["safeDestroy"]; ?></td>
-    <td class="aright"><input type="text" name="demolish[<?php echo $i["type"]; ?>]" size="5" value="0"></td>
-    <td class="aright"><input type="checkbox" name="max[<?php echo $i["type"]; ?>]" value="<?=$type?>" class="max"></td>
-    <td class="aright"><input type="checkbox" name="safeck[<?php echo $i["type"]; ?>]" value="<?=$type?>" class="safe"></td></tr>
+<?php foreach($demolish as $loop_i): ?>
+<tr><td><?php echo $loop_i["name"]; ?></td>
+    <td class="aright"><?php echo $loop_i["userAmount"]; ?></td>
+    <td class="aright"><?php echo $loop_i["canDestroy"]; ?></td>
+    <td class="aright"><?php echo $loop_i["safeDestroy"]; ?></td>
+    <td class="aright"><input type="text" name="demolish[<?php echo $loop_i["type"]; ?>]" size="5" value="0"></td>
+    <td class="aright"><input type="checkbox" name="max[<?php echo $loop_i["type"]; ?>]" value="<?=$type?>" class="max"></td>
+    <td class="aright"><input type="checkbox" name="safeck[<?php echo $loop_i["type"]; ?>]" value="<?=$type?>" class="safe"></td></tr>
 <?php endforeach; ?>
 <?php /* Footer */ ?>
 
