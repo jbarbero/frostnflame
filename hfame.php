@@ -42,7 +42,7 @@ $users[clan] = 0;	// about it using the ingame-specific colors
 
 $top10 = db_safe_query("SELECT * FROM $nolimitdb ORDER BY networth DESC LIMIT 0,10;");
 $rank = 1;
-while ($enemy = mysql_fetch_array($top10)) {
+while ($enemy = mysqli_fetch_array($top10)) {
 	$enemy[turnsused] = 1;
 	$enemy[rank] = $rank;
 	$enemy[offtotal] = $enemy[off];

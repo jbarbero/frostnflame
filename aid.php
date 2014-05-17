@@ -57,7 +57,7 @@ $warquery_array = array();
 
 $warquery = "SELECT num, empire, land, disabled, clan FROM $playerdb WHERE land>0 AND disabled != 3 AND disabled !=2 AND turnsused>$config[protection] AND land>0 ORDER BY rank";
 $warquery_result = @db_safe_query($warquery);
-while ($wardrop = @mysql_fetch_array($warquery_result)) {
+while ($wardrop = @mysqli_fetch_array($warquery_result)) {
 				$color = "normal";
 				if ($wardrop[num] == $users[num])
 					$color = "self";
@@ -83,18 +83,9 @@ $a = $config[aidtroop];
 $ah = "troop$a";
 $an = $uera[$ah];
 $ao = $users[troop][$a];
-$tpl->assign('sendtroop', array('num' => $a, 'name' => $an, 'owned' => $ao, 'handle' => $ah));
+$sendtroop = array('num' => $a, 'name' => $an, 'owned' => $ao, 'handle' => $ah);
 
-$tpl->assign('row', $rows); // VITAL!
-$tpl->assign('convoy', commas($convoy));
-$tpl->assign('uera', $uera);
-$tpl->assign('users', $users);
-$tpl->assign('authstr', $authstr);
-$tpl->assign('prof_target', $prof_target);
-$tpl->assign('drop', $warquery_array); // VITAL!
-$tpl->assign('cnd', $cnd);
-
-$tpl->display('aid.html');
+template_display('aid.html');
 
 TheEnd("");
 ?>

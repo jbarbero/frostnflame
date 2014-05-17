@@ -14,12 +14,12 @@ $open = 0;
 
 function debuglog($message) {
 	global $debugdb;
-	$sqlbug = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die(errorlog("Error: ".mysql_error()));
+	$sqlbug = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die(errorlog("Error: ".mysqli_error($db_link)));
 }
 
 function errorlog($message) {
 	global $debugdb;
-	$sqlerror = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die("Error: ".mysql_error());
+	$sqlerror = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die("Error: ".mysqli_error($db_link));
 }
 
 define("ONHTML", 1);
@@ -88,7 +88,7 @@ function rand_nonce($oldval) {
 /* Just an alias to show what code has been audited for security. */
 function db_safe_query($query) {
     global $db_link;
-	return mysqli_query($db_link, $query);	/* SAFE -- root call */
+    return @mysqli_query($db_link, $query);	/* SAFE -- root call */
 }
 
 // evaluate an SQL query, return first cell of first row
@@ -224,7 +224,11 @@ function auth_user($loose = false) {
 } 
 
 function auth_global($new_nonce=false) {
-	global $global, $config;
+	global $global, $config, $db_link;
+
+    if($db_link == NULL) {
+        return false;
+    }
 
 	$auth_a = explode("\n", base64_decode($_COOKIE['global_auth']));
 	$num = $auth_a[0];
@@ -232,10 +236,10 @@ function auth_global($new_nonce=false) {
 
 	fixInputNum($num);
 
-	$global = mysql_fetch_array(db_safe_query("SELECT * FROM global_users WHERE num=$num;"), MYSQL_ASSOC);
+	$global = mysqli_fetch_array(db_safe_query("SELECT * FROM global_users WHERE num=$num;"), MYSQL_ASSOC);
 	$chash = md5($global[password].$global[rsalt]);
 	if ($chash == $hash) {
-		$global = mysql_fetch_array(db_safe_query("SELECT * FROM global_users WHERE num=$num;"), MYSQL_ASSOC);
+		$global = mysqli_fetch_array(db_safe_query("SELECT * FROM global_users WHERE num=$num;"), MYSQL_ASSOC);
 		if($new_nonce) {
 			$nonce = rand_nonce($global[nonce]);
 			db_safe_query("UPDATE global_users SET rsalt='$nonce' WHERE num=$num;");
@@ -355,7 +359,7 @@ function commas ($str) {
 } 
 
 function sqlQuotes (&$str) {
-	$str = mysql_real_escape_string($str);
+	$str = mysqli_real_escape_string($db_link, $str);
 } 
 
 // remove commas, make integer
@@ -474,7 +478,7 @@ function pci ($user, $race) {
 function loadUser ($num) {
 	global $config, $playerdb, $time, $turnsper, $perminutes;
 	fixInputNum($num);
-	$user = @mysql_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE num=$num;"), MYSQL_ASSOC);
+	$user = @mysqli_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE num=$num;"), MYSQL_ASSOC);
 	if(!$user[num])
 		return;
 	$user[troop] = explode("|", $user[troops]);
@@ -538,7 +542,7 @@ function loadUser ($num) {
 			$q = "UPDATE $playerdb SET turns=$user[turns],turnsstored=$user[turnsstored],turnbank=$user[turnbank],turnbank_last=$lastturnbank,turns_last=$last,forces=$user[forces] WHERE num=$user[num];";
 			//$q = "UPDATE $playerdb SET turns=$user[turns],turnsstored=$user[turnsstored],turns_last=$last,forces=$user[forces] WHERE num=$user[num];";
 			db_safe_query($q);
-			$str = mysql_error();
+			$str = mysqli_error($db_link);
 			if($str)
 				echo "<b>PLEASE REPORT IMMEDIATELY: '$q': $str</b><br>";
 		}
@@ -558,7 +562,7 @@ function loadUser ($num) {
 		fixInputNum($user[attacks]);
 		$q = "UPDATE $playerdb SET hour_last=$last,attacks=$user[attacks] WHERE num=$user[num];";
 		db_safe_query($q);
-		$str = mysql_error();
+		$str = mysqli_error($db_link);
 		if($str)
 			echo "<b>PLEASE REPORT IMMEDIATELY: '$q': $str</b><br>";
 	}
@@ -598,7 +602,7 @@ function loadEra ($era, $race = 1) {
 function loadClan ($num) {
 	global $clandb, $perminutes, $playerdb, $time;
 	fixInputNum($num);
-	$clan = @mysql_fetch_array(db_safe_query("SELECT * FROM $clandb WHERE num=$num;"), MYSQL_ASSOC);
+	$clan = @mysqli_fetch_array(db_safe_query("SELECT * FROM $clandb WHERE num=$num;"), MYSQL_ASSOC);
 	if(!$clan[num])
 		return;
 
@@ -650,7 +654,7 @@ function loadClan ($num) {
 function loadClanTags () {
 	global $clandb;
 	$clans = db_safe_query("SELECT num,tag FROM $clandb;");
-	while ($clan = mysql_fetch_array($clans))
+	while ($clan = mysqli_fetch_array($clans))
 	$ctags["$clan[num]"] = $clan[tag];
 	$ctags["0"] = "None";
 	return $ctags;
@@ -1321,7 +1325,7 @@ function intelMainStats ($user, $race, $era, $esp=false, $other=null){
     $spyinfo = implode("|", $spyarray);
     $spydb = $prefix."_intel"; 
 
-    mysql_query("INSERT INTO $spydb SET num='$users[num]', spyinfo='$spyinfo', spytime='$time'") or die("Error: ".mysql_error());
+    mysql_query("INSERT INTO $spydb SET num='$users[num]', spyinfo='$spyinfo', spytime='$time'") or die("Error: ".mysqli_error($db_link));
 } 
 
 function printMainStats ($user, $race, $era, $esp=false, $other=null){
@@ -1545,10 +1549,10 @@ function addNews($code, $args, $overrideDBlock = false, $settime=-1) {
 
 	$new = false;
 	$last_q = db_safe_query("SELECT * FROM $newsdb WHERE time>$limit ORDER BY id DESC LIMIT 0,1;");
-	if(mysql_num_rows($last_q) == 0) {
+	if(mysqli_num_rows($last_q) == 0) {
 		$new = true;
 	} else {
-		$old = mysql_fetch_array($last_q);
+		$old = mysqli_fetch_array($last_q);
 
 		//what must agree: code, id1, clan1, id2, clan2, id3, clan3, shielded, online
 		if( $code == $old[code] && $id1 == $old[id1] && $clan1 == $old[clan1] &&
@@ -1587,8 +1591,8 @@ function addNews($code, $args, $overrideDBlock = false, $settime=-1) {
 		$query = "INSERT INTO $newsdb (time, code, id1, clan1, land1, cash1, troops1, wizards1, food1, runes1, id2, clan2, land2, troops2, wizards2, id3, clan3, shielded, online)
 				VALUES ($time, $code, $id1, $clan1, $land1, $cash1, '$troops1', $wizards1, $food1, $runes1, $id2, $clan2, $land2, '$troops2', $wizards2, $id3, $clan3, $shielded, $online);";
 		db_safe_query($query);
-		if(mysql_error())
-			echo "Please show this to the administrators:<br><b>$query<br>".mysql_error()."</b><br>";
+		if(mysqli_error($db_link))
+			echo "Please show this to the administrators:<br><b>$query<br>".mysqli_error($db_link)."</b><br>";
 	}
 
 	$time = time();
@@ -1597,11 +1601,15 @@ function addNews($code, $args, $overrideDBlock = false, $settime=-1) {
 
 function doForumNews() {
 	global $config;
-	if($config['news_type'] == 'ipb')
+	if($config['news_type'] == 'ipb') {
 		include("lib/ipb.php");
-	else if($config['news_type'] == 'phpbb')
+        return intForumNews();
+    } else if($config['news_type'] == 'phpbb') {
 		include("lib/phpbb.php");
-	return intForumNews();
+        return intForumNews();
+    } else {
+        return array();
+    }
 }
 
 

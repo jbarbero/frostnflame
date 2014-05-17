@@ -30,12 +30,12 @@ $max[networth] = '0';
 
 $player = array();
 
-while ($player = mysql_fetch_array($players))
+while ($player = mysqli_fetch_array($players))
 {
-	$troop0 = mysql_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop0'"));
-	$troop1 = mysql_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop1'"));
-	$troop2 = mysql_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop2'"));
-	$troop3 = mysql_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop3'"));
+	$troop0 = mysqli_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop0'"));
+	$troop1 = mysqli_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop1'"));
+	$troop2 = mysqli_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop2'"));
+	$troop3 = mysqli_fetch_array(db_safe_query("SELECT SUM(amount) FROM bfr_market WHERE seller=$player[num] AND type='troop3'"));
 	
 	$player[networth] += ($troop0[0] * $config[troop][0] / $config[troop][0]);
 	$player[networth] += ($troop1[0] * $config[troop][1] / $config[troop][0]);

@@ -18,7 +18,7 @@ $days2 = array();
 $days3 = array();
 
 $q = db_safe_query("SELECT * FROM $stockdb;");
-while($stock = mysql_fetch_array($q)) {
+while($stock = mysqli_fetch_array($q)) {
 	$id = $stock['id'];
 	$stocknames[$id] = $stock['name'];
 	$symbols[$id] = $stock['symbol'];

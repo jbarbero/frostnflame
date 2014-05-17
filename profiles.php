@@ -10,7 +10,7 @@ else	{
 	// User details handling
 
 	if(empty($num))		// _GET or _POST ok
-		$enemy = mysql_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE land>0 AND disabled != 2 AND disabled != 3 ORDER BY rank LIMIT 0,1;"));
+		$enemy = mysqli_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE land>0 AND disabled != 2 AND disabled != 3 ORDER BY rank LIMIT 0,1;"));
 	else {
 		fixInputNum($num);
 		$enemy = loadUser($num);
@@ -93,7 +93,7 @@ else	{
 
 $warquery = "SELECT num, empire, land, disabled, clan FROM $playerdb WHERE disabled != 3 ORDER BY rank;";
 $warquery_result = @db_safe_query($warquery);
-while ($wardrop = @mysql_fetch_array($warquery_result)) {
+while ($wardrop = @mysqli_fetch_array($warquery_result)) {
 		if (($wardrop[land] > 0) && ($wardrop[num] != 1)) {
 				$color = "normal";
 				if ($wardrop[num] == $users[num])

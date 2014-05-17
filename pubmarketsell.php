@@ -60,7 +60,7 @@ function getCosts ($type, $num=0)
 {
 	global $marketdb, $config, $users, $costs, $time;
 	sqlQuotes($type);
-	$market = mysql_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE type='$type' AND seller!=$users[num] AND time<=$time AND clan=".CLAN." 
+	$market = mysqli_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE type='$type' AND seller!=$users[num] AND time<=$time AND clan=".CLAN." 
 		ORDER BY price ASC, time ASC LIMIT 1;"));
 	if ($market[price])
 		$costs[$type] = $market[price];
@@ -81,7 +81,7 @@ function calcBasket ($type, $percent, $num=0)
 	$onsale = 0;
 	sqlQuotes($ts);
 	$goods = db_safe_query("SELECT * FROM $marketdb WHERE type='$ts' AND seller=$users[num] ORDER BY amount DESC;");
-	while ($market = mysql_fetch_array($goods))
+	while ($market = mysqli_fetch_array($goods))
 	{
 		$onsale += $market[amount];
 		if($market[clan] == CLAN) {
@@ -186,7 +186,7 @@ function removeUnits ($id)
 {
 	global $marketdb, $users, $uera, $commission;
 	fixInputNum($id);
-	$market = @mysql_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE id=$id AND clan=".CLAN.";"));
+	$market = @mysqli_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE id=$id AND clan=".CLAN.";"));
 	if ($market[seller] != $users[num])
 		print "No such shipment!<br>\n";
 	else

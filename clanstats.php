@@ -10,7 +10,7 @@ $members = array(); $totalnet = array(); $avgnet = array();
 
 $allusers = db_safe_query("SELECT clan,networth FROM $playerdb WHERE land>0 ORDER BY networth DESC;");
 $unallied = $utotal = 0;
-while ($users = mysql_fetch_array($allusers)) {
+while ($users = mysqli_fetch_array($allusers)) {
 	if ($n = $users[clan]) {
 		$members[$n]++;
 		$totalnet[$n] += $users[networth];

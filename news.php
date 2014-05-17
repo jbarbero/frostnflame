@@ -34,10 +34,10 @@ if (!empty($search_num)) {
 
 $query = "SELECT * FROM $newsdb WHERE $where ORDER BY id DESC LIMIT 0,$newslimit;";
 $news = db_safe_query($query);
-$count = @mysql_num_rows($news);
+$count = @mysqli_num_rows($news);
 
 $newdisp = array();
-while ($new = mysql_fetch_array($news)) {
+while ($new = mysqli_fetch_array($news)) {
 	$time = $new[time];
 	$code = $new[code];
 	$id1 = $new[id1];
@@ -144,11 +144,11 @@ while ($new = mysql_fetch_array($news)) {
 $liveclans = array();
 $deadclans = array();
 $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num;");
-while($clan = mysql_fetch_array($list))
+while($clan = mysqli_fetch_array($list))
 	$liveclans[] = $clan;
 
 $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members=-1 ORDER BY num;");
-while($clan = mysql_fetch_array($list))
+while($clan = mysqli_fetch_array($list))
 	$deadclans[] = $clan;
 
 $tpl->assign('crier', $crier);

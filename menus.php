@@ -1,6 +1,7 @@
 <?php
 if (!defined("PROMISANCE"))
 	die(" ");
+global $menus, $imgsrc;
 global $authstr, $users, $GAME_ACTION;
 if (!empty($_GET['menu'])) {
 	$new = 0;
@@ -115,9 +116,5 @@ menu_header_item('Management', 'manage', 1);
 menu_normal_item('Manage', 'manage', 1);
 //menu_normal_item('Commands', 'script', 1);
 menu_normal_item('Delete', 'delete', 0);
-
-$tpl->assign('menus', $menus);
-$tpl->assign('imgsrc', $imgsrc);
-$tpl->assign('gaction', $GAME_ACTION);   
 
 ?>

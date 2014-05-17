@@ -38,10 +38,10 @@ if($leave_protection) {
 		TheEnd("Sorry, you can not leave protection early on this server!");
 
 	$REMOTE_ADDR = $_SERVER['REMOTE_ADDR'];
-	$users[email] = mysql_real_escape_string($users[email]);
+	$users[email] = mysqli_real_escape_string($db_link, $users[email]);
 	$old_accounts = db_safe_query("SELECT * FROM $playerdb WHERE ((email='$users[email]' OR IP='$REMOTE_ADDR') AND disabled!=2 AND num!=$users[num]) ORDER BY idle DESC;");
 	
-	$test = mysql_fetch_array($old_accounts);
+	$test = mysqli_fetch_array($old_accounts);
 
 	if($test[idle] > (time() - 24 * 60 * 60))
 		TheEnd("A previous account with your IP or Email was too recently logged in for you to leave protection.");

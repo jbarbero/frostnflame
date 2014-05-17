@@ -62,7 +62,7 @@ function HTMLbegincompact ($title)
 	if(!defined("PROMISANCE"))
 		die(" ");
 
-	global $tpl, $starttime, $templates, $gamename, $gamename_full, $config, $authstr, $uera, $skinstr;
+	global $tpl, $starttime, $templates, $gamename, $gamename_full, $config, $authstr, $uera, $skinstr, $menus;
 	$authstr = '&amp;srv='.SERVER;
 	$uera = loadEra(1,1);
 	$starttime = getmicrotime();

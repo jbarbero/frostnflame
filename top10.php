@@ -68,9 +68,9 @@ $users[clan] = 0;	// about it using the ingame-specific colors
 $top10 = db_safe_query("SELECT rank,empire,num,land,networth,clan,online,disabled,turnsused,vacation,race,era,offsucc,offtotal,defsucc,deftotal,kills FROM $playerdb 
 		 WHERE disabled != 2 AND disabled != 3 AND land>0 ORDER BY $sort LIMIT 100;");
 
-while ($enemy = mysql_fetch_array($top10))
+while ($enemy = mysqli_fetch_array($top10))
 	printSearchLine();
-echo mysql_error();
+echo mysqli_error($db_link);
 printTop10Header();
 ?>
 </table>

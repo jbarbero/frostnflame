@@ -14,7 +14,7 @@ if($_POST['type'] == 'global') {
 	sqlQuotes($user);
 	$pass = $_POST['pass'];
 
-	$global = mysql_fetch_array(db_safe_query("SELECT * FROM global_users WHERE username='$user';"));
+	$global = mysqli_fetch_array(db_safe_query("SELECT * FROM global_users WHERE username='$user';"));
 	if(!$global[num])
 		EndNow($reason);
 
@@ -30,7 +30,7 @@ if($_POST['type'] == 'global') {
 	if ($login_username == "")
 		EndNow("You must enter a username!");
 	sqlQuotes($login_username);
-	$users = mysql_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE username='$login_username';"));
+	$users = mysqli_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE username='$login_username';"));
 	if (!$users[num])
 		EndNow($reason);
 	$password = md5($login_password);
@@ -69,7 +69,7 @@ if($_POST['type'] == 'global') {
 function login_page() {
 	HTMLbegincompact("Login");
 
-	global $servers, $config, $perserver_config, $tpl;
+	global $servers, $config, $perserver_config, $tpl, $disp_servers, $login_news;
 
 	$disp_servers = array();
 	foreach($servers as $i => $s) {
@@ -82,13 +82,9 @@ function login_page() {
 		$disp_servers[] = $n;
         }
 
-	$tpl->assign('login_news', doForumNews());
-	$tpl->assign('servers', $disp_servers);
+	$login_news = doForumNews();
 
-	$tpl->assign('servname', $config['servname']);
-	$tpl->assign('sitedir', $config['sitedir']);
-	$tpl->assign('hiddenlogin', $config['hiddenlogin']);
-	$tpl->display('login.html');
+    template_display('login.html');
 	HTMLendcompact();
 }
 

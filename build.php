@@ -70,18 +70,7 @@ printRow(farms);
 printRow(towers);
 
 
-$tpl->assign('cnd', $cnd);
-$tpl->assign('authstr', $authstr);
-$tpl->assign('do_build', do_build);
-$tpl->assign('build', $dbuild);
-$tpl->assign('freeland', commas($users[freeland]));
-$tpl->assign('canbuild', commas($canbuild));
-$tpl->assign('buildrate', commas($buildrate));
-$tpl->assign('buildcost', commas($buildcost));
-$tpl->assign('turns', commas($turns));
-$tpl->assign('totalbuild', commas($totalbuild));
-$tpl->assign('totalspent', commas($totalspent));
-$tpl->display('build.html');
+template_display('build.html');
 TheEnd("");
 
 ?>

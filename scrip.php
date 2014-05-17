@@ -35,7 +35,7 @@ forage times=1
 #that++
 until turns lt 5
 
-scout + - < > <= >) `hi` mysql_close();
+scout + - < > <= >) `hi` mysqli_close($db_link);
 
 
 stop";

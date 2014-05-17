@@ -14,7 +14,7 @@ if($_POST['type'] == 'global') {
 	sqlQuotes($user);
 	$pass = $_POST['pass'];
 
-	$global = mysql_fetch_array(db_safe_query("SELECT * FROM global_users WHERE username='$user';"));
+	$global = mysqli_fetch_array(db_safe_query("SELECT * FROM global_users WHERE username='$user';"));
 	if(!$global[num])
 		EndNow($reason);
 
@@ -30,7 +30,7 @@ if($_POST['type'] == 'global') {
 	if ($login_username == "")
 		EndNow("You must enter a username!");
 	sqlQuotes($login_username);
-	$users = mysql_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE username='$login_username';"));
+	$users = mysqli_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE username='$login_username';"));
 	if (!$users[num])
 		EndNow($reason);
 	$password = md5($login_password);
@@ -113,7 +113,7 @@ function login_page() {
 		if(isset($global[num])) {
 			fixInputNum($global[num]);
 			$rec = db_safe_query("SELECT * FROM $playerdb WHERE disabled!=4 AND global_num=$global[num];");
-			$user = mysql_fetch_array($rec);
+			$user = mysqli_fetch_array($rec);
 			if(isset($user[num]))
 				$n['empire'] = $user[empire];
 			else

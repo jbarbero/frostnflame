@@ -21,7 +21,7 @@ $days2 = array();
 $days3 = array();
         
 $q = db_safe_query("SELECT * FROM $stockdb;");
-while($stock = mysql_fetch_array($q)) {
+while($stock = mysqli_fetch_array($q)) {
         $id = $stock['id'];
         $stocknames[$id] = $stock['name'];
         $symbols[$id] = $stock['symbol'];
@@ -37,7 +37,7 @@ while($stock = mysql_fetch_array($q)) {
 
 echo "<pre>";
 $pn = mysql_query("SELECT num FROM $playerdb;");
-while($p = mysql_fetch_array($pn)) {
+while($p = mysqli_fetch_array($pn)) {
 	$n = $p[num];
 	$user = loadUser($n);
 	$st = explode("|", $user[stocks]);

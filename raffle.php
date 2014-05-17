@@ -28,7 +28,7 @@ if ($do_ticket) {
 		if(isset($$name))
 			break;
 	}
-	if (mysql_num_rows($tickets[$jtyp]) >= $maxtickets)
+	if (mysqli_num_rows($tickets[$jtyp]) >= $maxtickets)
 		TheEnd("You can't buy any more $jtyp tickets!");
         if ($users[$jtyp] < $tickcost[$jtyp])
 		TheEnd("You don't have enough for a ticket!");
@@ -56,8 +56,8 @@ $tpl->assign('foodpot', commas($jackpot[food]));
 $tpl->assign('numcasht', db_safe_firstval("SELECT COUNT(*) FROM $lotterydb WHERE num!=0 AND jtyp='cash';"));
 $tpl->assign('numfoodt', db_safe_firstval("SELECT COUNT(*) FROM $lotterydb WHERE num!=0 AND jtyp='food';"));
 
-$tpl->assign('numuct', mysql_num_rows($tickets['cash']));
-$tpl->assign('numuft', mysql_num_rows($tickets['food']));
+$tpl->assign('numuct', mysqli_num_rows($tickets['cash']));
+$tpl->assign('numuft', mysqli_num_rows($tickets['food']));
 $tpl->assign('maxtickets', $maxtickets);
 
 $tpl->assign('ucash', $users['cash']);
@@ -71,7 +71,7 @@ foreach($jtyps as $jtyp) {
 	$tpl->assign('last_'.$jtyp.'w', commas($lastjackpot[$jtyp]));
 
 	$ticks = array();
-	while($ticket = mysql_fetch_array($tickets[$jtyp]))
+	while($ticket = mysqli_fetch_array($tickets[$jtyp]))
 		$ticks[] = $ticket;
 
 	$tpl->assign($jtyp.'_ticks', $ticks);

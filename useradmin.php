@@ -91,7 +91,7 @@ $ctags = loadClanTags();
     <th class="aright">Status</th>
     <th class="aright">Modify</th></tr>
 <?
-while ($multi = mysql_fetch_array($multis))
+while ($multi = mysqli_fetch_array($multis))
 {
 	$idle = $time - $multi[idle];
 	if ($multi[$sortby] == $lastsort)
@@ -148,7 +148,7 @@ while ($multi = mysql_fetch_array($multis))
 		<option value="0" selected>None: Unallied <?=$uera[empireC]?>s</option>
 	<?
 	        $clanlist = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
-	        while ($clan = mysql_fetch_array($clanlist))
+	        while ($clan = mysqli_fetch_array($clanlist))
 	        {
 	?>
 	<option value="<?=$clan[num]?>"><?=$clan[tag]?>: <?=$clan[name]?></option>

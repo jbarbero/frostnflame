@@ -44,7 +44,7 @@ if ($do_delete_selected)
 	//echo "i = $i - $boxes[$i] = boxes[i]";
 		fixInputNum($boxes[$i]);
 		$msg = db_safe_query("SELECT * FROM $messagedb WHERE id=$boxes[$i];");
-		$message = mysql_fetch_array($msg);
+		$message = mysqli_fetch_array($msg);
 		if($users[num] != $message[src]) TheEnd("You can't delete another person's messages.");
 		db_safe_query("UPDATE $messagedb SET deleted=3 WHERE deleted=1 AND src=$users[num] AND id=$boxes[$i];");
 		db_safe_query("UPDATE $messagedb SET deleted=2 WHERE deleted=0 AND src=$users[num] AND id=$boxes[$i];");
@@ -61,7 +61,7 @@ if ($view!="")
   fixInputNum($view);
   $msg = db_safe_query("SELECT * FROM $messagedb WHERE id=$view;");
 
-  $vmessage = mysql_fetch_array($msg);
+  $vmessage = mysqli_fetch_array($msg);
   if($users[num] != $vmessage[src]) TheEnd("That's not your message.");
   $vsrc = loadUser($vmessage[dest]);
   $vmessage['msg_escaped'] = swear_filter($vmessage[msg]);
@@ -91,11 +91,11 @@ if(!$asc) $asc = "DESC";
 
 
 $msgs = db_safe_query("SELECT * FROM $messagedb WHERE src=$users[num] AND (deleted=0 OR deleted=1) ORDER BY $order_by $asc;");
-$num_msgs =@mysql_num_rows($msgs);
-if( @mysql_num_rows($msgs))
+$num_msgs =@mysqli_num_rows($msgs);
+if( @mysqli_num_rows($msgs))
 {
 
-		while ($message = mysql_fetch_array($msgs))
+		while ($message = mysqli_fetch_array($msgs))
 		{
 			$enemy = loadUser($message[dest]);
 	                $message[msg] = bbcode_parse($message[msg]);

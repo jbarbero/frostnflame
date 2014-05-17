@@ -50,7 +50,7 @@ if ($users[clan])
 	$uclan = loadClan($users[clan]);
 
 	$latest_topics = db_safe_query("SELECT topic_poster, topic_poster_name, topic_id, topic_time, topic_title, topic_last_post_id FROM $prefix"."_topics WHERE forum_id=$uclan[num] ORDER BY topic_last_post_id DESC LIMIT 0,5;");
-	if(mysql_num_rows($latest_topics)) {
+	if(mysqli_num_rows($latest_topics)) {
 		echo '<table class="inputtable" style="width:50%">';
 		echo '<tr><td colspan="4"><hr></td></tr>';
 		echo '<tr><th colspan="4">Latest Clan Topics:</th></tr>';
@@ -60,7 +60,7 @@ if ($users[clan])
 		echo '<th>Last Poster</th></tr>';
 
 		$oldid = 0;
-		while($topic = mysql_fetch_array($latest_topics)) {
+		while($topic = mysqli_fetch_array($latest_topics)) {
 			if($topic[topic_id] == $oldid)
 				continue;
 			$oldid = $topic[id];

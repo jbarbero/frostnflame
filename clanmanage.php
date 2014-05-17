@@ -9,7 +9,7 @@ function listopt($item) {
 <option value="0"<?if ($uclan[$item] == 0) print " selected";?>>None</option>
 <?
 	$list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
-	while ($clan = mysql_fetch_array($list))
+	while ($clan = mysqli_fetch_array($list))
 	{
 ?>
 <option value="<?=$clan['num']?>"<?if ($clan['num'] == $uclan[$item]) print " selected";?>><?=$clan['tag']?>: <?=$clan['name']?></option>
@@ -67,7 +67,7 @@ function playeropts() {
     <th width="8%">Treasury Access</th></tr>
 <?
 	$dblist = db_safe_query("SELECT empire,num,clan_tres,forces,rank,networth FROM $playerdb WHERE clan=$uclan[num];");
-	while ($listclan = mysql_fetch_array($dblist)) {
+	while ($listclan = mysqli_fetch_array($dblist)) {
 ?>
 <tr><td class="acenter"><input type="radio" name="modify_empire" value="<?=$listclan['num']?>"<?if ($listclan['num'] == $uclan['founder']) print " CHECKED";?>></td>
     <td class="acenter"><?=$listclan['empire']?> <a class=proflink href=?profiles&num=<?=$listclan['num']?><?=$authstr?>>(#<?=$listclan['num']?>)</a></td>
@@ -271,7 +271,7 @@ if($do_remtres) {
         TheEnd("Clan leaders must have access to the treasury by default.");	
     } else {
     	$enemy['clan_tres'] = 0;
-    	//db_safe_query("UPDATE $playerdb SET clan_tres='0' WHERE num='".$enemy[num]."'") or die("Error: ".mysql_error());
+    	//db_safe_query("UPDATE $playerdb SET clan_tres='0' WHERE num='".$enemy[num]."'") or die("Error: ".mysqli_error($db_link));
     	SaveUserData($enemy ,"clan_tres");
     	addNews(451, array(id1=>$enemy[num], id2=>$users[num], clan1=>$enemy[clan], clan2=>$users[clan]));    	
     }    

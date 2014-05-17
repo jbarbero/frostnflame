@@ -31,7 +31,7 @@ function buyUnits ($type) {
 
 	sqlQuotes($type);
 	fixInputNum($price);
-	$market = mysql_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE type='$type' AND seller!=$users[num] AND price<=$price AND time<=$time AND clan=".CLAN." 
+	$market = mysqli_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE type='$type' AND seller!=$users[num] AND price<=$price AND time<=$time AND clan=".CLAN." 
 		ORDER BY price ASC, time ASC LIMIT 1;"));
 	if (!$market[amount])
 		return;
@@ -80,7 +80,7 @@ function getCosts ($type)
 {
 	global $marketdb, $users, $costs, $avail, $canbuy, $time;
 	sqlQuotes($type);
-	$market = mysql_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE type='$type' AND seller!=$users[num] AND time<=$time AND clan=".CLAN." 
+	$market = mysqli_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE type='$type' AND seller!=$users[num] AND time<=$time AND clan=".CLAN." 
 		ORDER BY price ASC, time ASC LIMIT 1;"));
 	if ($market[id]) {
 		$costs[$type] = $market[price];

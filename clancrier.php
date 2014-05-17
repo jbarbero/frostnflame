@@ -26,8 +26,8 @@ if(!$users[num]) {
 $clannumbers = array();
 $count = 0;
 $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0;");
-echo "count: " .@mysql_num_rows($list) . " yes";
-while ($clan = @mysql_fetch_array($list)) {
+echo "count: " .@mysqli_num_rows($list) . " yes";
+while ($clan = @mysqli_fetch_array($list)) {
 	$clannumbers[$count] = $clan[num];
 	$count++;
 	
@@ -49,7 +49,7 @@ if ((isset($sclan)) && ($sclan > 0)) {
 	$num = $sclan;
 } else {
 	echo "Please select a clan from the form above to see their latest news bulletins.";
-	$numrows = @mysql_num_rows($list);
+	$numrows = @mysqli_num_rows($list);
 	$rn = rand(0, count($clannumbers)-1);
 	
 	$num = $clannumbers[$rn];
@@ -67,7 +67,7 @@ if ($tclan[criernews] == "") {
 <td width="25%" style="text-align: left;">
 <?php
 $contacts = db_safe_query("SELECT empire, num FROM $playerdb WHERE num = $tclan[founder] OR num = $tclan[asst] OR num = $tclan[fa1] OR num = $tclan[fa2];");
-while ($contact = @mysql_fetch_array($contacts)) {
+while ($contact = @mysqli_fetch_array($contacts)) {
 	$ccontacts["$contact[num]"] = $contact[empire];
 }
 
@@ -104,7 +104,7 @@ if ($tclan[fa2] > 0) {
 // CLAN MEMBERS
 $dbstr = db_safe_query("SELECT rank, empire, num, land, networth, clan, race, era, online, disabled, turnsused, vacation, offsucc, offtotal, defsucc, deftotal, kills FROM $playerdb WHERE clan = $tclan[num] ORDER BY rank ASC;");
 
-if ($numrows =@mysql_num_rows($dbstr)) {
+if ($numrows =@mysqli_num_rows($dbstr)) {
 	
 	?>
 	Color Key: <span class="mprotected">Protected/Vacation</span>, <span class="mdead">Dead</span>, <span class="mally">Ally</span>, <span class="mdisabled">Disabled</span>, <span class="madmin">Administrator</span>, <span class="mself">You</span><br>
@@ -117,7 +117,7 @@ if ($numrows =@mysql_num_rows($dbstr)) {
 	</tr>
 	<?php
 	printSearchHeader($users[era]);
-	while ($stuff = @mysql_fetch_array($dbstr)) {
+	while ($stuff = @mysqli_fetch_array($dbstr)) {
 		global $enemy;
 		$enemy = $stuff;
 		printSearchLine();

@@ -86,7 +86,7 @@ if ($msgs_timelimit) {
 $msgs = db_safe_query("SELECT time,src as num_s,p1.empire as name_s,dest as num_d,p2.empire as name_d,msg FROM $messagedb LEFT JOIN $playerdb AS p1 ON (src=p1.num) 
 	LEFT JOIN $playerdb AS p2 ON (dest=p2.num) $query ORDER BY time ASC;");
 
-if (!@mysql_num_rows($msgs))
+if (!@mysqli_num_rows($msgs))
 	TheEnd("No messages");
 
 ?>
@@ -96,7 +96,7 @@ if (!@mysql_num_rows($msgs))
     <th style="width:15%">To</th>
     <th style="width:60%">Message</th></tr>
 <?php
-while ($message = mysql_fetch_array($msgs)) {
+while ($message = mysqli_fetch_array($msgs)) {
 
 	?>
 <tr><td><?=date("Y/m/d H:i:s", $message[time])?></td>

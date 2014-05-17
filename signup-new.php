@@ -61,7 +61,7 @@ if ($do_signup) {
 	$users['name'] = $signup_name;
     $users['password'] = md5($signup_password);
 	$users['email'] = $signup_email;
-	$users['email'] = mysql_real_escape_string($users['email']);
+	$users['email'] = mysqli_real_escape_string($db_link, $users['email']);
 	$users['IP'] = $ip;
 
 	$users['folders'] = 'Inbox|Sent';
@@ -85,7 +85,7 @@ if ($do_signup) {
 	$users['rank'] = $users['num'];
 
 	$users['igname'] = htmlspecialchars(swear_filter($signup_igname), ENT_QUOTES);
-	$users['igname'] = mysql_real_escape_string($users[igname]);
+	$users['igname'] = mysqli_real_escape_string($db_link, $users[igname]);
 
 	$users['turns'] = $config['initturns'];
 
@@ -172,7 +172,7 @@ Should you want to reply to this e-mail, please use $config[adminemail]
 //update ranks
 $userslist = db_safe_query("SELECT num FROM $playerdb WHERE disabled != 2 AND disabled !=3 AND land>0 ORDER BY networth DESC;");
 $urank = 0;
-while ($user = mysql_fetch_array($userslist))
+while ($user = mysqli_fetch_array($userslist))
 {
         $urank++;
         db_safe_query("UPDATE $playerdb SET rank=$urank WHERE num=$user[num];");
@@ -275,12 +275,12 @@ foreach($etags as $num => $era) {
 <tr><th class="aright">Clan:</th>
 <?
 $clans = db_safe_query("SELECT num,tag,name FROM $clandb WHERE open=1 AND members>0;");
-if(@mysql_num_rows($clans) == 0)
+if(@mysqli_num_rows($clans) == 0)
 	echo '<td><b>No open Clans</b></td></tr>';
 else {
 	echo '<td><select name="signup_clan" size="1"><option value="0">No Clan Selected Yet</option>';
 
-	while ($clan = mysql_fetch_array($clans)) {
+	while ($clan = mysqli_fetch_array($clans)) {
 		echo "<option value='$clan[num]'>$clan[tag] - $clan[name]</option>";
 	}
 	echo '</select></td></tr>';

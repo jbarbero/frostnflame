@@ -39,7 +39,7 @@ $uclan = loadClan($users[clan]);
 	        $warquery = "SELECT num, empire, land, disabled, clan FROM $playerdb WHERE land>0 AND disabled != 3 AND disabled != 2 ORDER BY rank";
         $warquery_result = @db_safe_query($warquery);
         $warquery_array = array();
-        while ($wardrop = @mysql_fetch_array($warquery_result)) {
+        while ($wardrop = @mysqli_fetch_array($warquery_result)) {
                                         $color = "normal";
                                         if ($wardrop[num] == $users[num])
                                                 $color = "self";
@@ -456,7 +456,7 @@ fixInputNum($prof_target);
  if($view_prof == 1) $scores = db_safe_query("SELECT * FROM $mercdb WHERE t_num=$prof_target AND filled=0 ORDER BY $order_by $asc LIMIT 1000;");
  else $scores = db_safe_query("SELECT * FROM $mercdb WHERE filled=0 ORDER BY $order_by $asc LIMIT 1000;");
 $x = 1;
- while ($bounty = mysql_fetch_array($scores)) {
+ while ($bounty = mysqli_fetch_array($scores)) {
  		$temp = "";
 		$bounty['x'] = $x;
 

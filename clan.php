@@ -12,7 +12,7 @@ if ($users['clan']) {
 			TheEnd("Sorry, we cannot leave our Clan until we've been a part of it for at least 48 hours.");
 		if ($uclan['founder'] == $users['num']) {
 			$remuser = db_safe_query("SELECT num,clan,forces,allytime FROM $playerdb WHERE clan=$uclan[num] AND num!=$uclan[founder];");
-			while ($enemy = mysql_fetch_array($remuser)){
+			while ($enemy = mysqli_fetch_array($remuser)){
 				$enemy['clan'] = $enemy['forces'] = 0;
 				saveUserData($enemy,"clan forces");
 				addNews(117, array(id1=>$enemy[num], clan1=>$uclan[num], id2=>$uclan[founder]));
@@ -134,7 +134,7 @@ if ($users['clan']) {
     <th>Time in Clan</th></tr>
 <?
 	$list = db_safe_query("SELECT empire,num,forces,rank,networth,allytime,clan_tres FROM $playerdb WHERE clan=$uclan[num];");
-	while ($listclan = mysql_fetch_array($list)) {
+	while ($listclan = mysqli_fetch_array($list)) {
                 $hours = ($time - $listclan['allytime']) / 3600;
 		$allytime = "";
                 if ($hours > 24) {
@@ -190,12 +190,12 @@ if ($users['clan']) {
 <tr><td class="aright">Clan:</td>
 <?
 $clans = db_safe_query("SELECT num,tag,name FROM $clandb WHERE members<0;");
-if(@mysql_num_rows($clans) == 0)
+if(@mysqli_num_rows($clans) == 0)
         echo '<td><b>No Dead Clans (yet)</b></td></tr>';
 else {
         echo '<td><select name="join_num" size="1"><option value="0">Select</option>';
       
-        while ($clan = mysql_fetch_array($clans)) {
+        while ($clan = mysqli_fetch_array($clans)) {
                 echo "<option value='$clan[num]'>$clan[tag] - $clan[name]</option>";
 	}
         echo '</select></td></tr>';

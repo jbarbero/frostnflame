@@ -502,7 +502,7 @@ function action_sql_1()
 		}
 		else
 		{
-			$tpl_vars['connectmsg'] = '<p>Error on connecting. '. mysql_error().'</p>';
+			$tpl_vars['connectmsg'] = '<p>Error on connecting. '. mysqli_error($db_link).'</p>';
 		}
 	}
 	return parse_tpl(get_tpl('connect2mysql'), $tpl_vars);
@@ -534,7 +534,7 @@ function action_sql_3()
 			$result = mysql_query($_POST['sqlcmd']);
 			$lines = array();
 	
-			if(mysql_num_rows($result))
+			if(mysqli_num_rows($result))
 			{	
 				while($row = mysql_fetch_assoc($result))
 					$lines[] = $row;
@@ -542,7 +542,7 @@ function action_sql_3()
 	
 			if(mysql_errno())
 			{
-				$tpl_vars['result'] = '<p class="error">Error: '.mysql_error().'</p>';
+				$tpl_vars['result'] = '<p class="error">Error: '.mysqli_error($db_link).'</p>';
 			}
 			else if(empty($lines))
 			{
@@ -643,7 +643,7 @@ function action_sql_4_insert_data()
 	
 	$result = mysql_query('DESCRIBE '.$_REQUEST['tbl']);
 	
-	if(!mysql_num_rows($result))
+	if(!mysqli_num_rows($result))
 	{
 		$output .= '<p>Table "'.$_REQUEST['tbl'].'" not found</p>';
 	}
@@ -674,14 +674,14 @@ function action_sql_4_insert_data()
 					$sql_insert = 'INSERT INTO '.$_REQUEST['tbl'] .' SET ';
 					foreach($_POST['minimyfield'] as $field_key=>$field_value)
 					{
-						$sql_insert_fields[] = ' `'.$field_key.'`="'.mysql_real_escape_string($field_value).'" ';
+						$sql_insert_fields[] = ' `'.$field_key.'`="'.mysqli_real_escape_string($db_link, $field_value).'" ';
 					}
 					$sql_insert .= join(', ', $sql_insert_fields);
 					
 					@mysql_query($sql_insert);
 					if(mysql_errno())
 					{
-						$output .= '<p class="error">Error on saving: '.mysql_error().'<br>'.$sql_insert.'</p>';
+						$output .= '<p class="error">Error on saving: '.mysqli_error($db_link).'<br>'.$sql_insert.'</p>';
 					}
 					else 
 					{
@@ -728,7 +728,7 @@ function action_sql_4_edit_row()
 	$output = '<h1>edit '.$_REQUEST['tbl'].' WHERE '.$_REQUEST['pk'].'="'.$_REQUEST['id'].'"</h1>';
 	$sql_getrow = 'SELECT * FROM '.$_REQUEST['tbl'].' WHERE '.$_REQUEST['pk'].'="'.$_REQUEST['id'].'" LIMIT 1';
 	$result = mysql_query($sql_getrow);
-	if(!mysql_num_rows($result))
+	if(!mysqli_num_rows($result))
 	{
 		$output .= '<p>Query failed:'.$sql_getrow.'</p>';
 	}
@@ -744,7 +744,7 @@ function action_sql_4_edit_row()
 			$sql_update_fields = array();
 			foreach($_POST['minimyfield'] as $row_id=>$row_value)
 			{
-				$sql_update_fields[] = ' `'.$row_id.'` = "'.mysql_real_escape_string($row_value).'" ';
+				$sql_update_fields[] = ' `'.$row_id.'` = "'.mysqli_real_escape_string($db_link, $row_value).'" ';
 			}
 			$sql_update .= join(', ', $sql_update_fields) . ' WHERE `'.$_REQUEST['pk'].'`="'.$_REQUEST['id'].'"';
 			
@@ -757,7 +757,7 @@ function action_sql_4_edit_row()
 				@mysql_query($sql_update);
 				if(mysql_errno())
 				{
-					$output .= '<p class="error">Update query fails: '.mysql_error().'<br>'.htmlspecialchars($sql_update).'</p>';
+					$output .= '<p class="error">Update query fails: '.mysqli_error($db_link).'<br>'.htmlspecialchars($sql_update).'</p>';
 				}
 				else
 				{
@@ -817,7 +817,7 @@ function action_sql_4_browse_table()
 	
 	$result = mysql_query('SELECT * FROM '.$_REQUEST['tbl'].' LIMIT '.$pager['limit']);
 	$rows = array();
-	if(mysql_num_rows($result))
+	if(mysqli_num_rows($result))
 	{
 		$navbar = '';
 		if(!empty($pager['navbar']))
@@ -885,7 +885,7 @@ function action_sql_4_view_table()
 {
 	$output = '<h1>structure of '.$_SESSION['mysql']['db'].'.'.$_REQUEST['tbl'].'</h1>';
 	$result = mysql_query('DESCRIBE '.$_REQUEST['tbl']);
-	if(is_resource($result) && mysql_num_rows($result))
+	if(is_resource($result) && mysqli_num_rows($result))
 	{
 		while($r = mysql_fetch_assoc($result))
 			$rows[] = $r;
@@ -944,7 +944,7 @@ function action_sql_4_list_tables()
 	$output = '<h1>tables in '.$_SESSION['mysql']['db'].'</h1>';
 	$tables = array();
 	$result = mysql_list_tables($_SESSION['mysql']['db']);
-	if(mysql_num_rows($result))
+	if(mysqli_num_rows($result))
 	{
 		$result2 = mysql_query('SHOW TABLE STATUS FROM '.$_SESSION['mysql']['db']);
 		while($t = mysql_fetch_assoc($result2))
@@ -1006,7 +1006,7 @@ function action_sql_5()
 {
 	$output = '<h1>mysql export</h1>';
 	$sql_tables = mysql_query('SHOW TABLE STATUS FROM '.$_SESSION['mysql']['db']);
-	if(mysql_num_rows($sql_tables))
+	if(mysqli_num_rows($sql_tables))
 	{
 		while($table = mysql_fetch_assoc($sql_tables))
 		{
@@ -1334,7 +1334,7 @@ function get_menu()
 			<li>'.html_encode_link('visual editor',self,array('mysql'=>4)).'</li>
 			<li>'.html_encode_link('raw sql',self,array('mysql'=>3)).'</li>
 			<li>'.html_encode_link('export',self,array('mysql'=>5)).'</li>
-			<li>'.html_encode_link('mysql_close()',self,array('mysql'=>2)).'</li>
+			<li>'.html_encode_link('mysqli_close($db_link)',self,array('mysql'=>2)).'</li>
 		</ul>';
 	}
 

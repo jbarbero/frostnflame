@@ -17,7 +17,7 @@ function listopt ($item)
 
 	?>>None</option>
 <?php $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
-	while ($clan = mysql_fetch_array($list)) {
+	while ($clan = mysqli_fetch_array($list)) {
 
 		?>
 <option value="<?=$clan[num]?>"<?php if ($clan[num] == $uclan[$item]) print " selected";
@@ -44,7 +44,7 @@ function listopt ($item)
 Clan: <select name="adminclan" size="1">
 <?php
 $clanlist = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
-while ($clan = mysql_fetch_array($clanlist)) {
+while ($clan = mysqli_fetch_array($clanlist)) {
 
 	?>
 <option value="<?=$clan[num]?>"<?php if ($clan[num] == $adminclan) print " selected";
@@ -186,7 +186,7 @@ if(!empty($_POST['do_createclan'])) {
     <th>Empire</th></tr>
 <?php
 $dblist = db_safe_query("SELECT empire,num FROM $playerdb WHERE clan=$uclan[num];");
-while ($listclan = mysql_fetch_array($dblist)) {
+while ($listclan = mysqli_fetch_array($dblist)) {
 
 	?>
 <tr><td class="acenter"><input type="radio" name="modify_empire" value="<?=$listclan[num]?>"<?php if ($listclan[num] == $uclan[founder]) print " CHECKED";

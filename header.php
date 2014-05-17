@@ -29,7 +29,7 @@ Header("Expires: Thu, 01 Jan 1970 00:00:00 GMT");
 if ($admin) {
 	if (isset($_POST['do_updatenet'])) {
 		$userlist = db_safe_query("SELECT num FROM $playerdb;");
-		while ($user = mysql_fetch_array($userlist)) {
+		while ($user = mysqli_fetch_array($userlist)) {
 			$users = loadUser($user[num]);
 			saveUserData($users, "pubmarket pubmarket_food pubmarket_runes");
 			$users = loadUser($user[num]);
@@ -39,7 +39,7 @@ if ($admin) {
 	if (isset($_POST['do_updateranks'])) {
 		$i = 1;
 		$userlist = db_safe_query("SELECT num FROM $playerdb WHERE disabled != 2 AND disabled != 3 AND land > 0 ORDER BY networth DESC;");
-		while ($user = mysql_fetch_array($userlist))
+		while ($user = mysqli_fetch_array($userlist))
 			db_safe_query("UPDATE $playerdb SET rank=".$i++." WHERE num=$user[num];");
 	}
 
@@ -58,7 +58,7 @@ db_safe_query("UPDATE ".$prefix."_system SET topdef=".$topdefense);
 $topkills = db_safe_firstval("SELECT num FROM $playerdb WHERE land > 0 AND kills > 0 AND disabled!=2 AND disabled!=3 ORDER BY kills DESC LIMIT 1");
 db_safe_query("UPDATE ".$prefix."_system SET topkills=".$topkills);
 
-$topnet = db_safe_query("SELECT num FROM $playerdb WHERE land > 0 AND disabled != 2 AND disabled != 3 ORDER BY networth DESC LIMIT 3") or die(mysql_error());
+$topnet = db_safe_query("SELECT num FROM $playerdb WHERE land > 0 AND disabled != 2 AND disabled != 3 ORDER BY networth DESC LIMIT 3") or die(mysqli_error($db_link));
 $z = 1;
 while($row = mysql_fetch_assoc($topnet)) {
 db_safe_query("UPDATE ".$prefix."_system SET topnet".$z."=".$row['num']);

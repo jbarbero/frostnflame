@@ -14,7 +14,7 @@ global $prefix;
 $users['motd'] = 0;  // set motd as read
 saveUserData($users, "motd");
 
-$sql = mysql_query("SELECT * FROM ".$prefix."_motd WHERE 1=1 ORDER BY id DESC LIMIT 1") or die("Error: ".mysql_error());
+$sql = mysql_query("SELECT * FROM ".$prefix."_motd WHERE 1=1 ORDER BY id DESC LIMIT 1") or die("Error: ".mysqli_error($db_link));
 echo"<table style='width: 80%; text-align: left; margin-left: auto; margin-right: auto;' border='0' cellpadding='3' cellspacing='0'><tbody>";
 while($row = mysql_fetch_assoc($sql)) {
     echo"<tr><td>Subject: ".$row['subject']."</td><td>Date: ".$row['date']."</td></tr>

@@ -30,7 +30,7 @@ function message ($msg_body, $msg_title, $msg_dest, $msg_replyto) {
 
 				$warlords = db_safe_query("SELECT num,empire FROM $playerdb WHERE clan=$users[clan] AND num!=$users[num] AND land>0 AND disabled !=2 AND disabled != 3 ORDER by empire DESC;");
 				$msg_title .= " (To Clan)";
-				while ($warlord = mysql_fetch_array($warlords)) {
+				while ($warlord = mysqli_fetch_array($warlords)) {
 					makeMsg($time, $users[num], $warlord[num], $msg_body, $msg_title);
 					$output .= "Your message has been sent to $warlord[empire] <a class=proflink href=?profiles&num=$warlord[num]$authstr>(#$warlord[num])</a><br>";
 				}
@@ -85,7 +85,7 @@ if($do_forward)
 	$warquery_result = @db_safe_query($warquery);
 	$warquery_array = array();
 	$warquery_array[] = array('empire' => 'None');
-	while ($wardrop = @mysql_fetch_array($warquery_result)) {
+	while ($wardrop = @mysqli_fetch_array($warquery_result)) {
 					$color = "normal";
 					if ($wardrop[num] == $users[num])
 						$color = "self";
@@ -184,7 +184,7 @@ if ($do_delete_selected)
 	//echo "i = $i - $boxes[$i] = boxes[i]";
 		fixInputNum($boxes[$i]);
 		$msg = db_safe_query("SELECT * FROM $messagedb WHERE id=$boxes[$i];");
-		$message = mysql_fetch_array($msg);
+		$message = mysqli_fetch_array($msg);
 		if($users[num] != $message[dest]) TheEnd("You can't delete another person's messages.");
 		db_safe_query("UPDATE $messagedb SET deleted=1 WHERE deleted=0 AND dest=$users[num] AND id=$boxes[$i];");
 		db_safe_query("UPDATE $messagedb SET deleted=3 WHERE deleted=2 AND dest=$users[num] AND id=$boxes[$i];");
@@ -201,7 +201,7 @@ if ($view!="")
   fixInputNum($view);
   $msg = db_safe_query("SELECT * FROM $messagedb WHERE id=$view;");
 
-  $vmessage = mysql_fetch_array($msg);
+  $vmessage = mysqli_fetch_array($msg);
   if($users[num] != $vmessage[dest]) TheEnd("That's not your message.");
   $vsrc = loadUser($vmessage[src]);
   $vmessage['msg_escaped'] = swear_filter($vmessage[msg]);
@@ -238,13 +238,13 @@ if(!$asc) $asc = "DESC";
 
 
 $msgs = db_safe_query("SELECT * FROM $messagedb WHERE dest=$users[num] AND (deleted=0 OR deleted=2) ORDER BY $order_by $asc;");
-$num_msgs =@mysql_num_rows($msgs);
+$num_msgs =@mysqli_num_rows($msgs);
 $jmessage = array();
-if( @mysql_num_rows($msgs))
+if( @mysqli_num_rows($msgs))
 {
 	$message_array = array();
 	//echo "<h3>Messages:</h3><br><table style=\"width:90%\">";
-	while ($message = mysql_fetch_array($msgs))
+	while ($message = mysqli_fetch_array($msgs))
 	{
 
 		$enemy = loadUser($message[src]);
@@ -277,7 +277,7 @@ $warquery_array = array();
 
 $warquery = "SELECT num, empire, land, disabled, clan FROM $playerdb WHERE land>0 AND disabled != 3 AND land>0 ORDER BY empire";
 $warquery_result = @db_safe_query($warquery);
-while ($wardrop = @mysql_fetch_array($warquery_result)) {
+while ($wardrop = @mysqli_fetch_array($warquery_result)) {
 				$color = "normal";
 				if ($wardrop[num] == $users[num])
 					$color = "self";

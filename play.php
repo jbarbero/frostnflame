@@ -13,7 +13,7 @@ if(!auth_global())
 
 $reason = "You do not have an account on that server!";
 
-	$users = mysql_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE global_num='$global[num]';"));
+	$users = mysqli_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE global_num='$global[num]';"));
 	if (!$users[num])
 		EndNow($reason);
 	$usecookie = false;

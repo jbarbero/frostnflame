@@ -24,7 +24,7 @@ function unreserveUnits ($type, $num='') {
 		$amount = invfactor($amount);
 	}
 	
-	$reserved = mysql_fetch_array(db_safe_query("SELECT troops_res FROM $playerdb WHERE num=$users[num];"));
+	$reserved = mysqli_fetch_array(db_safe_query("SELECT troops_res FROM $playerdb WHERE num=$users[num];"));
 		
 	if (!$reserved[troops_res])
 		return;

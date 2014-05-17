@@ -54,7 +54,7 @@ if ($do_search) {
 				FROM $playerdb WHERE $query ORDER BY $order_by LIMIT $searchlimit;");
 
 
-	if ($numrows = @mysql_num_rows($dbstr)) {
+	if ($numrows = @mysqli_num_rows($dbstr)) {
 
 		?>
 Color Key: <span class="mprotected">Protected/Vacation</span>, <span class="mdead">Dead</span>, <span class="mally">Ally</span>, <span class="mdisabled">Disabled</span>, <span class="madmin">Administrator</span>, <span class="mself">You</span><br>
@@ -62,7 +62,7 @@ Stats Key: O = Offensive Actions (success%), D = Defenses (success%), K = Number
 <table class="scorestable">
 <?php
 		printSearchHeader($users[era]);
-		while ($enemy = mysql_fetch_array($dbstr))
+		while ($enemy = mysqli_fetch_array($dbstr))
 		printSearchLine();
 		printSearchHeader($users[era]);
 
@@ -148,7 +148,7 @@ else echo 25;
                 <option value="0">None - Unallied Empires</option>
 <?php
 $clanlist = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num;");
-while ($clan = mysql_fetch_array($clanlist)) {
+while ($clan = mysqli_fetch_array($clanlist)) {
 
 	?>
                 <option value="<?=$clan[num]?>"><?=$clan[tag]?> - <?=$clan[name]?></option>

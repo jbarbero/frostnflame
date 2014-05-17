@@ -108,13 +108,13 @@ function Attack($type) {
 		$users[health] -= 5;
 	} elseif (($enemy[clan]) && ($enemy[forces] > 0)) { // enemy has allies and sharing forces?
 		$dbally = db_safe_query("SELECT troops,num,era,race,clan,gate FROM $playerdb WHERE clan=$enemy[clan] AND forces>0 AND land>0;");
-		$helping =@mysql_num_rows($dbally);
+		$helping =@mysqli_num_rows($dbally);
 	} 
 	if ($helping) { // add up allies
 		if (($helping-1) != 0)
 			print "<span class='cwarn'>".$helping . plural($helping, ' '.$uera[empire]."s rush", ' '.$uera[empire]." rushes") . " to defend your target!</span><br>\n";
 		$emaxdefense = $edefense * 2;
-		while ($ally = mysql_fetch_array($dbally)) {
+		while ($ally = mysqli_fetch_array($dbally)) {
 			$ally[troop] = explode("|", $ally[troops]);
 			unset($ally[troops]);
 			$ad = 0;
@@ -746,7 +746,7 @@ window.onload = updateAllNames;
 		$uclan = loadClan($users[clan]);
 		$warquery = "SELECT * FROM $playerdb WHERE land > 0 AND disabled != 3 AND disabled != 2 AND num != $users[num] AND turnsused>$config[protection] AND vacation<=$config[vacationdelay] ORDER BY rank";
 		$warquery_result = @db_safe_query($warquery);
-		while ($wardrop = @mysql_fetch_array($warquery_result)) {
+		while ($wardrop = @mysqli_fetch_array($warquery_result)) {
 			if ($wardrop[num] == 1)
 				continue;
 			$online = on_disp(ONTXT, $wardrop[online]);
@@ -825,7 +825,7 @@ window.onload = updateAllNames;
 		$uclan = loadClan($users[clan]);
 		$warquery = "SELECT * FROM $playerdb WHERE land > 0 AND disabled != 3 AND disabled != 2 AND num != $users[num] AND turnsused>$config[protection] AND vacation<=$config[vacationdelay] ORDER BY rank";
 		$warquery_result = @db_safe_query($warquery);
-		while ($wardrop = @mysql_fetch_array($warquery_result)) {
+		while ($wardrop = @mysqli_fetch_array($warquery_result)) {
 			if ($wardrop[num] == 1)
 				continue;
 			$online = on_disp(ONTXT, $wardrop[online]);

@@ -11,6 +11,8 @@ require_once("server-env.php");		// This makes 'local' work
 include("ip.php");
 require_once("theend.php");
 
+require_once("funcs.php");
+
 global $action;
 
 $uri = urldecode($_SERVER['REQUEST_URI']);
@@ -64,7 +66,6 @@ if(!is_file($file) || $file == 'login.php') {
 $action = substr($file, 0, -4);
 $GAME_ACTION = $action;
 
-require_once("funcs.php");
 include("lib/ranks.php");
 include("lib/raffle.php");
 include("lib/maintenance.php");

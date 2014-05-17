@@ -21,7 +21,7 @@ if(!empty($change)) {
 	} else if(isset($_GET['reduce'])) {
 		db_safe_query("UPDATE $stockdb SET boost=boost-5 WHERE id=$which;");
 	}
-	echo mysql_error();
+	echo mysqli_error($db_link);
 }
 
 
@@ -39,7 +39,7 @@ $days3 = array();
 $boost = array();
 
 $q = db_safe_query("SELECT * FROM $stockdb;");
-while($stock = mysql_fetch_array($q)) {
+while($stock = mysqli_fetch_array($q)) {
 	$id = $stock['id'];
 	$stocknames[$id] = $stock['name'];
 	$symbols[$id] = $stock['symbol'];

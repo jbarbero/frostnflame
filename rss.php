@@ -158,7 +158,7 @@ function top10Feed() {
 
 	$top10 = db_safe_query("SELECT rank,empire,online,num FROM $playerdb WHERE disabled != 2 AND disabled != 3 AND land>0 AND vacation<$config[vacationdelay] ORDER BY rank LIMIT 10;");
 
-	while($player = mysql_fetch_array($top10)) {
+	while($player = mysqli_fetch_array($top10)) {
 		$online = on_disp(ONTXT, $player[online]);
 		rss_item($player[rank].' :: '.$online.$player[empire].' (#'.$player[num].')', $config['sitedir'].'?profiles%26num%3D'.$player[num].'%26srv%3D'.SERVER, $player[empire]);
 	}
@@ -167,7 +167,7 @@ function top10Feed() {
 	$names = array();
 	$count = array();
 	$allusers = db_safe_query("SELECT clan,networth FROM $playerdb WHERE land>0 AND disabled != 2 AND disabled != 3;");
-	while ($users = mysql_fetch_array($allusers)) {
+	while ($users = mysqli_fetch_array($allusers)) {
 		if($users[clan] != 0) {
 			$clan = loadClan($users[clan]);
 			$num = $clan[num];

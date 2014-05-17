@@ -62,24 +62,17 @@ if ($do_withdraw) {
 	saveUserData($users, "networth cash savings");
 } 
 
-$tpl->assign('do_borrow', $do_borrow);
-$tpl->assign('do_repay', $do_repay);
-$tpl->assign('do_deposit', $do_deposit);
-$tpl->assign('do_withdraw', $do_withdraw);
-$tpl->assign('authstr', $authstr);
 $tpl->assign('borrow', commas($borrow));
 $tpl->assign('repay', commas($repay));
 $tpl->assign('deposit', commas($deposit));
 $tpl->assign('withdraw', commas($withdraw));
-$tpl->assign('savrate',$savrate);
 $tpl->assign('maxsave',commas($maxsave));
 $tpl->assign('savings',commas($users[savings]));
-$tpl->assign('loanrate',$loanrate);
 $tpl->assign('maxloan',commas($maxloan));
 $tpl->assign('loan',commas($users[loan]));
 if ($users[turnsused] < $config[protection])
-        $tpl->assign('protectnotice', $protectnotice=1);
-$tpl->display('bank.html');
+    $protectnotice=1;
+template_display('bank.html');
 
 TheEnd("");
 

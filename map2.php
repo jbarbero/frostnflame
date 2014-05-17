@@ -95,7 +95,7 @@ function divStart($other, $type) {
 
 
 $players = db_safe_query("SELECT * FROM $playerdb WHERE map_show>=0;");
-while($player = mysql_fetch_array($players)) {
+while($player = mysqli_fetch_array($players)) {
 	divStart($player, 'p');
 }
 

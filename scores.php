@@ -211,8 +211,8 @@ function getScores($start, $end, $array) {
 	$scores = db_safe_query("SELECT rank,empire,num,land,networth,clan,race,era,online,disabled,turnsused,vacation,kills,offtotal,deftotal,offsucc,defsucc FROM 
 		$playerdb WHERE $clause $query ORDER BY $ssort LIMIT $limit;");
 
-	if (@mysql_num_rows($scores) != 0) {
-		while ($enemy = mysql_fetch_array($scores)) {
+	if (@mysqli_num_rows($scores) != 0) {
+		while ($enemy = mysqli_fetch_array($scores)) {
 			printScoreLine($$array);
 		}
 	} 

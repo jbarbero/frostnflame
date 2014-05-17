@@ -14,7 +14,7 @@ $cnt_limit = 15;
 $unum = $user[num];
 $news = db_safe_query("SELECT * FROM $newsdb WHERE (clan1=$user[clan] OR clan2=$user[clan]) AND code=502 AND time>$time_limit AND id2!=$unum 
 		ORDER BY time DESC LIMIT 0,$cnt_limit;");
-if (!@mysql_num_rows($news))
+if (!@mysqli_num_rows($news))
 	return 0;
 
 echo '<table class="inputtable" border=1>';
@@ -22,7 +22,7 @@ echo '<tr><th>Time</th>';
 echo '<th colspan="2">Event</th>';
 echo '<th style="width:2">Times</th></tr>';
 
-while ($new = mysql_fetch_array($news)) {
+while ($new = mysqli_fetch_array($news)) {
 	$time = $new[time];
 
 	$id1 = $new[id1];

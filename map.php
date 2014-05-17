@@ -107,7 +107,7 @@ function divStart($other, $type) {
 function LloadClan($id) {
 	global $clan_lookup_table, $clandb;
 	fixInputNum($id);
-	$data = mysql_fetch_array(db_safe_query("SELECT * FROM $clandb WHERE num=$id;"));
+	$data = mysqli_fetch_array(db_safe_query("SELECT * FROM $clandb WHERE num=$id;"));
 	$entry = $clan_lookup_table[$id];
 	foreach($entry as $var => $value)
 		$data[$var] = $value;
@@ -117,7 +117,7 @@ function LloadClan($id) {
 
 foreach($player_lookup_table as $id => $entry) {
 	fixInputNum($id);
-	$data = mysql_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE num=$id;"));
+	$data = mysqli_fetch_array(db_safe_query("SELECT * FROM $playerdb WHERE num=$id;"));
 	foreach($entry as $var => $value)
 		$data[$var] = $value;
 	divStart($data, 'p');

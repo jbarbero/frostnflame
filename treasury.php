@@ -183,7 +183,7 @@ if($do_transaction) {
 	if($rune_take > 0) $transaction .= "Took " . commas(gamefactor($rune_take)) . " $uera[runes]. \n<br>";
 
 	$clanmembers = db_safe_query("SELECT * FROM $playerdb WHERE num=$clan[founder] OR num=$clan[asst] OR num=$users[num];");
-	while($member = mysql_fetch_array($clanmembers))
+	while($member = mysqli_fetch_array($clanmembers))
 	{
 		if($member[num] != $users[num] )
 			addNews(501, array(clan1=>$users[clan], id1=>$member[num], id2=>$users[num],	food1=>($food_give-$food_take),

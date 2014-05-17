@@ -218,7 +218,7 @@ $config['warset'] =	0; # Allow individual war declarations?
 $config['peaceset']	 = 0;# Allow individual alliances?
 
 
-$config['default_style'] = 99;# Default style to use
+$config['default_style'] = 1;# Default style to use
 $config['styles'][1]['name'] = 'Black';# Specify styles
 $config['styles'][1]['file'] =	'black.css';
 $config['styles'][2]['name'] = 'Shadows';
