@@ -73,8 +73,6 @@ foreach($stocknames as $i => $name) {
 }
 
 $tpl->assign('stocknames', $stocks_display);
-$tpl->assign('width', $width);
-$tpl->assign('trans', $trans);
 
 //finish
 $tpl->display('stockpanel.html');

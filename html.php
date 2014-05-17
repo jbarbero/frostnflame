@@ -33,8 +33,8 @@ function getstyle() {
 	}
 
 	if(auth_global()) {
-		$tpl->assign('loggedin', true);
-		$tpl->assign('global', $global);
+        global $loggedin;
+        $loggedin = true;
 	}
 
 	if(empty($ret))
@@ -69,24 +69,18 @@ function HTMLbegincompact ($title)
 	Header("Pragma: no-cache");
 	Header("Expires: Thu, 01 Jan 1970 00:00:00 GMT");
 	set_incl_path($templates[1]);
-	$tpl->assign('stylename', getstyle());
-	$tpl->assign('authstr', $authstr);
-	$tpl->assign('skinstr', $skinstr);
-	$tpl->assign('sitedir', $config['sitedir']);
-	$tpl->assign('gamename', $gamename);
-	$tpl->assign('gamename_full', $gamename_full);
-	$tpl->assign('servname', $config[servname]);
-	$tpl->assign('title', $title);
+    global $stylename;
+    $stylename = getstyle();
 
 	include("menus_alt.php");
-	$tpl->display('htmlbegincompact.html');
+    template_display('htmlbegincompact.html');
 } 
 // Ends a compact HTML page
 function HTMLendcompact ()
 {
 	global $tpl, $starttime;
 	$endtime = getmicrotime() - $starttime;
-	$tpl->display('htmlendcompact.html');
+    template_display('htmlendcompact.html');
 } 
 
 ?>

@@ -62,5 +62,4 @@ foreach($servers as $sc => $name) {
 	menu_normal_item('Server Map', 'map', $sc);
 } 
 
-$tpl->assign('menus', $menus);
 ?>

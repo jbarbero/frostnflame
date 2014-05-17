@@ -34,6 +34,22 @@ function on_disp($type, $online) {
 		return $config['online_txt'];
 }
 
+function escape_javascript($str) {
+    return strtr($str, array('\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n'));
+}
+
+function escape_quotes($str) {
+    return preg_replace("%(?<!\\\\)'%", "\\'", $str);
+}
+
+function template_display($file) {
+    global $config;
+    if(!isset($config['tpldir'])) {
+        $config['tpldir'] = 'prom';
+    }
+    include("templates/" . $config['tpldir'] . "/" . $file);
+}
+
 #$tpl->assign("onhtml", $config['online_html']);
 #$tpl->assign("ontxt", $config['online_txt']);
 
@@ -253,6 +269,74 @@ function swear_filter($str) {
 
 
 $bbcode = new BBCode;
+$bbcode->SetDetectURLs(true);
+$bbcode->AddSmiley(':huh:', 'img/huh.gif');
+$bbcode->AddSmiley(':)', 'img/smile.gif');
+$bbcode->AddSmiley(':-)', 'img/smile.gif');
+$bbcode->AddSmiley('=)', 'img/smile.gif');
+$bbcode->AddSmiley(':P', 'img/tongue.gif');
+$bbcode->AddSmiley('=P', 'img/tongue.gif');
+$bbcode->AddSmiley(':-P', 'img/tongue.gif');
+$bbcode->AddSmiley(':D', 'img/biggrin.gif');
+$bbcode->AddSmiley(':-D', 'img/biggrin.gif');
+$bbcode->AddSmiley('=D', 'img/biggrin.gif');
+$bbcode->AddSmiley('XD', 'img/biggrin.gif');
+$bbcode->AddSmiley(':o', 'img/ohmy.gif');
+$bbcode->AddSmiley(':0', 'img/ohmy.gif');
+$bbcode->AddSmiley('B)', 'img/cool.gif');
+$bbcode->AddSmiley('B-)', 'img/cool.gif');
+$bbcode->AddSmiley('8-)', 'img/cool.gif');
+$bbcode->AddSmiley(';)', 'img/wink.gif');
+$bbcode->AddSmiley(';-)', 'img/wink.gif');
+$bbcode->AddSmiley(':lol:', 'img/laugh.gif');
+$bbcode->AddSmiley(':blink:', 'img/blink.gif');
+$bbcode->AddSmiley(':(', 'img/sad.gif');
+$bbcode->AddSmiley(':-(', 'img/sad.gif');
+$bbcode->AddSmiley('=(', 'img/sad.gif');
+$bbcode->AddSmiley(':rolleyes:', 'img/rolleyes.gif');
+$bbcode->AddSmiley(':unsure:', 'img/unsure.gif');
+$bbcode->AddSmiley(':angry:', 'img/mad.gif');
+$bbcode->AddSmiley(':fear:', 'img/fear.gif');
+$bbcode->AddSmiley('^^', 'img/happy.gif');
+$bbcode->AddSmiley('^.^', 'img/happy.gif');
+$bbcode->AddSmiley('^_^', 'img/happy.gif');
+$bbcode->AddSmiley('-_-', 'img/sleep.gif');
+$bbcode->AddSmiley('-.-', 'img/sleep.gif');
+$bbcode->AddSmiley(':wacko:', 'img/wacko.gif');
+
+# NBBC builtins
+# Image   Filename    Smiley BBCode (what you type)
+# angry.gif   angry.gif   >:(  >:-(  >=(  >=-(  D:  D-:  D=  D-=
+# anime.gif   anime.gif   ^_^
+# bigeyes.gif bigeyes.gif 8)  8-)
+# bigsmile.gif    bigsmile.gif    :D  :-D  =D  =-D
+# bigwink.gif bigwink.gif ;D  ;-D
+# blue.gif    blue.gif    :blue:
+# boggle.gif  boggle.gif  o.O  O.o
+# confuse.gif confuse.gif :?  :-?  =?  =-?
+# cool.gif    cool.gif    B)  B-)
+# evil.gif    evil.gif    >:)  >:-)  >=)  >=-)  >:D  >:-D  >=D  >=-D
+# frown.gif   frown.gif   :(  :-(  =(  =-(
+# heart.gif   heart.gif   <3
+# irritated.gif   irritated.gif   :/  :-/  =/  =-/  :\  :-\  =\  =-\
+# laugh.gif   laugh.gif   XD  X-D
+# lookleft.gif    lookleft.gif    <_<  <.<
+# lookright.gif   lookright.gif   >_>  >.>
+# neutral.gif neutral.gif :|  :-|  =|  =-|  :I  :-I  =I  =-I
+# saint.gif   saint.gif   O:)  O:-)  O=)  O=-)
+# sleepy.gif  sleepy.gif  :zzz:
+# smile.gif   smile.gif   :)  :-)  =)  =-)
+# smile3.gif  smile3.gif  :3  :-3  =3  =-3
+# sneaky.gif  sneaky.gif  >;)  >;-)  >;D  >;-D
+# star.gif    star.gif    :star:
+# surprise.gif    surprise.gif    :O  :-O  =O  =-O
+# sweatdrop.gif   sweatdrop.gif   ^^;
+# teeth.gif   teeth.gif   <g>  <G>
+# tongue.gif  tongue.gif  :P  :-P  =P  =-P  X-P
+# wink.gif    wink.gif    ;)  ;-)
+# wink3.gif   wink3.gif   ;3  ;-3
+# worry.gif   worry.gif   :s  :-S  =s  =-S
+
 
 function bbcode_parse($str){
 	global $open, $closed, $config, $bbcode;

@@ -11,12 +11,6 @@ require_once("server-env.php");		// This makes 'local' work
 include("ip.php");
 require_once("theend.php");
 
-include('smarty/Smarty.class.php');
-global $tpl;
-#$tpl = new Smarty;
-$tpl->caching = false;
-$tpl->compile_dir = './cache/templates/';
-
 global $action;
 
 $uri = urldecode($_SERVER['REQUEST_URI']);
@@ -69,8 +63,6 @@ if(!is_file($file) || $file == 'login.php') {
 
 $action = substr($file, 0, -4);
 $GAME_ACTION = $action;
-
-$tpl->assign('action', $action);
 
 require_once("funcs.php");
 include("lib/ranks.php");

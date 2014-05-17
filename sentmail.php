@@ -109,9 +109,7 @@ if( @mysql_num_rows($msgs))
 }
 
 
-$tpl->assign('vsrc', $vsrc);
 $tpl->assign('do_reply', 0);
-$tpl->assign('view', $view);
 $tpl->assign('time', date($dateformat,$vmessage[time]));
 $tpl->assign('msgcreds', $users[msgcred]);
 $tpl->assign('smessage', $vmessage);
@@ -120,12 +118,6 @@ $tpl->assign('sent_message', $message_array);
 $tpl->assign('reply_id', 0);
 $tpl->assign('reply_src', 0);
 
-$tpl->assign('title_order', $title_order);
-$tpl->assign('to_order', $to_order);
-$tpl->assign('date_order', $date_order);
-
-
-$tpl->assign('do_reply', 0);
 $tpl->assign('drop', 0);
 $tpl->assign('color', $users[era]);
 $tpl->assign('sent', 1); // VITAL!

@@ -216,9 +216,7 @@ $tpl->assign('limit_food', commas($show_limit_food));
 $tpl->assign('limit_rune', commas($show_limit_rune));
 $tpl->assign('limit_cash', commas($show_limit_cash));
 
-$tpl->assign('officer', $officer);
 $tpl->assign('tres_open', $co);
-$tpl->assign('nco', $nco);
 
 $tpl->assign('curr_food', commas($clan[granary]));
 $tpl->assign('curr_rune', commas($clan[loft]));

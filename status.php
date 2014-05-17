@@ -157,30 +157,11 @@ $showstocks = true;
 if(in_array('stocks', $config['disabled_pages']))
 	$showstocks = false;
 
-$tpl->assign('showstocks', $showstocks);
 
 $tpl->assign('troopshave', $troopdisp);
-$tpl->assign('numtroops', $numtroops);
-$tpl->assign('uera', $uera);
-$tpl->assign('users',$users);
-$tpl->assign('urace', $urace);
-$tpl->assign('tags', $tags);
 $tpl->assign('ti', $pci*$users['peasants']);
-$tpl->assign('foodpro', $foodpro);
-$tpl->assign('foodcon', $foodcon);
-$tpl->assign('income', $income);
-$tpl->assign('expenses', $expenses);
-$tpl->assign('loanpayment', $loanpayment);
-$tpl->assign('savrate', $savrate);
-$tpl->assign('foodnet', $foodnet);
-$tpl->assign('netincome', $netincome);
-$tpl->assign('loanrate', $loanrate);
 $tpl->assign('offpts', commas($offpts));
 $tpl->assign('defpts', commas($defpts));
-$tpl->assign('experience', $experience);
-$tpl->assign('off_percent', $off_percent);
-$tpl->assign('def_percent', $def_percent);
-$tpl->assign("stocks", $stocks);
 $tpl->display('status.html');
 
 $users=loadUser($users[num]);

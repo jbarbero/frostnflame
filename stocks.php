@@ -117,9 +117,6 @@ for($i=1; $i <= $stock_count; $i += 1) {
 }
 
 $tpl->assign('stocknames', $stocks_display);
-$tpl->assign('stockbuy', $stockbuy);
-$tpl->assign('width', $width);
-$tpl->assign('trans', $trans);
 
 //finish
 $tpl->display('stocks.html');
