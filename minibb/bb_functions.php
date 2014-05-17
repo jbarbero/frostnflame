@@ -75,7 +75,7 @@ if($addDir=='') $addDir=$GLOBALS['pathToFiles'].'templates/';
 if (substr($name,0,5)=='email') $ext='txt'; else $ext='html';
 if (file_exists($addDir."{$name}.{$ext}")) { 
 if (file_exists('local/'.$addDir."{$name}.{$ext}"))
-	$addDir = "local/$addDir";
+    $addDir = "local/$addDir";
 $tpl='';
 $fd=fopen ($addDir."{$name}.{$ext}",'r');
 while(!feof($fd)) $tpl.=fgets($fd,1024);

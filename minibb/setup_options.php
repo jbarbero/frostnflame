@@ -8,12 +8,12 @@ This file is part of miniBB. miniBB is free discussion forums/message board soft
 $lang='eng';
 $skin='default';
 $main_url = $config['sitedir'];
-	//used to remove extra forwardslash
-	$str = $main_url;
-	$last = $str[strlen($str)-1]; //get the last character of the string
-	if ($last == "/") {
-	$main_url = substr_replace($main_url,"",-1); //if last character is '/', replace with ''
-	}
+    //used to remove extra forwardslash
+    $str = $main_url;
+    $last = $str[strlen($str)-1]; //get the last character of the string
+    if ($last == "/") {
+    $main_url = substr_replace($main_url,"",-1); //if last character is '/', replace with ''
+    }
 
 $sitename='miniBB forums';
 $emailadmin=0;

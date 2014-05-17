@@ -268,9 +268,9 @@ elseif($action=='tpl') {
 if (isset($tplName) and $tplName!='' and file_exists ('minibb/templates/'.$tplName.'.html')){
 echo load_header();
 if(file_exists('local/minibb/templates/'.$tplName.'.html'))
-	echo ParseTpl(makeUp($tplName, 'local'));
+    echo ParseTpl(makeUp($tplName, 'local'));
 else
-	echo ParseTpl(makeUp($tplName));
+    echo ParseTpl(makeUp($tplName));
 }
 else {
 if(isset($metaLocation)) { $meta_relocate="{$main_url}/{$indexphp}"; echo ParseTpl(makeUp($metaLocation)); exit; } else header("Location: {$main_url}/{$indexphp}");
