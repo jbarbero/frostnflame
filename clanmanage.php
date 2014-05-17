@@ -271,7 +271,7 @@ if($do_remtres) {
         TheEnd("Clan leaders must have access to the treasury by default.");	
     } else {
     	$enemy['clan_tres'] = 0;
-    	//db_safe_query("UPDATE $playerdb SET clan_tres='0' WHERE num='".$enemy[num]."'") or die("Error: ".mysqli_error($db_link));
+    	//db_safe_query("UPDATE $playerdb SET clan_tres='0' WHERE num='".$enemy[num]."'") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
     	SaveUserData($enemy ,"clan_tres");
     	addNews(451, array(id1=>$enemy[num], id2=>$users[num], clan1=>$enemy[clan], clan2=>$users[clan]));    	
     }    

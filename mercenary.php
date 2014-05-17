@@ -553,24 +553,14 @@ foreach($config[troop] as $num => $mktcost) {
 
 $tpl->assign('givetroops', $gdisp);
 
-$tpl->assign('cansend', $cansend);
 $tpl->assign('percent', $percent*100);
 $tpl->assign('filler', "\t");
-$tpl->assign('time_order', $time_order);
-$tpl->assign('setter_order', $setter_order);
-$tpl->assign('target_order', $target_order);
 $tpl->assign('merc_name', "Mercenary Guild");
 $tpl->assign('lst_ele', (sizeof($bounty)-1));
 $tpl->assign('bounty', $b_array);
 $tpl->assign('color', $users[era]);
-$tpl->assign('view', $view);
-$tpl->assign('max', $max);
 $tpl->assign('left', ($max-$users[num_bounties]));
-$tpl->assign('bountyset', $bountyset);
-$tpl->assign('editing', $editing);
-$tpl->assign('edit_bounty', $edit_bounty);
 $tpl->assign('bounty_id', $edit_bounty[num]);
-$tpl->assign('set', $set);
 $tpl->assign('prof_target', $prof_target);
 $tpl->assign('edit', $edit_bounty[edits]+1);
 $tpl->display('mercenary.html');

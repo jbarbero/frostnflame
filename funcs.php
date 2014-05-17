@@ -14,12 +14,12 @@ $open = 0;
 
 function debuglog($message) {
 	global $debugdb;
-	$sqlbug = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die(errorlog("Error: ".mysqli_error($db_link)));
+	$sqlbug = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die(errorlog("Error: ".mysqli_error($GLOBALS["db_link"])));
 }
 
 function errorlog($message) {
 	global $debugdb;
-	$sqlerror = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die("Error: ".mysqli_error($db_link));
+	$sqlerror = @db_safe_query("INSERT INTO $debugdb (date,message) VALUES(now(),'".addslashes($message)."')") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
 }
 
 define("ONHTML", 1);
@@ -50,8 +50,8 @@ function template_display($file) {
     include("templates/" . $config['tpldir'] . "/" . $file);
 }
 
-#$tpl->assign("onhtml", $config['online_html']);
-#$tpl->assign("ontxt", $config['online_txt']);
+$onhtml = $config['online_html'];
+$ontxt = $config['online_txt'];
 
 
 function is_on_vacation(&$user) {
@@ -88,7 +88,7 @@ function rand_nonce($oldval) {
 /* Just an alias to show what code has been audited for security. */
 function db_safe_query($query) {
     global $db_link;
-    return @mysqli_query($db_link, $query);	/* SAFE -- root call */
+    return @mysqli_query($GLOBALS["db_link"], $query);	/* SAFE -- root call */
 }
 
 // evaluate an SQL query, return first cell of first row
@@ -226,7 +226,7 @@ function auth_user($loose = false) {
 function auth_global($new_nonce=false) {
 	global $global, $config, $db_link;
 
-    if($db_link == NULL) {
+    if($GLOBALS["db_link"] == NULL) {
         return false;
     }
 
@@ -359,7 +359,8 @@ function commas ($str) {
 } 
 
 function sqlQuotes (&$str) {
-	$str = mysqli_real_escape_string($db_link, $str);
+    global $db_link;
+	$str = mysqli_real_escape_string($GLOBALS["db_link"], $str);
 } 
 
 // remove commas, make integer
@@ -542,7 +543,7 @@ function loadUser ($num) {
 			$q = "UPDATE $playerdb SET turns=$user[turns],turnsstored=$user[turnsstored],turnbank=$user[turnbank],turnbank_last=$lastturnbank,turns_last=$last,forces=$user[forces] WHERE num=$user[num];";
 			//$q = "UPDATE $playerdb SET turns=$user[turns],turnsstored=$user[turnsstored],turns_last=$last,forces=$user[forces] WHERE num=$user[num];";
 			db_safe_query($q);
-			$str = mysqli_error($db_link);
+			$str = mysqli_error($GLOBALS["db_link"]);
 			if($str)
 				echo "<b>PLEASE REPORT IMMEDIATELY: '$q': $str</b><br>";
 		}
@@ -562,7 +563,7 @@ function loadUser ($num) {
 		fixInputNum($user[attacks]);
 		$q = "UPDATE $playerdb SET hour_last=$last,attacks=$user[attacks] WHERE num=$user[num];";
 		db_safe_query($q);
-		$str = mysqli_error($db_link);
+		$str = mysqli_error($GLOBALS["db_link"]);
 		if($str)
 			echo "<b>PLEASE REPORT IMMEDIATELY: '$q': $str</b><br>";
 	}
@@ -827,7 +828,8 @@ function takeTurns ($numturns, $action, $noutput = false, $displayturns=-1) {
 		$cnd = ' checked';
 	} else {
 		$users['condense'] = 0;}
-	$tpl->assign('condense', $cnd);
+    global $condense;
+	$condense = $cnd;
 
 	global $net_income, $net_expenses, $net_wartax, $net_loanpayed, $net_money, $net_foodpro, $net_foodcon, $net_food, $net_peasants, $net_wizards, $net_runes, $net_troop;
 	$runesgained;
@@ -1169,8 +1171,7 @@ function takeTurns ($numturns, $action, $noutput = false, $displayturns=-1) {
 	} 
 	// end print report
 	saveUserData($users, "networth land freeland savings loan cash troops food health peasants runes wizards turnsused turns idle condense");
-	if ($tpl)
-			$tpl->assign('turnoutput', $turnoutput);
+    global $turnoutput;
 
 	if($config['nolimit_mode']) {
 			if($users[turns] == 0) {
@@ -1325,7 +1326,7 @@ function intelMainStats ($user, $race, $era, $esp=false, $other=null){
     $spyinfo = implode("|", $spyarray);
     $spydb = $prefix."_intel"; 
 
-    mysql_query("INSERT INTO $spydb SET num='$users[num]', spyinfo='$spyinfo', spytime='$time'") or die("Error: ".mysqli_error($db_link));
+    mysql_query("INSERT INTO $spydb SET num='$users[num]', spyinfo='$spyinfo', spytime='$time'") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
 } 
 
 function printMainStats ($user, $race, $era, $esp=false, $other=null){
@@ -1490,17 +1491,8 @@ function printMainStats_tpl ($user, $race, $era, $esp=false, $other=null) {
 	$usertrps[] = array('name' => $era["troop$num"],
 						'amt'  => $user[troop][$num]);
 	$user['expdisp'] = $experience;
-	$tpl->assign('showmainstats', true);
-	$tpl->assign('config', $config);
-	$tpl->assign('user', $user);
-	$tpl->assign('era', $era);
-	$tpl->assign('race', $race);
-	$tpl->assign('rank_color', $rank_color);
-	$tpl->assign('land_color', $land_color);
-	$tpl->assign('health_color', $health_color);
-	$tpl->assign('usertrps', $usertrps);
-	$tpl->assign('esp', $esp);
-	$tpl->assign('possible_spells', $possible_spells);
+    global $showmainstats;
+    $showmainstats = true;
 } 
 
 function numNewMessages () {
@@ -1591,8 +1583,8 @@ function addNews($code, $args, $overrideDBlock = false, $settime=-1) {
 		$query = "INSERT INTO $newsdb (time, code, id1, clan1, land1, cash1, troops1, wizards1, food1, runes1, id2, clan2, land2, troops2, wizards2, id3, clan3, shielded, online)
 				VALUES ($time, $code, $id1, $clan1, $land1, $cash1, '$troops1', $wizards1, $food1, $runes1, $id2, $clan2, $land2, '$troops2', $wizards2, $id3, $clan3, $shielded, $online);";
 		db_safe_query($query);
-		if(mysqli_error($db_link))
-			echo "Please show this to the administrators:<br><b>$query<br>".mysqli_error($db_link)."</b><br>";
+		if(mysqli_error($GLOBALS["db_link"]))
+			echo "Please show this to the administrators:<br><b>$query<br>".mysqli_error($GLOBALS["db_link"])."</b><br>";
 	}
 
 	$time = time();
@@ -1617,9 +1609,9 @@ function doStatusBar($show) {
 	require_once("lib/status.php");
 	global $starttime, $playerdb, $config, $users, $uera, $tpl, $config;
 	if (!auth_user(true)) {
+        global $generated;
 		$generated = getmicrotime() - $starttime;
-		$tpl->assign('generated', round($generated,5));
-		$tpl->display('footer.html');
+		$template_display('footer.html');
 		return;
 	}
 	$foodnet = calcFoodPro() - calcFoodCon();
@@ -1665,34 +1657,21 @@ function doStatusBar($show) {
 	if($users[food] + ($foodnet * 5) < 0)
 		$food_color = "cbad";
 
-	$tpl->assign('endbar', $show);
-	$tpl->assign('era', $users['era']);
+    global $endbar, $newmail, $turnsleft, $generated;
+    $endbar = $show;
 	if(numNewMessages() > 0)
-		$tpl->assign('newmail', 'true');
-	$tpl->assign('turns_new', $users['turns']);
-	$tpl->assign('cash_new', commas($users['cash']));
-	$tpl->assign('land_new', commas($users['land']));
-	$tpl->assign('runesname', $uera['runes']);
-	$tpl->assign('foodname', $uera['food']);
-	$tpl->assign('runes_new', commas($users['runes']));
-	$tpl->assign('food_new', commas($users['food']));
-	$tpl->assign('networth_new', commas($users['networth']));
-	$tpl->assign('health_new', $users['health']);
-	$tpl->assign('food_color', $food_color);
-	$tpl->assign('cash_color', $cash_color);
-	$tpl->assign('land_color', $land_color);
-	$tpl->assign('health_color', $health_color);
-	$tpl->assign('turnsleft', $config[protection]-$users[turnsused]+1);
+        $newmail = true;
+    else
+        $newmail = false;
+    $turnsleft = $config[protection]-$users[turnsused]+1;
 
 	if($show) {
 		$generated = getmicrotime() - $starttime;
-		$tpl->assign('generated', round($generated,5));
-		$tpl->assign('gameversion', $config['version']);
-		$tpl->display('footer.html');
+		$template_display('footer.html');
 	}
 }
 // EXPERIENCE ALGORITHIM Anton:030313
-//Calculates the offencive experience mutplier 
+//Calculates the offencive experience multiplier 
 function calcoffexp ($users)
 {
     $succpoint = 3;

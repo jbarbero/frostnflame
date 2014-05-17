@@ -10,15 +10,9 @@ if (isset($_POST['do_use'])) {
 	$msg = fn_land(array(	num  => $use_turns,
 				hide => $hide_turns)
 			);
-	$tpl->assign('message', $msg);
 }
 
-$tpl->assign('admessage', $ad);
-$tpl->assign('turntype', $action);
-$tpl->assign('doingwhat', $suffix);
-$tpl->assign('buttontext', $button);
-
-$tpl->display('turnuse.html');
+template_display('turnuse.html');
 
 TheEnd('');
 ?>

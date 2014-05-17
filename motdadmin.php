@@ -10,8 +10,8 @@ if(isset($_POST['submit'])) {
     $content = addslashes(nl2br($_POST['content']));
     $author = 'Admin';
     
-    $sql = mysql_query("INSERT INTO ".$prefix."_motd SET subject='$subject', content='$content', author='$author', date=now()") or die("Error: ".mysqli_error($db_link));	
-    $sql = mysql_query("UPDATE ".$prefix."_players SET motd='1' WHERE 1=1") or die("Error: ".mysqli_error($db_link));
+    $sql = mysql_query("INSERT INTO ".$prefix."_motd SET subject='$subject', content='$content', author='$author', date=now()") or die("Error: ".mysqli_error($GLOBALS["db_link"]));	
+    $sql = mysql_query("UPDATE ".$prefix."_players SET motd='1' WHERE 1=1") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
     echo"Message Submitted.";
 }
 

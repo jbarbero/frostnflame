@@ -44,7 +44,7 @@ if (mysqli_connect_error()) {
 	exit;
 }
 
-mysqli_select_db($db_link, $dbname);
+mysqli_select_db($GLOBALS["db_link"], $dbname);
 require_once("sql-setup.php");
 
 if ($action == "game")

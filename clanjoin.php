@@ -55,19 +55,16 @@ if ($do_joinclan) {
 
 $ccs = array();
 $clanlist = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num;");
-$tpl->assign('numcs', mysqli_num_rows($clanlist));
+$numcs = mysqli_num_rows($clanlist);
 while ($clan = mysqli_fetch_array($clanlist))
 	$ccs[] = $clan;
-$tpl->assign('ccs', $ccs);
 
 $ocs = array();
 $clanlist = db_safe_query("SELECT num,name,tag FROM $clandb WHERE open=1 AND members>0 ORDER BY num;");
-$tpl->assign('numocs', mysqli_num_rows($clanlist));
+$numocs = mysqli_num_rows($clanlist);
 while ($clan = mysqli_fetch_array($clanlist))
 	$ocs[] = $clan;
-$tpl->assign('ocs', $ocs);
 
-
-$tpl->display('clanjoin.html');
+template_display('clanjoin.html');
 TheEnd();
 ?>

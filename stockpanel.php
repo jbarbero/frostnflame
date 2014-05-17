@@ -21,7 +21,7 @@ if(!empty($change)) {
 	} else if(isset($_GET['reduce'])) {
 		db_safe_query("UPDATE $stockdb SET boost=boost-5 WHERE id=$which;");
 	}
-	echo mysqli_error($db_link);
+	echo mysqli_error($GLOBALS["db_link"]);
 }
 
 

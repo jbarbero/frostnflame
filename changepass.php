@@ -16,13 +16,13 @@ if($passchanged) {
 		else if(isset($_GET['auth']))
 			makeAuthCode($users[num], $users[password], 0, SERVER, false, $users[rsalt]);
 		else
-			$tpl->assign('printmessage', "You aren't logged in!<br>\n");
+			$printmessage = "You aren't logged in!<br>\n";
 
 		header(str_replace('&amp;', '&', "Location: ".$config[sitedir].$config[main]."?changepass&passchanged=true$authstr"));
 	}
-	else	$tpl->assign('printmessage', "Error! Passwords do not match!<br>\n");
+	else	$printmessage = "Error! Passwords do not match!<br>\n";
 }
 
-$tpl->display('changepass.html');
+$template_display('changepass.html');
 TheEnd("");
 ?>

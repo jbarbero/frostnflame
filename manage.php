@@ -38,7 +38,7 @@ if($leave_protection) {
 		TheEnd("Sorry, you can not leave protection early on this server!");
 
 	$REMOTE_ADDR = $_SERVER['REMOTE_ADDR'];
-	$users[email] = mysqli_real_escape_string($db_link, $users[email]);
+	$users[email] = mysqli_real_escape_string($GLOBALS["db_link"], $users[email]);
 	$old_accounts = db_safe_query("SELECT * FROM $playerdb WHERE ((email='$users[email]' OR IP='$REMOTE_ADDR') AND disabled!=2 AND num!=$users[num]) ORDER BY idle DESC;");
 	
 	$test = mysqli_fetch_array($old_accounts);
@@ -178,9 +178,6 @@ foreach($config[troop] as $num => $mktcost) {
 }
 
 $tpl->assign('troops', $troopnames);
-$tpl->assign('users', $users);
-$tpl->assign('uind', $uind);
-$tpl->assign('numbers', $numbers);
 $tpl->assign('minvacation', $config['minvacation']);
 $tpl->assign('vacationdelay', $config['vacationdelay']);
 $tpl->assign('tax', $users['tax']);

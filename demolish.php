@@ -185,21 +185,7 @@ printRow(labs);
 printRow(farms);
 printRow(towers);
 
-$tpl->assign('cnd', $cnd);
-$tpl->assign('authstr', $authstr);
-$tpl->assign('do_demolish', $do_demolish);
-$tpl->assign('freeland', commas($users[freeland]));
-$tpl->assign('demolish', $ddemolish);
-$tpl->assign('candestroy', commas($candestroy[land]));
-$tpl->assign('allyoucandestroy', commas($candestroy[all]));
-$tpl->assign('destroyrate', commas($destroyrate));
-$tpl->assign('salvage', commas(gamefactor($salvage)));
-$tpl->assign('totaldestroyed', commas($totaldestroyed));
-$tpl->assign('turns', $turns);
-$tpl->assign('totalsalvaged', commas(gamefactor($totalsalvaged)));
-$tpl->assign('gamename', $gamename);
-$tpl->assign('uera', $uera);
-$tpl->display("demolish.html");
+$template_display("demolish.html");
 TheEnd("");
 
 ?>

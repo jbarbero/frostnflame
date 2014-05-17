@@ -28,9 +28,8 @@ if(isset($_GET['by'])) {
 $gWidth = 800;
 $gHeight = 600;
 
-$tpl->assign('width', $gWidth+1);
-$tpl->assign('height', $gHeight+1);
-$tpl->assign('type', $type);
+$width = $gWidth+1;
+$height = $gHeight+1;
 $type = strtolower($type);
  
 doMap($gWidth, $gHeight, $type);
@@ -123,8 +122,7 @@ foreach($player_lookup_table as $id => $entry) {
 	divStart($data, 'p');
 }
 
-$tpl->assign('mapbuffer', $mapbuffer);
-$tpl->display('map.html');
+$template_display('map.html');
 
 TheEnd("");
 ?>

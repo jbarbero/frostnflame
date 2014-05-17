@@ -70,7 +70,7 @@ $top10 = db_safe_query("SELECT rank,empire,num,land,networth,clan,online,disable
 
 while ($enemy = mysqli_fetch_array($top10))
 	printSearchLine();
-echo mysqli_error($db_link);
+echo mysqli_error($GLOBALS["db_link"]);
 printTop10Header();
 ?>
 </table>

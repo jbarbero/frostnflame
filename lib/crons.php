@@ -20,7 +20,7 @@ function newday($name) {
 function lasttime($name) {
 	global $crondb, $db_link;
 	$time = time();
-	$name = mysqli_real_escape_string($db_link, $name);
+	$name = mysqli_real_escape_string($GLOBALS["db_link"], $name);
 	$q = @db_safe_query("SELECT time FROM $crondb WHERE name='$name';");
 	if(!mysqli_num_rows($q)) {
 		db_safe_query("INSERT INTO $crondb (name, time) VALUES ('$name', $time);");
@@ -36,7 +36,7 @@ function justRun($name, $modmins) {
 	global $time, $crondb;
 	lasttime($name);
 	$last = $time - $time%$modmins;
-	$name = mysql_real_escape_string($name);
+	$name = mysqli_real_escape_string($GLOBALS["db_link"], $name);
 	@db_safe_query("UPDATE $crondb SET time=$last WHERE name='$name';");
 }
 

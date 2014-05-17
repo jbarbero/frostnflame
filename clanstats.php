@@ -51,9 +51,6 @@ while (list($key,$val) = each($sortby))
 reset($sortby);
 reset($clan);
 
-$tpl->assign('sortd', $sortd);
-$tpl->assign('minm', $minmembers);
-
 $clans = array();
 
 $cunlisted = $ctotal = 0;
@@ -75,14 +72,9 @@ while (list(,$num) = each($clan)) {
 }
 
 
-$tpl->assign('clans', $clans);
-
 $notmade = "$cunlisted/$ctotal (".round($cunlisted/$ctotal*100)."%)";
 $indeps = "$unallied/$utotal (".round($unallied/$utotal*100)."%)";
 
-$tpl->assign('notmade', $notmade);
-$tpl->assign('indeps', $indeps);
-
-$tpl->display('clanstats.html');
+$template_display('clanstats.html');
 TheEnd();
 ?>

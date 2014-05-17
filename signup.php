@@ -58,7 +58,7 @@ if ($do_signup) {
 	$users[username] = $signup_username;
 	$users[name] = $signup_name;
 	$users[email] = $signup_email;
-	$users[email] = mysqli_real_escape_string($db_link, $users[email]);
+	$users[email] = mysqli_real_escape_string($GLOBALS["db_link"], $users[email]);
 	$users[IP] = $ip;
 
 	$users['folders'] = 'Inbox|Sent';
@@ -81,7 +81,7 @@ if ($do_signup) {
 	$users[rank] = $users[num];
 
 	$users[igname] = htmlspecialchars(swear_filter($signup_igname), ENT_QUOTES);
-	$users[igname] = mysqli_real_escape_string($db_link, $users[igname]);
+	$users[igname] = mysqli_real_escape_string($GLOBALS["db_link"], $users[igname]);
 
 	$users[turns] = $config[initturns];
 

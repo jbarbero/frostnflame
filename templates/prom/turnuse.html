@@ -1,17 +1,17 @@
 <?php echo $GLOBALS["turnoutput"]; ?>
 
-<?php if($GLOBALS["message"] != ''): ?>
+<?php if($GLOBALS["msg"] != ''): ?>
 
-    <div align="center"><?php echo $GLOBALS["message"]; ?></div>
+    <div align="center"><?php echo $GLOBALS["msg"]; ?></div>
 	<hr>
 
 <?php endif; ?>
-<?php echo $GLOBALS["admessage"]; ?>
+<?php echo $GLOBALS["ad"]; ?>
 <br><br>
 
 <table class="inputtable">
-<form method="post" action="<?php echo $GLOBALS["main"]; ?>?<?php echo $GLOBALS["turntype"]; ?><?php echo $GLOBALS["authstr"]; ?>">
-<tr><td colspan=2 nowrap><center>Spend how many turns <?php echo $GLOBALS["doingwhat"]; ?>?</center></td></tr>
+<form method="post" action="<?php echo $GLOBALS["main"]; ?>?<?php echo $GLOBALS["action"]; ?><?php echo $GLOBALS["authstr"]; ?>">
+<tr><td colspan=2 nowrap><center>Spend how many turns <?php echo $GLOBALS["suffix"]; ?>?</center></td></tr>
     <tr><td colspan=2><center><input type="text" name="use_turns" size="5" value="0">
 	<input type="hidden" name="do_use" value="1"></center></td></tr>
 
@@ -36,6 +36,6 @@
 	<td>Population production is negative</td>
 	<td><input type="checkbox" name="networkerneg" class="check_box" value="yes"></td>
 </tr>
-<tr><td colspan=2 class="acenter"><center><input type="submit" value="Begin"></center></td></tr>
+<tr><td colspan=2 class="acenter"><center><input type="submit" value="<?php echo $GLOBALS["button"]; ?>"></center></td></tr>
 </table>
 </form>

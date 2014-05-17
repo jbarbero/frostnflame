@@ -502,7 +502,7 @@ function action_sql_1()
 		}
 		else
 		{
-			$tpl_vars['connectmsg'] = '<p>Error on connecting. '. mysqli_error($db_link).'</p>';
+			$tpl_vars['connectmsg'] = '<p>Error on connecting. '. mysqli_error($GLOBALS["db_link"]).'</p>';
 		}
 	}
 	return parse_tpl(get_tpl('connect2mysql'), $tpl_vars);
@@ -542,7 +542,7 @@ function action_sql_3()
 	
 			if(mysql_errno())
 			{
-				$tpl_vars['result'] = '<p class="error">Error: '.mysqli_error($db_link).'</p>';
+				$tpl_vars['result'] = '<p class="error">Error: '.mysqli_error($GLOBALS["db_link"]).'</p>';
 			}
 			else if(empty($lines))
 			{
@@ -674,14 +674,14 @@ function action_sql_4_insert_data()
 					$sql_insert = 'INSERT INTO '.$_REQUEST['tbl'] .' SET ';
 					foreach($_POST['minimyfield'] as $field_key=>$field_value)
 					{
-						$sql_insert_fields[] = ' `'.$field_key.'`="'.mysqli_real_escape_string($db_link, $field_value).'" ';
+						$sql_insert_fields[] = ' `'.$field_key.'`="'.mysqli_real_escape_string($GLOBALS["db_link"], $field_value).'" ';
 					}
 					$sql_insert .= join(', ', $sql_insert_fields);
 					
 					@mysql_query($sql_insert);
 					if(mysql_errno())
 					{
-						$output .= '<p class="error">Error on saving: '.mysqli_error($db_link).'<br>'.$sql_insert.'</p>';
+						$output .= '<p class="error">Error on saving: '.mysqli_error($GLOBALS["db_link"]).'<br>'.$sql_insert.'</p>';
 					}
 					else 
 					{
@@ -744,7 +744,7 @@ function action_sql_4_edit_row()
 			$sql_update_fields = array();
 			foreach($_POST['minimyfield'] as $row_id=>$row_value)
 			{
-				$sql_update_fields[] = ' `'.$row_id.'` = "'.mysqli_real_escape_string($db_link, $row_value).'" ';
+				$sql_update_fields[] = ' `'.$row_id.'` = "'.mysqli_real_escape_string($GLOBALS["db_link"], $row_value).'" ';
 			}
 			$sql_update .= join(', ', $sql_update_fields) . ' WHERE `'.$_REQUEST['pk'].'`="'.$_REQUEST['id'].'"';
 			
@@ -757,7 +757,7 @@ function action_sql_4_edit_row()
 				@mysql_query($sql_update);
 				if(mysql_errno())
 				{
-					$output .= '<p class="error">Update query fails: '.mysqli_error($db_link).'<br>'.htmlspecialchars($sql_update).'</p>';
+					$output .= '<p class="error">Update query fails: '.mysqli_error($GLOBALS["db_link"]).'<br>'.htmlspecialchars($sql_update).'</p>';
 				}
 				else
 				{
@@ -1334,7 +1334,7 @@ function get_menu()
 			<li>'.html_encode_link('visual editor',self,array('mysql'=>4)).'</li>
 			<li>'.html_encode_link('raw sql',self,array('mysql'=>3)).'</li>
 			<li>'.html_encode_link('export',self,array('mysql'=>5)).'</li>
-			<li>'.html_encode_link('mysqli_close($db_link)',self,array('mysql'=>2)).'</li>
+			<li>'.html_encode_link('mysqli_close($GLOBALS["db_link"])',self,array('mysql'=>2)).'</li>
 		</ul>';
 	}
 

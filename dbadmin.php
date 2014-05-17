@@ -77,7 +77,7 @@ if(isset($_POST['do_reset'])) {
 	TheEnd("Server Reset!");
 }
 
-$tpl->display("dbadmin.html");
+$template_display("dbadmin.html");
 TheEnd("");
 ?>
 

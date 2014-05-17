@@ -58,7 +58,7 @@ db_safe_query("UPDATE ".$prefix."_system SET topdef=".$topdefense);
 $topkills = db_safe_firstval("SELECT num FROM $playerdb WHERE land > 0 AND kills > 0 AND disabled!=2 AND disabled!=3 ORDER BY kills DESC LIMIT 1");
 db_safe_query("UPDATE ".$prefix."_system SET topkills=".$topkills);
 
-$topnet = db_safe_query("SELECT num FROM $playerdb WHERE land > 0 AND disabled != 2 AND disabled != 3 ORDER BY networth DESC LIMIT 3") or die(mysqli_error($db_link));
+$topnet = db_safe_query("SELECT num FROM $playerdb WHERE land > 0 AND disabled != 2 AND disabled != 3 ORDER BY networth DESC LIMIT 3") or die(mysqli_error($GLOBALS["db_link"]));
 $z = 1;
 while($row = mysql_fetch_assoc($topnet)) {
 db_safe_query("UPDATE ".$prefix."_system SET topnet".$z."=".$row['num']);

@@ -144,7 +144,7 @@ if(mysqli_num_rows(db_safe_query("SELECT * FROM $lotterydb;")) == 0) {
 	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 3, 150, 'cash');");
 	db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 4, 13110673839, 'cash');");
 }
-echo mysqli_error($db_link);
+echo mysqli_error($GLOBALS["db_link"]);
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$marketdb` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -326,7 +326,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$playerdb` (
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $playerdb WHERE num=1;")) == 0) {
 	db_safe_query("INSERT INTO `$prefix"."_players` VALUES ('0', 'admin', '73d4df1292b6187fa48894b76497de7b', '1', '23768', 'Administrative Officer', 'jbarbero+faf@gmail.com', '127.0.0.1', '1204417010', '0', '2', '1', '0', '1204417105', '0', '1', 'Administrator', '1', '7', '3', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '150', '1204416600', '1204416000', '250', '0', '147061', '100000', '10000', '500', '0|0|0|0', '', '100', '0', '500', '0', '0', '25|25|25|25', '250', '5', '20', '0', '5', '0', '15', '0', '205', '10', '0', '100', '1204416000', '0', '8333|4167|2083|14', '0', '100000', '0|0|0|0', '0', '5', '0', '10', '0', '1204417010', '1204417010', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'Administrator', '', '', '1000|1000|1000|1000|1000|1000|1000|1000', '0', '0', '0', '1', '1', 'Inbox|Sent', '0', '1', '0', '0', '1', '0', '0');");
 }
-echo mysqli_error($db_link);
+echo mysqli_error($GLOBALS["db_link"]);
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_posts` (
   `post_id` int(11) NOT NULL auto_increment,
@@ -438,6 +438,6 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_users` (
   PRIMARY KEY  (`user_id`)
 ) TYPE=MyISAM AUTO_INCREMENT=1 ;");
 
-echo mysqli_error($db_link);
+echo mysqli_error($GLOBALS["db_link"]);
 }
 ?>

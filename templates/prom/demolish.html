@@ -1,5 +1,5 @@
 <?php if($GLOBALS["do_demolish"] != ""): ?>
-You demolished <?php echo $GLOBALS["totaldestroyed"]; ?> structures in <?php echo $GLOBALS["turns"]; ?> turns and made $<?php echo $GLOBALS["totalsalvaged"]; ?>.<hr>
+You demolished <?php echo commas(gamefactor($GLOBALS["totaldestroyed"])); ?> structures in <?php echo $GLOBALS["turns"]; ?> turns and made $<?php echo commas(gamefactor($GLOBALS["totalsalvaged"])); ?>.<hr>
 <?php endif; ?>
 
 
@@ -42,9 +42,9 @@ function checkAllTwo (check){
 
 <a href="?guide&amp;section=structures<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["gamename"]; ?> Guide: Structures</a><br>
 <br>
-Each structure demolished frees up one acre of land and you get approximately $<?php echo $GLOBALS["salvage"]; ?> per structure for salvage.<br>
-We can demolish <?php echo $GLOBALS["destroyrate"]; ?> structures per turn.<br>
-With our resources, we can demolish <span class="cbad"><?php echo $GLOBALS["allyoucandestroy"]; ?></span> structures.<br>
+Each structure demolished frees up one acre of land and you get approximately $<?php echo commas(gamefactor($GLOBALS["salvage"])); ?> per structure for salvage.<br>
+We can demolish <?php echo commas($GLOBALS["destroyrate"]); ?> structures per turn.<br>
+With our resources, we can demolish <span class="cbad"><?php echo commas($GLOBALS["candestroy"]["all"]); ?></span> structures.<br>
 The <i>Safe</i> checkboxes will demolish the most of your buildings possible before you start losing money, <?php echo $GLOBALS["uera"]["peasants"]; ?>, or
 <?php echo $GLOBALS["uera"]["wizards"]; ?>.<br>
  Use these if you want to, for example, free land for more structures without having to worry about losses.<br><br>
@@ -62,7 +62,7 @@ The <i>Safe</i> checkboxes will demolish the most of your buildings possible bef
     <th class="aright">Safe <input type="checkbox" name="safeall" onclick="checkAllTwo(1)" class="safe"></th></tr>
 
 <?php /* Printing row stuffs */ ?>
-<?php foreach($GLOBALS["demolish"] as $loop_i): ?>
+<?php foreach($GLOBALS["ddemolish"] as $loop_i): ?>
 <tr><td><?php echo $loop_i["name"]; ?></td>
     <td class="aright"><?php echo $loop_i["userAmount"]; ?></td>
     <td class="aright"><?php echo $loop_i["canDestroy"]; ?></td>
@@ -74,9 +74,9 @@ The <i>Safe</i> checkboxes will demolish the most of your buildings possible bef
 <?php /* Footer */ ?>
 
 <tr><td>Drop Unused Land</td>
-    <td class="aright"><?php echo $GLOBALS["freeland"]; ?></td>
-    <td class="aright"><?php echo $GLOBALS["candestroy"]; ?></td>
-    <td class="aright"><?php echo $GLOBALS["candestroy"]; ?></td>
+    <td class="aright"><?php echo commas($GLOBALS["users"]["freeland"]); ?></td>
+    <td class="aright"><?php echo commas($GLOBALS["candestroy"]["land"]); ?></td>
+    <td class="aright"><?php echo commas($GLOBALS["candestroy"]["land"]); ?></td>
     <td class="aright"><input type="text" name="demolish[land]" size="5" value="0"></td>
     <td class="aright"></td>
 <tr><td colspan="7" class="acenter"><input type="submit" name="do_demolish" value="Begin Demolition"></td></tr>

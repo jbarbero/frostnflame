@@ -1,17 +1,17 @@
 <?php if($GLOBALS["do_borrow"] != ""): ?>
-You have taken out a loan for $<?php echo gamefactor($GLOBALS["borrow"]); ?>. 0.5% of the loan will be paid off each turn.<hr>
+You have taken out a loan for $<?php echo commas(gamefactor($GLOBALS["borrow"])); ?>. 0.5% of the loan will be paid off each turn.<hr>
 <?php endif; ?>
 
 <?php if($GLOBALS["do_repay"] != ""): ?>
-Thank you for your $<?php echo gamefactor($GLOBALS["repay"]); ?> payment! It will be credited to your account immediately.<hr>
+Thank you for your $<?php echo commas(gamefactor($GLOBALS["repay"])); ?> payment! It will be credited to your account immediately.<hr>
 <?php endif; ?>
 
 <?php if($GLOBALS["do_deposit"] != ""): ?>
-You have deposited $<?php echo gamefactor($GLOBALS["deposit"]); ?> into your savings account.<hr>
+You have deposited $<?php echo commas(gamefactor($GLOBALS["deposit"])); ?> into your savings account.<hr>
 <?php endif; ?>
 
 <?php if($GLOBALS["do_withdraw"]!= ""): ?>
-You have withdrawn $<?php echo gamefactor($GLOBALS["withdraw"]); ?> from your savings.<hr>
+You have withdrawn $<?php echo commas(gamefactor($GLOBALS["withdraw"])); ?> from your savings.<hr>
 <?php endif; ?>
 
 <h2>Welcome to the Bank</h2>
@@ -20,16 +20,16 @@ You have withdrawn $<?php echo gamefactor($GLOBALS["withdraw"]); ?> from your sa
     <table class="empstatus" style="width:100%">
         <tr class="inputtable2"><th colspan="2" style="text-align:center">Savings</th></tr>
         <tr><th>Interest APR:</th>   <td><?php echo $GLOBALS["savrate"]; ?>%</td></tr>
-        <tr><th>Maximum Balance:</th><td>$<?php echo gamefactor($GLOBALS["maxsave"]); ?></td></tr>
-        <tr><th>Current Balance:</th><td>$<?php echo gamefactor($GLOBALS["savings"]); ?></td></tr>
+        <tr><th>Maximum Balance:</th><td>$<?php echo commas(gamefactor($GLOBALS["maxsave"])); ?></td></tr>
+        <tr><th>Current Balance:</th><td>$<?php echo commas(gamefactor($GLOBALS["users"]["savings"])); ?></td></tr>
     </table></td>
     <td style="width:10%"></td>
     <td>
     <table class="empstatus" style="width:100%">
         <tr class="inputtable2"><th colspan="2" style="text-align:center">Loan</th></tr>
         <tr><th>Interest APR:</th>   <td><?php echo $GLOBALS["loanrate"]; ?>%</td></tr>
-        <tr><th>Maximum Balance:</th><td>$<?php echo gamefactor($GLOBALS["maxloan"]); ?></td></tr>
-        <tr><th>Current Balance:</th><td>$<?php echo gamefactor($GLOBALS["loan"]); ?></td></tr>
+        <tr><th>Maximum Balance:</th><td>$<?php echo commas(gamefactor($GLOBALS["maxloan"])); ?></td></tr>
+        <tr><th>Current Balance:</th><td>$<?php echo commas(gamefactor($GLOBALS["loan"])); ?></td></tr>
     </table></td></tr>
 </table><br>
 Interest is calculated per turn (52 turns = 1 APR year)<br>

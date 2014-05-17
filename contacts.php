@@ -18,7 +18,6 @@ while ($clan = mysqli_fetch_array($clanlist)) {
 	$clans[] = $clan;
 }
 
-$tpl->assign('clans', $clans);
-$tpl->display('contacts.html');
+$template_display('contacts.html');
 TheEnd();
 ?>
