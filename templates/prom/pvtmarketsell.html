@@ -1,5 +1,5 @@
 <script language="JavaScript">
-{literal}
+
 function checkAll (check){
 	var path = document.pvmb;
 	for (var i=0;i<path.elements.length;i++) {
@@ -12,14 +12,14 @@ function checkAll (check){
 		}
 	 }
 }
-{/literal}
+
 </script>
 
-{if $printmessage != ''}
+<?php if($printmessage != ''): ?>
 <?php echo $printmessage; ?>
-{/if}
+<?php endif; ?>
 
-Also see: <a href="?guide&amp;section=military&amp;era=<?php echo $uera; ?>{$authstr}">Guide: Military</a><br>
+Also see: <a href="?guide&amp;section=military&amp;era=<?php echo $uera; ?><?php echo $authstr; ?>">Guide: Military</a><br>
 <form method="post" action="?pvtmarketsell<?php echo $authstr; ?>" name="pvmb">
 <table class="inputtable">
 <tr><td colspan="3"><a href="?pvtmarketbuy<?php echo $authstr; ?>">Buy Goods</a></td>
@@ -32,15 +32,15 @@ Also see: <a href="?guide&amp;section=military&amp;era=<?php echo $uera; ?>{$aut
     <th class="aright">Max <input type="checkbox" name="maxall" onClick="checkAll(1)"></th>
 </tr>
 
-{section name=pvm loop=$types}
-<tr><td>{$types[pvm].name}</td>
-    <td class="aright">{$types[pvm].amt|gamefactor}</td>
-    <td class="aright">${$types[pvm].cost}</td>
-    <td class="aright">{$types[pvm].cansell|gamefactor}</td>
-    <td class="aright"><input type="text" name="sell[{$types[pvm].type}]" size="8" value="0"></td>
-    <td class="aright"><input type="checkbox" name="max[{$types[pvm].type}]" value="{$types[pvm].type}"></td>
+<?php foreach($types as $pvm): ?>
+<tr><td><?php echo $pvm["name"]; ?></td>
+    <td class="aright"><?php echo gamefactor($pvm["amt"]); ?></td>
+    <td class="aright">$<?php echo $pvm["cost"]; ?></td>
+    <td class="aright"><?php echo gamefactor($pvm["cansell"]); ?></td>
+    <td class="aright"><input type="text" name="sell[<?php echo $pvm["type"]; ?>]" size="8" value="0"></td>
+    <td class="aright"><input type="checkbox" name="max[<?php echo $pvm["type"]; ?>]" value="<?php echo $pvm["type"]; ?>"></td>
 </tr>
-{/section}
+<?php endforeach; ?>
 
 <tr><td colspan="7" class="acenter"><input type="submit" name="do_sell" value="Sell Goods"></td></tr>
 </table>

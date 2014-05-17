@@ -1,13 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo $gamename; ?> :: {$servname|strip_tags}</title>
+<title><?php echo $gamename; ?> :: <?php echo strip_tags($config["servname"]); ?></title>
 <base href="<?php echo $basehref; ?>">
 <link rel="stylesheet" type="text/css" href="layout.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $stylename; ?>">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="alternate" title="RSS Feed" href="<?php echo $sitedir; ?>?rss&amp;feed=top10{$authstr}" type="application/rss+xml">
+<link rel="alternate" title="RSS Feed" href="<?php echo $config["sitedir"]; ?>?rss&amp;feed=top10<?php echo $authstr; ?>" type="application/rss+xml">
 <?php echo $extra_headers; ?>
 </head>
 <body>
@@ -18,16 +18,16 @@
 
 <table class="menus">
 <tr><th><center><hr>
-<a href="?<?php echo $gaction; ?>&amp;menu=reverse{$authstr}"><img src="{$imgsrc}" border="0" alt="toggle collapse/expand"></a>&nbsp;<a href="?main{$authstr}" class="darklink">Main&nbsp;Menu</a>
+<a href="?<?php echo $gaction; ?>&amp;menu=reverse<?php echo $authstr; ?>"><img src="<?php echo $imgsrc; ?>" border="0" alt="toggle collapse/expand"></a>&nbsp;<a href="?main<?php echo $authstr; ?>" class="darklink">Main&nbsp;Menu</a>
 <hr></center></th></tr>
 
-{section name=m loop=$menus}
-{if $menus[m].spec == 1}
-<tr><th>{$menus[m].item}</th></tr>
-{else}
-<tr><td><a href='{$menus[m].link}'{$menus[m].trg}>{$menus[m].item}</a></td></tr>
-{/if}
-{/section}
+<?php foreach($menus as $m): ?>
+<?php if($m["spec"] == 1): ?>
+<tr><th><?php echo $m["item"]; ?></th></tr>
+<?php else: ?>
+<tr><td><a href='<?php echo $m["link"]; ?>'<?php echo $m["trg"]; ?>><?php echo $m["item"]; ?></a></td></tr>
+<?php endif; ?>
+<?php endforeach; ?>
 
 <tr><th><center><hr><a href="?logout<?php echo $authstr; ?>" class="darklink">Logout</a><hr></center></th></tr>
 </table>
@@ -38,8 +38,8 @@
 </td>
 <td class="acenter" style="vertical-align:top">
 
-{if $adminpanel == 'true'}
-{if $root == 1}
+<?php if($adminpanel == 'true'): ?>
+<?php if($root == 1): ?>
 <form method="post" action="?<?php echo $authstr; ?>">
 <div>
 <input type="hidden" name="the_action" value="<?php echo $action; ?>">
@@ -48,73 +48,73 @@
 <input type="submit" name="do_updatenet" value="Update Networths">
 <input type="submit" name="do_updateranks" value="Update Rankings">
 </div>
-{/if}
+<?php endif; ?>
 <center>
 <table width="80%"><tr width="100%"><td width="50%"><p align="left">
-{if $root == 1}
-<a href="<?php echo $main; ?>?admin{$authstr}">Server Administration</a><br>
-{/if}
-<a href="<?php echo $main; ?>?clanadmin{$authstr}">Clan Administration</a><br>
-<a href="<?php echo $main; ?>?useradmin{$authstr}">User Administration</a><br>
-<a href="<?php echo $main; ?>?msgadmin{$authstr}">View Messages</a><br>
+<?php if($root == 1): ?>
+<a href="<?php echo $main; ?>?admin<?php echo $authstr; ?>">Server Administration</a><br>
+<?php endif; ?>
+<a href="<?php echo $main; ?>?clanadmin<?php echo $authstr; ?>">Clan Administration</a><br>
+<a href="<?php echo $main; ?>?useradmin<?php echo $authstr; ?>">User Administration</a><br>
+<a href="<?php echo $main; ?>?msgadmin<?php echo $authstr; ?>">View Messages</a><br>
 </p>
 </td>
 <td width="50%"><p align="right">
-{if $root == 1}
-<a href="<?php echo $main; ?>?newsletter{$authstr}">Send Newsletter</a><br>
-{/if}
-<a href="<?php echo $main; ?>?igletter{$authstr}">Mass In-Game Message</a><br>
-<a href="<?php echo $main; ?>?forumadmin{$authstr}">Forums Moderation</a><br>
-<a href="<?php echo $main; ?>?stockpanel{$authstr}">Stock Manipulation</a><br>
+<?php if($root == 1): ?>
+<a href="<?php echo $main; ?>?newsletter<?php echo $authstr; ?>">Send Newsletter</a><br>
+<?php endif; ?>
+<a href="<?php echo $main; ?>?igletter<?php echo $authstr; ?>">Mass In-Game Message</a><br>
+<a href="<?php echo $main; ?>?forumadmin<?php echo $authstr; ?>">Forums Moderation</a><br>
+<a href="<?php echo $main; ?>?stockpanel<?php echo $authstr; ?>">Stock Manipulation</a><br>
 </p></td></tr>
 </table>
 </center>
 </form>
-{/if}
+<?php endif; ?>
 
-   <center><span style="font-size:x-large"><?php echo $gamename; ?> :: {$servname}</span></center>
-   Currently logged in as <span style="font-size:large"><?php echo $empire; ?></span> <a class=proflink href=?profiles&amp;num={$num}{$authstr}>(#{$num})</a><br><br>
+   <center><span style="font-size:x-large"><?php echo $gamename; ?> :: <?php echo $config["servname"]; ?></span></center>
+   Currently logged in as <span style="font-size:large"><?php echo $empire; ?></span> <a class=proflink href=?profiles&amp;num=<?php echo $num; ?><?php echo $authstr; ?>>(#<?php echo $num; ?>)</a><br><br>
    <b>Game News:</b> <?php echo $news; ?><br>
-   <a href="<?php echo $main; ?>?guide2&amp;section={$action}{$authstr}"><b>Game Guide</b></a> &middot;
+   <a href="<?php echo $main; ?>?guide2&amp;section=<?php echo $action; ?><?php echo $authstr; ?>"><b>Game Guide</b></a> &middot;
    <a href="javascript:window.location.reload()">Refresh</a> &middot;
    <a href="http://frostnflame.org/forum/index.php?showforum=4" target="bugs">Suggestions &middot; Bugs</a>
    <br>
 
 <table style="width:100%">
 <tr class="era<?php echo $era; ?>" style="font-size:medium" class="darklink">
-    <td class="acenter"><a href="<?php echo $main; ?>?messages{$authstr}">
-    {if $newmail == 'true'}
+    <td class="acenter"><a href="<?php echo $main; ?>?messages<?php echo $authstr; ?>">
+    <?php if($newmail == 'true'): ?>
       <b>New Mail!</b>
-    {else}
+    <?php else: ?>
       Mailbox
-    {/if}
+    <?php endif; ?>
     </a></td>
     <td class="acenter">Turns: <?php echo $turns_new; ?>
-    {if $turnsleft > 0}
+    <?php if($turnsleft > 0): ?>
         <br><font size="1">Protection: <?php echo $turnsleft; ?></font>
-    {/if}
+    <?php endif; ?>
     </td>
-    <td class="acenter"><span class="<?php echo $cash_color; ?>">Money: {$cash_new|gamefactor}</span></td>
-    <td class="acenter"><span class="<?php echo $land_color; ?>">Land: {$land_new}</span></td>
-    <td class="acenter"><?php echo $runesname; ?>: {$runes_new|gamefactor}</td>
-    <td class="acenter"><span class="<?php echo $food_color; ?>">{$foodname}: {$food_new|gamefactor}</span></td>
-    <td class="acenter"><span class="<?php echo $health_color; ?>">Health: {$health_new}%</span></td>
+    <td class="acenter"><span class="<?php echo $cash_color; ?>">Money: <?php echo gamefactor($cash_new); ?></span></td>
+    <td class="acenter"><span class="<?php echo $land_color; ?>">Land: <?php echo $land_new; ?></span></td>
+    <td class="acenter"><?php echo $runesname; ?>: <?php echo gamefactor($runes_new); ?></td>
+    <td class="acenter"><span class="<?php echo $food_color; ?>"><?php echo $foodname; ?>: <?php echo gamefactor($food_new); ?></span></td>
+    <td class="acenter"><span class="<?php echo $health_color; ?>">Health: <?php echo $health_new; ?>%</span></td>
     <td class="acenter">Networth: $<?php echo $networth_new; ?></td></tr>
 </table>
 
-{if $onlined == true}
+<?php if($onlined == true): ?>
 	<span class="cwarn">You are under attack from <?php echo $onl_e; ?>!</span><br>
-{/if}
+<?php endif; ?>
 
-{if $validate1 == 'true' || $validate2 == 'true'}
+<?php if($validate1 == 'true' || $validate2 == 'true'): ?>
 It is now necessary to validate your account. If you did not receive your validation email, you can have it resent.<br>
-<form method="post" action="<?php echo $main; ?>?validate{$authstr}">
+<form method="post" action="<?php echo $main; ?>?validate<?php echo $authstr; ?>">
 <table class="inputtable">
 <tr><td>Enter Validation Code:</td>
 <td class="aright"><input type="text" size="32" name="valcode" value="<?php echo $valcode; ?>"></td></tr>
 <tr><th colspan="2" class="acenter"><input type="submit" name="do_validate" value="Validate"></th></tr>
 </table>
 </form>
-<a href="<?php echo $main; ?>?revalidate{$authstr}">Resend Code</a><br>
-<a href="<?php echo $main; ?>?delete{$authstr}">Delete Account</a>
-{/if}
+<a href="<?php echo $main; ?>?revalidate<?php echo $authstr; ?>">Resend Code</a><br>
+<a href="<?php echo $main; ?>?delete<?php echo $authstr; ?>">Delete Account</a>
+<?php endif; ?>

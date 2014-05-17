@@ -4,15 +4,15 @@ From this menu, we can join a clan to possibly offer some protection.<br>
 <tr><th colspan="2">Join a Clan</th></tr>
 <tr><td class="aright">Clan:</td>
 
-{if $numcs == 0}
+<?php if($numcs == 0): ?>
         <td colspan="2"><b>No Clans</b></td></tr>
-{else}
+<?php else: ?>
 	<td><select name="join_num" size="1">
-	{section name=list loop=$ccs}
-		<option value="{$ccs[list].num}">{$ccs[list].tag} - {$ccs[list].name}</option>
-	{/section}
+	<?php foreach($ccs as $list): ?>
+		<option value="<?php echo $list["num"]; ?>"><?php echo $list["tag"]; ?> - <?php echo $list["name"]; ?></option>
+	<?php endforeach; ?>
 	</select></td></tr>
-{/if}
+<?php endif; ?>
 
 <tr><td class="aright">Password:</td>
     <td><input type="password" name="join_pass" size="8"></td></tr>
@@ -21,16 +21,16 @@ From this menu, we can join a clan to possibly offer some protection.<br>
 
 <tr><th colspan="2">Open Clans</th></tr>
 <tr><td class="aright">Clan:</td>
-{if $numocs == 0}
+<?php if($numocs == 0): ?>
         <td colspan="2"><b>No open Clans</b></td></tr>
-{else}
+<?php else: ?>
 	<td><select name="signup_clan" size="1">
 		<option value="0">No Clan Selected</option>
-	{section name=list loop=$ocs}
-	        <option value="{$ocs[list].num}">{$ocs[list].tag} - {$ocs[list].name}</option>
-	{/section}
+	<?php foreach($ocs as $list): ?>
+	        <option value="<?php echo $list["num"]; ?>"><?php echo $list["tag"]; ?> - <?php echo $list["name"]; ?></option>
+	<?php endforeach; ?>
 	</select></td></tr>
-{/if}
+<?php endif; ?>
 
 <tr><td colspan="2" class="acenter"><input type="submit" 
 name="do_joinopenclan" value="Join Clan"></td></tr>

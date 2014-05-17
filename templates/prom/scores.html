@@ -1,4 +1,4 @@
-<b><?php echo $servname; ?> {$listtype}</b><br> 
+<b><?php echo $config["servname"]; ?> <?php echo $listtype; ?></b><br> 
 Current Game Time: <?php echo $datetime; ?><br>
 <span class="mprotected">Protected/Vacation</span>, <span class="mdead">Dead</span>, <span class="mdisabled">Disabled</span>, <span class="madmin">Administrator</span><br>
 <a href="?scores&amp;page=scores<?php echo $authstr; ?>">Scores</a> -
@@ -6,17 +6,17 @@ Current Game Time: <?php echo $datetime; ?><br>
 <a href="?scores&amp;page=shame<?php echo $authstr; ?>">Hall of Shame</a> -
 <a href="?scores&amp;page=admins<?php echo $authstr; ?>">Administrators</a>
 <br>
-<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view={$view+1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Expand View</a> -
-<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Lessen View</a> -
-<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;show=all&amp;restr={$restr}{$authstr}">Show All</a> -
-<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view={$view}&amp;show={$show}&amp;restr=true{$authstr}">Exclude Protected</a> -
-<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view={$view}&amp;show={$show}&amp;restr=false{$authstr}">Include Protected</a>
+<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view=<?php echo $view+1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Expand View</a> -
+<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Lessen View</a> -
+<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;show=all&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Show All</a> -
+<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view=<?php echo $view; ?>&amp;show=<?php echo $show; ?>&amp;restr=true<?php echo $authstr; ?>">Exclude Protected</a> -
+<a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view=<?php echo $view; ?>&amp;show=<?php echo $show; ?>&amp;restr=false<?php echo $authstr; ?>">Include Protected</a>
 <br><br>
 
-<b><?php echo $online; ?></b> of the <b>{$active}</b> active players in the game are currently online.<br>
-<b><?php echo $killed; ?></b> {$empire}s have been destroyed, and <b>{$abandoned}</b> {$empire}s have been abandoned.<br>
+<b><?php echo $online; ?></b> of the <b><?php echo $active; ?></b> active players in the game are currently online.<br>
+<b><?php echo $killed; ?></b> <?php echo $empire; ?>s have been destroyed, and <b><?php echo $abandoned; ?></b> <?php echo $empire; ?>s have been abandoned.<br>
 <b><?php echo $disabled; ?></b> accounts have been disabled by Administration.<br>
-<?php echo $empireC; ?>s whose ranks are prefixed with a {$onhtml} are currently online.<br><br>
+<?php echo $empireC; ?>s whose ranks are prefixed with a <?php echo $onhtml; ?> are currently online.<br><br>
 <table width="40%">
 <tr><td><center><img src='img/game_icons/scores/net1.png'></center><td><center><img src='img/game_icons/scores/offense.png'></center><td><center><img src='img/game_icons/scores/defense.png'></center><td><center><img src='img/game_icons/scores/land.png'></center><td><center><img src='img/game_icons/scores/kills.png'></center></tr>
 <tr><td><center>Top Net</center><td><center>Most Offenses</center><td><center>Most Defenses</center><td><center>Most Land</center><td><center>Most Kills</center></tr>
@@ -24,64 +24,64 @@ Current Game Time: <?php echo $datetime; ?><br>
 
 <table class="scorestable">
 
-{if $sc1e != 1}
+<?php if($sc1e != 1): ?>
 <tr class="era<?php echo $era; ?>">
-    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Rank</a></th>
-    <th style="width:36%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=1&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">{$empireC}</a></th>
-    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=2&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Land</a></th>
-    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=3&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Networth</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=4&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Clan</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=5&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Race</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=6&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Location</a></th>
-    <th style="width:4%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=7&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Kills</a></th></tr>
+    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Rank</a></th>
+    <th style="width:36%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=1&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>"><?php echo $empireC; ?></a></th>
+    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=2&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Land</a></th>
+    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=3&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Networth</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=4&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Clan</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=5&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Race</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=6&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Location</a></th>
+    <th style="width:4%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=7&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Kills</a></th></tr>
 
-{section name=i loop=$scores1}
-<tr class="{$scores1[i].mcolor}">
-    <td class="aright">{$scores1[i].online}{$scores1[i].rank}</td>
-    <td class="acenter">{$scores1[i].topoff}{$scores1[i].topdef}{$scores1[i].empire} <a class="proflink" href="?profiles&amp;num={$scores1[i].num}<?php echo $authstr; ?>">(#{$scores1[i].num})</a></td>
-    <td class="aright">{$scores1[i].topland}{$scores1[i].land}</td>
-    <td class="aright">{$scores1[i].topnet1}{$scores1[i].topnet2}{$scores1[i].topnet3}${$scores1[i].networth}</td>
-    <td class="acenter">{$scores1[i].clan}</td>
-    <td class="acenter">{$scores1[i].rcs}{$scores1[i].race}{$scores1[i].rce}</td>
-    <td class="acenter">{$scores1[i].era}</td>
-    <td class="acenter">{$scores1[i].topkills}{$scores1[i].kills}</td></tr>
-{/section}
-{/if}
+<?php foreach($scores1 as $i): ?>
+<tr class="<?php echo $i["mcolor"]; ?>">
+    <td class="aright"><?php echo $i["online"]; ?><?php echo $i["rank"]; ?></td>
+    <td class="acenter"><?php echo $i["topoff"]; ?><?php echo $i["topdef"]; ?><?php echo $i["empire"]; ?> <a class="proflink" href="?profiles&amp;num=<?php echo $i["num"]; ?><?php echo $authstr; ?>">(#<?php echo $i["num"]; ?>)</a></td>
+    <td class="aright"><?php echo $i["topland"]; ?><?php echo $i["land"]; ?></td>
+    <td class="aright"><?php echo $i["topnet1"]; ?><?php echo $i["topnet2"]; ?><?php echo $i["topnet3"]; ?>$<?php echo $i["networth"]; ?></td>
+    <td class="acenter"><?php echo $i["clan"]; ?></td>
+    <td class="acenter"><?php echo $i["rcs"]; ?><?php echo $i["race"]; ?><?php echo $i["rce"]; ?></td>
+    <td class="acenter"><?php echo $i["era"]; ?></td>
+    <td class="acenter"><?php echo $i["topkills"]; ?><?php echo $i["kills"]; ?></td></tr>
+<?php endforeach; ?>
+<?php endif; ?>
 
-{if $sc1e != 1 || $sc2e != 1}
+<?php if($sc1e != 1 || $sc2e != 1): ?>
 <tr class="era<?php echo $era; ?>">
-    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Rank</a></th>
-    <th style="width:36%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=1&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">{$empireC}</a></th>
-    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=2&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Land</a></th>
-    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=3&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Networth</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=4&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Clan</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=5&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Race</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=6&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Location</a></th>
-    <th style="width:4%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=7&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Kills</a></th></tr>
-{/if}
+    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Rank</a></th>
+    <th style="width:36%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=1&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>"><?php echo $empireC; ?></a></th>
+    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=2&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Land</a></th>
+    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=3&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Networth</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=4&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Clan</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=5&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Race</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=6&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Location</a></th>
+    <th style="width:4%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=7&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Kills</a></th></tr>
+<?php endif; ?>
 
-{if $sc2e != 1}
-{section name=i loop=$scores2}
-<tr class="{$scores2[i].mcolor}">
-    <td class="aright">{$scores2[i].online}{$scores2[i].rank}</td>
-    <td class="acenter">{$scores2[i].topoff}{$scores2[i].topdef}{$scores2[i].empire} <a class="proflink" href="?profiles&amp;num={$scores2[i].num}<?php echo $authstr; ?>">(#{$scores2[i].num})</a></td>
-    <td class="aright">{$scores2[i].topland}{$scores2[i].land}</td>
-    <td class="aright">{$scores2[i].topnet1}{$scores2[i].topnet2}{$scores2[i].topnet3}${$scores2[i].networth}</td>
-    <td class="acenter">{$scores2[i].clan}</td>
-    <td class="acenter">{$scores2[i].rcs}{$scores2[i].race}{$scores2[i].rce}</td>
-    <td class="acenter">{$scores2[i].era}</td>
-    <td class="acenter">{$scores2[i].topkills}{$scores2[i].kills}</td></tr>
-{/section}
+<?php if($sc2e != 1): ?>
+<?php foreach($scores2 as $i): ?>
+<tr class="<?php echo $i["mcolor"]; ?>">
+    <td class="aright"><?php echo $i["online"]; ?><?php echo $i["rank"]; ?></td>
+    <td class="acenter"><?php echo $i["topoff"]; ?><?php echo $i["topdef"]; ?><?php echo $i["empire"]; ?> <a class="proflink" href="?profiles&amp;num=<?php echo $i["num"]; ?><?php echo $authstr; ?>">(#<?php echo $i["num"]; ?>)</a></td>
+    <td class="aright"><?php echo $i["topland"]; ?><?php echo $i["land"]; ?></td>
+    <td class="aright"><?php echo $i["topnet1"]; ?><?php echo $i["topnet2"]; ?><?php echo $i["topnet3"]; ?>$<?php echo $i["networth"]; ?></td>
+    <td class="acenter"><?php echo $i["clan"]; ?></td>
+    <td class="acenter"><?php echo $i["rcs"]; ?><?php echo $i["race"]; ?><?php echo $i["rce"]; ?></td>
+    <td class="acenter"><?php echo $i["era"]; ?></td>
+    <td class="acenter"><?php echo $i["topkills"]; ?><?php echo $i["kills"]; ?></td></tr>
+<?php endforeach; ?>
 
 <tr class="era<?php echo $era; ?>">
-    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Rank</a></th>
-    <th style="width:36%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=1&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">{$empireC}</a></th>
-    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=2&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Land</a></th>
-    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=3&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Networth</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=4&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Clan</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=5&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Race</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=6&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Location</a></th>
-    <th style="width:4%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=7&amp;view={$view-1}&amp;show={$show}&amp;restr={$restr}{$authstr}">Kills</a></th></tr>
-{/if}
+    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=0&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Rank</a></th>
+    <th style="width:36%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=1&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>"><?php echo $empireC; ?></a></th>
+    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=2&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Land</a></th>
+    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=3&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Networth</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=4&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Clan</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=5&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Race</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=6&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Location</a></th>
+    <th style="width:4%"><a href="?scores&amp;page=<?php echo $link; ?>&amp;sortby=7&amp;view=<?php echo $view-1; ?>&amp;show=<?php echo $show; ?>&amp;restr=<?php echo $restr; ?><?php echo $authstr; ?>">Kills</a></th></tr>
+<?php endif; ?>
 
 </table>

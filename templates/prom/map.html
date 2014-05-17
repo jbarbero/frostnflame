@@ -1,12 +1,12 @@
 <h1>The Map by <?php echo $type; ?></h1>
-<a href="?<?php echo $action; ?>&amp;by=1{$authstr}">By Networth</a> &middot;
-<a href="?<?php echo $action; ?>&amp;by=2{$authstr}">By Land</a>
+<a href="?<?php echo $action; ?>&amp;by=1<?php echo $authstr; ?>">By Networth</a> &middot;
+<a href="?<?php echo $action; ?>&amp;by=2<?php echo $authstr; ?>">By Land</a>
 <br>
 
-<table class="inputtable" width=<?php echo $width; ?> height={$height}>
+<table class="inputtable" width=<?php echo $width; ?> height=<?php echo $height; ?>>
 <tr><th>Map</th></tr>
 <tr><td width=100% height=100%>
-<div style="position: relative; width:<?php echo $width; ?>px; height: {$height}px; border: 1px; background-color: #777700">
+<div style="position: relative; width:<?php echo $width; ?>px; height: <?php echo $height; ?>px; border: 1px; background-color: #777700">
 <?php echo $mapbuffer; ?>
 </div>
 </td></tr>

@@ -1,7 +1,7 @@
 <script src="base64.js"></script>
 
 <script language="JavaScript">
-{literal}
+
 var uwrap;
 var self;
 var maint;
@@ -22,15 +22,15 @@ var bufFull = 0;
 var msgs = 0;
 
 
-document.domain = '{/literal}{$setdomain}{literal}';
+document.domain = '<?php echo $setdomain; ?>';
 
 function init() {
-	{/literal}
+	
 	uwrap = document.getElementById("uwrap");
 	maint = document.getElementById("maintable");
 	ucpt = document.getElementById("userctp");
-	self = {$unum};
-	{literal}
+	self = <?php echo $unum; ?>;
+	
 }
 
 function divDisappear(id) {
@@ -187,7 +187,7 @@ function constructMsg2(type, message, num, to) {
 function sockMsg(urlargs, num) {
 	var newname = 'spacer' + msgs;
 	msgs++;
-	var url = '{/literal}{$posturl1}{literal}&id=' + newname + '{/literal}{$posturl2}{literal}' + urlargs;
+	var url = '<?php echo $posturl1; ?>&id=' + newname + '<?php echo $posturl2; ?>' + urlargs;
 	var chp = document.getElementById("chatpost" + num);
 	chp.innerHTML = "<img src=\"" + url + "\" width=0 height=0 border=0 id=\"" + newname + "\" onload=\"clearDiv(" + num + ")\" />";
 }
@@ -199,23 +199,23 @@ function clearDiv(num) {
 }
 
 
-{/literal}
+
 </script>
 
-<h2>Welcome to the {$chatname} Chat</h2>
+<h2>Welcome to the <?php echo $chatname; ?> Chat</h2>
 
 <table width="80%" height="500" id="maintable">
 	<tr>
 		<td width="80%" height="400">
 			<div id="chatarea" style="width: 100%; height: 400; background-color: #000000; border: 1px dashed;">
-				<iframe src='{$srvurl}' width=100% height=400 frameborder=NO style="border: 0"></iframe>
+				<iframe src='<?php echo $srvurl; ?>' width=100% height=400 frameborder=NO style="border: 0"></iframe>
 			</div>
 		</td>
 		<td width="20%" valign="top" height="100">
 			<b><div id="userctp" style="display:inline">No users</div></b><br>
 			<div id="uwrap" style="width: 100%; border: 1px dashed;">
 			</div>
-			{if $chatmod} · <a href="boot()">Boot</a>{/if}
+			<?php if($chatmod): ?> · <a href="boot()">Boot</a><?php endif; ?>
 		</td>
 	</tr>
 	<tr>

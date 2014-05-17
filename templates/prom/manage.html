@@ -1,18 +1,18 @@
-{if $printmessage != ''}
+<?php if($printmessage != ''): ?>
 <?php echo $printmessage; ?><br>
 <hr>
-{/if}
+<?php endif; ?>
 
 <table style="width:100%">
 <tr>
     <td class="acenter" style="width:30%">
-	<form method="post" action="<?php echo $main; ?>?manage{$authstr}" id="raceselform">
+	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>" id="raceselform">
 	<table class="inputtable">
 	<tr><th>Change Race</th></tr>
-	<tr><td class="acenter">Requires <?php echo $initturns; ?> turns,<br>{$land*3} {$wizards}, and<br>at least 75% health</td></tr>
-	{section name=racesel loop=$races}
-		<tr><td><label><input type="radio" name="new_race" value="{$races[racesel].id}"{if $races[racesel].id == $users.race} checked="checked"{/if}>{$races[racesel].name}</label></td></tr>
-	{/section}
+	<tr><td class="acenter">Requires <?php echo $initturns; ?> turns,<br><?php echo $land*3; ?> <?php echo $wizards; ?>, and<br>at least 75% health</td></tr>
+	<?php foreach($races as $racesel): ?>
+		<tr><td><label><input type="radio" name="new_race" value="<?php echo $racesel["id"]; ?>"<?php if($racesel["id"] == $users["race"]): ?> checked="checked"<?php endif; ?>><?php echo $racesel["name"]; ?></label></td></tr>
+	<?php endforeach; ?>
 	<tr><td class="acenter"><label><input type="checkbox" name="yes_polymorph" value="1">Yes, I really<br>want to change race!</td></tr>
 	<tr><th><input type="submit" name="do_polymorph" value="Change Race"></th></tr>
 	</table>
@@ -20,7 +20,7 @@
 
     </td>
     <td class="acenter" style="width:30%">
-	<form method="post" action="<?php echo $main; ?>?manage{$authstr}">
+	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Tax</th></tr>
 	<tr><td>Tax Rate:</td>
@@ -29,38 +29,38 @@
 	</table>
 	</form>
 
-	<form method="post" action="<?php echo $main; ?>?manage{$authstr}">
+	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Industry Settings</th></tr>
-	{section name=ind loop=$troops}
-	<tr><td>{$troops[ind]}</td>
-	    <td class="aright"><input type="text" name="ind_troop{$numbers[ind]}" size="3" value="{$uind[ind]}">%</td></tr>
-	{/section}
+	<?php foreach($troops as $ind): ?>
+	<tr><td><?php echo $troops[ind]; ?></td>
+	    <td class="aright"><input type="text" name="ind_troop<?php echo $numbers[ind]; ?>" size="3" value="<?php echo $uind[ind]; ?>">%</td></tr>
+	<?php endforeach; ?>
 	<tr><th colspan="2"><input type="submit" name="do_changeindustry" value="Update Training"></th></tr>
 	</table>
 	</form>
 
-	<form method="post" action="<?php echo $main; ?>?manage{$authstr}">
+	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th>Color Scheme</th></tr>
-	{section name=stylesel loop=$styles}
-		<tr><td><label><input type="radio" name="color_setting" value="{$styles[stylesel].id}"{if $styles[stylesel].id == $users.style} checked="checked"{/if}>{$styles[stylesel].name}</label></td></tr>
-	{/section}
+	<?php foreach($styles as $stylesel): ?>
+		<tr><td><label><input type="radio" name="color_setting" value="<?php echo $stylesel["id"]; ?>"<?php if($stylesel["id"] == $users["style"]): ?> checked="checked"<?php endif; ?>><?php echo $stylesel["name"]; ?></label></td></tr>
+	<?php endforeach; ?>
 	<tr><th><input type="submit" name="do_changestyle" value="Change Style"></th></tr>
 	</table>
 	</form>
     </td>
     <td class="acenter" style="width:40%">
-	{if $protection == 'true' && $early_exit == 'true'}
-	<form method="post" action="<?php echo $main; ?>?manage{$authstr}">
+	<?php if($protection == 'true' && $early_exit == 'true'): ?>
+	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable"><tr><th>
 	<input type="submit" name="leave_protection" value="Leave Protection">
 	</th></tr></table>
 	</form>
-	{/if}
+	<?php endif; ?>
 
 {*
-	<form method="post" action="<?php echo $main; ?>?manage{$authstr}">
+	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Styles Directory</th></tr>
 	<tr><td colspan="2">New Directory:</td></tr>
@@ -73,7 +73,7 @@
 	</form>
 *}	
 
-	<form method="post" action="<?php echo $main; ?>?changepass{$authstr}">
+	<form method="post" action="<?php echo $main; ?>?changepass<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Password</th></tr>
 	<tr><td>New:</td>
@@ -84,8 +84,8 @@
 	</table>
 	</form>
 
-	{if $lastweek != 'true'}
-	<form method="post" action="<?php echo $main; ?>?manage{$authstr}">
+	<?php if($lastweek != 'true'): ?>
+	<form method="post" action="<?php echo $main; ?>?manage<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th>Vacation</th></tr>
 	<tr><td class="acenter">
@@ -96,9 +96,9 @@
 	<tr><th><input type="submit" name="do_setvacation" value="Go on Vacation"></th></tr>
 	</table>
 	</form>
-	{else}
+	<?php else: ?>
 	Vacation is disabled during the last week of the game.<br>
-	{/if}
+	<?php endif; ?>
 
     </td>
 	</tr>

@@ -1,20 +1,20 @@
 <table class="inputtable">
-<tr><th colspan="5">Clan Rankings - By <?php echo $sortd; ?> ({$minm} Member Minimum)</th></tr>
+<tr><th colspan="5">Clan Rankings - By <?php echo $sortd; ?> (<?php echo $minm; ?> Member Minimum)</th></tr>
 <tr class="inputtable2"><th>Clan Name</th>
     <th>Tag</th>
     <th><a href="?clanstats&amp;sort_type=members<?php echo $authstr; ?>">Members</a></th>
     <th><a href="?clanstats&amp;sort_type=avgnet<?php echo $authstr; ?>">Average Networth</a></th>
     <th><a href="?clanstats&amp;sort_type=totalnet<?php echo $authstr; ?>">Total Networth</a></th></tr>
 
-{section name=ran loop=$clans}
+<?php foreach($clans as $ran): ?>
 <tr class="acenter">
-    <td>{$clans[ran].name}</td>
-    <td><a href="?clancrier&sclan={$clans[ran].num}<?php echo $authstr; ?>">{$clans[ran].tag}</a></td>
-    <td>{$clans[ran].members}</td>
-    <td>${$clans[ran].avgnet}</td>
-    <td>${$clans[ran].totalnet}</td></tr>
-{/section}
+    <td><?php echo $ran["name"]; ?></td>
+    <td><a href="?clancrier&sclan=<?php echo $ran["num"]; ?><?php echo $authstr; ?>"><?php echo $ran["tag"]; ?></a></td>
+    <td><?php echo $ran["members"]; ?></td>
+    <td>$<?php echo $ran["avgnet"]; ?></td>
+    <td>$<?php echo $ran["totalnet"]; ?></td></tr>
+<?php endforeach; ?>
 </table>
 <br>
 <?php echo $notmade; ?> clans don't have enough members to make this list.<br>
-<?php echo $indeps; ?> {$uera.empire}s are independent.<br>
+<?php echo $indeps; ?> <?php echo $uera["empire"]; ?>s are independent.<br>

@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo $gamename; ?> :: {$title}</title>
+<title><?php echo $gamename; ?> :: <?php echo $title; ?></title>
 <link rel="stylesheet" type="text/css" href="layout.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $stylename; ?>">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-<link rel="alternate" title="RSS Feed" href="<?php echo $sitedir; ?>?rss" type="application/rss+xml">
+<link rel="alternate" title="RSS Feed" href="<?php echo $config["sitedir"]; ?>?rss" type="application/rss+xml">
 <?php echo $extra_headers; ?>
 </head>
 <body> 
@@ -18,13 +18,13 @@
 <table class="menus">
 <tr><th><center><hr><a href="?login<?php echo $authstr; ?>" class="darklink">Main&nbsp;Menu</a><hr></center></th></tr>
 
-{section name=m loop=$menus}
-{if $menus[m].spec == 1}
-<tr><th><a class='undecorated' href='{$menus[m].link}'>{$menus[m].item}</a></th></tr>
-{else}
-<tr><td><a href='{$menus[m].link}'{$menus[m].trg}>{$menus[m].item}</a></td></tr>
-{/if}
-{/section}
+<?php foreach($menus as $m): ?>
+<?php if($m["spec"] == 1): ?>
+<tr><th><a class='undecorated' href='<?php echo $m["link"]; ?>'><?php echo $m["item"]; ?></a></th></tr>
+<?php else: ?>
+<tr><td><a href='<?php echo $m["link"]; ?>'<?php echo $m["trg"]; ?>><?php echo $m["item"]; ?></a></td></tr>
+<?php endif; ?>
+<?php endforeach; ?>
 
 <tr><th><center><hr><a href="?login" class="darklink">Main Menu</a><hr></center></th></tr>
 </table>
@@ -35,20 +35,20 @@
 </td>
 <td class="acenter" style="vertical-align:top">
 
-<center><a href="http://www.frostnflame.org"><img src="img/logo.gif" border="0" alt="Frost And Flame Promisance" /></a></center>
+<center><a href="http://www.frostnflame.org"><img src="img/logo.gif" border="0" alt="<?php echo strip_tags($gamename_full); ?> Promisance" /></a></center>
 
 <table width="80%"><tr width="100%">
 <td style="text-align:left; vertical-align:top"><b><font size=2>
-{if $loggedin }
-<strong>Welcome, {$global.empire}!
-{else}
+<?php if($loggedin ): ?>
+<strong>Welcome, <?php echo $global["empire"]; ?>!
+<?php else: ?>
 <?php echo $gamename_full; ?> Promisance
-{/if}
+<?php endif; ?>
 </font></b></td>
 <td style="text-align:right">
-{if $loggedin }
+<?php if($loggedin ): ?>
 <a href="?globalout">[Logout]</a>
-{else}
+<?php else: ?>
 <br />
 <!--
 <form action='?login<?php echo $skinstr; ?>' method="POST">
@@ -60,7 +60,7 @@
 <input type='submit' value='Go' />
 </form>
 -->
-{/if}
+<?php endif; ?>
 </td>
 </tr></table>
 

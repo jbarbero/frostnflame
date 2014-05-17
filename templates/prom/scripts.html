@@ -1,7 +1,7 @@
 <script language="JavaScript">
 //select the current time form elements
 
-{literal}
+
 function enableOnce() {
 	document.addscript.once.checked = true;
 	document.addscript.pdate.disabled = true;
@@ -24,22 +24,22 @@ function enablePeriod() {
 }
 
 window.onload = enableOnce;
-{/literal}
+
 
 </script>
 
-{if $mode == 'default'}
-{section name=code loop=$codes}
+<?php if($mode == 'default'): ?>
+<?php foreach($codes as $code): ?>
    <table class="inputtable" width="80%">
       <tr>
-         <th colspan="2">{$codes[code].title}</th>
+         <th colspan="2"><?php echo $code["title"]; ?></th>
       </tr>
       <tr>
-         <td><pre><div style="width: 100%; overflow: auto;">{$codes[code].code}</pre></div></td>
+         <td><pre><div style="width: 100%; overflow: auto;"><?php echo $code["code"]; ?></pre></div></td>
          <td>buttons!</td>
       </tr>
       <tr>
-         <td><pre><div style="width: 100%; overflow: auto;">{$codes[code].compiled}</pre></div></td>
+         <td><pre><div style="width: 100%; overflow: auto;"><?php echo $code["compiled"]; ?></pre></div></td>
          <td>buttons!</td>
       </tr>
       <tr>
@@ -47,7 +47,7 @@ window.onload = enableOnce;
       </tr>
    </table>
    <br><br>
-{/section}
+<?php endforeach; ?>
 
 
 <br>
@@ -115,4 +115,4 @@ window.onload = enableOnce;
 </form>
 
 
-{/if}
+<?php endif; ?>

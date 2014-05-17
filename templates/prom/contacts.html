@@ -7,15 +7,15 @@
     <th style="text-align: center">Scout/Diplomat 2</th>
 </tr>
 
-{section name=con loop=$clans}
+<?php foreach($clans as $con): ?>
 <tr>
-    <td><a href="?clancrier&sclan={$clans[con].num}<?php echo $authstr; ?>">{$clans[con].tag}</a></td>
-    <td>{$clans[con].name}</td>
-    <td>{$clans[con].founder}</td>
-    <td>{$clans[con].asst}</td>
-    <td>{$clans[con].fa1}</td>
-    <td>{$clans[con].fa2}</td>
+    <td><a href="?clancrier&sclan=<?php echo $con["num"]; ?><?php echo $authstr; ?>"><?php echo $con["tag"]; ?></a></td>
+    <td><?php echo $con["name"]; ?></td>
+    <td><?php echo $con["founder"]; ?></td>
+    <td><?php echo $con["asst"]; ?></td>
+    <td><?php echo $con["fa1"]; ?></td>
+    <td><?php echo $con["fa2"]; ?></td>
 </tr>
-{/section}
+<?php endforeach; ?>
 
 </table>

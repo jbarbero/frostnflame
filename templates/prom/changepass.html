@@ -1,10 +1,10 @@
-{if $printmessage != ''}
+<?php if($printmessage != ''): ?>
 <?php echo $printmessage; ?><br>
 <hr>
-{/if}
+<?php endif; ?>
 
 
-	<form method="post" action="<?php echo $main; ?>?changepass{$authstr}">
+	<form method="post" action="<?php echo $main; ?>?changepass<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr><th colspan="2">Change Password</th></tr>
 	<tr><td>Password:</td>

@@ -1,30 +1,30 @@
 <br><br>
 <table class="inputtable" width="400">
 
-<tr>	<th colspan="2"><?php echo $servname; ?> :: Game Info</th></tr>
+<tr>	<th colspan="2"><?php echo $config["servname"]; ?> :: Game Info</th></tr>
 
 <tr>	<td>Turns</td>
-	<td>{$config.turnsper} every {$config.perminutes} minutes</td></tr>
+	<td><?php echo $config["turnsper"]; ?> every <?php echo $config["perminutes"]; ?> minutes</td></tr>
 
 <tr>	<td>Max Turns</td>
-	<td>{$config.maxturns}</td></tr>
+	<td><?php echo $config["maxturns"]; ?></td></tr>
 
 <tr>	<td>Max Stored Turns</td>
-	<td>{$config.maxstoredturns}</td></tr>
+	<td><?php echo $config["maxstoredturns"]; ?></td></tr>
 
 <tr>	<td>New Player Protection</td>
-	<td>{$config.protection}</td></tr>
+	<td><?php echo $config["protection"]; ?></td></tr>
 
 <tr>	<td colspan="2" height="0"><hr></td></tr>
 
 <tr>	<td>Signups</td>
-	<td>{if $config.signupsclosed==1}Closed{else}Open{/if}</td></tr>
+	<td><?php if($config["signupsclosed"]==1): ?>Closed<?php else: ?>Open<?php endif; ?></td></tr>
 
 <tr>	<td>Database</td>
-	<td>{if $config.lockdb==1}Locked{else}Open{/if}</td></tr>
+	<td><?php if($config["lockdb"]==1): ?>Locked<?php else: ?>Open<?php endif; ?></td></tr>
 
 <tr>	<td>Last week?</td>
-	<td>{if $lastweek==1}Yes{else}No{/if}</td></tr>
+	<td><?php if($lastweek==1): ?>Yes<?php else: ?>No<?php endif; ?></td></tr>
 
 <tr>	<td>Round End</td>
 	<td><?php echo $roundend; ?></td></tr>
@@ -40,8 +40,8 @@
 
 <tr>	<td colspan="2" height="0"><hr></td></tr>
 
-<tr>	<td colspan="2" height="0" style="text-align: center">{$config.news}</td></tr>
+<tr>	<td colspan="2" height="0" style="text-align: center"><?php echo $config["news"]; ?></td></tr>
 
-<tr>	<th colspan="2"><?php echo $servname; ?> :: Game Info</th></tr>
+<tr>	<th colspan="2"><?php echo $config["servname"]; ?> :: Game Info</th></tr>
 
 </table>

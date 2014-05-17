@@ -1,46 +1,46 @@
 
 <big><b>Welcome to the <?php echo $merc_name; ?></big></b>
 
-{if $bountyset != ""}
+<?php if($bountyset != ""): ?>
 	<?php echo $bountyset; ?>
 	<hr><br><br>
-{/if}
+<?php endif; ?>
 
-{* I decided against doing impure templates here *}
+<?php /* I decided against doing impure templates here */ ?>
 
 
-{if $editing == ""}
+<?php if($editing == ""): ?>
 
     <table class="scorestable">
-    <form method="post" action="<?php echo $main; ?>?mercenary{$authstr}">
+    <form method="post" action="<?php echo $main; ?>?mercenary<?php echo $authstr; ?>">
     <tr class="era<?php echo $color; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 
 
-    {section name=num loop=$bounty}
-		<tr class="c{$bounty[num].color}">
-		<td class="acenter">{$bounty[num].t_name} <a href=?profiles&amp;num={$bounty[num].t_num}<?php echo $authstr; ?>>(#{$bounty[num].t_num})</a></td>
-		<td class="acenter">{$bounty[num].s_name}<br />{$bounty[num].editable}</td>
+    <?php foreach($bounty as $num): ?>
+		<tr class="c<?php echo $num["color"]; ?>">
+		<td class="acenter"><?php echo $num["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $num["t_num"]; ?><?php echo $authstr; ?>>(#<?php echo $num["t_num"]; ?>)</a></td>
+		<td class="acenter"><?php echo $num["s_name"]; ?><br /><?php echo $num["editable"]; ?></td>
 		<td class="aright">
-		{if $bounty[num].cash}
-			${$bounty[num].cash}
-		{/if}
-		{$bounty[num].rune}
-		{$bounty[num].food}
-		{section name=troopnum loop=$bounty[num].troops}
-			{$bounty[num].troops[troopnum]}
-		{/section}
-		<td class="aright">{$bounty[num].land} {* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' *}
-		{$bounty[num].rank}
-		{$bounty[num].net}
+		<?php if($num["cash"]): ?>
+			$<?php echo $num["cash"]; ?>
+		<?php endif; ?>
+		<?php echo $num["rune"]; ?>
+		<?php echo $num["food"]; ?>
+		<?php foreach($num["troops"] as $troopnum): ?>
+            <?php echo $troopnum; ?>
+		<?php endforeach; ?>
+		<td class="aright"><?php echo $num["land"]; ?> <?php /* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' */ ?>
+		<?php echo $num["rank"]; ?>
+		<?php echo $num["net"]; ?>
 		</td>
-		<td class="acenter">{$bounty[num].time}</td>
+		<td class="acenter"><?php echo $num["time"]; ?></td>
 		</tr>
 		<tr><td colspan="5"><hr></td></tr>
-	{/section}
+	<?php endforeach; ?>
 
 
-	{* <tr class="era<?php echo $color; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> *}
+	<?php /* <tr class="era<?php echo $color; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
     <tr class="era<?php echo $color; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 	</form>
@@ -49,12 +49,12 @@
 
 
 
-{if $view == ""}
-	<a href="<?php echo $main; ?>?mercenary&amp;view=true{$authstr}">View Current Bounties</a><br><br><br>
-{/if}
+<?php if($view == ""): ?>
+	<a href="<?php echo $main; ?>?mercenary&amp;view=true<?php echo $authstr; ?>">View Current Bounties</a><br><br><br>
+<?php endif; ?>
 
 
-{literal}
+
 <script language="JavaScript">
 
 function updateMsgNames() {
@@ -78,20 +78,20 @@ function updateMsgNums() {
 }
 
 </script>
-{/literal}
 
 
 
-<form method="post" name="frmmsg" action="<?php echo $main; ?>?mercenary{$authstr}">
+
+<form method="post" name="frmmsg" action="<?php echo $main; ?>?mercenary<?php echo $authstr; ?>">
 <table class="inputtable">
 
 <br><br>
 <tr>
-<th colspan="4">Set a bounty on: <input type="text" value="{if $set==1}<?php echo $prof_target; ?>{/if}" name="targ" size="3" maxlength="4" onChange="updateMsgNames()">
+<th colspan="4">Set a bounty on: <input type="text" value="<?php if($set==1): ?><?php echo $prof_target; ?><?php endif; ?>" name="targ" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-        {section name=dropsel loop=$drop}
-                <option value="{$drop[dropsel].num}" class="m{$drop[dropsel].color}"{if $set==1}{if $prof_target == $drop[dropsel].num} selected {/if}{/if}>{$drop[dropsel].num} - {$drop[dropsel].empire}</option>
-        {/section}
+        <?php foreach($drop as $dropsel): ?>
+                <option value="<?php echo $dropsel["num"]; ?>" class="m<?php echo $dropsel["color"]; ?>"<?php if($set==1): ?><?php if($prof_target == $dropsel["num"]): ?> selected <?php endif; ?><?php endif; ?>><?php echo $dropsel["num"]; ?> - <?php echo $dropsel["empire"]; ?></option>
+        <?php endforeach; ?>
 </select>
 </th><tr>
 <th>Criterion</th>
@@ -105,7 +105,7 @@ function updateMsgNums() {
 <th>Land To Drop To*</th>
     <td> <input type="text" name="land_drop" size="9"></td>
 <th>Cash</th>
-<td style="text-align: right">${$cansend.cash|gamefactor}</td>
+<td style="text-align: right">$<?php echo gamefactor($cansend["cash"]); ?></td>
 <td> <input type="text" name="cash_give" size="9"></td>
 </tr>
 
@@ -113,108 +113,110 @@ function updateMsgNums() {
 <th>Rank To Drop To*</th>
     <td> <input type="text" name="rank_drop" size="9"></td>
 <th>Food</th>
-<td style="text-align: right">{$cansend.food|gamefactor}</td>
+<td style="text-align: right"><?php echo gamefactor($cansend["food"]); ?></td>
 <td> <input type="text" name="food_give" size="9"></td>
 </tr>
 
 <tr>
 <th>Networth To Drop To*</th>
     <td> <input type="text" name="net_drop" size="9"></td>
-<th>{$uera.runes}</th>
-<td style="text-align: right">{$cansend.runes|gamefactor}</td>
+<th><?php echo $uera["runes"]; ?></th>
+<td style="text-align: right"><?php echo gamefactor($cansend["runes"]); ?></td>
 <td> <input type="text" name="rune_give" size="9"></td>
 </tr>
 
-{section name=give loop=$givetroops}
+<?php foreach($givetroops as $give): ?>
 <tr>
-{if $smarty.section.give.index==0}
+    <?php /* TODO: wtf syntax is this? */
+<?php if($smarty.section.give.index==0): ?>
 <th>Post Anonymously***</th>
 	<td> <input type="checkbox" name="anon" value="1"></td>
-{/if}
-{if $smarty.section.give.index!=0}
+<?php endif; ?>
+    <?php /* TODO: wtf syntax is this? */
+<?php if($smarty.section.give.index!=0): ?>
 <td colspan="2"><?php echo $filler; ?></td>
-{/if}
-<th>{$givetroops[give].name}</th>
-<td style="text-align: right">{$givetroops[give].cansend|gamefactor}</td>
-<td> <input type="text" name="troop[{$givetroops[give].id}]" size="9"></td>
+<?php endif; ?>
+<th><?php echo $give["name"]; ?></th>
+<td style="text-align: right"><?php echo gamefactor($give["cansend"]); ?></td>
+<td> <input type="text" name="troop[<?php echo $give["id"]; ?>]" size="9"></td>
 </tr>
-{/section}
+<?php endforeach; ?>
 
 
 </table><br><br>
 *Leave the condition blank if you would not like to include it<br>
 **<b>A small transaction fee of <?php echo $percent; ?> % will be charged on all bounties</b><br>
 ***<b>Anonymous bounties are taxed twice as much</b><br>
-****You may only set <?php echo $max; ?> bounties at any time. You have {$left} bounties left.<br><br>
+****You may only set <?php echo $max; ?> bounties at any time. You have <?php echo $left; ?> bounties left.<br><br>
 <input type="submit" name="do_set" value="Set Bounty">
 </form>
 
 <br><br><br>
-<form method="post" action="<?php echo $main; ?>?mercenary{$authstr}">
+<form method="post" action="<?php echo $main; ?>?mercenary<?php echo $authstr; ?>">
 <input type="submit" name="do_recalc" value="Re-calculate completed bounties">
 
-{/if}
+<?php endif; ?>
 
 
-{if $editing == "yes"}
+<?php if($editing == "yes"): ?>
 
     <table class="scorestable">
-    <form method="post" action="<?php echo $main; ?>?mercenary{$authstr}">
+    <form method="post" action="<?php echo $main; ?>?mercenary<?php echo $authstr; ?>">
     <tr class="era<?php echo $color; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 
-		<tr class="c{$edit_bounty.color}">
-		<td class="acenter">{$edit_bounty.t_name} <a href=?profiles&amp;num={$edit_bounty.t_num}<?php echo $authstr; ?>>(#{$edit_bounty.t_num})</a></td>
-		<td class="acenter">{$edit_bounty.s_name} <a href=?profiles&amp;num={$edit_bounty.s_num}<?php echo $authstr; ?>>(#{$edit_bounty.s_num}) </a><br /></td>
+		<tr class="c<?php echo $edit_bounty["color"]; ?>">
+		<td class="acenter"><?php echo $edit_bounty["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $edit_bounty["t_num"]; ?><?php echo $authstr; ?>>(#<?php echo $edit_bounty["t_num"]; ?>)</a></td>
+		<td class="acenter"><?php echo $edit_bounty["s_name"]; ?> <a href=?profiles&amp;num=<?php echo $edit_bounty["s_num"]; ?><?php echo $authstr; ?>>(#<?php echo $edit_bounty["s_num"]; ?>) </a><br /></td>
 		<td class="aright">
-		{if $edit_bounty.cash != 0}${/if}{$edit_bounty.cash}
-		{$edit_bounty.rune} {* See below for drop point handling *}
-		{$edit_bounty.food}
-		{section name=edit_troopnum loop=$edit_bounty.troops}
-			{$edit_bounty.troops[edit_troopnum]}
-		{/section}
-		<td class="aright">{$edit_bounty.land} {* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' *}
-		{$edit_bounty.rank}
-		{$edit_bounty.net}
-		{* {$edit_bounty.all} *}</td>
-		<td class="acenter">{$edit_bounty.time}</td>
+		<?php if($edit_bounty["cash"] != 0): ?>$<?php endif; ?><?php echo $edit_bounty["cash"]; ?>
+		<?php echo $edit_bounty["rune"]; ?> <?php /* See below for drop point handling */ ?>
+		<?php echo $edit_bounty["food"]; ?>
+		<?php foreach($edit_bounty["troops"] as $edit_troopnum): ?>
+            <?php echo $edit_troopnum; ?>
+		<?php endforeach; ?>
+		<td class="aright"><?php echo $edit_bounty["land"]; ?> <?php /* PHP handles the "XXX land" so that if it no land, it won't do 'land not set land' */ ?>
+		<?php echo $edit_bounty["rank"]; ?>
+		<?php echo $edit_bounty["net"]; ?>
+		<?php /* <?php echo $edit_bounty["all"]; ?> */ ?></td>
+		<td class="acenter"><?php echo $edit_bounty["time"]; ?></td>
 		</tr>
 		<tr><td colspan="5"></td></tr>
 
 
-	{* <tr class="era<?php echo $color; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> *}
+	<?php /* <tr class="era<?php echo $color; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
     <tr class="era<?php echo $color; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 	</form>
 	</table>
 
 
-	<form method="post" action="<?php echo $main; ?>?mercenary{$authstr}">
+	<form method="post" action="<?php echo $main; ?>?mercenary<?php echo $authstr; ?>">
 	<table class="inputtable">
 	<tr>
-	<th>Add Cash (Max: {$cansend.cas|gamefactor})</th>
+	<th>Add Cash (Max: <?php echo gamefactor($cansend["cas"]); ?>)</th>
 	    <td> <input type="text" name="cash_give" size="9"></td>
 
 	</tr>
 
 	<tr>
-	<th>Add Runes (Max: {$cansend.runes|gamefactor})</th>
+	<th>Add Runes (Max: <?php echo gamefactor($cansend["runes"]); ?>)</th>
 	    <td> <input type="text" name="rune_give" size="9"></td>
 
 	</tr>
 
 	<tr>
-	<th>Add Food (Max: {$cansend.food|gamefactor})</th>
+	<th>Add Food (Max: <?php echo gamefactor($cansend["food"]); ?>)</th>
 	    <td> <input type="text" name="food_give" size="9"></td>
 
 	</tr>
 
-	{section name=give2 loop=$givetroops}
+	<?php foreach($givetroops as $give2): ?>
 	<tr>
-	<th> Add {$givetroops[give2].name} (Max: {$givetroops[give2].cansend|gamefactor})</th>
-	<td> <input type="text" name="troop[{$givetroops[give2].id}]" size="9"></td>
+	<th> Add <?php echo $give2["name"]; ?> (Max: <?php echo gamefactor($give2["cansend"]); ?>)</th>
+	<td> <input type="text" name="troop[<?php echo $give2["id"]; ?>]" size="9"></td>
 	</tr>
-	{/section}
+	<?php endforeach; ?>
 
 	</table><br /><br />
 	<input type="hidden" name="bounty_id" value="<?php echo $bounty_id; ?>">
@@ -222,4 +224,4 @@ function updateMsgNums() {
 
 
 	</form>
-{/if}
+<?php endif; ?>

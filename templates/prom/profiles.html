@@ -1,4 +1,4 @@
-{literal}
+
 <script language="JavaScript">
 
 	function updateMsgNames() {
@@ -25,22 +25,22 @@
 </script>
 
 
-{/literal}
+
 
 <div align="center">
 
-		<form method="post" action="<?php echo $main; ?>?profiles{$authstr}" name="frmmsg">
+		<form method="post" action="<?php echo $main; ?>?profiles<?php echo $authstr; ?>" name="frmmsg">
 			Read Profile of: <input type="text" name="num" size="5" maxlength="10" value="<?php echo $selected; ?>" onChange="updateMsgNames()">
 			<select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-			{section name=dropsel loop=$drop}
-				<option value="{$drop[dropsel].num}" class="m{$drop[dropsel].color}"
-				{if $selected == $drop[dropsel].num} selected {/if}
-				>{$drop[dropsel].num} - {$drop[dropsel].name}</option>
-			{/section}
+			<?php foreach($drop as $dropsel): ?>
+				<option value="<?php echo $dropsel["num"]; ?>" class="m<?php echo $dropsel["color"]; ?>"
+				<?php if($selected == $dropsel["num"]): ?> selected <?php endif; ?>
+				><?php echo $dropsel["num"]; ?> - <?php echo $dropsel["name"]; ?></option>
+			<?php endforeach; ?>
 			</select>
 
 
-{* war_drop *}
+<?php /* war_drop */ ?>
 
 
 			<input type="submit" name="do_view" value="View Profile">
@@ -50,12 +50,12 @@
 
 
 
-	{if $do_view=="true"}
+	<?php if($do_view=="true"): ?>
 		<table style="width:100%" align="center">
 
 			<tr>
 				<th colspan="2">
-					<b>{$enemy.empire} <a class="proflink" href="<?php echo $main; ?>?profiles&amp;num={$enemy.num}{$authstr}">(#{$enemy.num})</a></b>
+					<b><?php echo $enemy["empire"]; ?> <a class="proflink" href="<?php echo $main; ?>?profiles&amp;num=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">(#<?php echo $enemy["num"]; ?>)</a></b>
 				</th>
 			</tr>
 
@@ -65,65 +65,65 @@
 					<tr>
 						<td>
 							<table class="empstatus" style="width:100%">
-        						<tr><th colspan="2" class="era{$users.era}" style="text-align:center">In-Game Information</th></tr>
+        						<tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">In-Game Information</th></tr>
 
 								<tr>
 									<th>Rank: </th>
-									<td>{$enemy.rank}</td>
+									<td><?php echo $enemy["rank"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Networth: </th>
-									<td>${$enemy.networth}</td>
+									<td>$<?php echo $enemy["networth"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Land: </th>
-									<td>{$enemy.land}</td>
+									<td><?php echo $enemy["land"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Race: </th>
-									<td>{$erace.name}</td>
+									<td><?php echo $erace["name"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Era:</th>
-									<td>{$eera.name}</td>
+									<td><?php echo $eera["name"]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Clan: </th>
 									<td>
-									{if $clan.num!=0}
-									{$clan.name} <a class="<?php echo $ccolor; ?>" href="{$main}?clancrier&amp;sclan={$clan.num}{$authstr}">({$clan.tag})</a>
-									{else}No Clan
-									{/if}
+									<?php if($clan["num"]!=0): ?>
+									<?php echo $clan["name"]; ?> <a class="<?php echo $ccolor; ?>" href="<?php echo $main; ?>?clancrier&amp;sclan=<?php echo $clan["num"]; ?><?php echo $authstr; ?>">(<?php echo $clan["tag"]; ?>)</a>
+									<?php else: ?>No Clan
+									<?php endif; ?>
 									</td>
 								</tr>
 
 								<tr>
 									<th>Allies: </th>
-									<td>{$tags[0]}, {$tags[1]}, {$tags[2]}, {$tags[3]}, {$tags[4]}</td>
+									<td><?php echo $tags[0]; ?>, <?php echo $tags[1]; ?>, <?php echo $tags[2]; ?>, <?php echo $tags[3]; ?>, <?php echo $tags[4]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Enemies: </th>
-									<td>{$tags[5]}, {$tags[6]}, {$tags[7]}, {$tags[8]}, {$tags[9]}</td>
+									<td><?php echo $tags[5]; ?>, <?php echo $tags[6]; ?>, <?php echo $tags[7]; ?>, <?php echo $tags[8]; ?>, <?php echo $tags[9]; ?></td>
 								</tr>
 
 								<tr>
 									<th>Offensive Actions: </th>
-									<td>{$enemy.offtotal} (<?php echo $off_percent; ?>%)</td>
+									<td><?php echo $enemy["offtotal"]; ?> (<?php echo $off_percent; ?>%)</td>
 								</tr>
 
 								<tr>
 									<th>Defensive Actions: </th>
-									<td>{$enemy.deftotal} (<?php echo $def_percent; ?>%)</td>
+									<td><?php echo $enemy["deftotal"]; ?> (<?php echo $def_percent; ?>%)</td>
 								</tr>
 								<tr>
 									<th>Signup Date</th>
-									<td>{$enemy.signedup}
+									<td><?php echo $enemy["signedup"]; ?>
 
 							</table>
 						</td>
@@ -133,22 +133,22 @@
 						<td>
 							<table class="empstatus" style="width:100%">
         						<tr>
-        							<th colspan="2" class="era{$users.era}" style="text-align:center">Contact Information</th>
+        							<th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Contact Information</th>
         						</tr>
 
 								<tr>
 									<th>AIM: </th>
-									<td>{$enemy.aim}</td>
+									<td><?php echo $enemy["aim"]; ?></td>
 								</tr>
 								<tr>
 									<th>MSN: </th>
-									<td>{$enemy.msn}</td>
+									<td><?php echo $enemy["msn"]; ?></td>
 								</tr>
 							</table>
 
-							{if $loggedin==true}<br>
-							<div align="center"><a href="<?php echo $main; ?>?military&amp;prof_target={$enemy.num}{$authstr}">Attack</a> &middot; <a href="{$main}?mercenary&amp;set=1&amp;prof_target={$enemy.num}{$authstr}">Set Bounty On</a> &middot; <a href="{$main}?mercenary&amp;view_prof=1&amp;prof_target={$enemy.num}{$authstr}">View Bounties On {$uera.empireC}</a> &middot; <a href="{$main}?aid&amp;prof_target={$enemy.num}{$authstr}">Aid</a> &middot; <a href="{$main}?messages&amp;prof_target={$enemy.num}{$authstr}">Message</a></div>
-							{/if}
+							<?php if($loggedin==true): ?><br>
+							<div align="center"><a href="<?php echo $main; ?>?military&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Attack</a> &middot; <a href="<?php echo $main; ?>?mercenary&amp;set=1&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Set Bounty On</a> &middot; <a href="<?php echo $main; ?>?mercenary&amp;view_prof=1&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">View Bounties On <?php echo $uera["empireC"]; ?></a> &middot; <a href="<?php echo $main; ?>?aid&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Aid</a> &middot; <a href="<?php echo $main; ?>?messages&amp;prof_target=<?php echo $enemy["num"]; ?><?php echo $authstr; ?>">Message</a></div>
+							<?php endif; ?>
 						</td>
 					</tr>
 				</table>
@@ -156,13 +156,13 @@
 
 				<td style="vertical-align:top:width:60%" valign="top">
 					<table class="empstatus" style="width:100%">
-					<tr><th colspan="2" class="era{$users.era}" style="text-align:center">User's Profile:</th></tr>
-					<tr><td><div align="left">{$enemy.profile}</div></td></tr>
+					<tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">User's Profile:</th></tr>
+					<tr><td><div align="left"><?php echo $enemy["profile"]; ?></div></td></tr>
 					</table>
 				</td>
 		</tr>
 		</table>
-	{/if}
+	<?php endif; ?>
 
 
 </div>

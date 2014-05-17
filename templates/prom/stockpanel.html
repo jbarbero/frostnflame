@@ -1,83 +1,83 @@
-<h1><?php echo $servname; ?> Stock Manipulator</h1>
+<h1><?php echo $config["servname"]; ?> Stock Manipulator</h1>
 <br>
 
-{if $trans != ''}
+<?php if($trans != ''): ?>
 	<hr>
 	<?php echo $trans; ?>
 	<hr>
 	<br>
-{/if}
+<?php endif; ?>
 
 <table class="inputtable stocks" width="50" border="1" cellSpacing="0" bordercolor="#000000">
 <tr>
 <td></td>
-{section name=names loop=$stocknames}
-	<th width="25">{$stocknames[names].symbol}</th>
-{/section}
+<?php foreach($stocknames as $names): ?>
+	<th width="25"><?php echo $names["symbol"]; ?></th>
+<?php endforeach; ?>
 </tr><tr>
 <td><p align='right'><img src="img/scale.jpg" height="400" width="36"></p></td>
-{section name=index loop=$stocknames}
+<?php foreach($stocknames as $index): ?>
 	<td>
-	<img src="img/redfade.gif" width="100%" height="{$stocknames[index].bprice}" /><img src="spacer.gif" height="0" width="0" /><br>
-	<img src="img/greenfade.gif" width="100%" height="{$stocknames[index].price}" /><br>
+	<img src="img/redfade.gif" width="100%" height="<?php echo $index["bprice"]; ?>" /><img src="spacer.gif" height="0" width="0" /><br>
+	<img src="img/greenfade.gif" width="100%" height="<?php echo $index["price"]; ?>" /><br>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Boost:</td>
-{section name=price loop=$stocknames}
+<?php foreach($stocknames as $price): ?>
 	<td class="stbl">
-	<a href="?stockpanel<?php echo $authstr; ?>&amp;change={$stocknames[price].id}&amp;boost=1">/\</a>
+	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $price["id"]; ?>&amp;boost=1">/\</a>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Reduce:</td>
-{section name=price loop=$stocknames}
+<?php foreach($stocknames as $price): ?>
 	<td class="stbl">
-	<a href="?stockpanel<?php echo $authstr; ?>&amp;change={$stocknames[price].id}&amp;reduce=1">\/</a>
+	<a href="?stockpanel<?php echo $authstr; ?>&amp;change=<?php echo $price["id"]; ?>&amp;reduce=1">\/</a>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Change:</td>
-{section name=price loop=$stocknames}
+<?php foreach($stocknames as $price): ?>
 	<td class="stbl">
-	{$stocknames[price].boost|cnum}
+	<?php echo cnum($price["boost"]); ?>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Price:</td>
-{section name=price loop=$stocknames}
+<?php foreach($stocknames as $price): ?>
 	<td class="stbl">
-	${$stocknames[price].lprice}
+	$<?php echo $price["lprice"]; ?>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl">Yesterday:</td>
-{section name=price loop=$stocknames}
+<?php foreach($stocknames as $price): ?>
 	<td class="stbl">
-	${$stocknames[price].lprice-$stocknames[price].days_1|cnum}
+    <?php echo cnum($price["lprice"] - $price["days_1"]); ?>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr><tr>
 
 <td class="stbl"><nobr>2 days ago:</nobr></td>
-{section name=price loop=$stocknames}
+<?php foreach($stocknames as $price): ?>
 	<td class="stbl">
-	${$stocknames[price].days_1-$stocknames[price].days_2|cnum}
+    <?php echo cnum($price["days_1"] - $price["days_2"]); ?>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr>
 
 <td class="stbl"><nobr>3 days ago:</nobr></td>
-{section name=price loop=$stocknames}
+<?php foreach($stocknames as $price): ?>
 	<td class="stbl">
-	${$stocknames[price].days_2-$stocknames[price].days_3|cnum}
+    <?php echo cnum($price["days_2"] - $price["days_3"]); ?>
 	</td>
-{/section}
+<?php endforeach; ?>
 </tr>
 
 </table>

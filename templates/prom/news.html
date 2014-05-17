@@ -1,4 +1,4 @@
-{if !$crier}
+<?php if(!$crier): ?>
 <form method="post" action="?news<?php echo $authstr; ?>">
 <table class="inputtable">
 <tr><th class="aleft">Search by:</th>
@@ -21,13 +21,13 @@
 	<th class="aleft"><label><input type="radio" name="search_type" value="clan"> Clan</label></th>
 	<td><select name="search_clan" size="1">
 		<option value="0" selected>None - Unallied Empires</option>
-		{section name=j loop=$liveclans}
-			<option value="{$liveclans[j].num}">{$liveclans[j].tag} - {$liveclans[j].name}</option>
-		{/section}
+		<?php foreach($liveclans as $j): ?>
+			<option value="<?php echo $j["num"]; ?>"><?php echo $j["tag"]; ?> - <?php echo $j["name"]; ?></option>
+		<?php endforeach; ?>
 	        <option value="-1">--- Dead Clans: ---</option>
-		{section name=j loop=$deadclans}
-			<option value="{$deadclans[j].num}">{$deadclans[j].tag} - {$deadclans[j].name}</option>
-		{/section}
+		<?php foreach($deadclans as $j): ?>
+			<option value="<?php echo $j["num"]; ?>"><?php echo $j["tag"]; ?> - <?php echo $j["name"]; ?></option>
+		<?php endforeach; ?>
 	</select></td>
 </tr><tr>
 	<td colspan="3" class="acenter">
@@ -35,20 +35,20 @@
 	</td>
 </tr>
 </table>
-{/if}
+<?php endif; ?>
 
 <br><br>
 
-{if !$crier}<h2>
-	{if $events == 0}	No events.	{/if}
-	{if $events == 1}	1 event:
-	{else}			<?php echo $events; ?> events:
-	{/if}
+<?php if(!$crier): ?><h2>
+	<?php if($events == 0): ?>	No events.	<?php endif; ?>
+	<?php if($events == 1): ?>	1 event:
+	<?php else: ?>			<?php echo $events; ?> events:
+	<?php endif; ?>
 </h2>
-{else}<br>{/if}
+<?php else: ?><br><?php endif; ?>
 
 <table style="width:90%">
-{if $crier}<tr><th colspan="5">Recent News</th></tr>{/if}
+<?php if($crier): ?><tr><th colspan="5">Recent News</th></tr><?php endif; ?>
 
 <tr class="inputtable2">
 	<th>Date/Time</th>
@@ -58,18 +58,18 @@
 	<th style="width:2">Times</th>
 </tr>
 
-{section name=i loop=$news}
+<?php foreach($news as $i): ?>
 	<tr>
-		<td>{$news[i].date}</td>
-		<td>{$news[i].name2}<br>Clan: {$news[i].clname2}</td>
-		<td>{$news[i].name1}<br>Clan: {$news[i].clname1}</td>
-		<td>{$news[i].name}{$news[i].whatfor}<br>{$news[i].outcome}</td>
-		<td>{$news[i].times}</td>
+		<td><?php echo $i["date"]; ?></td>
+		<td><?php echo $i["name2"]; ?><br>Clan: <?php echo $i["clname2"]; ?></td>
+		<td><?php echo $i["name1"]; ?><br>Clan: <?php echo $i["clname1"]; ?></td>
+		<td><?php echo $i["name"]; ?><?php echo $i["whatfor"]; ?><br><?php echo $i["outcome"]; ?></td>
+		<td><?php echo $i["times"]; ?></td>
 	</tr>
 	<tr>	<td colspan="5"><hr></td>
 	</tr>
 
-{/section}
+<?php endforeach; ?>
 
 <tr class="inputtable2">
 	<th>Date/Time</th>

@@ -1,39 +1,39 @@
 <table style="width:100%">
-<tr><th colspan="3">{$users.empire} <a href=?profiles&amp;num={$users.num}<?php echo $authstr; ?>>(#{$users.num})</a></th></tr>
+<tr><th colspan="3"><?php echo $users["empire"]; ?> <a href=?profiles&amp;num=<?php echo $users["num"]; ?><?php echo $authstr; ?>>(#<?php echo $users["num"]; ?>)</a></th></tr>
 <tr><td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
-        <tr><th colspan="2" class="era{$users.era}" style="text-align:center">Statistics</th></tr>
+        <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Statistics</th></tr>
         <tr><th>Turns Used:</th>
-            <td>{$users.turnsused}</td></tr>
+            <td><?php echo $users["turnsused"]; ?></td></tr>
         <tr><th>Rank:</th>
-            <td>#{$users.rank}</td></tr>
+            <td>#<?php echo $users["rank"]; ?></td></tr>
         <tr><th>Networth:</th>
-            <td>${$users.networth}</td></tr>
+            <td>$<?php echo $users["networth"]; ?></td></tr>
         <tr><th>Experience:</th>
             <td><?php echo $experience; ?></td></tr>
         <tr><th>Gold:</th>
-            <td><b>${$users.cash}</b></td></tr>
-        <tr><th>{$uera.food}:</th>
-            <td><b>{$users.food|gamefactor}</b> {if $users.pubmarket_food}({$users.pubmarket_food|gamefactor}){/if}</td></tr>
-        <tr><th>{$uera.runes}:</th>
-            <td><b>{$users.runes|gamefactor}</b> {if $users.pubmarket_runes}({$users.pubmarket_runes|gamefactor}){/if}</td></tr>
-        <tr><th>{$uera.peasantsC}:</th>
-            <td>{$users.peasants}</td></tr>
+            <td><b>$<?php echo $users["cash"]; ?></b></td></tr>
+        <tr><th><?php echo $uera["food"]; ?>:</th>
+            <td><b><?php echo gamefactor($users["food"]); ?></b> <?php if($users["pubmarket_food"]): ?>(<?php echo gamefactor($users["pubmarket_food"]); ?>)<?php endif; ?></td></tr>
+        <tr><th><?php echo $uera["runes"]; ?>:</th>
+            <td><b><?php echo gamefactor($users["runes"]); ?></b> <?php if($users["pubmarket_runes"]): ?>(<?php echo gamefactor($users["pubmarket_runes"]); ?>)<?php endif; ?></td></tr>
+        <tr><th><?php echo $uera["peasantsC"]; ?>:</th>
+            <td><?php echo $users["peasants"]; ?></td></tr>
         <tr><th>Race:</th>
-            <td>{$urace.name}</td></tr>
+            <td><?php echo $urace["name"]; ?></td></tr>
         <tr><th>Era:</th>
-            <td>{$uera.name}</td></tr>
+            <td><?php echo $uera["name"]; ?></td></tr>
         </table>
     </td>
     <td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
-        <tr><th colspan="2" class="era{$users.era}" style="text-align:center">Military</th></tr>
-	{section name=have loop=$troopshave}
-        <tr><th>{$troopshave[have].name}:</th>
-            <td><b>{$troopshave[have].have|gamefactor}</b> {if $troopshave[have].market}({$troopshave[have].market|gamefactor}){/if}</td></tr>
-	{/section}
-        <tr><th>{$uera.wizards}:</th>
-        <td>{$users.wizards}</td></tr>
+        <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Military</th></tr>
+	<?php foreach($troopshave as $have): ?>
+        <tr><th><?php echo $have["name"]; ?>:</th>
+            <td><b><?php echo gamefactor($have["have"]); ?></b> <?php if($troopshave[have]["market"]): ?>(<?php echo gamefactor($have["market"]); ?>)<?php endif; ?></td></tr>
+	<?php endforeach; ?>
+        <tr><th><?php echo $uera["wizards"]; ?>:</th>
+        <td><?php echo $users["wizards"]; ?></td></tr>
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr><th>Offensive Points:</th>
             <td><?php echo $offpts; ?></td></tr>
@@ -45,51 +45,51 @@
     </td>
     <td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
-        <tr><th colspan="2" class="era{$users.era}" style="text-align:center">Relations</th></tr>
+        <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Relations</th></tr>
         <tr><th>Member of Clan:</th>
-            <td>{$tags[0]}</td></tr>
+            <td><?php echo $tags[0]; ?></td></tr>
         <tr><th>Allies:</th>
-            <td><nobr>{$tags[1]}, {$tags[2]}, {$tags[3]}, {$tags[7]}, {$tags[8]}</nobr></td></tr>
+            <td><nobr><?php echo $tags[1]; ?>, <?php echo $tags[2]; ?>, <?php echo $tags[3]; ?>, <?php echo $tags[7]; ?>, <?php echo $tags[8]; ?></nobr></td></tr>
         <tr><th>War:</th>
-            <td><nobr>{$tags[4]}, {$tags[5]}, {$tags[6]}, {$tags[9]}, {$tags[10]}</nobr></td></tr>
+            <td><nobr><?php echo $tags[4]; ?>, <?php echo $tags[5]; ?>, <?php echo $tags[6]; ?>, <?php echo $tags[9]; ?>, <?php echo $tags[10]; ?></nobr></td></tr>
 	<tr><th>Private War Declaration:</th>
             <td><?php echo $warset; ?></td>
 	<tr><th>Private Peace Treaty:</th>
             <td><?php echo $peaceset; ?></td>
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr><th>Offensive Actions:</th>
-            <td>{$users.offtotal} (<?php echo $off_percent; ?>%)</td></tr>
+            <td><?php echo $users["offtotal"]; ?> (<?php echo $off_percent; ?>%)</td></tr>
         <tr><th>Defenses:</th>
-            <td>{$users.deftotal} (<?php echo $def_percent; ?>%)</td></tr>
+            <td><?php echo $users["deftotal"]; ?> (<?php echo $def_percent; ?>%)</td></tr>
         <tr><th>Kills:</th>
-            <td>{$users.kills}</td></tr>
+            <td><?php echo $users["kills"]; ?></td></tr>
         </table>
     </td>
 </tr>
 <tr><td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
-        <tr><th colspan="2" class="era{$users.era}" style="text-align:center">Land Division</th></tr>
-        <tr><th>{$uera.shops}:</th>
-            <td>{$users.shops}</td></tr>
-        <tr><th>{$uera.homes}:</th>
-            <td>{$users.homes}</td></tr>
-        <tr><th>{$uera.industry}:</th>
-            <td>{$users.industry}</td></tr>
-        <tr><th>{$uera.barracks}:</th>
-            <td>{$users.barracks}</td></tr>
-        <tr><th>{$uera.labs}:</th>
-            <td>{$users.labs}</td></tr>
-        <tr><th>{$uera.farms}:</th>
-            <td>{$users.farms}</td></tr>
-        <tr><th>{$uera.towers}:</th>
-            <td>{$users.towers}</td></tr>
+        <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Land Division</th></tr>
+        <tr><th><?php echo $uera["shops"]; ?>:</th>
+            <td><?php echo $users["shops"]; ?></td></tr>
+        <tr><th><?php echo $uera["homes"]; ?>:</th>
+            <td><?php echo $users["homes"]; ?></td></tr>
+        <tr><th><?php echo $uera["industry"]; ?>:</th>
+            <td><?php echo $users["industry"]; ?></td></tr>
+        <tr><th><?php echo $uera["barracks"]; ?>:</th>
+            <td><?php echo $users["barracks"]; ?></td></tr>
+        <tr><th><?php echo $uera["labs"]; ?>:</th>
+            <td><?php echo $users["labs"]; ?></td></tr>
+        <tr><th><?php echo $uera["farms"]; ?>:</th>
+            <td><?php echo $users["farms"]; ?></td></tr>
+        <tr><th><?php echo $uera["towers"]; ?>:</th>
+            <td><?php echo $users["towers"]; ?></td></tr>
         <tr><th>Unused Land:</th>
-            <td>{$users.freeland}</td></tr>
+            <td><?php echo $users["freeland"]; ?></td></tr>
         </table>
     </td>
     <td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
-        <tr><th colspan="2" class="era{$users.era}" style="text-align:center">Finances</th></tr>
+        <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Finances</th></tr>
         <tr><th>Est. Income:</th>
             <td>$<?php echo $income; ?></td></tr>
         <tr><th>Est. Expenses:</th>
@@ -99,17 +99,17 @@
         <tr><th>Loan Payment:</th>
             <td>$<?php echo $loanpayment; ?></td></tr>
         <tr><th>Income Tax:</th>
-            <td>${$ti|gamefactor}</td></tr>
+            <td>$<?php echo gamefactor($ti); ?></td></tr>
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr><th>Savings Balance:</th>
-            <td>${$users.savings} (<?php echo $savrate; ?>%)</td></tr>
+            <td>$<?php echo $users["savings"]; ?> (<?php echo $savrate; ?>%)</td></tr>
         <tr><th>Loan Balance:</th>
-            <td>${$users.loan} (<?php echo $loanrate; ?>%)</td></tr>
+            <td>$<?php echo $users["loan"]; ?> (<?php echo $loanrate; ?>%)</td></tr>
         </table>
     </td>
     <td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
-        <tr><th colspan="2" class="era{$users.era}" style="text-align:center">Agriculture</th></tr>
+        <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Agriculture</th></tr>
         <tr><th>Est. Production:</th>
             <td><?php echo $foodpro; ?></td></tr>
         <tr><th>Est. Consumption:</th>
@@ -119,21 +119,21 @@
         </table>
     </td>
 </tr>
-{if $showstocks}
+<?php if($showstocks): ?>
 <tr>
     <td colspan="1" style="vertical-align:top; width:33%"></td>
     <td colspan="1" style="vertical-align:top; width:33%">
 	<table class="empstatus" style="width:100%">
-        <tr><th colspan="2" class="era{$users.era}" style="text-align:center">Stocks</th></tr>
-        {section name=stock_id loop=$stocks}
+        <tr><th colspan="2" class="era<?php echo $users["era"]; ?>" style="text-align:center">Stocks</th></tr>
+        <?php foreach($stocks as $stock_id): ?>
         	<tr>
-        		<td style="text-align:left"><b>{$stocks[stock_id].name}</b> (${$stocks[stock_id].price}):</td>
-        		<td style="text-align:right">${$stocks[stock_id].total_worth|gamefactor}</td>
+        		<td style="text-align:left"><b><?php echo $stock_id["name"]; ?></b> ($<?php echo $stock_id["price"]; ?>):</td>
+        		<td style="text-align:right">$<?php echo gamefactor($stock_id["total_worth"]); ?></td>
         	</tr>
-       	{/section}
+       	<?php endforeach; ?>
 	</table>
     </td>
     <td colspan="1" style="vertical-align:top; width:33%"></td>
 </tr>
-{/if}
+<?php endif; ?>
 </table>

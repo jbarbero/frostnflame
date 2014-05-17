@@ -1,17 +1,17 @@
-{if $do_deposit != ""}
+<?php if($do_deposit != ""): ?>
 You have deposited <?php echo $deposit; ?> turns into your turn bank.<hr>
-{/if}
+<?php endif; ?>
 
-{if $do_withdraw!= ""}
+<?php if($do_withdraw!= ""): ?>
 You have withdrawn <?php echo $withdraw; ?> turns from your turn bank.<hr>
-{/if}
+<?php endif; ?>
 
 <h2>Welcome to the Turn Bank</h2>
 <table>
     <tr><td>
     <table class="empstatus" style="width:100%">
         <tr class="inputtable"><th colspan="2" style="text-align:center">Turns Banked</th></tr>
-        <tr><th>Current Turn Balance:</th><td><?php echo $turnbank; ?>/{$maxbank}</td></tr>
+        <tr><th>Current Turn Balance:</th><td><?php echo $turnbank; ?>/<?php echo $maxbank; ?></td></tr>
     </table></td>
     <td style="width:10%"></td>
     </tr>

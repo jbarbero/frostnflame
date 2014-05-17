@@ -1,4 +1,4 @@
-{literal}
+
 
 <script language="javascript">
 
@@ -24,7 +24,7 @@ function show(which) {
 		eval("link_val = 'link_" + which + "'");
 		curr = which;
 	 	document.getElementById("show_mess").innerHTML = mess_val;
-		var request = "?m_read&amp;id_num=" + which + "{/literal}<?php echo $authstr; ?>{literal}";
+		var request = "?m_read&amp;id_num=" + which + "<?php echo $authstr; ?>";
 		var execframe = document.getElementById("theframe");
 		execframe.src = request.replace(/&amp;/g, '&');
 		var readspan = document.getElementById("link_"+which);
@@ -36,16 +36,16 @@ function show(which) {
 	}
 }
 
-{/literal}
 
 
-{section name=v loop=$jmessage}
-	{section name=v loop=$jmessage}
-		{if $jmessage[v].read == 0 }
-			message_{$jmessage[v].id} = ' <table class="inputtable">	<tr><th class="acenter">Viewing Message</th></tr><tr><td>	  <form method="post" action="<?php echo $sitedir; ?>{$main}?messages{$authstr}">	  <input type="hidden" name="msg_id" value="{$jmessage[v].id}">	  <input type="hidden" name="msg_src" value="{$jmessage[v].from_num}">	  <input type="hidden" name="msg_src_name" value="{$jmessage[v].from_name}">	  <input type="hidden" name="msg_title" value="{$jmessage[v].title}">	  <input type="hidden" name="msg_body" value="{$jmessage[v].msg_escaped|escape:"javascript"}">	  <table>	  <tr>	  <td class="aleft">	   <b>From:</b> {$jmessage[v].from_name} <a href=?profiles&amp;num={$jmessage[v].from_num}{$authstr}>(#{$jmessage[v].from_num})</a><br>	   <b>Subject:</b> {$jmessage[v].title}<br>	   <b>Date:</b> {$jmessage[v].date|escape:"javascript"}<br>	   <br><tt>{$jmessage[v].msg|escape:"quotes"}{* $jmessage[v].msg *}</tt>	  </td>	  </tr>	  <tr><td><div align="center">	  <input type="submit" name="do_reply" value="Reply">	  <input type="submit" name="do_forward" value="Forward">	  <input type="submit" name="do_delete" value="Delete">	  </div></td></tr>	  </table>	  </form>	  </td></tr><tr><th><hr></th></tr></table> ';
-		{/if}
-	{/section}
-{/section}
+<?php /* TODO: wtf: why two nested for loops with the same variable? */ ?>
+<?php foreach($jmessage as $v): ?>
+	<?php foreach($jmessage as $v): ?>
+		<?php if($v["read"] == 0 ): ?>
+        message_<?php echo $v["id"]; ?> = ' <table class="inputtable">	<tr><th class="acenter">Viewing Message</th></tr><tr><td>	  <form method="post" action="<?php echo $config["sitedir"]; ?><?php echo $main; ?>?messages<?php echo $authstr; ?>">	  <input type="hidden" name="msg_id" value="<?php echo $v["id"]; ?>">	  <input type="hidden" name="msg_src" value="<?php echo $v["from_num"]; ?>">	  <input type="hidden" name="msg_src_name" value="<?php echo $v["from_name"]; ?>">	  <input type="hidden" name="msg_title" value="<?php echo $v["title"]; ?>">	  <input type="hidden" name="msg_body" value="<?php echo escape_javascript($v["msg_escaped"]); ?>">	  <table>	  <tr>	  <td class="aleft">	   <b>From:</b> <?php echo $v["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $v["from_num"]; ?><?php echo $authstr; ?>>(#<?php echo $v["from_num"]; ?>)</a><br>	   <b>Subject:</b> <?php echo $v["title"]; ?><br>	   <b>Date:</b> <?php echo escape_javascript($v["date"]); ?><br>	   <br><tt><?php echo escape_quotes($v["msg"]); ?></tt>	  </td>	  </tr>	  <tr><td><div align="center">	  <input type="submit" name="do_reply" value="Reply">	  <input type="submit" name="do_forward" value="Forward">	  <input type="submit" name="do_delete" value="Delete">	  </div></td></tr>	  </table>	  </form>	  </td></tr><tr><th><hr></th></tr></table> ';
+		<?php endif; ?>
+	<?php endforeach; ?>
+<?php endforeach; ?>
 
 </script>
 
@@ -54,46 +54,46 @@ function show(which) {
 
 <table class="inputtable" width="100%">
 <tr><th class="acenter">
-<a href="<?php echo $main; ?>?messages{$authstr}">{$inboxname}</a>
+<a href="<?php echo $main; ?>?messages<?php echo $authstr; ?>"><?php echo $inboxname; ?></a>
 </th><th class="acenter">
-<a href="<?php echo $main; ?>?sentmail{$authstr}">{$sentname}</a>
+<a href="<?php echo $main; ?>?sentmail<?php echo $authstr; ?>"><?php echo $sentname; ?></a>
 </th></tr>
 </table>
 <br>
 <br>
-{if $do_reply}
-	<form method="post" action="<?php echo $main; ?>?messages{$authstr}">
+<?php if($do_reply): ?>
+	<form method="post" action="<?php echo $main; ?>?messages<?php echo $authstr; ?>">
 	<div>
-	Sending Reply To <?php echo $reply_name; ?> <a href=?profiles&amp;num={$reply_src}{$authstr}>(#{$reply_src})</a><br>
+	Sending Reply To <?php echo $reply_name; ?> <a href=?profiles&amp;num=<?php echo $reply_src; ?><?php echo $authstr; ?>>(#<?php echo $reply_src; ?>)</a><br>
 	Message Title: <input type="text" name="msg_title" size="40" value="Re: <?php echo $reply_title; ?>" maxlength="80"><br>
 	<input type="hidden" name="msg_replyto" value="<?php echo $reply_id; ?>">
 	<input type="hidden" name="msg_dest" value="<?php echo $reply_src; ?>">
 	<textarea rows="10" cols="60" name="msg_body"><?php echo $reply_body; ?></textarea><br>
-	<input type="submit" name="do_message" value="Send Reply to {$uera.empire} #<?php echo $reply_src; ?>">
+	<input type="submit" name="do_message" value="Send Reply to <?php echo $uera["empire"]; ?> #<?php echo $reply_src; ?>">
 	</div>
 	</form>
-{/if}
+<?php endif; ?>
 
-{if $do_forward}
-	<form method="post" action="<?php echo $main; ?>?messages{$authstr}">
+<?php if($do_forward): ?>
+	<form method="post" action="<?php echo $main; ?>?messages<?php echo $authstr; ?>">
 
 	Forward To:<select name="forward_num1" size="1">
-	{section name=num_go loop=$numbers}
-	<option value="{$numbers[num_go].num}" class="m{$numbers[num_go].color}" {if $numbers[num_go].num == -1} selected {/if}>{$numbers[num_go].num} - {$numbers[num_go].empire}</option>
-	{/section}
+	<?php foreach($numbers as $num_go): ?>
+	<option value="<?php echo $num_go["num"]; ?>" class="m<?php echo $num_go["color"]; ?>" <?php if($num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $num_go["num"]; ?> - <?php echo $num_go["empire"]; ?></option>
+	<?php endforeach; ?>
 	</select><br>
 
 
 	Forward To:<select name="forward_num2" size="1">
-	{section name=num_go loop=$numbers}
-	<option value="{$numbers[num_go].num}" class="m{$numbers[num_go].color}" {if $numbers[num_go].num == -1} selected {/if}>{$numbers[num_go].num} - {$numbers[num_go].empire}</option>
-	{/section}
+	<?php foreach($numbers as $num_go): ?>
+	<option value="<?php echo $num_go["num"]; ?>" class="m<?php echo $num_go["color"]; ?>" <?php if($num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $num_go["num"]; ?> - <?php echo $num_go["empire"]; ?></option>
+	<?php endforeach; ?>
 	</select><br>
 
 	Forward To:<select name="forward_num3" size="1">
-	{section name=num_go loop=$numbers}
-	<option value="{$numbers[num_go].num}" class="m{$numbers[num_go].color}" {if $numbers[num_go].num == -1} selected {/if}>{$numbers[num_go].num} - {$numbers[num_go].empire}</option>
-	{/section}
+	<?php foreach($numbers as $num_go): ?>
+	<option value="<?php echo $num_go["num"]; ?>" class="m<?php echo $num_go["color"]; ?>" <?php if($num_go["num"] == -1): ?> selected <?php endif; ?>><?php echo $num_go["num"]; ?> - <?php echo $num_go["empire"]; ?></option>
+	<?php endforeach; ?>
 	</select><br><br><br>
 
 
@@ -105,28 +105,28 @@ function show(which) {
 	<input type="submit" name="send_forward" value="Forward">
 	</div>
 	</form>
-{/if}
+<?php endif; ?>
 
 <div id="show_mess">
-{if $view!=""}
+<?php if($view!=""): ?>
 	<table class="inputtable">
 	<tr><th class="acenter">Viewing Message</th></tr><tr><td>
-	{if $sent==0}
-	  <form method="post" action="<?php echo $main; ?>?messages{$authstr}">
+	<?php if($sent==0): ?>
+	  <form method="post" action="<?php echo $main; ?>?messages<?php echo $authstr; ?>">
 
-	  <input type="hidden" name="msg_id" value="{$vmessage.id}">
-	  <input type="hidden" name="msg_src" value="{$vmessage.src}">
-	  <input type="hidden" name="msg_src_name" value="{$vsrc.empire}">
-	  <input type="hidden" name="msg_title" value="{$vmessage.title}">
-	  <input type="hidden" name="msg_body" value="{$vmessage.msg_escaped}">
+	  <input type="hidden" name="msg_id" value="<?php echo $vmessage["id"]; ?>">
+	  <input type="hidden" name="msg_src" value="<?php echo $vmessage["src"]; ?>">
+	  <input type="hidden" name="msg_src_name" value="<?php echo $vsrc["empire"]; ?>">
+	  <input type="hidden" name="msg_title" value="<?php echo $vmessage["title"]; ?>">
+	  <input type="hidden" name="msg_body" value="<?php echo $vmessage["msg_escaped"]; ?>">
 	  <table>
 	  <tr>
 	  <td class="aleft">
-	   <b>From:</b> {$vsrc.empire} <a href=?profiles&amp;num={$vsrc.num}<?php echo $authstr; ?>>(#{$vsrc.num})</a><br>
-	   <b>Subject:</b> {$vmessage.title}<br>
+	   <b>From:</b> <?php echo $vsrc["empire"]; ?> <a href=?profiles&amp;num=<?php echo $vsrc["num"]; ?><?php echo $authstr; ?>>(#<?php echo $vsrc["num"]; ?>)</a><br>
+	   <b>Subject:</b> <?php echo $vmessage["title"]; ?><br>
 	   <b>Date:</b> <?php echo $time; ?><br>
 	   <br>
-	   <tt>{$vmessage.msg}</tt>
+	   <tt><?php echo $vmessage["msg"]; ?></tt>
 	  </td>
 	  </tr>
 
@@ -138,59 +138,59 @@ function show(which) {
 	  </table>
 
 	  </form>
-	{/if}
+	<?php endif; ?>
 
-	{if $sent==1}
-		  <form method="post" action="<?php echo $main; ?>?messages{$authstr}">
-		  <input type="hidden" name="msg_body" value="{$smessage.msg_escaped}">
-		  <input type="hidden" name="msg_id" value="{$smessage.id}">
-		  <input type="hidden" name="msg_src_name" value="{$vsrc.empire}">
-		  <input type="hidden" name="msg_src" value="{$smessage.src}">
-	  	<input type="hidden" name="msg_title" value="{$smessage.title}">
+	<?php if($sent==1): ?>
+		  <form method="post" action="<?php echo $main; ?>?messages<?php echo $authstr; ?>">
+		  <input type="hidden" name="msg_body" value="<?php echo $smessage["msg_escaped"]; ?>">
+		  <input type="hidden" name="msg_id" value="<?php echo $smessage["id"]; ?>">
+		  <input type="hidden" name="msg_src_name" value="<?php echo $vsrc["empire"]; ?>">
+		  <input type="hidden" name="msg_src" value="<?php echo $smessage["src"]; ?>">
+	  	<input type="hidden" name="msg_title" value="<?php echo $smessage["title"]; ?>">
 		  <table>
 		  <tr>
 		  <td class="aleft">
-		   <b>To:</b> {$vsrc.empire} <a href=?profiles&amp;num={$vsrc.num}<?php echo $authstr; ?>>(#{$vsrc.num})</a><br>
-		   <b>Subject:</b> {$smessage.title}<br>
+		   <b>To:</b> <?php echo $vsrc["empire"]; ?> <a href=?profiles&amp;num=<?php echo $vsrc["num"]; ?><?php echo $authstr; ?>>(#<?php echo $vsrc["num"]; ?>)</a><br>
+		   <b>Subject:</b> <?php echo $smessage["title"]; ?><br>
 		   <b>Date:</b> <?php echo $time; ?><br>
 		   <br>
-		   <tt>{$smessage.msg}</tt>
+		   <tt><?php echo $smessage["msg"]; ?></tt>
 		  </td>
 		  </tr>
 
 		  <tr><td><div align="center">
-		  {if $smessage.deleted == 0 or $smessage.deleted == 2}
+		  <?php if($smessage["deleted"] == 0 || $smessage["deleted"] == 2): ?>
 		  		  <input type="submit" name="do_revoke" value="Revoke">
-		  {/if}
+		  <?php endif; ?>
 		  <input type="submit" name="do_forward" value="Forward">
 		  <input type="submit" name="do_delete" value="Delete"></div></td></tr>
 		  </table>
 	  </form>
-	{/if}
+	<?php endif; ?>
 	</td></tr><tr><th><hr></th></tr></table>
-{/if}
+<?php endif; ?>
 </div>
 
-{if $sent==0 && $prof_target==""}
-	{if $num_msg>0}
+<?php if($sent==0 && $prof_target==""): ?>
+	<?php if($num_msg>0): ?>
 
-		<form name="messages" method="post" action="<?php echo $main; ?>?messages{$authstr}"> {* I want access to all the elements therein *}
+		<form name="messages" method="post" action="<?php echo $main; ?>?messages<?php echo $authstr; ?>"> <?php /* I want access to all the elements therein */ ?>
 
 		<table class="scorestable">
-		<tr class="era<?php echo $color; ?>"><th colspan="4">{$inboxname}</th></tr>
+		<tr class="era<?php echo $color; ?>"><th colspan="4"><?php echo $inboxname; ?></th></tr>
 
 		<tr class="era<?php echo $color; ?>">
 		<th style="width:30%">
-		<a href="<?php echo $main; ?>?messages&amp;order_by=title&amp;asc={$title_order}{$authstr}">Title</a>
+		<a href="<?php echo $main; ?>?messages&amp;order_by=title&amp;asc=<?php echo $title_order; ?><?php echo $authstr; ?>">Title</a>
 		</th>
 
 		<th style="width:30%">
-		<a href="<?php echo $main; ?>?messages&amp;order_by=from&amp;asc={$from_order}{$authstr}">From</a>
+		<a href="<?php echo $main; ?>?messages&amp;order_by=from&amp;asc=<?php echo $from_order; ?><?php echo $authstr; ?>">From</a>
 		</th>
 
 
         <th style="width:15%">
-        <a href="<?php echo $main; ?>?messages&amp;order_by=date&amp;asc={$date_order}{$authstr}"> Date</a>
+        <a href="<?php echo $main; ?>?messages&amp;order_by=date&amp;asc=<?php echo $date_order; ?><?php echo $authstr; ?>"> Date</a>
         </th>
 
         <th style="width:15%">
@@ -198,36 +198,36 @@ function show(which) {
         </th>
 
         </tr>
-		{section name=sel loop=$message}
+		<?php foreach($message as $sel): ?>
 				<tr>
-				{if $message[sel].read==0}
-					<td><a style="font-weight: bold;" id="link_{$message[sel].id}" href="<?php echo $main; ?>?messages&amp;view={$message[sel].id}{$authstr}" onclick="show({$message[sel].id}); return false;">{$message[sel].title}</a></td>
-					{*<td><a class="new" href="<?php echo $main; ?>?messages&amp;view={$message[sel].id}{$authstr}">{$message[sel].title}</a></td>*}
-				{/if}
-				{if $message[sel].read!=0}
-					{*<td><a href="JavaScript:show({$message[sel].id})<?php echo $authstr; ?>">{$message[sel].title}</a></td>*}
-					<td><a href="<?php echo $main; ?>?messages&amp;view={$message[sel].id}{$authstr}">{$message[sel].title}</a></td>
-				{/if}
-				<td class="acenter">{$message[sel].from_name} <a href=?profiles&amp;num={$message[sel].from_num}<?php echo $authstr; ?>>(#{$message[sel].from_num})</a></td>
-				<td class="acenter">{$message[sel].date}</td>
-				<td class="acenter"><input type="checkbox" name="boxes[]" value="{$message[sel].id}"></td>
+				<?php if($sel["read"]==0): ?>
+					<td><a style="font-weight: bold;" id="link_<?php echo $sel["id"]; ?>" href="<?php echo $main; ?>?messages&amp;view=<?php echo $sel["id"]; ?><?php echo $authstr; ?>" onclick="show(<?php echo $sel["id"]; ?>); return false;"><?php echo $sel["title"]; ?></a></td>
+					<?php /*<td><a class="new" href="<?php echo $main; ?>?messages&amp;view=<?php echo $sel["id"]; ?><?php echo $authstr; ?>"><?php echo $sel["title"]; ?></a></td>*/ ?>
+				<?php endif; ?>
+				<?php if($sel["read"]!=0): ?>
+					<?php /*<td><a href="JavaScript:show(<?php echo $sel["id"]; ?>)<?php echo $authstr; ?>"><?php echo $sel["title"]; ?></a></td>*/ ?>
+					<td><a href="<?php echo $main; ?>?messages&amp;view=<?php echo $sel["id"]; ?><?php echo $authstr; ?>"><?php echo $sel["title"]; ?></a></td>
+				<?php endif; ?>
+				<td class="acenter"><?php echo $sel["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $sel["from_num"]; ?><?php echo $authstr; ?>>(#<?php echo $sel["from_num"]; ?>)</a></td>
+				<td class="acenter"><?php echo $sel["date"]; ?></td>
+				<td class="acenter"><input type="checkbox" name="boxes[]" value="<?php echo $sel["id"]; ?>"></td>
 				</tr>
 
-		{/section}
+		<?php endforeach; ?>
 
 				<tr class="era<?php echo $color; ?>">
 
 				<th style="width:30%">
-				<a href="<?php echo $main; ?>?messages&amp;order_by=title&amp;asc={$title_order}{$authstr}">Title</a>
+				<a href="<?php echo $main; ?>?messages&amp;order_by=title&amp;asc=<?php echo $title_order; ?><?php echo $authstr; ?>">Title</a>
 				</th>
 
 				<th style="width:30%">
-				<a href="<?php echo $main; ?>?messages&amp;order_by=from&amp;asc={$from_order}{$authstr}">From</a>
+				<a href="<?php echo $main; ?>?messages&amp;order_by=from&amp;asc=<?php echo $from_order; ?><?php echo $authstr; ?>">From</a>
 				</th>
 
 
 		        <th style="width:15%">
-		        <a href="<?php echo $main; ?>?messages&amp;order_by=date&amp;asc={$date_order}{$authstr}"> Date</a>
+		        <a href="<?php echo $main; ?>?messages&amp;order_by=date&amp;asc=<?php echo $date_order; ?><?php echo $authstr; ?>"> Date</a>
 		        </th>
 
 		        <th style="width:15%">
@@ -242,7 +242,7 @@ function show(which) {
 		<div>
 		<br><br>
 		<input type="hidden" name="jsenabled">
-		{literal}
+		
 		<input type="submit" name="do_deleteall" value="Delete all messages" onClick="
 			temp = window.confirm('Are you sure you want to delete all messages?');
 			if(temp == 1) {
@@ -253,40 +253,40 @@ function show(which) {
 			else
 				return false;
 		">
-		{/literal}
+		
 		<input type="submit" name="do_delete_selected" value="Delete selected">
 		<input type="submit" name="do_delete_read" value="Delete read messages">
 		</div>
 		</form>
-	{/if}
+	<?php endif; ?>
 
-	{if $num_msg==0}
+	<?php if($num_msg==0): ?>
 		No new messages...<hr>
-	{/if}
-{/if}
+	<?php endif; ?>
+<?php endif; ?>
 
-{* I've decided to make it so that you only have one template... *}
+<?php /* I've decided to make it so that you only have one template... */ ?>
 
 
-{if $sent!=0}
-	{if $num_msg>0}
-		<form name="messages" method="post" action="<?php echo $main; ?>?sentmail{$authstr}">
+<?php if($sent!=0): ?>
+	<?php if($num_msg>0): ?>
+		<form name="messages" method="post" action="<?php echo $main; ?>?sentmail<?php echo $authstr; ?>">
 
 		<table class="scorestable">
-		<tr class="era<?php echo $color; ?>"><th colspan="4">{$sentname}</th></tr>
+		<tr class="era<?php echo $color; ?>"><th colspan="4"><?php echo $sentname; ?></th></tr>
 
 		<tr class="era<?php echo $color; ?>">
 		<th style="width:30%">
-		<a href="<?php echo $main; ?>?sentmail&amp;order_by=title&amp;asc={$title_order}{$authstr}">Title</a>
+		<a href="<?php echo $main; ?>?sentmail&amp;order_by=title&amp;asc=<?php echo $title_order; ?><?php echo $authstr; ?>">Title</a>
 		</th>
 
 		<th style="width:30%">
-		<a href="<?php echo $main; ?>?sentmail&amp;order_by=to&amp;asc={$to_order}{$authstr}">To</a>
+		<a href="<?php echo $main; ?>?sentmail&amp;order_by=to&amp;asc=<?php echo $to_order; ?><?php echo $authstr; ?>">To</a>
 		</th>
 
 
         <th style="width:15%">
-        <a href="<?php echo $main; ?>?sentmail&amp;order_by=date&amp;asc={$date_order}{$authstr}"> Date</a>
+        <a href="<?php echo $main; ?>?sentmail&amp;order_by=date&amp;asc=<?php echo $date_order; ?><?php echo $authstr; ?>"> Date</a>
         </th>
 
         <th style="width:15%">
@@ -295,29 +295,29 @@ function show(which) {
 
         </tr>
 
-		{section name=s_sel loop=$sent_message}
+		<?php foreach($sent_message as $s_sel): ?>
 				<tr>
-				<td> <a href="<?php echo $main; ?>?sentmail&amp;view={$sent_message[s_sel].id}{$authstr}">{$sent_message[s_sel].title}</a></td>
-				<td class="acenter"><a href="<?php echo $main; ?>?profiles&amp;num={$sent_message[s_sel].to_num}{$authstr}"> {$sent_message[s_sel].to_name} <a href=?profiles&amp;num={$sent_message[s_sel].to_num}{$authstr}>(#{$sent_message[s_sel].to_num})</a> </td>
-				<td class="acenter">{$sent_message[s_sel].date}</td>
-				<td class="acenter"><input type="checkbox" name="boxes[]" value="{$sent_message[s_sel].id}"></td>
+				<td> <a href="<?php echo $main; ?>?sentmail&amp;view=<?php echo $s_sel["id"]; ?><?php echo $authstr; ?>"><?php echo $s_sel["title"]; ?></a></td>
+				<td class="acenter"><a href="<?php echo $main; ?>?profiles&amp;num=<?php echo $s_sel["to_num"]; ?><?php echo $authstr; ?>"> <?php echo $s_sel["to_name"]; ?> <a href=?profiles&amp;num=<?php echo $s_sel["to_num"]; ?><?php echo $authstr; ?>>(#<?php echo $s_sel["to_num"]; ?>)</a> </td>
+				<td class="acenter"><?php echo $s_sel["date"]; ?></td>
+				<td class="acenter"><input type="checkbox" name="boxes[]" value="<?php echo $s_sel["id"]; ?>"></td>
 				 </td></tr>
 
-		{/section}
+		<?php endforeach; ?>
 
 			<tr class="era<?php echo $color; ?>">
 
 			<th style="width:30%">
-			<a href="<?php echo $main; ?>?messages&amp;order_by=title&amp;asc={$title_order}{$authstr}">Title</a>
+			<a href="<?php echo $main; ?>?messages&amp;order_by=title&amp;asc=<?php echo $title_order; ?><?php echo $authstr; ?>">Title</a>
 			</th>
 
 			<th style="width:30%">
-			<a href="<?php echo $main; ?>?messages&amp;order_by=to&amp;asc={$to_order}{$authstr}">To</a>
+			<a href="<?php echo $main; ?>?messages&amp;order_by=to&amp;asc=<?php echo $to_order; ?><?php echo $authstr; ?>">To</a>
 			</th>
 
 
 	        <th style="width:15%">
-	        <a href="<?php echo $main; ?>?messages&amp;order_by=date&amp;asc={$date_order}{$authstr}"> Date</a>
+	        <a href="<?php echo $main; ?>?messages&amp;order_by=date&amp;asc=<?php echo $date_order; ?><?php echo $authstr; ?>"> Date</a>
 	        </th>
 
 	        <th style="width:15%">
@@ -335,21 +335,21 @@ function show(which) {
 		<input type="submit" name="do_delete_selected" value="Delete selected">
 		</div>
 		</form>
-	{/if}
+	<?php endif; ?>
 
-	{if $num_msg==0}
+	<?php if($num_msg==0): ?>
 		No sent messages...<hr>
-	{/if}
+	<?php endif; ?>
 
-{/if}
+<?php endif; ?>
 
 <div style='display:none'><iframe src='about:blank' width='0' height='0' border='0' id='theframe'></iframe></div>
 
 
 
-{if $sent==0}
+<?php if($sent==0): ?>
 
-{literal}
+
 <script language="JavaScript">
 
 function updateMsgNames() {
@@ -372,24 +372,24 @@ function updateMsgNums() {
 		document.frmmsg.do_message.disabled = false;
 }
 </script>
-{/literal}
+
 
 We currently have <?php echo $msgcreds; ?> message credits remaining.<br><br>
-<form method="post" action="<?php echo $main; ?>?messages{$authstr}" name="frmmsg">
+<form method="post" action="<?php echo $main; ?>?messages<?php echo $authstr; ?>" name="frmmsg">
 <div>
 
-{if $clan != 0}
+<?php if($clan != 0): ?>
 	<INPUT TYPE="checkbox" NAME="allclan"> Message everyone in clan?
 	<BR>(If the above box is checked, the below field will be ignored.)<BR>
 
 	We support bbcode, smilies, and automatic URL conversions.<BR><BR>
-{/if}
+<?php endif; ?>
 
 Send a message to: <input type="text" value="<?php echo $prof_target; ?>" name="msg_dest_num" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-	{section name=dropsel loop=$drop}
-		<option value="{$drop[dropsel].num}" class="m{$drop[dropsel].color}"{if $prof_target == $drop[dropsel].num} selected {/if}>{$drop[dropsel].num} - {$drop[dropsel].name}</option>
-	{/section}
+	<?php foreach($drop as $dropsel): ?>
+		<option value="<?php echo $dropsel["num"]; ?>" class="m<?php echo $dropsel["color"]; ?>"<?php if($prof_target == $dropsel["num"]): ?> selected <?php endif; ?>><?php echo $dropsel["num"]; ?> - <?php echo $dropsel["name"]; ?></option>
+	<?php endforeach; ?>
 </select>
 
 <br>
@@ -400,7 +400,7 @@ Message Title: <input type="text" name="msg_title" size="40" maxlength="80">
 </div>
 </form>
 
-{/if}
+<?php endif; ?>
 
 
 

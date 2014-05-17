@@ -1,8 +1,8 @@
-{if $do_demolish != ""}
-You demolished <?php echo $totaldestroyed; ?> structures in {$turns} turns and made ${$totalsalvaged}.<hr>
-{/if}
+<?php if($do_demolish != ""): ?>
+You demolished <?php echo $totaldestroyed; ?> structures in <?php echo $turns; ?> turns and made $<?php echo $totalsalvaged; ?>.<hr>
+<?php endif; ?>
 
-{literal}
+
 <script language="JavaScript">
 function checkAllOne (check){
 	var path = document.demolish;
@@ -38,15 +38,15 @@ function checkAllTwo (check){
 	 }
 }
 </script>
-{/literal}
 
-<a href="?guide&amp;section=structures<?php echo $authstr; ?>">{$gamename} Guide: Structures</a><br>
+
+<a href="?guide&amp;section=structures<?php echo $authstr; ?>"><?php echo $gamename; ?> Guide: Structures</a><br>
 <br>
 Each structure demolished frees up one acre of land and you get approximately $<?php echo $salvage; ?> per structure for salvage.<br>
 We can demolish <?php echo $destroyrate; ?> structures per turn.<br>
 With our resources, we can demolish <span class="cbad"><?php echo $allyoucandestroy; ?></span> structures.<br>
-The <i>Safe</i> checkboxes will demolish the most of your buildings possible before you start losing money, {$uera.peasants}, or
-{$uera.wizards}.<br>
+The <i>Safe</i> checkboxes will demolish the most of your buildings possible before you start losing money, <?php echo $uera["peasants"]; ?>, or
+<?php echo $uera["wizards"]; ?>.<br>
  Use these if you want to, for example, free land for more structures without having to worry about losses.<br><br>
 
 <form method="post" action="?demolish<?php echo $authstr; ?>" name="demolish">
@@ -61,17 +61,17 @@ The <i>Safe</i> checkboxes will demolish the most of your buildings possible bef
     <th class="aright">Max <input type="checkbox" name="maxall" onclick="checkAllOne(1)" class="max"></th>
     <th class="aright">Safe <input type="checkbox" name="safeall" onclick="checkAllTwo(1)" class="safe"></th></tr>
 
-{* Printing row stuffs *}
-{section name=i loop=$demolish}
-<tr><td>{$demolish[i].name}</td>
-    <td class="aright">{$demolish[i].userAmount}</td>
-    <td class="aright">{$demolish[i].canDestroy}</td>
-    <td class="aright">{$demolish[i].safeDestroy}</td>
-    <td class="aright"><input type="text" name="demolish[{$demolish[i].type}]" size="5" value="0"></td>
-    <td class="aright"><input type="checkbox" name="max[{$demolish[i].type}]" value="<?=$type?>" class="max"></td>
-    <td class="aright"><input type="checkbox" name="safeck[{$demolish[i].type}]" value="<?=$type?>" class="safe"></td></tr>
-{/section}
-{* Footer *}
+<?php /* Printing row stuffs */ ?>
+<?php foreach($demolish as $i): ?>
+<tr><td><?php echo $i["name"]; ?></td>
+    <td class="aright"><?php echo $i["userAmount"]; ?></td>
+    <td class="aright"><?php echo $i["canDestroy"]; ?></td>
+    <td class="aright"><?php echo $i["safeDestroy"]; ?></td>
+    <td class="aright"><input type="text" name="demolish[<?php echo $i["type"]; ?>]" size="5" value="0"></td>
+    <td class="aright"><input type="checkbox" name="max[<?php echo $i["type"]; ?>]" value="<?=$type?>" class="max"></td>
+    <td class="aright"><input type="checkbox" name="safeck[<?php echo $i["type"]; ?>]" value="<?=$type?>" class="safe"></td></tr>
+<?php endforeach; ?>
+<?php /* Footer */ ?>
 
 <tr><td>Drop Unused Land</td>
     <td class="aright"><?php echo $freeland; ?></td>

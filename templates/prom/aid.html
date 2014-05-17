@@ -1,4 +1,4 @@
-{literal}
+
 <script language="JavaScript">
 
 function updateMsgNames() {
@@ -29,21 +29,21 @@ function checkAll (check){
 	 }
 }
 </script>
-{/literal}
+
 
 <big><b>Sending Aid</b></big><br><br>
-Sending aid requires 2 turns and at least {$convoy|gamefactor} {$sendtroop.name}.<br>
-We can send up to {$users.aidcred} shipments.<br>
+Sending aid requires 2 turns and at least <?php echo gamefactor($convoy); ?> <?php echo $sendtroop["name"]; ?>.<br>
+We can send up to <?php echo $users["aidcred"]; ?> shipments.<br>
 We can send an additional shipment every hour.<br><br>
 <form method="post" action="?aid<?php echo $authstr; ?>" name="frmmsg">
 <table class="inputtable">
 <tr>
-      <td colspan="2" class="aright">Send aid to which {$uera.empire}?</td>
+      <td colspan="2" class="aright">Send aid to which <?php echo $uera["empire"]; ?>?</td>
     <td colspan="3"><input type="text" name="msg_dest_num"  value="<?php echo $prof_target; ?>" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-	{section name=dropsel loop=$drop}
-		<option value="{$drop[dropsel].num}" class="m{$drop[dropsel].color}"{if $prof_target == $drop[dropsel].num} selected {/if}>{$drop[dropsel].num} - {$drop[dropsel].name}</option>
-	{/section}
+	<?php foreach($drop as $dropsel): ?>
+		<option value="<?php echo $dropsel["num"]; ?>" class="m<?php echo $dropsel["color"]; ?>"<?php if($prof_target == $dropsel["num"]): ?> selected <?php endif; ?>><?php echo $dropsel["num"]; ?> - <?php echo $dropsel["name"]; ?></option>
+	<?php endforeach; ?>
 </select>
 
 </select>
@@ -53,15 +53,15 @@ We can send an additional shipment every hour.<br><br>
     <th class="aright">Can Send</th>
     <th class="aright">Send</th>
     <th class="aright">Max <input type="checkbox" name="maxall" onClick="checkAll(1)"></th></tr>
-{*Print Row*}
-{section name=i loop=$row}
- 	<tr><td>{$row[i].name}</td>
-	    <td class="aright">{$row[i].owned|gamefactor}</td>
-	    <td class="aright">{$row[i].canSend|gamefactor}</td>
-	    <td class="aright"><input type="text" name="send[{$row[i].type}]" size="8" value="{if $row[i].type == $sendtroop.handle}{$convoy|gamefactor}{/if}"></td>
-	    <td class="aright"><input type="checkbox" name="max[{$row[i].type}]" value="{$row[i].type}"></td>
+<?php /*Print Row*/ ?>
+<?php foreach($row as $i): ?>
+ 	<tr><td><?php echo $i["name"]; ?></td>
+	    <td class="aright"><?php echo gamefactor($i["owned"]); ?></td>
+	    <td class="aright"><?php echo gamefactor($i["canSend"]); ?></td>
+	    <td class="aright"><input type="text" name="send[<?php echo $i["type"]; ?>]" size="8" value="<?php if($i["type"] == $sendtroop.handle): ?><?php echo gamefactor($convoy); ?><?php endif; ?>"></td>
+	    <td class="aright"><input type="checkbox" name="max[<?php echo $i["type"]; ?>]" value="<?php echo $i["type"]; ?>"></td>
 	</tr>
-{/section}
+<?php endforeach; ?>
 
 <tr><td colspan="5" class="acenter"><input type="submit" name="do_sendaid" value="Send Assistance"></td></tr>
 <tr><td colspan="5" class="acenter">Condense turns?<input type="checkbox" name="hide_turns" <?php echo $cnd; ?>></td></tr>

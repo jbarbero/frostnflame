@@ -1,5 +1,5 @@
 <script language="JavaScript">
-{literal}
+
 function checkAll (check){
 	var path = document.unreserve;
 	for (var i=0;i<path.elements.length;i++) {
@@ -12,14 +12,14 @@ function checkAll (check){
 		}
 	 }
 }
-{/literal}
+
 </script>
 
-{if $printmessage != ''}
+<?php if($printmessage != ''): ?>
 <?php echo $printmessage; ?>
-{/if}
+<?php endif; ?>
 
-Also see: <a href="?guide&amp;section=reserve&amp;era=<?php echo $uera; ?>{$authstr}">Guide: Reserve</a><br>
+Also see: <a href="?guide&amp;section=reserve&amp;era=<?php echo $uera; ?><?php echo $authstr; ?>">Guide: Reserve</a><br>
 <form method="post" action="?troopunreserve<?php echo $authstr; ?>" name="unreserve">
 <table class="inputtable">
 <tr><td colspan="3"><a href="?troopreserve<?php echo $authstr; ?>">Reserve Units</a></td>
@@ -30,13 +30,13 @@ Also see: <a href="?guide&amp;section=reserve&amp;era=<?php echo $uera; ?>{$auth
     <th class="aright">Max <input type="checkbox" name="maxall" onClick="checkAll(1)"></th>
 </tr>
 
-{section name=res loop=$types}
-<tr><td>{$types[res].name}</td>
-    <td class="aright">{$types[res].amt|gamefactor}</td>
-    <td class="aright"><input type="text" name="unreserve[{$types[res].type}]" size="8" value="0"></td>
-    <td class="aright"><input type="checkbox" name="max[{$types[res].type}]" value="{$types[res].type}"></td>
+<?php foreach($types as $res): ?>
+<tr><td><?php echo $res["name"]; ?></td>
+    <td class="aright"><?php echo gamefactor($res["amt"]); ?></td>
+    <td class="aright"><input type="text" name="unreserve[<?php echo $res["type"]; ?>]" size="8" value="0"></td>
+    <td class="aright"><input type="checkbox" name="max[<?php echo $res["type"]; ?>]" value="<?php echo $res["type"]; ?>"></td>
 </tr>
-{/section}
+<?php endforeach; ?>
 
 <tr><td colspan="7" class="acenter"><input type="submit" name="do_unreserve" value="Unreserve Units"></td></tr>
 </table>

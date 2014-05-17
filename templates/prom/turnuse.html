@@ -1,16 +1,16 @@
 <?php echo $turnoutput; ?>
 
-{if $message != ''}
+<?php if($message != ''): ?>
 
     <div align="center"><?php echo $message; ?></div>
 	<hr>
 
-{/if}
+<?php endif; ?>
 <?php echo $admessage; ?>
 <br><br>
 
 <table class="inputtable">
-<form method="post" action="<?php echo $main; ?>?{$turntype}{$authstr}">
+<form method="post" action="<?php echo $main; ?>?<?php echo $turntype; ?><?php echo $authstr; ?>">
 <tr><td colspan=2 nowrap><center>Spend how many turns <?php echo $doingwhat; ?>?</center></td></tr>
     <tr><td colspan=2><center><input type="text" name="use_turns" size="5" value="0">
 	<input type="hidden" name="do_use" value="1"></center></td></tr>
@@ -25,11 +25,11 @@
 	<td><input type="checkbox" name="netincomeneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td>Net {$uera.food} production is negative</td>
+	<td>Net <?php echo $uera["food"]; ?> production is negative</td>
 	<td><input type="checkbox" name="netfoodneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
-	<td>{$uera.wizards} production is negative</td>
+	<td><?php echo $uera["wizards"]; ?> production is negative</td>
 	<td><input type="checkbox" name="netwizardneg" class="check_box" value="yes"></td>
 </tr>
 <tr>
