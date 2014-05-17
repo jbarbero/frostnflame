@@ -49,7 +49,7 @@ $xtr=(!isset($GLOBALS['xtr'])?'':$GLOBALS['xtr']);
 $sql='SELECT '.$fields.' FROM '.$table.$where.' '.$xtr.' '.$groupBy.' '.$orderby.' '.$limit;
 $result=mysql_query($sql);
 if($result) {
-$GLOBALS['countRes']=mysql_num_rows($result);
+$GLOBALS['countRes']=mysqli_num_rows($result);
 $GLOBALS['result']=$result;
 }
 }
@@ -153,7 +153,7 @@ function db_ipCheck($thisIp,$thisIpMask,$user_id){
 $res=mysql_query('select id from '.$GLOBALS['Tb'].' where 
 banip='."'".$thisIp."'".' or banip='."'".$thisIpMask[0]."'".' or 
 banip='."'".$thisIpMask[1]."'".' or banip='."'".$user_id."'");
-if($res and mysql_num_rows($res)>0) return TRUE; else return FALSE;
+if($res and mysqli_num_rows($res)>0) return TRUE; else return FALSE;
 }
 
 function db_sendMails($sus,$Tu,$Ts){
@@ -171,7 +171,7 @@ if(!$sus) {
 if($GLOBALS['makeLim']>0) $GLOBALS['makeLim']='LIMIT '.$GLOBALS['makeLim'];
 $result=mysql_query('select '.$what.' from '.$GLOBALS['Tu'].' LEFT JOIN '.$GLOBALS['Tp'].' ON '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].'='.$GLOBALS['Tp'].'.poster_id where '.$GLOBALS['Tp'].'.poster_id IS NULL order by '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].' '.$GLOBALS['makeLim']);
 if($result) {
-$GLOBALS['countRes']=mysql_num_rows($result);
+$GLOBALS['countRes']=mysqli_num_rows($result);
 $GLOBALS['result']=$result;
 }
 }
@@ -185,7 +185,7 @@ if(!$sus){
 $GLOBALS['makeLim']=(isset($GLOBALS['makeLim'])&&$GLOBALS['makeLim']>0?'LIMIT '.$GLOBALS['makeLim']:'');
 $result=mysql_query('select '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['username'][1].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserDate'].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['user_password'][1].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['user_email'][1].',max('.$GLOBALS['Tp'].'.post_time) as m from '.$GLOBALS['Tu'].','.$GLOBALS['Tp'].' where '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].'='.$GLOBALS['Tp'].'.poster_id group by '.$GLOBALS['Tp'].'.poster_id having m<'."'".$less."' ".$GLOBALS['makeLim']);
 if($result){
-$GLOBALS['countRes']=mysql_num_rows($result);
+$GLOBALS['countRes']=mysqli_num_rows($result);
 $GLOBALS['result']=$result;
 }
 }
