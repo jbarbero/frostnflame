@@ -3886,7 +3886,7 @@ class ewiki_database_mysql {
           WHERE (pagename='$id') $version  ORDER BY version DESC  LIMIT 1"
       );
       echo mysql_error();
-      if ($result && ($r = mysql_fetch_array($result, MYSQL_ASSOC))) {
+      if ($result && ($r = mysqli_fetch_array($result, MYSQL_ASSOC))) {
          unset($r["pagename"]);
          return($r);
       }
@@ -3932,7 +3932,7 @@ class ewiki_database_mysql {
       }
       $result = db_safe_query("SELECT pagename AS id, meta, flags FROM {$this->table} WHERE $sql");
       if ($result) {
-         while ($row = mysql_fetch_array($result)) {
+         while ($row = mysqli_fetch_array($result)) {
             $id = $row["id"];
             if (strlen($row["meta"])) {
                $r[$id] = unserialize($row["meta"]);
@@ -3954,7 +3954,7 @@ class ewiki_database_mysql {
       );
       $r = new ewiki_dbquery_result($fields);
       $last = "";
-      if ($result) while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+      if ($result) while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
          $drop = EWIKI_CASE_INSENSITIVE ? strtolower($row["id"]) : $row["id"];
          if (($last != $drop) && ($last = $drop)) {
             $r->add($row);
@@ -3994,7 +3994,7 @@ class ewiki_database_mysql {
 
       $r = new ewiki_dbquery_result(array("id","version",$field));
       $last = "";
-      if ($result) while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+      if ($result) while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
          $drop = EWIKI_CASE_INSENSITIVE ? strtolower($row["id"]) : $row["id"];
          if (($last != $drop) && ($last = $drop)) {
             $r->add($row);

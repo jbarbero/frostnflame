@@ -18,15 +18,15 @@ function newday($name) {
 
 
 function lasttime($name) {
-	global $crondb;
+	global $crondb, $db_link;
 	$time = time();
-	$name = mysql_real_escape_string($name);
+	$name = mysqli_real_escape_string($db_link, $name);
 	$q = @db_safe_query("SELECT time FROM $crondb WHERE name='$name';");
-	if(!mysql_num_rows($q)) {
+	if(!mysqli_num_rows($q)) {
 		db_safe_query("INSERT INTO $crondb (name, time) VALUES ('$name', $time);");
 		return $time;
 	} else {
-		$a = @mysql_fetch_array($q);
+		$a = @mysqli_fetch_array($q);
 		return $a[0];
 	}
 }

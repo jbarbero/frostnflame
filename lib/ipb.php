@@ -20,7 +20,7 @@ function intForumNews() {
 	$link = $config[forums] . 'index.php?showtopic=';
 	$member_link = $config[forums] . 'index.php?act=Profile&amp;CODE=03&amp;MID=';
 
-        while($topic = @mysql_fetch_array($topics)) {
+        while($topic = @mysqli_fetch_array($topics)) {
                 $id = $topic['tid'];
                 $title = $topic['title'];
 //		$comments = $topic['posts'] - 1;
@@ -30,7 +30,7 @@ function intForumNews() {
 			$ctext = '1 comment';
 		else if($comments > 1)
 			$ctext = $comments.' comments';
-                $post = @mysql_fetch_array(@db_safe_query("SELECT author_id,author_name,post_date,post FROM ".$pr."_posts WHERE topic_id=$id ORDER BY post_date ASC LIMIT 0,1;"));
+                $post = @mysqli_fetch_array(@db_safe_query("SELECT author_id,author_name,post_date,post FROM ".$pr."_posts WHERE topic_id=$id ORDER BY post_date ASC LIMIT 0,1;"));
                 $body = $post['post'];
 //		$body = str_replace('&', '&amp;', $body);
 //		$body = str_replace('&amp;amp;', '&amp;', $body);

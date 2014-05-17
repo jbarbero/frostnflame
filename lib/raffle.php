@@ -10,7 +10,7 @@ if(newday('raffle') && date("H") >= 12) {
 	foreach($types as $type) {
 		sqlQuotes($type);
 		$have = db_safe_query("SELECT * FROM $lotterydb WHERE num!=0 AND jtyp='$type';");
-		$havenum = mysql_num_rows($have);
+		$havenum = mysqli_num_rows($have);
 		fixInputNum($havenum);
 		if($havenum == 0)
 			continue;

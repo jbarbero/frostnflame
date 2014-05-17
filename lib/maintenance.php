@@ -10,7 +10,7 @@ if($hrs = howmanytimes(lasttime('vacation'), 60)) {
 if($times = howmanytimes(lasttime('bank'), $config['savingsperminutes'])) {
 		
 	$bankusers = db_safe_query("SELECT * FROM $playerdb WHERE savings>(networth * ".$config['maxsave'].");");
-	while ($users = mysql_fetch_array($bankusers)) {
+	while ($users = mysqli_fetch_array($bankusers)) {
 		for ($i=0; $i < $times; $i++) {
 			if ($users[savings] > ($users[networth] * $config['maxsave'])) {
 				$minuscash = min(($users[savings] * ($config['savingsper']) / 100),($users[savings] - ($users[networth] * $config['maxsave']))); // removes excess savings; percent of total savings
@@ -39,7 +39,7 @@ if(howmanytimes(lasttime('tidying'), $perminutes)) {
 			(land=0 AND disabled=1 AND ip!='0.0.0.0' AND idle<($time-$idletime)) OR
 			(disabled=4)
 				;");
-		while ($users = mysql_fetch_array($delusers)) {
+		while ($users = mysqli_fetch_array($delusers)) {
 			// print "Deleting user $users[empire] <a class=proflink href=?profiles&num=$users[num]>(#$users[num])</a>...\n";
 			if ($users[clan]) { // remove user from clan
 				$clan = loadClan($users[clan]);

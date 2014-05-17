@@ -4,8 +4,8 @@ if(!defined("PROMISANCE"))
 if(howmanytimes(lasttime('markets'), $perminutes)) {
 	// condense market items:
 	$mkt = db_safe_query("SELECT * FROM $marketdb WHERE time<$time;");
-	while ($market = mysql_fetch_array($mkt)) {
-		$market = mysql_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE id=$market[id];"));
+	while ($market = mysqli_fetch_array($mkt)) {
+		$market = mysqli_fetch_array(db_safe_query("SELECT * FROM $marketdb WHERE id=$market[id];"));
 		$id = $market[id];
 		$amount = $market[amount];
 		$price = $market[price];
@@ -14,7 +14,7 @@ if(howmanytimes(lasttime('markets'), $perminutes)) {
 		$clan = $market[clan];
 		$mktdoubles = db_safe_query("SELECT * FROM $marketdb WHERE time<$time AND price=$price AND type='$unit' AND seller=$seller AND clan=$clan AND id!=$id;");
 		if($mktdoubles)
-		while ($mktsame = mysql_fetch_array($mktdoubles)) {
+		while ($mktsame = mysqli_fetch_array($mktdoubles)) {
 			$amount += $mktsame[amount];
 			db_safe_query("DELETE FROM $marketdb WHERE id=$mktsame[id];");
 		} 

@@ -30,7 +30,7 @@ function loadBount ($num)
 {
 	global $mercdb;
 	fixInputNum($num);
-	return mysql_fetch_array(db_safe_query("SELECT * FROM $mercdb WHERE num=$num;"));
+	return mysqli_fetch_array(db_safe_query("SELECT * FROM $mercdb WHERE num=$num;"));
 }
 
 function bountyCount($target_id, $user_id) {
@@ -47,7 +47,7 @@ function bountyscan(&$target)
         //echo "<br><br><br>";
 		//print("entered scan?");
 
-        while($bounty = mysql_fetch_array($bounties)) {
+        while($bounty = mysqli_fetch_array($bounties)) {
         	$l = $r = $n = 0;;
         	$all_three_net = $bounty[net];
         	$all_three_land = $bounty[land];
@@ -220,7 +220,7 @@ function recalcBounties() {
 	global $playerdb;
 
         $all_users = db_safe_query("SELECT * FROM $playerdb ORDER BY networth DESC;");
-        while ($one_user = mysql_fetch_array($all_users))
+        while ($one_user = mysqli_fetch_array($all_users))
         {
                 $r = bountyscan($one_user);
         }

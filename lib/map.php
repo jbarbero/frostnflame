@@ -179,14 +179,14 @@ function getHierarchies() {
 	$hierarchies = array();
 	$clans = db_safe_query("SELECT num FROM $clandb WHERE members>0;");
 	$clanplayers = array();
-	while($clan = mysql_fetch_array($clans)) {
+	while($clan = mysqli_fetch_array($clans)) {
 		$net = db_safe_firstval("SELECT SUM($factor) FROM $playerdb WHERE clan=$clan[num] AND land>0 AND disabled<2;");
 		$hierarchies["c$clan[num]"] = array(	num=>$clan[num],
 							net=>$net,
 							type=>1);
 		$total += $net;
 		$players = db_safe_query("SELECT num, clan, $factor FROM $playerdb WHERE clan=$clan[num] AND land>0 AND disabled<2;");
-		while($player = mysql_fetch_array($players)) {
+		while($player = mysqli_fetch_array($players)) {
 			$clanplayers[$clan[num]][$player[num]] = array(	num=>$player[num],
 									clan=>$player[clan],
 									net=>$player[$factor],
@@ -196,7 +196,7 @@ function getHierarchies() {
 	}
 
 	$players = db_safe_query("SELECT num, clan, $factor FROM $playerdb WHERE clan=0 AND land>0 AND disabled<2;");
-	while($player = mysql_fetch_array($players)) {
+	while($player = mysqli_fetch_array($players)) {
 		$hierarchies["p$player[num]"] = array(	num=>$player[num],
 							clan=>$player[clan],
 							net=>$player[$factor],

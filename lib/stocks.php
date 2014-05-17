@@ -10,7 +10,7 @@ if(newday('stocks')) {
 	db_safe_query("UPDATE $stockdb SET days2=days1;");
 	$stocks = db_safe_query("SELECT * FROM $stockdb;");       
 	$days = date('z', lasttime('stocks')) + 200;
-	while ($stock = mysql_fetch_array($stocks)) {
+	while ($stock = mysqli_fetch_array($stocks)) {
 		$x = 0.5;
 		$b = - $stock['bender'] / 1000;
 		for($i = 0; $i < $days; $i++) {
@@ -33,7 +33,7 @@ if($times) {
 	// stock market functions! yeehaw
 	$stocks = db_safe_query("SELECT * FROM $stockdb;");       
 	$days = date('z') + 200;
-	while ($stock = mysql_fetch_array($stocks)) {
+	while ($stock = mysqli_fetch_array($stocks)) {
 		$x = 0.5;
 		$b = - $stock['bender'] / 1000;
 		for($i = 0; $i < $days; $i++) {

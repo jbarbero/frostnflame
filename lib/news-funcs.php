@@ -11,7 +11,7 @@ function printNews (&$user) {
 		$order = 'DESC';
 
 	$news = db_safe_query("SELECT * FROM $newsdb WHERE id1=$user[num] AND time>$user[newstime] ORDER BY time $order;");
-	if (!@mysql_num_rows($news))
+	if (!@mysqli_num_rows($news))
 		return 0;
 
 	echo '<table class="inputtable" border=1>';
@@ -19,14 +19,14 @@ function printNews (&$user) {
 	echo '<th colspan="2">Event</th>';
 	echo '<th style="width:2">Times</th></tr>';
 
-	while ($new = mysql_fetch_array($news)) {
+	while ($new = mysqli_fetch_array($news)) {
 		$time = $new[time];
 		$id1 = $new[id1];
 		$id2 = $new[id2];
 		$id3 = $new[id3];
 
 		if($id1 != "0") {
-			$pl1 = mysql_fetch_array(db_safe_query("SELECT empire,race,era FROM $playerdb WHERE num=$id1;"));
+			$pl1 = mysqli_fetch_array(db_safe_query("SELECT empire,race,era FROM $playerdb WHERE num=$id1;"));
 			$name1 = $pl1['empire'].' <a class=proflink href=?profiles&num='.$id1.$authstr.'>(#'.$id1.')</a>';
 			$era1 = loadEra($pl1['era'], $pl1['race']);
 		} else {
@@ -35,7 +35,7 @@ function printNews (&$user) {
 		}
 		
 		if($id2 != "0") {
-			$pl2 = mysql_fetch_array(db_safe_query("SELECT empire,race,era FROM $playerdb WHERE num=$id2;"));
+			$pl2 = mysqli_fetch_array(db_safe_query("SELECT empire,race,era FROM $playerdb WHERE num=$id2;"));
 			$name2 = $pl2['empire'].' <a class=proflink href=?profiles&num='.$id2.$authstr.'>(#'.$id2.')</a>';
 			$era2 = loadEra($pl2['era'], $pl2['race']);
 		} else {
@@ -44,7 +44,7 @@ function printNews (&$user) {
 		}
 		
 		if($id3 != "0") {
-			$pl3 = mysql_fetch_array(db_safe_query("SELECT empire,race,era FROM $playerdb WHERE num=$id3;"));
+			$pl3 = mysqli_fetch_array(db_safe_query("SELECT empire,race,era FROM $playerdb WHERE num=$id3;"));
 			$name3 = $pl3['empire'].' <a class=proflink href=?profiles&num='.$id3.$authstr.'>(#'.$id3.')</a>';
 			$era3 = loadEra($pl3['era'], $pl3['race']);
 		} else {
