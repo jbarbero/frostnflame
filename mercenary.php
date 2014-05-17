@@ -54,7 +54,6 @@ $uclan = loadClan($users[clan]);
 
                         $warquery_array[] = array('num' => $wardrop['num'], 'color' => $color, 'empire' => $wardrop['empire']);
         }
-    $tpl->assign('drop', $warquery_array);
 
 if($do_recalc)
 {
@@ -551,19 +550,17 @@ foreach($config[troop] as $num => $mktcost) {
     $gdisp[] = array(name=>$uera["troop$num"], cansend=>$cansend[$num], id=>$num);
 }
 
-$tpl->assign('givetroops', $gdisp);
+$givetroops = $gdisp;
 
-$tpl->assign('percent', $percent*100);
-$tpl->assign('filler', "\t");
-$tpl->assign('merc_name', "Mercenary Guild");
-$tpl->assign('lst_ele', (sizeof($bounty)-1));
-$tpl->assign('bounty', $b_array);
-$tpl->assign('color', $users[era]);
-$tpl->assign('left', ($max-$users[num_bounties]));
-$tpl->assign('bounty_id', $edit_bounty[num]);
-$tpl->assign('prof_target', $prof_target);
-$tpl->assign('edit', $edit_bounty[edits]+1);
-$tpl->display('mercenary.html');
+$filler = "\t";
+$merc_name = "Mercenary Guild";
+$lst_ele = sizeof($bounty)-1;
+$bounty = $b_array;
+$left = $max-$users[num_bounties];
+$bounty_id = $edit_bounty[num];
+$edit = $edit_bounty[edits]+1;
+
+template_display('mercenary.html');
 
 TheEnd("");
 ?>

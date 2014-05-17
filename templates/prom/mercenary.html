@@ -13,12 +13,12 @@
 
     <table class="scorestable">
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
-    <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
+    <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 
 
     <?php foreach($GLOBALS["bounty"] as $loop_num): ?>
-        <tr class="c<?php echo $loop_num["color"]; ?>">
+        <tr class="c<?php echo $loop_num["users"]["era"]; ?>">
         <td class="acenter"><?php echo $loop_num["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_num["t_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_num["t_num"]; ?>)</a></td>
         <td class="acenter"><?php echo $loop_num["s_name"]; ?><br /><?php echo $loop_num["editable"]; ?></td>
         <td class="aright">
@@ -40,8 +40,8 @@
     <?php endforeach; ?>
 
 
-    <?php /* <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
-    <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
+    <?php /* <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
+    <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
     </form>
     </table>
@@ -89,7 +89,7 @@ function updateMsgNums() {
 <tr>
 <th colspan="4">Set a bounty on: <input type="text" value="<?php if($GLOBALS["set"]==1): ?><?php echo $GLOBALS["prof_target"]; ?><?php endif; ?>" name="targ" size="3" maxlength="4" onChange="updateMsgNames()">
 <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-        <?php foreach($GLOBALS["drop"] as $loop_dropsel): ?>
+        <?php foreach($GLOBALS["warquery_array"] as $loop_dropsel): ?>
                 <option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"<?php if($GLOBALS["set"]==1): ?><?php if($GLOBALS["prof_target"] == $loop_dropsel["num"]): ?> selected <?php endif; ?><?php endif; ?>><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["empire"]; ?></option>
         <?php endforeach; ?>
 </select>
@@ -145,7 +145,7 @@ function updateMsgNums() {
 
 </table><br><br>
 *Leave the condition blank if you would not like to include it<br>
-**<b>A small transaction fee of <?php echo $GLOBALS["percent"]; ?> % will be charged on all bounties</b><br>
+**<b>A small transaction fee of <?php echo $GLOBALS["percent"]*100; ?> % will be charged on all bounties</b><br>
 ***<b>Anonymous bounties are taxed twice as much</b><br>
 ****You may only set <?php echo $GLOBALS["max"]; ?> bounties at any time. You have <?php echo $GLOBALS["left"]; ?> bounties left.<br><br>
 <input type="submit" name="do_set" value="Set Bounty">
@@ -162,10 +162,10 @@ function updateMsgNums() {
 
     <table class="scorestable">
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
-    <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
+    <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 
-        <tr class="c<?php echo $GLOBALS["edit_bounty"]["color"]; ?>">
+        <tr class="c<?php echo $GLOBALS["edit_bounty"]["users"]["era"]; ?>">
         <td class="acenter"><?php echo $GLOBALS["edit_bounty"]["t_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["edit_bounty"]["t_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["edit_bounty"]["t_num"]; ?>)</a></td>
         <td class="acenter"><?php echo $GLOBALS["edit_bounty"]["s_name"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["edit_bounty"]["s_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["edit_bounty"]["s_num"]; ?>) </a><br /></td>
         <td class="aright">
@@ -184,8 +184,8 @@ function updateMsgNums() {
         <tr><td colspan="5"></td></tr>
 
 
-    <?php /* <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
-    <tr class="era<?php echo $GLOBALS["color"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
+    <?php /* <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:10%" >Number</th><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th><th style="width:15%" >Cash</th><th style="width:15%" >Drop Point</th></tr> */ ?>
+    <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
     </form>
     </table>
