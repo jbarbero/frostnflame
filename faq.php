@@ -25,5 +25,5 @@ if($users['condense'])
     $cnd = ' checked';
 
 //include("menus.php");
-$template_display('faq.html');
+template_display('faq.html');
 ?>

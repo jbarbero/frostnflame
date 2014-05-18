@@ -98,7 +98,7 @@ while($player = mysqli_fetch_array($players)) {
     divStart($player, 'p');
 }
 
-$template_display('map.html');
+template_display('map.html');
 
 TheEnd("");
 ?>

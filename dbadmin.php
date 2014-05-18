@@ -36,7 +36,7 @@ while($stock = mysqli_fetch_array($q)) {
 }
 
 echo "<pre>";
-$pn = mysql_query("SELECT num FROM $playerdb;");
+$pn = db_safe_query("SELECT num FROM $playerdb;");
 while($p = mysqli_fetch_array($pn)) {
     $n = $p[num];
     $user = loadUser($n);
@@ -77,7 +77,7 @@ if(isset($_POST['do_reset'])) {
     TheEnd("Server Reset!");
 }
 
-$template_display("dbadmin.html");
+template_display("dbadmin.html");
 TheEnd("");
 ?>
 

@@ -185,7 +185,7 @@ printRow(labs);
 printRow(farms);
 printRow(towers);
 
-$template_display("demolish.html");
+template_display("demolish.html");
 TheEnd("");
 
 ?>

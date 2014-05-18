@@ -13,6 +13,6 @@ if ($do_delete) {
         $state = 2;
 }
 
-$template_display('delete.html');
+template_display('delete.html');
 TheEnd("");
 ?>

@@ -14,9 +14,9 @@
         <tr><th>Gold:</th>
             <td><b>$<?php echo $GLOBALS["users"]["cash"]; ?></b></td></tr>
         <tr><th><?php echo $GLOBALS["uera"]["food"]; ?>:</th>
-            <td><b><?php echo gamefactor($GLOBALS["users"]["food"]); ?></b> <?php if($GLOBALS["users"]["pubmarket_food"]): ?>(<?php echo gamefactor($GLOBALS["users"]["pubmarket_food"]); ?>)<?php endif; ?></td></tr>
+            <td><b><?php echo commas(gamefactor($GLOBALS["users"]["food"])); ?></b> <?php if($GLOBALS["users"]["pubmarket_food"]): ?>(<?php echo commas(gamefactor($GLOBALS["users"]["pubmarket_food"])); ?>)<?php endif; ?></td></tr>
         <tr><th><?php echo $GLOBALS["uera"]["runes"]; ?>:</th>
-            <td><b><?php echo gamefactor($GLOBALS["users"]["runes"]); ?></b> <?php if($GLOBALS["users"]["pubmarket_runes"]): ?>(<?php echo gamefactor($GLOBALS["users"]["pubmarket_runes"]); ?>)<?php endif; ?></td></tr>
+            <td><b><?php echo commas(gamefactor($GLOBALS["users"]["runes"])); ?></b> <?php if($GLOBALS["users"]["pubmarket_runes"]): ?>(<?php echo commas(gamefactor($GLOBALS["users"]["pubmarket_runes"])); ?>)<?php endif; ?></td></tr>
         <tr><th><?php echo $GLOBALS["uera"]["peasantsC"]; ?>:</th>
             <td><?php echo $GLOBALS["users"]["peasants"]; ?></td></tr>
         <tr><th>Race:</th>

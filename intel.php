@@ -6,11 +6,11 @@ $inteldb = $prefix."_intel";
 
 if($do_delete) {
     $id = $_POST['id'];
-    mysql_query("DELETE FROM $inteldb WHERE id='$id'") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
+    db_safe_query("DELETE FROM $inteldb WHERE id='$id'") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
     header(str_replace('&amp;', '&', "Location: ".$config[sitedir].$config[main]."?intel$authstr")); 
 }
 echo"<center><big><b>Intelligence Reports</big></b></center><br>";
-$sql = mysql_query("SELECT * FROM $inteldb WHERE num=".$users[num]." ORDER BY spytime DESC") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
+$sql = db_safe_query("SELECT * FROM $inteldb WHERE num=".$users[num]." ORDER BY spytime DESC") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
 if(mysqli_num_rows($sql) == 0) echo"<center><span class='cwarn'>No intelligence reports exist for this empire.</span></center>";
 else echo"<hr>";
 while($row = mysqli_fetch_array($sql)) {

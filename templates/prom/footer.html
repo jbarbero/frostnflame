@@ -1,9 +1,9 @@
 <br>
-<?php if($GLOBALS["endbar"] == true): ?>
+<?php if($GLOBALS["endbar"]): ?>
 <table style="width:100%">
 <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="font-size:medium" class="darklink">
     <td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
-    <?php if($GLOBALS["newmail"] == 'true'): ?>
+            <?php if($GLOBALS["newmail"]): ?>
       <b>New Mail!</b>
     <?php else: ?>
       Mailbox

@@ -88,14 +88,24 @@ function rand_nonce($oldval) {
 /* Just an alias to show what code has been audited for security. */
 function db_safe_query($query) {
     global $db_link;
-    return @mysqli_query($GLOBALS["db_link"], $query);    /* SAFE -- root call */
+    $ret = mysqli_query($db_link, $query);    /* SAFE -- root call */
+    if(!$ret) {
+        echo "<pre>";
+        echo "Query: $query\n\n";
+        echo "Database error: " . mysqli_error($db_link) . "\n\n";
+        debug_print_backtrace();
+        echo "\n";
+        die();
+    } else {
+        return $ret;
+    }
 }
 
 // evaluate an SQL query, return first cell of first row
 // useful for "SELECT count(*) ..." queries
 function db_firstval($query) {        /* SAFE -- root declaration */
     /* Safe because it's up to the caller to do proper checking */
-    $data = @mysqli_fetch_row(db_safe_query($query));
+    $data = mysqli_fetch_row(db_safe_query($query));
     return $data[0];
 }
 
@@ -1323,10 +1333,10 @@ function intelMainStats ($user, $race, $era, $esp=false, $other=null){
     }
     $spellarray = @implode(":", $spellarray);
     $spyarray[] = $spellarray;
-    $spyinfo = implode("|", $spyarray);
+    $spyinfo = addslashes(implode("|", $spyarray));
     $spydb = $prefix."_intel"; 
 
-    mysql_query("INSERT INTO $spydb SET num='$users[num]', spyinfo='$spyinfo', spytime='$time'") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
+    db_safe_query("INSERT INTO $spydb SET num='$users[num]', spyinfo='$spyinfo', spytime='$time'") or die("Error: ".mysqli_error($GLOBALS["db_link"]));
 } 
 
 function printMainStats ($user, $race, $era, $esp=false, $other=null){
@@ -1611,7 +1621,7 @@ function doStatusBar($show) {
     if (!auth_user(true)) {
         global $generated;
         $generated = getmicrotime() - $starttime;
-        $template_display('footer.html');
+        template_display('footer.html');
         return;
     }
     $foodnet = calcFoodPro() - calcFoodCon();
@@ -1667,7 +1677,7 @@ function doStatusBar($show) {
 
     if($show) {
         $generated = getmicrotime() - $starttime;
-        $template_display('footer.html');
+        template_display('footer.html');
     }
 }
 // EXPERIENCE ALGORITHIM Anton:030313

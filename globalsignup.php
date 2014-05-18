@@ -54,7 +54,7 @@ if ($do_signup) {
     $ip = realip();
 
     db_safe_query("INSERT INTO global_users (num) VALUES (NULL);");    // add a new user entry (with defaults)
-    $users[num] = mysql_insert_id();
+    $users[num] = mysqli_insert_id($db_link);
 
         $users[username] = $signup_username;
         $users[name] = $signup_name;

@@ -53,7 +53,7 @@ if ($do_signup) {
         $multi = 0;
 
     db_safe_query("INSERT INTO $playerdb (num) VALUES (NULL);");    // add a new user entry (with defaults)
-    $users = loadUser(mysql_insert_id());                // and load it
+    $users = loadUser(mysqli_insert_id($db_link));                // and load it
 
     $users[username] = $signup_username;
     $users[name] = $signup_name;

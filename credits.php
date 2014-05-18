@@ -5,7 +5,7 @@ if (auth_user(true))
 else
     htmlbegincompact("Credits");
 
-$template_display('credits.html');
+template_display('credits.html');
 
 TheEnd("");
 ?>

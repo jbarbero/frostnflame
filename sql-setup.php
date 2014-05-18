@@ -14,16 +14,16 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `global_users` (
   `empire` tinytext NOT NULL,
   `num` mediumint(8) unsigned NOT NULL auto_increment,
   PRIMARY KEY  (`num`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
-if($prefix != "" && @mysqli_num_rows(@db_safe_query("SELECT num FROM $playerdb WHERE num=1;")) == 0) {
+if($prefix != "" && (mysqli_num_rows(db_safe_query("SHOW TABLES LIKE '$playerdb';")) == 0 || mysqli_num_rows(db_safe_query("SELECT num FROM $playerdb WHERE num=1;")) == 0)) {
 
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_banned` (
   `id` int(10) NOT NULL auto_increment,
   `banip` varchar(15) NOT NULL default '',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$bountydb` (
   `cash` bigint(20) NOT NULL default '0',
@@ -45,7 +45,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$bountydb` (
   `troop` varchar(210) NOT NULL default '',
   `anon` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`num`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$clandb` (
   `num` smallint(5) unsigned NOT NULL auto_increment,
@@ -78,13 +78,13 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$clandb` (
   `tres_open` tinyint(2) NOT NULL default '0',
   `cron_last` int(11) NOT NULL default '0',
   PRIMARY KEY  (`num`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_cron` (
   `name` varchar(64) NOT NULL default '',
   `time` int(11) NOT NULL default '0',
   PRIMARY KEY  (`name`)
-) TYPE=MyISAM ;");
+) ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_debuglog` (
   `id` int(11) unsigned NOT NULL auto_increment,
@@ -96,7 +96,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_debuglog` (
   KEY `date` (`date`),
   KEY `actor` (`actor`),
   KEY `target` (`target`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_forums` (
   `forum_id` int(10) NOT NULL auto_increment,
@@ -107,7 +107,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_forums` (
   `topics_count` int(10) NOT NULL default '0',
   `posts_count` int(10) NOT NULL default '0',
   PRIMARY KEY  (`forum_id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 //server forum
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $prefix"."_forums;")) == 0) {
@@ -121,7 +121,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_intel` (
   `spyinfo` text NOT NULL,
   `spytime` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$lotterydb` (
   `num` int(10) unsigned NOT NULL default '0',
@@ -130,7 +130,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$lotterydb` (
   `jtyp` varchar(7) NOT NULL default '',
   KEY `num` (`num`),
   KEY `ticket` (`ticket`)
-) TYPE=MyISAM ;");
+) ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $lotterydb;")) == 0) {
     db_safe_query("INSERT INTO `$lotterydb` VALUES (0, 0, 0, 'food');");
@@ -158,7 +158,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$marketdb` (
   KEY `price` (`price`),
   KEY `time` (`time`),
   FULLTEXT KEY `type` (`type`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$messagedb` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -176,7 +176,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$messagedb` (
   KEY `dest` (`dest`),
   KEY `time` (`time`),
   KEY `deleted` (`deleted`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_motd` (
   `id` int(11) unsigned NOT NULL auto_increment,
@@ -185,7 +185,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_motd` (
   `content` text NOT NULL,
   `date` date NOT NULL default '0000-00-00',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$newsdb` (
   `id` bigint(9) unsigned NOT NULL auto_increment,
@@ -210,7 +210,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$newsdb` (
   `online` tinyint(2) NOT NULL default '0',
   `num` int(11) NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$playerdb` (
   `global_num` int(11) NOT NULL,
@@ -321,10 +321,10 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$playerdb` (
   PRIMARY KEY  (`num`,`signedup`),
   KEY `networth` (`networth`),
   KEY `rank` (`rank`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $playerdb WHERE num=1;")) == 0) {
-    db_safe_query("INSERT INTO `$prefix"."_players` VALUES ('0', 'admin', '73d4df1292b6187fa48894b76497de7b', '1', '23768', 'Administrative Officer', 'jbarbero+faf@gmail.com', '127.0.0.1', '1204417010', '0', '2', '1', '0', '1204417105', '0', '1', 'Administrator', '1', '7', '3', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '150', '1204416600', '1204416000', '250', '0', '147061', '100000', '10000', '500', '0|0|0|0', '', '100', '0', '500', '0', '0', '25|25|25|25', '250', '5', '20', '0', '5', '0', '15', '0', '205', '10', '0', '100', '1204416000', '0', '8333|4167|2083|14', '0', '100000', '0|0|0|0', '0', '5', '0', '10', '0', '1204417010', '1204417010', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', 'Administrator', '', '', '1000|1000|1000|1000|1000|1000|1000|1000', '0', '0', '0', '1', '1', 'Inbox|Sent', '0', '1', '0', '0', '1', '0', '0');");
+    db_safe_query("INSERT INTO `$prefix"."_players` (global_num, username, password, passchanged, rsalt, name, email, IP, signedup, disabled, online, idle, empire, num, rank, turns, turns_last, hour_last, troops, troops_res, production, turnbank, turnbank_last, pvmarket, pvmarket_last, pmkt_food, bmper, bmper_last, msgtime, newstime, profile, igname, aim, msn, stocks, folders) VALUES ('0', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', '1', '23768', 'Administrative Officer', 'jbarbero+faf@gmail.com', '127.0.0.1', '1204417010', '2', '1', '1204417105', 'Administrator', '1', '1', '150', '1204416600', '1204416000', '0|0|0|0', '', '25|25|25|25', '100', '1204416000', '8333|4167|2083|14', '0', '100000', '0|0|0|0', '0', '1204417010', '1204417010', '', 'Administrator', '', '', '1000|1000|1000|1000|1000|1000|1000|1000', 'Inbox|Sent') ;");
 }
 echo mysqli_error($GLOBALS["db_link"]);
 
@@ -343,7 +343,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_posts` (
   KEY `forum_id` (`forum_id`),
   KEY `topic_id` (`topic_id`),
   KEY `poster_id` (`poster_id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_send_mails` (
   `id` int(11) NOT NULL auto_increment,
@@ -352,7 +352,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_send_mails` (
   PRIMARY KEY  (`id`),
   KEY `topic_id` (`topic_id`),
   KEY `user_id` (`user_id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$stockdb` (
   `id` int(11) NOT NULL auto_increment,
@@ -365,7 +365,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$stockdb` (
   `bender` int(11) NOT NULL default '0',
   `boost` int(11) NOT NULL default '0',
   KEY `id` (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=11 ;");
+) AUTO_INCREMENT=11 ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $stockdb;")) == 0) {
     db_safe_query("INSERT INTO `$stockdb` VALUES (1, 'TRP', 'Troops', 75391, 106955, 119687, 169893, 1802, 0);");
@@ -390,7 +390,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_system` (
   `topnet2` int(11) unsigned NOT NULL default '0',
   `topnet3` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $prefix"."_system;")) == 0) {
     db_safe_query("INSERT INTO `$prefix"."_system` VALUES ('', 0, 0, 0, 0, 0, 0, 0, 0);");
@@ -413,7 +413,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_topics` (
   KEY `forum_id` (`forum_id`),
   KEY `sticky` (`sticky`),
   KEY `topic_last_post_id` (`topic_last_post_id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_users` (
   `user_id` int(10) NOT NULL auto_increment,
@@ -436,7 +436,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$prefix"."_users` (
   `user_custom2` varchar(255) NOT NULL default '',
   `user_custom3` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`user_id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;");
+) AUTO_INCREMENT=1 ;");
 
 echo mysqli_error($GLOBALS["db_link"]);
 }

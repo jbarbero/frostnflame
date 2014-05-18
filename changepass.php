@@ -23,6 +23,6 @@ if($passchanged) {
     else    $printmessage = "Error! Passwords do not match!<br>\n";
 }
 
-$template_display('changepass.html');
+template_display('changepass.html');
 TheEnd("");
 ?>

@@ -153,7 +153,7 @@ if (($do_setvacation) && ($yes_vacation)) {
     TheEnd("Vacation setting saved; your account is now locked. Your empire will be frozen in $config[vacationdelay] hours.");
 }
 
-if($lastweek == true)
+if($lastweek)
     $lastweek = true;
 if($users['turnsused'] < $config['protection'])
     $protection = true;

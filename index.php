@@ -1,4 +1,6 @@
 <?
+error_reporting(E_ALL & ~E_NOTICE);
+
 define("PROMISANCE", true);
 //ob_start("ob_gzhandler");
 ob_start();

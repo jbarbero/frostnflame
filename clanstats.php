@@ -75,6 +75,6 @@ while (list(,$num) = each($clan)) {
 $notmade = "$cunlisted/$ctotal (".round($cunlisted/$ctotal*100)."%)";
 $indeps = "$unallied/$utotal (".round($unallied/$utotal*100)."%)";
 
-$template_display('clanstats.html');
+template_display('clanstats.html');
 TheEnd();
 ?>

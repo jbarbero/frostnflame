@@ -122,7 +122,7 @@ foreach($player_lookup_table as $id => $entry) {
     divStart($data, 'p');
 }
 
-$template_display('map.html');
+template_display('map.html');
 
 TheEnd("");
 ?>

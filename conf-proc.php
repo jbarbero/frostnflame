@@ -13,56 +13,23 @@ function next_month($day=1) {
 }
 
 
-function arraycopy_r(&$src, &$dest) {
-    foreach($src as $key => $val) {
-        if(is_array($val)) {
-            $dest[$key] = array();
-            arraycopy_r($val, $dest[$key]);
-        } else {
-            $dest[$key] = $val;
-        }
-    }
-}
+# function arraycopy_r(&$src, &$dest) {
+#     foreach($src as $key => $val) {
+#         if(is_array($val)) {
+#             $dest[$key] = array();
+#             arraycopy_r($val, $dest[$key]);
+#         } else {
+#             $dest[$key] = $val;
+#         }
+#     }
+# }
 
-
-$global_config = array();
-$perserver_config[] = array();
-$last_perserver = -1;
-
-
-function end_global_config() {
-    global $global_config, $config;
-
-    $global_config = $config;
-    $config = array();
-}
-
-
-function server_specific_config($id) {
-    global $perserver_config, $config, $last_perserver, $global_config;
-
-    if($last_perserver != -1)
-        arraycopy_r($config, $perserver_config[$last_perserver]);
-
-    $last_perserver = $id;
-    $config = array();
-
-    if(!isset($perserver_config[$id])) {
-        $perserver_config[$id] = array();
-        arraycopy_r($global_config, $perserver_config[$id]);
-    }
-
-    $config = $perserver_config[$id];
-}
-
-
-$config = array();
+$config_global = array();
+$config_server = array();
 if(file_exists("local/config.php"))
     include("local/config.php");
 else
     include("config.php");
-
-server_specific_config(-1);
 
 if (!defined('SERVER')) {
     if (isset($_GET['srv'])) {
@@ -73,7 +40,7 @@ if (!defined('SERVER')) {
         $s = $au[3];
         define('SERVER', $s);
     } else {
-        foreach($config['servers'] as $id => $name)
+        foreach($config_global['servers'] as $id => $name)
             break;
         if(isset($id))
             define('SERVER', $id);
@@ -84,10 +51,14 @@ if (!defined('SERVER')) {
 } 
 $server = SERVER;
 
+# Create $config
+# TODO: rewrite this with a php 4 compatible version
 $config = array();
-if(isset($perserver_config[SERVER]))
-    arraycopy_r($perserver_config[SERVER], $config);
+$config = $config_global;
+if(isset($config_server[SERVER]))
+    $config = array_replace_recursive($config_global, $config_server[SERVER]);
 
+# Some defaults
 if(empty($config['game_factor']))
     $config['game_factor'] = 1;
 

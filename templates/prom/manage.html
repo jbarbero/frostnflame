@@ -51,7 +51,7 @@
     </form>
     </td>
     <td class="acenter" style="width:40%">
-    <?php if($GLOBALS["protection"] == 'true' && $GLOBALS["config"]["early_exit"] == 'true'): ?>
+    <?php if($GLOBALS["protection"] && $GLOBALS["config"]["early_exit"]): ?>
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable"><tr><th>
     <input type="submit" name="leave_protection" value="Leave Protection">
@@ -84,7 +84,7 @@
     </table>
     </form>
 
-    <?php if($GLOBALS["lastweek"] != 'true'): ?>
+    <?php if(!$GLOBALS["lastweek"]): ?>
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th>Vacation</th></tr>

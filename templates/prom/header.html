@@ -38,7 +38,7 @@
 </td>
 <td class="acenter" style="vertical-align:top">
 
-<?php if($GLOBALS["adminpanel"] == 'true'): ?>
+<?php if($GLOBALS["adminpanel"]): ?>
 <?php if($GLOBALS["root"] == 1): ?>
 <form method="post" action="?<?php echo $GLOBALS["authstr"]; ?>">
 <div>
@@ -60,7 +60,7 @@
 </p>
 </td>
 <td width="50%"><p align="right">
-<?php if($GLOBALS["root"] == 1): ?>
+<?php if($GLOBALS["root"]): ?>
 <a href="<?php echo $GLOBALS["main"]; ?>?newsletter<?php echo $GLOBALS["authstr"]; ?>">Send Newsletter</a><br>
 <?php endif; ?>
 <a href="<?php echo $GLOBALS["main"]; ?>?igletter<?php echo $GLOBALS["authstr"]; ?>">Mass In-Game Message</a><br>
@@ -81,32 +81,32 @@
    <br>
 
 <table style="width:100%">
-<tr class="era<?php echo $GLOBALS["era"]; ?>" style="font-size:medium" class="darklink">
+<tr class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="font-size:medium" class="darklink">
     <td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
-    <?php if($GLOBALS["newmail"] == 'true'): ?>
+    <?php if($GLOBALS["newmail"]): ?>
       <b>New Mail!</b>
     <?php else: ?>
       Mailbox
     <?php endif; ?>
     </a></td>
-    <td class="acenter">Turns: <?php echo $GLOBALS["turns_new"]; ?>
+    <td class="acenter">Turns: <?php echo $GLOBALS["users"]["turns"]; ?>
     <?php if($GLOBALS["turnsleft"] > 0): ?>
         <br><font size="1">Protection: <?php echo $GLOBALS["turnsleft"]; ?></font>
     <?php endif; ?>
     </td>
-    <td class="acenter"><span class="<?php echo $GLOBALS["cash_color"]; ?>">Money: <?php echo gamefactor($GLOBALS["cash_new"]); ?></span></td>
-    <td class="acenter"><span class="<?php echo $GLOBALS["land_color"]; ?>">Land: <?php echo $GLOBALS["land_new"]; ?></span></td>
-    <td class="acenter"><?php echo $GLOBALS["runesname"]; ?>: <?php echo gamefactor($GLOBALS["runes_new"]); ?></td>
-    <td class="acenter"><span class="<?php echo $GLOBALS["food_color"]; ?>"><?php echo $GLOBALS["foodname"]; ?>: <?php echo gamefactor($GLOBALS["food_new"]); ?></span></td>
-    <td class="acenter"><span class="<?php echo $GLOBALS["health_color"]; ?>">Health: <?php echo $GLOBALS["health_new"]; ?>%</span></td>
-    <td class="acenter">Networth: $<?php echo $GLOBALS["networth_new"]; ?></td></tr>
+    <td class="acenter"><span class="<?php echo $GLOBALS["cash_color"]; ?>">Gold: <?php echo commas(gamefactor($GLOBALS["users"]["cash"])); ?></span></td>
+    <td class="acenter"><span class="<?php echo $GLOBALS["land_color"]; ?>">Land: <?php echo commas($GLOBALS["users"]["land"]); ?></span></td>
+    <td class="acenter"><?php echo $GLOBALS["uera"]["runes"]; ?>: <?php echo commas(gamefactor($GLOBALS["users"]["runes"])); ?></td>
+    <td class="acenter"><span class="<?php echo $GLOBALS["food_color"]; ?>"><?php echo $GLOBALS["uera"]["food"]; ?>: <?php echo commas(gamefactor($GLOBALS["users"]["food"])); ?></span></td>
+    <td class="acenter"><span class="<?php echo $GLOBALS["health_color"]; ?>">Health: <?php echo $GLOBALS["users"]["health"]; ?>%</span></td>
+    <td class="acenter">Networth: $<?php echo commas($GLOBALS["users"]["networth"]); ?></td></tr>
 </table>
 
-<?php if($GLOBALS["onlined"] == true): ?>
+<?php if($GLOBALS["onlined"]): ?>
     <span class="cwarn">You are under attack from <?php echo $GLOBALS["onl_e"]; ?>!</span><br>
 <?php endif; ?>
 
-<?php if($GLOBALS["validate1"] == 'true' || $GLOBALS["validate2"] == 'true'): ?>
+<?php if($GLOBALS["validate1"] || $GLOBALS["validate2"]): ?>
 It is now necessary to validate your account. If you did not receive your validation email, you can have it resent.<br>
 <form method="post" action="<?php echo $GLOBALS["main"]; ?>?validate<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable">

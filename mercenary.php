@@ -189,7 +189,7 @@ if($do_set)
 
 
     db_safe_query("INSERT INTO $mercdb (num) VALUES (NULL);");
-    $ubount = loadBount(mysql_insert_id());
+    $ubount = loadBount(mysqli_insert_id($db_link));
     $ubount[all_1] = $all;
     //print "All: $all";
     $ubount[time] = $btime;
