@@ -13,7 +13,7 @@ if($send_msg) {
             $sb = str_replace("%d",$time,$sb);
             $ss = str_replace("%d",$time,$ss);
 
-            $body = "This message being sent to all players from $users[empire].\n-----\n\n$sb";
+            $body = "This message was sent to all players by $users[empire].\n-----\n\n$sb";
 
             makeMsg(time(), $users[num], $warlord[num], $body, $ss);
 //        }
