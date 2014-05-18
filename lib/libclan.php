@@ -19,7 +19,7 @@ if ($lockdb)
 
         fixInputNum($create_founder);
         db_safe_query("INSERT INTO $clandb (founder) VALUES ($create_founder);");
-        $num = mysql_insert_id();
+        $num = mysqli_insert_id($db_link);
         $uclan = loadClan($num);
 
         $user =  loadUser($create_founder);
@@ -42,10 +42,10 @@ if ($lockdb)
         $ufound[allytime] = $time;
         saveUserData($ufound,"clan allytime");
         addNews(110, array(id1=>$create_founder, clan1=>$num));
-        $clname = mysql_real_escape_string($uclan[name]);
+        $clname = mysqli_real_escape_string($db_link, $uclan[name]);
         db_safe_query("INSERT INTO $prefix"."_forums ( `forum_id` , `forum_name` , `forum_desc` , `forum_order` , `forum_icon` , `topics_count`, `posts_count`) 
             VALUES ('$num', '$clname Forums', 'Clan Private Forums', '0', 'default.gif', '0', '0');");
-        echo mysql_error();
+        echo mysqli_error($db_link);
         TheEnd("$uclan[name] has been created successfully!");
         }
 ?>

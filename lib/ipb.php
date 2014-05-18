@@ -5,11 +5,11 @@ function intForumNews() {
         global $config, $dateformat, $dbhost, $dbuser, $dbpass, $dbname;
 
 
-    if (!$link = mysql_pconnect($dbhost,$dbuser,$dbpass)) {
+    if (!$link = mysqli_connect("p:$dbhost",$dbuser,$dbpass)) {
         return;
     }
 
-    @mysql_select_db($dbname);
+    mysqli_select_db($link, $dbname);
 
         $rets = array();
         $pr = $config['news_prefix'];

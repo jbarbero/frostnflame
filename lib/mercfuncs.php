@@ -20,7 +20,7 @@ function saveBountData (&$user, $data)
         }
         if ($items[$i]) $update .= ",";
     }
-        $my_sqltest = db_safe_query("UPDATE $mercdb SET $update WHERE num=$user[num];") or die("Invalid query: " . mysql_error());
+        $my_sqltest = db_safe_query("UPDATE $mercdb SET $update WHERE num=$user[num];") or die("Invalid query: " . mysqli_error($db_link));
     if (!db_safe_query("UPDATE $mercdb SET $update WHERE num=$user[num];"))
         print "FATAL ERROR: Failed to update player data $update for user #$user[num]!<!--prob1--><BR>\n";
 
@@ -43,7 +43,7 @@ function bountyCount($target_id, $user_id) {
 function bountyscan(&$target)
 {
        global $mercdb, $newsdb, $config;
-       $bounties = db_safe_query("SELECT * FROM $mercdb WHERE t_num=$target[num] AND filled=0;") or die("Invalid query: " . mysql_error());
+       $bounties = db_safe_query("SELECT * FROM $mercdb WHERE t_num=$target[num] AND filled=0;") or die("Invalid query: " . mysqli_error($db_link));
         //echo "<br><br><br>";
         //print("entered scan?");
 
