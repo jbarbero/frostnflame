@@ -284,72 +284,43 @@ function swear_filter($str) {
 
 $bbcode = new BBCode;
 $bbcode->SetDetectURLs(true);
-$bbcode->AddSmiley(':huh:', 'img/huh.gif');
-$bbcode->AddSmiley(':)', 'img/smile.gif');
-$bbcode->AddSmiley(':-)', 'img/smile.gif');
-$bbcode->AddSmiley('=)', 'img/smile.gif');
-$bbcode->AddSmiley(':P', 'img/tongue.gif');
-$bbcode->AddSmiley('=P', 'img/tongue.gif');
-$bbcode->AddSmiley(':-P', 'img/tongue.gif');
-$bbcode->AddSmiley(':D', 'img/biggrin.gif');
-$bbcode->AddSmiley(':-D', 'img/biggrin.gif');
-$bbcode->AddSmiley('=D', 'img/biggrin.gif');
-$bbcode->AddSmiley('XD', 'img/biggrin.gif');
-$bbcode->AddSmiley(':o', 'img/ohmy.gif');
-$bbcode->AddSmiley(':0', 'img/ohmy.gif');
-$bbcode->AddSmiley('B)', 'img/cool.gif');
-$bbcode->AddSmiley('B-)', 'img/cool.gif');
-$bbcode->AddSmiley('8-)', 'img/cool.gif');
-$bbcode->AddSmiley(';)', 'img/wink.gif');
-$bbcode->AddSmiley(';-)', 'img/wink.gif');
-$bbcode->AddSmiley(':lol:', 'img/laugh.gif');
-$bbcode->AddSmiley(':blink:', 'img/blink.gif');
-$bbcode->AddSmiley(':(', 'img/sad.gif');
-$bbcode->AddSmiley(':-(', 'img/sad.gif');
-$bbcode->AddSmiley('=(', 'img/sad.gif');
-$bbcode->AddSmiley(':rolleyes:', 'img/rolleyes.gif');
-$bbcode->AddSmiley(':unsure:', 'img/unsure.gif');
-$bbcode->AddSmiley(':angry:', 'img/mad.gif');
-$bbcode->AddSmiley(':fear:', 'img/fear.gif');
-$bbcode->AddSmiley('^^', 'img/happy.gif');
-$bbcode->AddSmiley('^.^', 'img/happy.gif');
-$bbcode->AddSmiley('^_^', 'img/happy.gif');
-$bbcode->AddSmiley('-_-', 'img/sleep.gif');
-$bbcode->AddSmiley('-.-', 'img/sleep.gif');
-$bbcode->AddSmiley(':wacko:', 'img/wacko.gif');
+$bbcode->SetSmileyURL("img/smilies/nbbc");
 
-# NBBC builtins
-# Image   Filename    Smiley BBCode (what you type)
-# angry.gif   angry.gif   >:(  >:-(  >=(  >=-(  D:  D-:  D=  D-=
-# anime.gif   anime.gif   ^_^
-# bigeyes.gif bigeyes.gif 8)  8-)
-# bigsmile.gif    bigsmile.gif    :D  :-D  =D  =-D
-# bigwink.gif bigwink.gif ;D  ;-D
-# blue.gif    blue.gif    :blue:
-# boggle.gif  boggle.gif  o.O  O.o
-# confuse.gif confuse.gif :?  :-?  =?  =-?
-# cool.gif    cool.gif    B)  B-)
-# evil.gif    evil.gif    >:)  >:-)  >=)  >=-)  >:D  >:-D  >=D  >=-D
-# frown.gif   frown.gif   :(  :-(  =(  =-(
-# heart.gif   heart.gif   <3
-# irritated.gif   irritated.gif   :/  :-/  =/  =-/  :\  :-\  =\  =-\
-# laugh.gif   laugh.gif   XD  X-D
-# lookleft.gif    lookleft.gif    <_<  <.<
-# lookright.gif   lookright.gif   >_>  >.>
-# neutral.gif neutral.gif :|  :-|  =|  =-|  :I  :-I  =I  =-I
-# saint.gif   saint.gif   O:)  O:-)  O=)  O=-)
-# sleepy.gif  sleepy.gif  :zzz:
-# smile.gif   smile.gif   :)  :-)  =)  =-)
-# smile3.gif  smile3.gif  :3  :-3  =3  =-3
-# sneaky.gif  sneaky.gif  >;)  >;-)  >;D  >;-D
-# star.gif    star.gif    :star:
-# surprise.gif    surprise.gif    :O  :-O  =O  =-O
-# sweatdrop.gif   sweatdrop.gif   ^^;
-# teeth.gif   teeth.gif   <g>  <G>
-# tongue.gif  tongue.gif  :P  :-P  =P  =-P  X-P
-# wink.gif    wink.gif    ;)  ;-)
-# wink3.gif   wink3.gif   ;3  ;-3
-# worry.gif   worry.gif   :s  :-S  =s  =-S
+# overriding builtin: boggle.gif  boggle.gif  o.O  O.o
+$bbcode->AddSmiley(':o', 'boggle.gif');
+$bbcode->AddSmiley(':0', 'boggle.gif');
+$bbcode->AddSmiley(':blink:', 'boggle.gif');
+$bbcode->AddSmiley(':huh:', 'boggle.gif');
+
+# overriding builtin: cool.gif    cool.gif    B)  B-)
+$bbcode->RemoveSmiley('B)');
+
+# overriding builtin: bigeyes.gif bigeyes.gif 8)  8-)
+$bbcode->RemoveSmiley('8)');
+
+# overriding builtin: anime.gif   anime.gif   ^_^
+$bbcode->AddSmiley('^_^', 'anime.gif');
+$bbcode->AddSmiley('^^', 'anime.gif');
+$bbcode->AddSmiley('^.^', 'anime.gif');
+
+# overriding builtin: sleepy.gif  sleepy.gif  :zzz:
+$bbcode->AddSmiley('-_-', 'sleepy.gif');
+$bbcode->AddSmiley('-.-', 'sleepy.gif');
+
+# overriding builtin: laugh.gif   laugh.gif   XD  X-D
+$bbcode->AddSmiley(':lol:', 'laugh.gif');
+
+# overriding builtin: confuse.gif confuse.gif :?  :-?  =?  =-?
+$bbcode->AddSmiley(':unsure:', 'confuse.gif');
+
+# overriding builtin: angry.gif   angry.gif   >:(  >:-(  >=(  >=-(  D:  D-:  D=  D-=
+$bbcode->AddSmiley(':angry:', 'angry.gif');
+
+# overriding builtin: worry.gif   worry.gif   :s  :-S  =s  =-S
+$bbcode->AddSmiley(':fear:', 'worry.gif');
+
+# others
+#$bbcode->AddSmiley(':rolleyes:', 'rolleyes.gif');
 
 
 function bbcode_parse($str){
