@@ -17,6 +17,7 @@ $news = db_safe_query("SELECT * FROM $newsdb WHERE (clan1=$user[clan] OR clan2=$
 if (!@mysqli_num_rows($news))
     return 0;
 
+echo '<hr>';
 echo '<table class="inputtable" border=1>';
 echo '<tr><th>Time</th>';
 echo '<th colspan="2">Event</th>';

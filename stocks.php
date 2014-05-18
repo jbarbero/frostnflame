@@ -116,10 +116,8 @@ for($i=1; $i <= $stock_count; $i += 1) {
     $stockbuy[$i-1]['id'] = $i;
 }
 
-$tpl->assign('stocknames', $stocks_display);
-
 //finish
-$tpl->display('stocks.html');
+template_display('stocks.html');
 
 TheEnd('');
 ?>

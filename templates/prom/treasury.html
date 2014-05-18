@@ -1,29 +1,29 @@
-<?php if($GLOBALS["trans"] != ""): ?>
+<?php if($GLOBALS["transaction"] != ""): ?>
     You have completed the transaction. Results:<br> <?php echo $GLOBALS["trans"]; ?>
     <hr>
 <?php endif; ?>
 
 <form method="post" action="<?php echo $GLOBALS["main"]; ?>?treasury<?php echo $GLOBALS["authstr"]; ?>">
 
-<h2>Welcome to the <?php echo $GLOBALS["clan_name"]; ?> Shared Treasury <font size="1">(<?php echo $GLOBALS["nco"]; ?>)</font></h2>
+<h2>Welcome to the <?php echo $GLOBALS["clan"]["name"]; ?> Shared Treasury <font size="1">(<?php echo $GLOBALS["nco"]; ?>)</font></h2>
 <br><table class="inputtable">
     <tr><td colspan="3">
     <table class="empstatus" style="width:100%">
     <tr class="inputtable2"><th colspan="3" style="text-align:center">Gold</th></tr>
-    <tr><th>Maximum:</th><td colspan="2">$<?php echo gamefactor($GLOBALS["limit_cash"]); ?></td></tr>
-    <tr><th>Current:</th><td colspan="2">$<?php echo gamefactor($GLOBALS["curr_cash"]); ?></td></tr>
+    <tr><th>Maximum:</th><td colspan="2">$<?php echo commas(gamefactor($GLOBALS["show_limit_cash"])); ?></td></tr>
+    <tr><th>Current:</th><td colspan="2">$<?php echo commas(gamefactor($GLOBALS["clan"]["treasury"])); ?></td></tr>
     </table></td>
     <td colspan="3">
     <table class="empstatus" style="width:100%">
     <tr class="inputtable2"><th colspan="3" style="text-align:center">Food</th></tr>
-    <tr><th>Maximum:</th><td colspan="2"><?php echo gamefactor($GLOBALS["limit_food"]); ?></td></tr>
-    <tr><th>Current:</th><td colspan="2"><?php echo gamefactor($GLOBALS["curr_food"]); ?></td></tr>
+    <tr><th>Maximum:</th><td colspan="2"><?php echo commas(gamefactor($GLOBALS["show_limit_food"])); ?></td></tr>
+    <tr><th>Current:</th><td colspan="2"><?php echo commas(gamefactor($GLOBALS["clan"]["granary"])); ?></td></tr>
     </table></td>
     <td colspan="3">
     <table class="empstatus" style="width:100%">
     <tr class="inputtable2"><th colspan="3" style="text-align:center"><?php echo $GLOBALS["uera"]["runes"]; ?></th></tr>
-    <tr><th>Maximum:</th><td colspan="2"><?php echo gamefactor($GLOBALS["limit_rune"]); ?></td></tr>
-    <tr><th>Current:</th><td colspan="2"><?php echo gamefactor($GLOBALS["curr_rune"]); ?></td></tr>
+    <tr><th>Maximum:</th><td colspan="2"><?php echo commas(gamefactor($GLOBALS["show_limit_rune"])); ?></td></tr>
+    <tr><th>Current:</th><td colspan="2"><?php echo commas(gamefactor($GLOBALS["clan"]["loft"])); ?></td></tr>
     </table></td></tr>
 
 <tr>

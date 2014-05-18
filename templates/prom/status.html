@@ -28,19 +28,19 @@
     <td style="vertical-align:top;width:33%">
         <table class="empstatus" style="width:100%">
         <tr><th colspan="2" class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="text-align:center">Military</th></tr>
-    <?php foreach($GLOBALS["troopshave"] as $loop_have): ?>
+    <?php foreach($GLOBALS["troopdisp"] as $loop_have): ?>
         <tr><th><?php echo $loop_have["name"]; ?>:</th>
-            <td><b><?php echo gamefactor($loop_have["have"]); ?></b> <?php if($GLOBALS["troopshave"][have]["market"]): ?>(<?php echo gamefactor($loop_have["market"]); ?>)<?php endif; ?></td></tr>
+            <td><b><?php echo gamefactor($loop_have["have"]); ?></b> <?php if($GLOBALS["troopdisp"][have]["market"]): ?>(<?php echo gamefactor($loop_have["market"]); ?>)<?php endif; ?></td></tr>
     <?php endforeach; ?>
         <tr><th><?php echo $GLOBALS["uera"]["wizards"]; ?>:</th>
         <td><?php echo $GLOBALS["users"]["wizards"]; ?></td></tr>
         <tr><td colspan="2">&nbsp;</td></tr>
         <tr><th>Offensive Points:</th>
-            <td><?php echo $GLOBALS["offpts"]; ?></td></tr>
+            <td><?php echo commas($GLOBALS["offpts"]); ?></td></tr>
         <tr><th>Defensive Points:</th>
-            <td><?php echo $GLOBALS["defpts"]; ?></td></tr>
+            <td><?php echo commas($GLOBALS["defpts"]); ?></td></tr>
         <tr><th>Experience:</th>
-            <td><?php echo $GLOBALS["experience"]; ?></td></tr>
+            <td><?php echo commas($GLOBALS["experience"]); ?></td></tr>
         </table>
     </td>
     <td style="vertical-align:top;width:33%">

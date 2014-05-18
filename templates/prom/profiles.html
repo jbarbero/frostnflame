@@ -32,7 +32,7 @@
         <form method="post" action="<?php echo $GLOBALS["main"]; ?>?profiles<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
             Read Profile of: <input type="text" name="num" size="5" maxlength="10" value="<?php echo $GLOBALS["selected"]; ?>" onChange="updateMsgNames()">
             <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
-            <?php foreach($GLOBALS["drop"] as $loop_dropsel): ?>
+            <?php foreach($GLOBALS["warquery_array"] as $loop_dropsel): ?>
                 <option value="<?php echo $loop_dropsel["num"]; ?>" class="m<?php echo $loop_dropsel["color"]; ?>"
                 <?php if($GLOBALS["selected"] == $loop_dropsel["num"]): ?> selected <?php endif; ?>
                 ><?php echo $loop_dropsel["num"]; ?> - <?php echo $loop_dropsel["name"]; ?></option>
@@ -50,7 +50,7 @@
 
 
 
-    <?php if($GLOBALS["do_view"]=="true"): ?>
+    <?php if($GLOBALS["do_view"]): ?>
         <table style="width:100%" align="center">
 
             <tr>
@@ -114,12 +114,12 @@
 
                                 <tr>
                                     <th>Offensive Actions: </th>
-                                    <td><?php echo $GLOBALS["enemy"]["offtotal"]; ?> (<?php echo $GLOBALS["off_percent"]; ?>%)</td>
+                                    <td><?php echo $GLOBALS["enemy"]["offtotal"]; ?> (<?php echo $GLOBALS["offsuccpercent"]; ?>%)</td>
                                 </tr>
 
                                 <tr>
                                     <th>Defensive Actions: </th>
-                                    <td><?php echo $GLOBALS["enemy"]["deftotal"]; ?> (<?php echo $GLOBALS["def_percent"]; ?>%)</td>
+                                    <td><?php echo $GLOBALS["enemy"]["deftotal"]; ?> (<?php echo $GLOBALS["defsuccpercent"]; ?>%)</td>
                                 </tr>
                                 <tr>
                                     <th>Signup Date</th>

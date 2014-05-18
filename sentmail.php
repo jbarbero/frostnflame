@@ -10,10 +10,6 @@ $folders = explode("|", $users['folders']);
 $inbox = $folders[0];
 $sent = $folders[1];
 
-$tpl->assign('inboxname', $inbox);
-$tpl->assign('sentname', $sent);
-
-
 if ($lockdb)
     TheEnd("Messaging is currently disabled!");
 
@@ -108,22 +104,15 @@ if( @mysqli_num_rows($msgs))
 
 }
 
+$do_reply = 0;
+$time = date($dateformat,$vmessage[time]);
+$smessage = $vmessage;
+$sent_message = $message_array;
 
-$tpl->assign('do_reply', 0);
-$tpl->assign('time', date($dateformat,$vmessage[time]));
-$tpl->assign('msgcreds', $users[msgcred]);
-$tpl->assign('smessage', $vmessage);
-$tpl->assign('num_msg', $num_msgs);
-$tpl->assign('sent_message', $message_array);
-$tpl->assign('reply_id', 0);
-$tpl->assign('reply_src', 0);
+$warquery_array = array();
+$sent = 1; // VITAL!
 
-$tpl->assign('drop', 0);
-$tpl->assign('color', $users[era]);
-$tpl->assign('sent', 1); // VITAL!
-
-$tpl->display('messages.html');
-
+template_display('messages.html');
 
 TheEnd("");
 ?>

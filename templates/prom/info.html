@@ -27,8 +27,8 @@
     <td><?php if($GLOBALS["lastweek"]==1): ?>Yes<?php else: ?>No<?php endif; ?></td></tr>
 
 <tr>    <td>Round End</td>
-    <td><?php echo $GLOBALS["roundend"]; ?></td></tr>
-<!-- <?php echo $GLOBALS["etime"]; ?> -->
+    <td><?php echo $GLOBALS["enddisp"]; ?></td></tr>
+<!-- <?php echo $GLOBALS["endtime"]; ?> -->
 
 <tr>    <td colspan="2" height="0"><hr></td></tr>
 
@@ -36,7 +36,7 @@
     <td><?php echo $GLOBALS["numplayers"]; ?></td></tr>
 
 <tr>    <td>Average Networth</td>
-    <td>$<?php echo $GLOBALS["avgnet"]; ?></td></tr>
+    <td>$<?php echo commas($GLOBALS["avgnet"]); ?></td></tr>
 
 <tr>    <td colspan="2" height="0"><hr></td></tr>
 

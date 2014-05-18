@@ -7,24 +7,25 @@ $scores2 = array();
 
 $which = $_GET['page'];
 switch($_GET['page']) {
-    case 'graveyard':    $tpl->assign('listtype', 'Graveyard');
-                $query = 'land = 0 AND disabled !=2 AND disabled != 3';
+    case 'graveyard':
+        $listtype = 'Graveyard';
+        $query = 'land = 0 AND disabled !=2 AND disabled != 3';
         break;
-    case 'shame':        $tpl->assign('listtype', 'Hall of Shame');
-                $query = 'disabled = 3';
+    case 'shame':
+        $listtype = 'Hall of Shame';
+        $query = 'disabled = 3';
         break;
-    case 'admins':        $tpl->assign('listtype', 'Administrators');
-                $query = 'disabled = 2';
+    case 'admins':
+        $listtype = 'Administrators';
+        $query = 'disabled = 2';
         break;
     case 'scores':
     default:
         $which = 'scores';
-        $tpl->assign('listtype', 'Scores Listing');
+        $listtype = 'Scores Listing';
         $query = 'land > 0 AND disabled !=2 AND disabled !=3';
         break;
 }
-
-$tpl->assign('link', $which);
 
 
 $ssort = 'rank ASC';
@@ -160,11 +161,6 @@ if ($view <= 0) {
 if (!isset($restr))
     $restr = "false";
 
-$tpl->assign('servname', $config['servname']);
-$tpl->assign('view', $view);
-$tpl->assign('restr', $restr);
-$tpl->assign('datetime', $datetime);
-
 $total = db_safe_firstval("SELECT COUNT(*) FROM $playerdb;");
 $online = db_safe_firstval("SELECT COUNT(*) FROM $playerdb WHERE online=1 OR hide=1;");
 $killed = db_safe_firstval("SELECT SUM(kills) FROM $playerdb;");
@@ -173,15 +169,6 @@ $disabled = db_safe_firstval("SELECT COUNT(*) FROM $playerdb WHERE disabled=3;")
 $active = db_safe_firstval("SELECT COUNT(*) FROM $playerdb WHERE disabled=0 AND land>0");
 $abandoned = $dead - $killed;
 $abandoned = ($abandoned < 0) ? 0 : $abandoned;
-
-$tpl->assign('total', $total);
-$tpl->assign('online', $online);
-$tpl->assign('killed', $killed);
-$tpl->assign('abandoned', $abandoned);
-$tpl->assign('disabled', $disabled);
-$tpl->assign('active', $active);
-$tpl->assign('empire', $uera['empire']);
-$tpl->assign('empireC', $uera['empireC']);
 
 $start = $users[rank] - (15 * $view);
 if ($start < 10)
@@ -221,18 +208,13 @@ function getScores($start, $end, $array) {
 getScores(0, 10, 'scores1');
 getScores($start, $end, 'scores2');
 
-$tpl->assign('era', $users['era']);
-$tpl->assign('scores1', $scores1);
-$tpl->assign('scores2', $scores2);
 $sc1e = 0; $sc2e = 0;
 if(empty($scores1))
     $sc1e = 1;
 if(empty($scores2))
     $sc2e = 1;
-$tpl->assign('sc1e', $sc1e);
-$tpl->assign('sc2e', $sc2e);
-$tpl->assign('show', $show);
-$tpl->display('scores.html');
+
+template_display('scores.html');
 
 TheEnd("");
 ?>

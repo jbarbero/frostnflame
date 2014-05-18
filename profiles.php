@@ -78,17 +78,9 @@ else    {
     $loggedin = false;
     if($users[num])
         $loggedin = true;
-    $tpl->assign('loggedin', $loggedin);
-    $tpl->assign("do_view", "true");
-    $tpl->assign("enemy", $enemy);
-    $tpl->assign("urace", $race);
-    $tpl->assign("ccolor", $ccolor);
-    $tpl->assign("uera", $era);
-    $tpl->assign("clan", $uclan);
-    $tpl->assign("off_percent", $offsuccpercent);
-    $tpl->assign("def_percent", $defsuccpercent);
-    $tpl->assign("tags", $tags);
-    $tpl->assign("authstr", $authstr);
+    $do_view = true;
+    $uera = $era;
+    $clan = $uclan;
 
 
 $warquery = "SELECT num, empire, land, disabled, clan FROM $playerdb WHERE disabled != 3 ORDER BY rank;";
@@ -111,22 +103,17 @@ while ($wardrop = @mysqli_fetch_array($warquery_result)) {
     }
 }
 
+$selected = $enemy[num];
+$eera = $era;
+$erace = $race;
+template_display('profiles.html');
 
-$tpl->assign("selected", $enemy[num]);
-$tpl->assign("drop", $warquery_array);
-$tpl->assign("users", $users);
-$tpl->assign("uera", $uera);
-$tpl->assign("eera", $era);
-$tpl->assign("erace", $race);
-$tpl->display('profiles.html');
+$search_num = $enemy['num'];
+$search_limit = 20;
+$do_search = true;
+$crier = true;
+require_once("news.php");
 
-
-        $search_num = $enemy['num'];
-        $search_limit = 20;
-        $do_search = true;
-        $crier = true;
-        require_once("news.php");
-
-    TheEnd("");
+TheEnd("");
 
 ?>

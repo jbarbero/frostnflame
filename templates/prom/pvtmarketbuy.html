@@ -15,11 +15,11 @@ function checkAll (check){
 
 </script>
 
-<?php if($GLOBALS["printmessage"] != ''): ?>
-<?php echo $GLOBALS["printmessage"]; ?>
+<?php if($GLOBALS["msg"] != ''): ?>
+<?php echo $GLOBALS["msg"]; ?>
 <?php endif; ?>
 
-Also see: <a href="?guide&amp;section=military&amp;era=<?php echo $GLOBALS["uera"]; ?><?php echo $GLOBALS["authstr"]; ?>">Guide: Military</a><br>
+Also see: <a href="?guide&amp;section=military&amp;era=<?php echo $GLOBALS["users"]["era"]; ?><?php echo $GLOBALS["authstr"]; ?>">Guide: Military</a><br>
 <form method="post" action="?pvtmarketbuy<?php echo $GLOBALS["authstr"]; ?>" name="pvmb">
 <table class="inputtable">
 <tr><td colspan="3"><a href="?pvtmarketbuy<?php echo $GLOBALS["authstr"]; ?>">Buy Goods</a></td>

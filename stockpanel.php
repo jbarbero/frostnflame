@@ -72,10 +72,8 @@ foreach($stocknames as $i => $name) {
     $stocks_display[$i-1]['boost'] = $boost[$i];
 }
 
-$tpl->assign('stocknames', $stocks_display);
-
 //finish
-$tpl->display('stockpanel.html');
+template_display('stockpanel.html');
 
 TheEnd('');
 ?>

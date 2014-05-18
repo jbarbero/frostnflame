@@ -30,7 +30,6 @@ if ($do_sell) {
     }
 
     $msg = bazaarsell($sell);
-    $tpl->assign('printmessage', $msg);
 }
 
 foreach($config[troop] as $num => $mktcost) {
@@ -43,10 +42,8 @@ foreach($config[troop] as $num => $mktcost) {
 }
 printRow("food");
 
-$tpl->assign('uera', $users[era]);
-$tpl->assign('types', $disp_array);
-
-$tpl->display('pvtmarketsell.html');
+$types = $disp_array;
+template_display('pvtmarketsell.html');
 
 TheEnd("");
 

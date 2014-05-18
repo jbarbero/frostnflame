@@ -91,7 +91,6 @@ if ($do_reserve) {
     }
 
     $msg = troopreserve($reserve);
-    $tpl->assign('printmessage', $msg);
 }
 
 foreach($config[troop] as $num => $mktcost) {
@@ -104,10 +103,9 @@ foreach($config[troop] as $num => $mktcost) {
 }
 //printRow("food");
 
-$tpl->assign('uera', $users[era]);
-$tpl->assign('types', $disp_array);
+$types = $disp_array;
 
-$tpl->display('troopreserve.html');
+template_display('troopreserve.html');
 
 TheEnd("");
 

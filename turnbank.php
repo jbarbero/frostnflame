@@ -33,11 +33,11 @@ if($do_withdraw) {
     $users['turns'] += $withdraw;
     $users['turnbank'] -= $withdraw;
     saveUserData($users, "networth turns turnbank");
-} 
-$tpl->assign('turnbank',$users['turnbank']);
-$tpl->assign('maxbank',$config['maxturnbank']);
+}
+
 if ($users['turnsused'] < $config['protection'])
-        $tpl->assign('protectnotice', $protectnotice=1);
-$tpl->display('turnbank.html');
+    $protectnotice = 1;
+
+template_display('turnbank.html');
 TheEnd("");
 ?>

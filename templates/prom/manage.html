@@ -9,8 +9,8 @@
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>" id="raceselform">
     <table class="inputtable">
     <tr><th>Change Race</th></tr>
-    <tr><td class="acenter">Requires <?php echo $GLOBALS["initturns"]; ?> turns,<br><?php echo $GLOBALS["land"]*3; ?> <?php echo $GLOBALS["wizards"]; ?>, and<br>at least 75% health</td></tr>
-    <?php foreach($GLOBALS["races"] as $loop_racesel): ?>
+    <tr><td class="acenter">Requires <?php echo $GLOBALS["config"]["initturns"]; ?> turns,<br><?php echo gamefactor($GLOBALS["users"]["land"])*3; ?> <?php echo $GLOBALS["uera"]["wizards"]; ?>, and<br>at least 75% health</td></tr>
+    <?php foreach($GLOBALS["racearray"] as $loop_racesel): ?>
         <tr><td><label><input type="radio" name="new_race" value="<?php echo $loop_racesel["id"]; ?>"<?php if($loop_racesel["id"] == $GLOBALS["users"]["race"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_racesel["name"]; ?></label></td></tr>
     <?php endforeach; ?>
     <tr><td class="acenter"><label><input type="checkbox" name="yes_polymorph" value="1">Yes, I really<br>want to change race!</td></tr>
@@ -43,7 +43,7 @@
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th>Color Scheme</th></tr>
-    <?php foreach($GLOBALS["styles"] as $loop_stylesel): ?>
+    <?php foreach($GLOBALS["stylearray"] as $loop_stylesel): ?>
         <tr><td><label><input type="radio" name="color_setting" value="<?php echo $loop_stylesel["id"]; ?>"<?php if($loop_stylesel["id"] == $GLOBALS["users"]["style"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_stylesel["name"]; ?></label></td></tr>
     <?php endforeach; ?>
     <tr><th><input type="submit" name="do_changestyle" value="Change Style"></th></tr>
@@ -51,7 +51,7 @@
     </form>
     </td>
     <td class="acenter" style="width:40%">
-    <?php if($GLOBALS["protection"] == 'true' && $GLOBALS["early_exit"] == 'true'): ?>
+    <?php if($GLOBALS["protection"] == 'true' && $GLOBALS["config"]["early_exit"] == 'true'): ?>
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable"><tr><th>
     <input type="submit" name="leave_protection" value="Leave Protection">
@@ -64,7 +64,7 @@
     <table class="inputtable">
     <tr><th colspan="2">Change Styles Directory</th></tr>
     <tr><td colspan="2">New Directory:</td></tr>
-    <tr><td colspan="2"><input type="text" name="new_basehref" size="65" value="<?php echo $GLOBALS["ubase"]; ?>"></td></tr>
+    <tr><td colspan="2"><input type="text" name="new_basehref" size="65" value="<?php echo $GLOBALS["base"]; ?>"></td></tr>
     <tr>
         <th><input type="submit" name="reset_basehref" value="Reset"></th>
         <th><input type="submit" name="change_basehref" value="Change"></th>

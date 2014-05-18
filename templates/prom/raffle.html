@@ -2,8 +2,8 @@ Buying a raffle ticket is a good way to make extra <?php echo $GLOBALS["uera"]["
 When we buy a raffle ticket, the amount goes into the jackpot, which will be given out to someone at the drawing.<br>
 Raffle drawings are held every day at noon, server time.<br>
 Cash tickets cost $<?php echo gamefactor($GLOBALS["cashcost"]); ?> and <?php echo $GLOBALS["uera"]["food_lc"]; ?> tickets cost <?php echo gamefactor($GLOBALS["foodcost"]); ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?>. They are valid for one drawing.<br><br>
-Current Cash Jackpot: $<?php echo gamefactor($GLOBALS["cashpot"]); ?><br>
-Current <?php echo $GLOBALS["uera"]["nfood"]; ?> Jackpot: <?php echo gamefactor($GLOBALS["foodpot"]); ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?><br><br>
+Current Cash Jackpot: $<?php echo commas(gamefactor($GLOBALS["jackpot"]["cash"])); ?><br>
+Current <?php echo $GLOBALS["uera"]["nfood"]; ?> Jackpot: <?php echo commas(gamefactor($GLOBALS["jackpot"]["food"])); ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?><br><br>
 <?php if($GLOBALS["numcasht"] == 0): ?>    No    <?php else: ?>    <?php echo $GLOBALS["numcasht"]; ?>    <?php endif; ?> cash tickets have been bought for the next drawing.<br>
 <?php if($GLOBALS["numfoodt"] == 0): ?>    No    <?php else: ?>    <?php echo $GLOBALS["numfoodt"]; ?>    <?php endif; ?> <?php echo $GLOBALS["uera"]["food_lc"]; ?> tickets have been bought for the next drawing.<br>
 <br>
@@ -21,7 +21,7 @@ The last <?php echo $GLOBALS["uera"]["food_lc"]; ?> ticket was <?php echo $GLOBA
     You currently have no cash tickets.
 <?php endif; ?>
 
-<?php if($GLOBALS["ucash"] < $GLOBALS["cashcost"]): ?>
+<?php if($GLOBALS["users"]["cash"] < $GLOBALS["tickcost"]["cash"]): ?>
     You don't have enough for a cash ticket. <br>
 <?php elseif($GLOBALS["numuct"] < $GLOBALS["maxtickets"]): ?>
     <form method="post" action="?raffle<?php echo $GLOBALS["authstr"]; ?>">
@@ -41,7 +41,7 @@ The last <?php echo $GLOBALS["uera"]["food_lc"]; ?> ticket was <?php echo $GLOBA
     You currently have no <?php echo $GLOBALS["uera"]["food_lc"]; ?> tickets.
 <?php endif; ?>
 
-<?php if($GLOBALS["ufood"] < $GLOBALS["foodcost"]): ?>
+<?php if($GLOBALS["users"]["food"] < $GLOBALS["tickcost"]["food"]): ?>
     You don't have enough for a <?php echo $GLOBALS["uera"]["food_lc"]; ?> ticket. <br>
 <?php elseif($GLOBALS["numuct"] < $GLOBALS["maxtickets"]): ?>
     <form method="post" action="?raffle<?php echo $GLOBALS["authstr"]; ?>">

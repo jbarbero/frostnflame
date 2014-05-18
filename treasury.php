@@ -198,8 +198,6 @@ if($do_transaction) {
                 //News to self
     }
 
-    $tpl->assign("trans", $transaction);
-
     // Send to clan leader? Store in table?
 }
 
@@ -212,22 +210,10 @@ if($clan['tres_open']) {
 
 // Assign to template.
 
-$tpl->assign('limit_food', commas($show_limit_food));
-$tpl->assign('limit_rune', commas($show_limit_rune));
-$tpl->assign('limit_cash', commas($show_limit_cash));
+$tres_open = $co;
 
-$tpl->assign('tres_open', $co);
+template_display('treasury.html');
 
-$tpl->assign('curr_food', commas($clan[granary]));
-$tpl->assign('curr_rune', commas($clan[loft]));
-$tpl->assign('curr_cash', commas($clan[treasury]));
-$tpl->assign('clan_name', $clan[name]);
-
-if($transaction != "") $tpl->assign('trans', $transaction);
-
-$tpl->display('treasury.html');
-
-echo "<hr>";
 include("tres-news.php");
 
 TheEnd('');

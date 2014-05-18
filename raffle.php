@@ -48,36 +48,25 @@ if ($do_ticket) {
 }
 
 
-$tpl->assign('cashcost', $tickcost[cash]);
-$tpl->assign('foodcost', $tickcost[food]);
-$tpl->assign('cashpot', commas($jackpot[cash]));
-$tpl->assign('foodpot', commas($jackpot[food]));
+$numcasht = db_safe_firstval("SELECT COUNT(*) FROM $lotterydb WHERE num!=0 AND jtyp='cash';");
+$numfoodt = db_safe_firstval("SELECT COUNT(*) FROM $lotterydb WHERE num!=0 AND jtyp='food';");
 
-$tpl->assign('numcasht', db_safe_firstval("SELECT COUNT(*) FROM $lotterydb WHERE num!=0 AND jtyp='cash';"));
-$tpl->assign('numfoodt', db_safe_firstval("SELECT COUNT(*) FROM $lotterydb WHERE num!=0 AND jtyp='food';"));
-
-$tpl->assign('numuct', mysqli_num_rows($tickets['cash']));
-$tpl->assign('numuft', mysqli_num_rows($tickets['food']));
-$tpl->assign('maxtickets', $maxtickets);
-
-$tpl->assign('ucash', $users['cash']);
-$tpl->assign('ufood', $users['food']);
-
+$numuct = mysqli_num_rows($tickets['cash']);
+$numuft = mysqli_num_rows($tickets['food']);
 
 foreach($jtyps as $jtyp) {
     $enemy = loadUser($lastwin[$jtyp]);
-    $tpl->assign('last_'.$jtyp.'n', $lastnum[$jtyp]);
-    $tpl->assign('last_'.$jtyp.'e', "$enemy[empire] <a class=proflink href=?profiles&num=$enemy[num]$authstr>(#$enemy[num])</a>");
-    $tpl->assign('last_'.$jtyp.'w', commas($lastjackpot[$jtyp]));
+    $GLOBALS['last_'.$jtyp.'n'] = $lastnum[$jtyp];
+    $GLOBALS['last_'.$jtyp.'e'] = "$enemy[empire] <a class=proflink href=?profiles&num=$enemy[num]$authstr>(#$enemy[num])</a>";
+    $GLOBALS['last_'.$jtyp.'w'] = commas($lastjackpot[$jtyp]);
 
     $ticks = array();
     while($ticket = mysqli_fetch_array($tickets[$jtyp]))
         $ticks[] = $ticket;
 
-    $tpl->assign($jtyp.'_ticks', $ticks);
+    $GLOBALS[$jtyp.'_ticks'] = $ticks;
 }
 
-
-$tpl->display('raffle.html');
+template_display('raffle.html');
 TheEnd();
 ?>

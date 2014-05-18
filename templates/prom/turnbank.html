@@ -11,7 +11,7 @@ You have withdrawn <?php echo $GLOBALS["withdraw"]; ?> turns from your turn bank
     <tr><td>
     <table class="empstatus" style="width:100%">
         <tr class="inputtable"><th colspan="2" style="text-align:center">Turns Banked</th></tr>
-        <tr><th>Current Turn Balance:</th><td><?php echo $GLOBALS["turnbank"]; ?>/<?php echo $GLOBALS["maxbank"]; ?></td></tr>
+        <tr><th>Current Turn Balance:</th><td><?php echo $GLOBALS["users"]["turnbank"]; ?>/<?php echo $GLOBALS["config"]["maxturnbank"]; ?></td></tr>
     </table></td>
     <td style="width:10%"></td>
     </tr>

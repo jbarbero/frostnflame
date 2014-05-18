@@ -158,11 +158,8 @@ if(in_array('stocks', $config['disabled_pages']))
     $showstocks = false;
 
 
-$tpl->assign('troopshave', $troopdisp);
-$tpl->assign('ti', $pci*$users['peasants']);
-$tpl->assign('offpts', commas($offpts));
-$tpl->assign('defpts', commas($defpts));
-$tpl->display('status.html');
+$ti = $pci*$users['peasants'];
+template_display('status.html');
 
 $users=loadUser($users[num]);
 TheEnd("");

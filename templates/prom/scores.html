@@ -6,17 +6,17 @@ Current Game Time: <?php echo $GLOBALS["datetime"]; ?><br>
 <a href="?scores&amp;page=shame<?php echo $GLOBALS["authstr"]; ?>">Hall of Shame</a> -
 <a href="?scores&amp;page=admins<?php echo $GLOBALS["authstr"]; ?>">Administrators</a>
 <br>
-<a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]+1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Expand View</a> -
-<a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Lessen View</a> -
-<a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;show=all&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Show All</a> -
-<a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=true<?php echo $GLOBALS["authstr"]; ?>">Exclude Protected</a> -
-<a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=false<?php echo $GLOBALS["authstr"]; ?>">Include Protected</a>
+<a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]+1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Expand View</a> -
+<a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Lessen View</a> -
+<a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;show=all&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Show All</a> -
+<a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=true<?php echo $GLOBALS["authstr"]; ?>">Exclude Protected</a> -
+<a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=false<?php echo $GLOBALS["authstr"]; ?>">Include Protected</a>
 <br><br>
 
 <b><?php echo $GLOBALS["online"]; ?></b> of the <b><?php echo $GLOBALS["active"]; ?></b> active players in the game are currently online.<br>
-<b><?php echo $GLOBALS["killed"]; ?></b> <?php echo $GLOBALS["empire"]; ?>s have been destroyed, and <b><?php echo $GLOBALS["abandoned"]; ?></b> <?php echo $GLOBALS["empire"]; ?>s have been abandoned.<br>
+<b><?php echo $GLOBALS["killed"]; ?></b> <?php echo $GLOBALS["uera"]["empire"]; ?>s have been destroyed, and <b><?php echo $GLOBALS["abandoned"]; ?></b> <?php echo $GLOBALS["uera"]["empire"]; ?>s have been abandoned.<br>
 <b><?php echo $GLOBALS["disabled"]; ?></b> accounts have been disabled by Administration.<br>
-<?php echo $GLOBALS["empireC"]; ?>s whose ranks are prefixed with a <?php echo $GLOBALS["onhtml"]; ?> are currently online.<br><br>
+<?php echo $GLOBALS["uera"]["empireC"]; ?>s whose ranks are prefixed with a <?php echo $GLOBALS["onhtml"]; ?> are currently online.<br><br>
 <table width="40%">
 <tr><td><center><img src='img/game_icons/scores/net1.png'></center><td><center><img src='img/game_icons/scores/offense.png'></center><td><center><img src='img/game_icons/scores/defense.png'></center><td><center><img src='img/game_icons/scores/land.png'></center><td><center><img src='img/game_icons/scores/kills.png'></center></tr>
 <tr><td><center>Top Net</center><td><center>Most Offenses</center><td><center>Most Defenses</center><td><center>Most Land</center><td><center>Most Kills</center></tr>
@@ -25,15 +25,15 @@ Current Game Time: <?php echo $GLOBALS["datetime"]; ?><br>
 <table class="scorestable">
 
 <?php if($GLOBALS["sc1e"] != 1): ?>
-<tr class="era<?php echo $GLOBALS["era"]; ?>">
-    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Rank</a></th>
-    <th style="width:36%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=1&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["empireC"]; ?></a></th>
-    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=2&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Land</a></th>
-    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=3&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Networth</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=4&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Clan</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=5&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Race</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=6&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Location</a></th>
-    <th style="width:4%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=7&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Kills</a></th></tr>
+<tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
+    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Rank</a></th>
+    <th style="width:36%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=1&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["uera"]["empireC"]; ?></a></th>
+    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=2&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Land</a></th>
+    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=3&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Networth</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=4&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Clan</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=5&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Race</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=6&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Location</a></th>
+    <th style="width:4%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=7&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Kills</a></th></tr>
 
 <?php foreach($GLOBALS["scores1"] as $loop_i): ?>
 <tr class="<?php echo $loop_i["mcolor"]; ?>">
@@ -49,15 +49,15 @@ Current Game Time: <?php echo $GLOBALS["datetime"]; ?><br>
 <?php endif; ?>
 
 <?php if($GLOBALS["sc1e"] != 1 || $GLOBALS["sc2e"] != 1): ?>
-<tr class="era<?php echo $GLOBALS["era"]; ?>">
-    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Rank</a></th>
-    <th style="width:36%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=1&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["empireC"]; ?></a></th>
-    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=2&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Land</a></th>
-    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=3&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Networth</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=4&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Clan</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=5&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Race</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=6&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Location</a></th>
-    <th style="width:4%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=7&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Kills</a></th></tr>
+<tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
+    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Rank</a></th>
+    <th style="width:36%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=1&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["uera"]["empireC"]; ?></a></th>
+    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=2&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Land</a></th>
+    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=3&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Networth</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=4&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Clan</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=5&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Race</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=6&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Location</a></th>
+    <th style="width:4%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=7&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Kills</a></th></tr>
 <?php endif; ?>
 
 <?php if($GLOBALS["sc2e"] != 1): ?>
@@ -73,15 +73,15 @@ Current Game Time: <?php echo $GLOBALS["datetime"]; ?><br>
     <td class="acenter"><?php echo $loop_i["topkills"]; ?><?php echo $loop_i["kills"]; ?></td></tr>
 <?php endforeach; ?>
 
-<tr class="era<?php echo $GLOBALS["era"]; ?>">
-    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Rank</a></th>
-    <th style="width:36%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=1&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["empireC"]; ?></a></th>
-    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=2&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Land</a></th>
-    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=3&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Networth</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=4&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Clan</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=5&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Race</a></th>
-    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=6&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Location</a></th>
-    <th style="width:4%"><a href="?scores&amp;page=<?php echo $GLOBALS["link"]; ?>&amp;sortby=7&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Kills</a></th></tr>
+<tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
+    <th style="width:5%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=0&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Rank</a></th>
+    <th style="width:36%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=1&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["uera"]["empireC"]; ?></a></th>
+    <th style="width:10%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=2&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Land</a></th>
+    <th style="width:15%" class="aright"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=3&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Networth</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=4&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Clan</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=5&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Race</a></th>
+    <th style="width:10%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=6&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Location</a></th>
+    <th style="width:4%"><a href="?scores&amp;page=<?php echo $GLOBALS["which"]; ?>&amp;sortby=7&amp;view=<?php echo $GLOBALS["view"]-1; ?>&amp;show=<?php echo $GLOBALS["show"]; ?>&amp;restr=<?php echo $GLOBALS["restr"]; ?><?php echo $GLOBALS["authstr"]; ?>">Kills</a></th></tr>
 <?php endif; ?>
 
 </table>
