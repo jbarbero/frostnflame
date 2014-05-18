@@ -198,7 +198,7 @@ function show(which) {
         </th>
 
         </tr>
-        <?php foreach($GLOBALS["message"] as $loop_sel): ?>
+        <?php foreach($GLOBALS["message_array"] as $loop_sel): ?>
                 <tr>
                 <?php if($loop_sel["read"]==0): ?>
                     <td><a style="font-weight: bold;" id="link_<?php echo $loop_sel["id"]; ?>" href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>" onclick="show(<?php echo $loop_sel["id"]; ?>); return false;"><?php echo $loop_sel["title"]; ?></a></td>
