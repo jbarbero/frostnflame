@@ -59,81 +59,83 @@ $tclan = loadClan($num);
 if ($tclan[criernews] == "") {
     $tclan[criernews] == "No News";
 }
-// CRIER NEWS
-?>
-<table style="width:100%" align="center" class="inputtable">
-<tr><th width="25%">Clan Contacts</th><th width="75%"><b><?=$tclan[name]?></b></th></tr>
-<tr>
-<td width="25%" style="text-align: left;">
-<?php
-$contacts = db_safe_query("SELECT empire, num FROM $playerdb WHERE num = $tclan[founder] OR num = $tclan[asst] OR num = $tclan[fa1] OR num = $tclan[fa2];");
-while ($contact = @mysqli_fetch_array($contacts)) {
-    $ccontacts["$contact[num]"] = $contact[empire];
-}
-
-?>
-<nobr><b>Leader:</b>
-<?=$ccontacts["$tclan[founder]"]?> <a class=proflink href=?profiles&num=<?=$tclan[founder]?><?=$authstr?>>(#<?=$tclan[founder]?>)</a></nobr><BR>
-<?php if ($tclan[asst] > 0) {
-    
+if($tclan) {
+    // CRIER NEWS
     ?>
-    <nobr><b>Assistant:</b>
-    <?=$ccontacts["$tclan[asst]"]?> <a class=proflink href=?profiles&num=<?=$tclan[asst]?><?=$authstr?>>(#<?=$tclan[asst]?>)</a></nobr><BR>
-<?php }
-if ($tclan[fa1] > 0) {
-    
-    ?>
-    <nobr><b>Primary Diplomat:</b>
-    <?=$ccontacts["$tclan[fa1]"]?> <a class=proflink href=?profiles&num=<?=$tclan[fa1]?><?=$authstr?>>(#<?=$tclan[fa1]?>)</a></nobr><BR>
-<?php }
-if ($tclan[fa2] > 0) {
-    
-    ?>
-    <nobr><b>Secondary Diplomat:</b>
-    <?=$ccontacts["$tclan[fa2]"]?> <a class=proflink href=?profiles&num=<?=$tclan[fa2]?><?=$authstr?>>(#<?=$tclan[fa2]?>)</a></nobr>
-<?php }
-
-?>
-</td>
-<td width="75%">
-<?=bbcode_parse($tclan[criernews])?>
-</td></tr>
-</table>
-<BR><BR>
-<?php
-// CLAN MEMBERS
-$dbstr = db_safe_query("SELECT rank, empire, num, land, networth, clan, race, era, online, disabled, turnsused, vacation, offsucc, offtotal, defsucc, deftotal, kills FROM $playerdb WHERE clan = $tclan[num] ORDER BY rank ASC;");
-
-if ($numrows =@mysqli_num_rows($dbstr)) {
-    
-    ?>
-    Color Key: <span class="mprotected">Protected/Vacation</span>, <span class="mdead">Dead</span>, <span class="mally">Ally</span>, <span class="mdisabled">Disabled</span>, <span class="madmin">Administrator</span>, <span class="mself">You</span><br>
-    Stats Key: O = Offensive Actions(success%), D = Defenses(success%), K = Number of empires killed<br>
-    <table class="scorestable">
+    <table style="width:100%" align="center" class="inputtable">
+    <tr><th width="25%">Clan Contacts</th><th width="75%"><b><?=$tclan[name]?></b></th></tr>
     <tr>
-    <th colspan=10>
-    <b><font size="+1">Clan Members</font></b>
-    </th>
-    </tr>
+    <td width="25%" style="text-align: left;">
     <?php
-    printSearchHeader($users[era]);
-    while ($stuff = @mysqli_fetch_array($dbstr)) {
-        global $enemy;
-        $enemy = $stuff;
-        printSearchLine();
+    $contacts = db_safe_query("SELECT empire, num FROM $playerdb WHERE num = $tclan[founder] OR num = $tclan[asst] OR num = $tclan[fa1] OR num = $tclan[fa2];");
+    while ($contact = @mysqli_fetch_array($contacts)) {
+        $ccontacts["$contact[num]"] = $contact[empire];
     }
-    printSearchHeader($users[era]);
-    
+
     ?>
+    <nobr><b>Leader:</b>
+    <?=$ccontacts["$tclan[founder]"]?> <a class=proflink href=?profiles&num=<?=$tclan[founder]?><?=$authstr?>>(#<?=$tclan[founder]?>)</a></nobr><BR>
+    <?php if ($tclan[asst] > 0) {
+        
+        ?>
+        <nobr><b>Assistant:</b>
+        <?=$ccontacts["$tclan[asst]"]?> <a class=proflink href=?profiles&num=<?=$tclan[asst]?><?=$authstr?>>(#<?=$tclan[asst]?>)</a></nobr><BR>
+    <?php }
+    if ($tclan[fa1] > 0) {
+        
+        ?>
+        <nobr><b>Primary Diplomat:</b>
+        <?=$ccontacts["$tclan[fa1]"]?> <a class=proflink href=?profiles&num=<?=$tclan[fa1]?><?=$authstr?>>(#<?=$tclan[fa1]?>)</a></nobr><BR>
+    <?php }
+    if ($tclan[fa2] > 0) {
+        
+        ?>
+        <nobr><b>Secondary Diplomat:</b>
+        <?=$ccontacts["$tclan[fa2]"]?> <a class=proflink href=?profiles&num=<?=$tclan[fa2]?><?=$authstr?>>(#<?=$tclan[fa2]?>)</a></nobr>
+    <?php }
+
+    ?>
+    </td>
+    <td width="75%">
+    <?=bbcode_parse($tclan[criernews])?>
+    </td></tr>
     </table>
+    <BR><BR>
     <?php
-    
+    // CLAN MEMBERS
+    $dbstr = db_safe_query("SELECT rank, empire, num, land, networth, clan, race, era, online, disabled, turnsused, vacation, offsucc, offtotal, defsucc, deftotal, kills FROM $playerdb WHERE clan = $tclan[num] ORDER BY rank ASC;");
+
+    if ($numrows =@mysqli_num_rows($dbstr)) {
+        
+        ?>
+        Color Key: <span class="mprotected">Protected/Vacation</span>, <span class="mdead">Dead</span>, <span class="mally">Ally</span>, <span class="mdisabled">Disabled</span>, <span class="madmin">Administrator</span>, <span class="mself">You</span><br>
+        Stats Key: O = Offensive Actions(success%), D = Defenses(success%), K = Number of empires killed<br>
+        <table class="scorestable">
+        <tr>
+        <th colspan=10>
+        <b><font size="+1">Clan Members</font></b>
+        </th>
+        </tr>
+        <?php
+        printSearchHeader($users[era]);
+        while ($stuff = @mysqli_fetch_array($dbstr)) {
+            global $enemy;
+            $enemy = $stuff;
+            printSearchLine();
+        }
+        printSearchHeader($users[era]);
+        
+        ?>
+        </table>
+        <?php
+        
+    }
+    // RECENT NEWS
+    $search_limit = 20;
+    $search_clan = $tclan['num'];
+    $crier = true;
+    require_once("news.php");
 }
-// RECENT NEWS
-$search_limit = 20;
-$search_clan = $tclan['num'];
-$crier = true;
-require_once("news.php");
 
 TheEnd("");
 
