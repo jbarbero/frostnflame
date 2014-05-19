@@ -60,6 +60,7 @@ menu_normal_item('Search', 'search', 0);
 menu_normal_item('Profiles', 'profiles', 0);
 menu_normal_item('News', 'news', 1);
 menu_normal_item('Contacts', 'contacts', 1);
+menu_normal_item('Server Forum', 'serverforum', 1);
 menu_normal_item('Clans', 'clancrier', 0);
 menu_header_item('Turns', 'turns', 1);
 menu_normal_item('Scout', 'land', 1);
