@@ -1,0 +1,28 @@
+<div align=center>
+
+<table class=tbTransparent>
+<tr>
+<td class=tbTransparent>
+
+<form action="{$indexphp}" method=post class=formStyle>
+
+<div><b>{$topicName}</b>
+<br><br>
+{$l_areYouSureDeleteTopic}
+<br>
+<input type=hidden name=action value=deltopic>
+<input type=hidden name=topic value="{$topic}">
+<input type=hidden name=forum value="{$forum}">
+<br>
+<input type=radio name=dy value=1 checked>{$l_yes} <input type=radio name=dy value=2>{$l_no}
+<br><br>
+<input type=submit value="{$l_submit}" class=inputButton>
+
+</div>
+
+</form>
+
+</td>
+</tr>
+</table>
+</div>

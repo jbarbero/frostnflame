@@ -242,4 +242,6 @@ foreach($_COOKIE as $var => $value) {
 
 //$config['chatdomain'] = $_SERVER['SERVER_NAME'];
 //$config['chathost'] = $_SERVER['SERVER_NAME'];
+
+define('MINIBB_PATH', 'external/minibb/');
 ?>

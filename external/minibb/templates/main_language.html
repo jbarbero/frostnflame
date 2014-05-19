@@ -1,0 +1,28 @@
+<div align=center>
+
+<table class=forums>
+<tr>
+<td class=caption6>&nbsp;<b><a href="{$indexphp}">{$sitename}</a> :: {$menuTitle}</b></td>
+</tr>
+</table>
+
+<form action="{$indexphp}" method=post>
+
+<table class=tbTransparent>
+<tr>
+<td class=tbTransparent>
+<div>
+{$langList}
+</div>
+<input type=hidden name=action value=language2>
+<br>
+<input type=checkbox name=deleteLang><span class=txtSm> {$l_deleteLang} *<a href="{$indexphp}action=manual#userlang">{$l_whatIsIt}</a></span>
+
+<br><br>
+<input type=submit value="{$l_chooseLang}" class=inputButton>
+</td>
+</tr>
+</table>
+</form>
+
+</div>

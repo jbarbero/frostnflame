@@ -1,0 +1,33 @@
+<div align=center>
+<form action="{$bb_admin}" method=get>
+<table class=tbTransparent>
+<tr>
+<td class=tbTransparent>
+{$warning}
+<br>
+<span class=txtSm><b>{$pageNav}</b></span>
+<br><br>
+<input type=hidden name=action value=searchusers2>
+<input type=text name=whatus size=25 maxlength=30 class=textForm value="{$whatus}">
+<br>
+<input type=radio name=searchus value=id {$ci}> ID<br>
+<input type=radio name=searchus value=email {$ce}> {$l_email} / {$l_sub_name}<br>
+<input type=radio name=searchus value=inactive {$ca}> {$l_inactiveUsers}<br>
+<input type=radio name=searchus value=registr {$cr}> {$l_haventReg}<br>
+
+<br>
+<input type=submit value="{$l_searchUsers}" class=inputButton>
+<br><br>
+
+<ul>
+{$Results}
+</ul>
+
+<br>
+<span class=txtSm><b>{$pageNav}</b></span>
+</td>
+</tr>
+</table>
+</form>
+</div>
+
