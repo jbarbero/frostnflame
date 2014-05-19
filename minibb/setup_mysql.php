@@ -2,8 +2,9 @@
 /*
 This file is part of miniBB. miniBB is free discussion forums/message board software, without any warranty. See COPYING file for more details. Copyright (C) 2004 Paul Puzyrev, Sergei Larionov. www.minibb.net
 */
-@mysql_connect($DBhost, $DBusr, $DBpwd) or die ('<b>Database/configuration error.</b>');
-@mysql_select_db($DBname) or die ('<b>Database/configuration error (DB is missing).</b>');
+// FAF:
+// @mysql_connect($DBhost, $DBusr, $DBpwd) or die ('<b>Database/configuration error.</b>');
+// @mysql_select_db($DBname) or die ('<b>Database/configuration error (DB is missing).</b>');
 
 function makeLim($page,$numRows,$viewMax){
 $page=pageChk($page,$numRows,$viewMax);
@@ -47,18 +48,18 @@ if($orderby!='') $orderby='order by '.$orderby;
 if($groupBy!='') $groupBy='group by '.$groupBy;
 $xtr=(!isset($GLOBALS['xtr'])?'':$GLOBALS['xtr']);
 $sql='SELECT '.$fields.' FROM '.$table.$where.' '.$xtr.' '.$groupBy.' '.$orderby.' '.$limit;
-$result=mysql_query($sql);
+$result=mysqli_query($GLOBALS["db_link"], $sql);
 if($result) {
 $GLOBALS['countRes']=mysqli_num_rows($result);
 $GLOBALS['result']=$result;
 }
 }
-if(($sus==1||isset($result))&&isset($GLOBALS['countRes'])&&$GLOBALS['countRes']>0)  return mysql_fetch_row($GLOBALS['result']);
+if(($sus==1||isset($result))&&isset($GLOBALS['countRes'])&&$GLOBALS['countRes']>0)  return mysqli_fetch_row($GLOBALS['result']);
 elseif($sus==2){
 $a=(strlen($uniF2)?'AND':'');
 $w=(strlen($uniF)||strlen($uniF2)?'WHERE':'');
 $xtr=(isset($GLOBALS['xtr'])?$GLOBALS['xtr']:'');
-return mysql_result(mysql_query('SELECT '.$fields.' FROM '.$table.' '.$w.' '.$uniF.$uniC.$uniV.' '.$a.' '.$uniF2.$uniC2.$uniV2.' '.$xtr),0);
+return mysqli_fetch_row(mysqli_query($GLOBALS["db_link"], 'SELECT '.$fields.' FROM '.$table.' '.$w.' '.$uniF.$uniC.$uniV.' '.$a.' '.$uniF2.$uniC2.$uniV2.' '.$xtr))[0];
 }
 else return FALSE;
 }
@@ -121,9 +122,9 @@ $values.=($iia=='now()'?$iia.',':"'".$iia."',");
 }
 $into=substr($into,0,strlen($into)-1);
 $values=substr($values,0,strlen($values)-1);
-$res=mysql_query('insert into '.$tabh.' ('.$into.') values ('.$values.')') or die('<p>'.mysql_error().'. Please, try another name or value.');
-$GLOBALS['insres']=mysql_insert_id();
-return mysql_errno();
+$res=mysqli_query($GLOBALS["db_link"], 'insert into '.$tabh.' ('.$into.') values ('.$values.')') or die('<p>'.mysqli_error($GLOBALS["db_link"]).'. Please, try another name or value.');
+$GLOBALS['insres']=mysqli_insert_id($GLOBALS["db_link"]);
+return mysqli_errno($GLOBALS["db_link"]);
 }
 
 function updateArray($updateArray,$tabh,$uniq,$uniqVal){
@@ -134,8 +135,8 @@ $into.=($iia=='now()'?$ia.'='.$iia.',':$ia."='".$iia."',");
 }
 $into=substr($into,0,strlen($into)-1);
 $unupdate=($uniq!=''?' where '.$uniq.'='."'".$uniqVal."'":'');
-$res=mysql_query('update '.$tabh.' set '.$into.' '.$unupdate) or die('<p>'.mysql_error().'. Please, try another name or value.');
-return mysql_affected_rows();
+$res=mysqli_query($GLOBALS["db_link"], 'update '.$tabh.' set '.$into.' '.$unupdate) or die('<p>'.mysqli_error($GLOBALS["db_link"]).'. Please, try another name or value.');
+return mysqli_affected_rows($GLOBALS["db_link"]);
 }
 
 function db_delete($table,$uniF='',$uniC='',$uniV='',$uniF2='',$uniC2='',$uniV2=''){
@@ -144,13 +145,13 @@ if($uniF2!='') {
 $where.=' AND '.$uniF2.$uniC2.$uniV2;
 }
 $sql='DELETE FROM '.$table.' '.$where;
-$result=mysql_query($sql);
-if($result) return mysql_affected_rows();
+$result=mysqli_query($GLOBALS["db_link"], $sql);
+if($result) return mysqli_affected_rows($GLOBALS["db_link"]);
 else return FALSE;
 }
 
 function db_ipCheck($thisIp,$thisIpMask,$user_id){
-$res=mysql_query('select id from '.$GLOBALS['Tb'].' where 
+$res=mysqli_query($GLOBALS["db_link"], 'select id from '.$GLOBALS['Tb'].' where 
 banip='."'".$thisIp."'".' or banip='."'".$thisIpMask[0]."'".' or 
 banip='."'".$thisIpMask[1]."'".' or banip='."'".$user_id."'");
 if($res and mysqli_num_rows($res)>0) return TRUE; else return FALSE;
@@ -159,23 +160,23 @@ if($res and mysqli_num_rows($res)>0) return TRUE; else return FALSE;
 function db_sendMails($sus,$Tu,$Ts){
 /*User mass emailing*/
 if (!$sus) {
-$result=mysql_query('SELECT '.$Tu.'.'.$GLOBALS['dbUserSheme']['user_email'][1].' FROM '.$Tu.','.$Ts.' where '.$Ts.'.topic_id='.$GLOBALS['topic'].' and '.$Ts.'.user_id='.$Tu.'.'.$GLOBALS['dbUserId'].' and '.$Ts.'.user_id!='.$GLOBALS['user_id']);
+$result=mysqli_query($GLOBALS["db_link"], 'SELECT '.$Tu.'.'.$GLOBALS['dbUserSheme']['user_email'][1].' FROM '.$Tu.','.$Ts.' where '.$Ts.'.topic_id='.$GLOBALS['topic'].' and '.$Ts.'.user_id='.$Tu.'.'.$GLOBALS['dbUserId'].' and '.$Ts.'.user_id!='.$GLOBALS['user_id']);
 if ($result) { $GLOBALS['result']=$result; }
 }
-if($GLOBALS['result']) return $row=mysql_fetch_row($GLOBALS['result']); else return FALSE;
+if($GLOBALS['result']) return $row=mysqli_fetch_row($GLOBALS['result']); else return FALSE;
 }
 
 function db_inactiveUsers($sus,$what=''){
 /*Admin - users that didnt any post */
 if(!$sus) {
 if($GLOBALS['makeLim']>0) $GLOBALS['makeLim']='LIMIT '.$GLOBALS['makeLim'];
-$result=mysql_query('select '.$what.' from '.$GLOBALS['Tu'].' LEFT JOIN '.$GLOBALS['Tp'].' ON '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].'='.$GLOBALS['Tp'].'.poster_id where '.$GLOBALS['Tp'].'.poster_id IS NULL order by '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].' '.$GLOBALS['makeLim']);
+$result=mysqli_query($GLOBALS["db_link"], 'select '.$what.' from '.$GLOBALS['Tu'].' LEFT JOIN '.$GLOBALS['Tp'].' ON '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].'='.$GLOBALS['Tp'].'.poster_id where '.$GLOBALS['Tp'].'.poster_id IS NULL order by '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].' '.$GLOBALS['makeLim']);
 if($result) {
 $GLOBALS['countRes']=mysqli_num_rows($result);
 $GLOBALS['result']=$result;
 }
 }
-if(isset($GLOBALS['countRes']) and $GLOBALS['countRes']>0) return mysql_fetch_row($GLOBALS['result']);
+if(isset($GLOBALS['countRes']) and $GLOBALS['countRes']>0) return mysqli_fetch_row($GLOBALS['result']);
 else return FALSE;
 }
 
@@ -183,37 +184,37 @@ function db_deadUsers($sus,$less){
 /*Admin-dead users*/
 if(!$sus){
 $GLOBALS['makeLim']=(isset($GLOBALS['makeLim'])&&$GLOBALS['makeLim']>0?'LIMIT '.$GLOBALS['makeLim']:'');
-$result=mysql_query('select '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['username'][1].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserDate'].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['user_password'][1].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['user_email'][1].',max('.$GLOBALS['Tp'].'.post_time) as m from '.$GLOBALS['Tu'].','.$GLOBALS['Tp'].' where '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].'='.$GLOBALS['Tp'].'.poster_id group by '.$GLOBALS['Tp'].'.poster_id having m<'."'".$less."' ".$GLOBALS['makeLim']);
+$result=mysqli_query($GLOBALS["db_link"], 'select '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['username'][1].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserDate'].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['user_password'][1].','.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserSheme']['user_email'][1].',max('.$GLOBALS['Tp'].'.post_time) as m from '.$GLOBALS['Tu'].','.$GLOBALS['Tp'].' where '.$GLOBALS['Tu'].'.'.$GLOBALS['dbUserId'].'='.$GLOBALS['Tp'].'.poster_id group by '.$GLOBALS['Tp'].'.poster_id having m<'."'".$less."' ".$GLOBALS['makeLim']);
 if($result){
 $GLOBALS['countRes']=mysqli_num_rows($result);
 $GLOBALS['result']=$result;
 }
 }
-if(isset($GLOBALS['countRes']) and $GLOBALS['countRes']>0) return mysql_fetch_row($GLOBALS['result']);
+if(isset($GLOBALS['countRes']) and $GLOBALS['countRes']>0) return mysqli_fetch_row($GLOBALS['result']);
 else return FALSE;
 }
 
 function db_forumReplies($forum,$Tp,$Tf){
 /* Function to calculate and get forum replies after posting, deleting threads */
 $forumReplies=0;
-$forumReplies=mysql_result(mysql_query('select count(*) from '.$Tp.' where forum_id='.$forum),0);
-mysql_query('update '.$Tf.' set posts_count='."'".$forumReplies."'".' where forum_id='.$forum);
+$forumReplies=mysqli_fetch_row(mysqli_query($GLOBALS["db_link"], 'select count(*) from '.$Tp.' where forum_id='.$forum))[0];
+mysqli_query($GLOBALS["db_link"], 'update '.$Tf.' set posts_count='."'".$forumReplies."'".' where forum_id='.$forum);
 return $forumReplies;
 }
 
 function db_forumTopics($forum,$Tt,$Tf){
 /* Function to calculate and get forum topics after posting, deleting topics */
 $forumTopics=0;
-$forumTopics=mysql_result(mysql_query('select count(*) from '.$Tt.' where forum_id='.$forum),0);
-mysql_query('update '.$Tf.' set topics_count='."'".$forumTopics."'".' where forum_id='.$forum);
+$forumTopics=mysqli_fetch_row(mysqli_query($GLOBALS["db_link"], 'select count(*) from '.$Tt.' where forum_id='.$forum))[0];
+mysqli_query($GLOBALS["db_link"], 'update '.$Tf.' set topics_count='."'".$forumTopics."'".' where forum_id='.$forum);
 return $forumTopics;
 }
 
 function db_topicPosts($topic,$Tt,$Tp){
 /* Function to calculate and get forum topics after posting, deleting topics */
 $topicPosts=0;
-$topicPosts=mysql_result(mysql_query('select count(*) from '.$Tp.' where topic_id='.$topic),0);
-mysql_query('update '.$Tt.' set posts_count='."'".$topicPosts."'".' where topic_id='.$topic);
+$topicPosts=mysqli_fetch_row(mysqli_query($GLOBALS["db_link"], 'select count(*) from '.$Tp.' where topic_id='.$topic))[0];
+mysqli_query($GLOBALS["db_link"], 'update '.$Tt.' set posts_count='."'".$topicPosts."'".' where topic_id='.$topic);
 return $topicPosts;
 }
 

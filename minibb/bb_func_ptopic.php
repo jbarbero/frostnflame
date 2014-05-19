@@ -50,8 +50,8 @@ db_forumTopics($forum,$Tt,$Tf);
 require('minibb/bb_func_pthread.php');
 }
 else {
-$errorMSG=$l_mysql_error; $correctErr=$backErrorLink;
-$title.=$l_mysql_error;
+$errorMSG=$l_mysqli_error; $correctErr=$backErrorLink;
+$title.=$l_mysqli_error;
 echo load_header(); echo ParseTpl(makeUp('main_warning')); return;
 }
 }

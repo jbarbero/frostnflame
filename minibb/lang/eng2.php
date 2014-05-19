@@ -64,7 +64,7 @@ $l_forumorder='Forum order';
 $l_deleteforum='Delete forum';
 $l_forumdeleted='Forum deleted';
 
-$l_mysql_error='There was a database error. Please report this problem (what you were trying to do etc.) to boards administrator, or contact the authors.<br>';
+$l_mysqli_error='There was a database error. Please report this problem (what you were trying to do etc.) to boards administrator, or contact the authors.<br>';
 
 $l_adminpanel='Admin panel';
 

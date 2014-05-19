@@ -39,7 +39,7 @@ $warning='';
 $adminPanel=1;
 
 //-----
-function get_template_forum_orders($resultVal, $count, $forumID, $l_mysql_error) {
+function get_template_forum_orders($resultVal, $count, $forumID, $l_mysqli_error) {
 // Get forumorder options
 $forumorder='';
 for ($i=0; $i<=$count; $i++) {
@@ -74,7 +74,7 @@ return $iconList;
 }
 
 //-----
-function get_forums_fast_preview ($resultVal, $count, $l_mysql_error) {
+function get_forums_fast_preview ($resultVal, $count, $l_mysqli_error) {
 // Get forums fast order preview in admin panel
 $fast='';
 for ($i=0; $i<=$count; $i++) {
@@ -193,8 +193,8 @@ $a++;
 }
 while($row=db_simpleSelect(1));
 
-$forumorder=get_template_forum_orders($resultVal, $a-1, $forumID, $l_mysql_error);
-$forumsPreview=get_forums_fast_preview($resultVal, $a-1, $l_mysql_error);
+$forumorder=get_template_forum_orders($resultVal, $a-1, $forumID, $l_mysqli_error);
+$forumsPreview=get_forums_fast_preview($resultVal, $a-1, $l_mysqli_error);
 unset($resultVal);
 }
 
@@ -260,8 +260,8 @@ $a++;
 }
 while($row=db_simpleSelect(1));
 
-$forumorder=get_template_forum_orders($resultVal, $a-1, $forumID, $l_mysql_error);
-$forumsPreview=get_forums_fast_preview($resultVal, $a-1, $l_mysql_error);
+$forumorder=get_template_forum_orders($resultVal, $a-1, $forumID, $l_mysqli_error);
+$forumsPreview=get_forums_fast_preview($resultVal, $a-1, $l_mysqli_error);
 unset($resultVal);
 
 $iconList=getForumIcons();
@@ -414,7 +414,7 @@ $thisIp=$banip; $thisIpMask=array($banip,$banip);
 if(db_ipCheck($thisIp,$thisIpMask,$user_id)) $warning=$l_IpExists;
 else{
 $fs=insertArray(array('banip'),$Tb);
-$warning=($fs==0?$l_IpBanned:$l_mysql_error);
+$warning=($fs==0?$l_IpBanned:$l_mysqli_error);
 }
 $text2=makeUp('admin_panel');
 }

@@ -81,7 +81,7 @@ echo load_header(); echo ParseTpl($tpl); return;
 
 }
 else {
-$title.=$l_mysql_error; $errorMSG=$l_mysql_error; $correctErr='';
+$title.=$l_mysqli_error; $errorMSG=$l_mysqli_error; $correctErr='';
 $tpl=makeUp('main_warning'); 
 }
 

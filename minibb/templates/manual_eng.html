@@ -792,13 +792,13 @@ produces:
 
 <p><b><a name="dbmodules">Database modules</a></b>
 <p>First version of miniBB was supported only by mySQL database. Since version 1.1, we have developed also PostgreSQL module. We have attached all SQL-calls in a separate file. Depending on this file, other database modules (f.e., ODBC) can be made. We plan to work on it in near future, but every developer who can help us in making another DB module is welcome. You'll get all necessary credits.
-<p>Making a DB module is average simple. Since SQL functions are mostly the same (at least, by logic), in many cases you just need to make another database connection which is supported by PHP, and design database request if necessary. SQL requests mostly are parsed into array pointers, which can be accessed, f.e., via mysql_fetch_row() function. Probably, most databases can support this operation. In other words: just look, how mySQL parser works, and include other commands :). Note: don't change names of variables, like &#36;result or &#36;sus, because some are called from the outside script.
+<p>Making a DB module is average simple. Since SQL functions are mostly the same (at least, by logic), in many cases you just need to make another database connection which is supported by PHP, and design database request if necessary. SQL requests mostly are parsed into array pointers, which can be accessed, f.e., via mysqli_fetch_row() function. Probably, most databases can support this operation. In other words: just look, how mySQL parser works, and include other commands :). Note: don't change names of variables, like &#36;result or &#36;sus, because some are called from the outside script.
 <p>Here is an example:
 <pre>
 elseif(&#36;n==16){
-if(!&#36;sus) &#36;result=mysql_query("SELECT forum_id, forum_name, forum_desc, forum_icon 
+if(!&#36;sus) &#36;result=mysqli_query($GLOBALS["db_link"], "SELECT forum_id, forum_name, forum_desc, forum_icon 
 FROM forums ORDER BY forum_order ASC");
-&#36;row=mysql_fetch_row(&#36;result);
+&#36;row=mysqli_fetch_row(&#36;result);
 }
 </pre>
 
