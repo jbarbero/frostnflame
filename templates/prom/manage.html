@@ -40,12 +40,18 @@
     </table>
     </form>
 
+    <br/><br/>
+
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th>Color Scheme</th></tr>
+    <tr><td><label>
+    <select id="color_setting" name="color_setting" onChange="var l = document.getElementById('mainStyleSheet'); var s = document.getElementById('color_setting'); var n = s.options[s.selectedIndex].value; l.href=n;">
     <?php foreach($GLOBALS["stylearray"] as $loop_stylesel): ?>
-        <tr><td><label><input type="radio" name="color_setting" value="<?php echo $loop_stylesel["id"]; ?>"<?php if($loop_stylesel["id"] == $GLOBALS["users"]["style"]): ?> checked="checked"<?php endif; ?>><?php echo $loop_stylesel["name"]; ?></label></td></tr>
+        <option value="<?php echo $loop_stylesel["id"]; ?>"<?php if($loop_stylesel["id"] == $GLOBALS["stylename"]): ?> selected="selected"<?php endif; ?>><?php echo $loop_stylesel["name"]; ?></option>
     <?php endforeach; ?>
+    </label></td></tr>
+    </select>
     <tr><th><input type="submit" name="do_changestyle" value="Change Style"></th></tr>
     </table>
     </form>
@@ -59,7 +65,7 @@
     </form>
     <?php endif; ?>
 
-{*
+<?php /* ?>
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th colspan="2">Change Styles Directory</th></tr>
@@ -71,7 +77,7 @@
     </tr>
     </table>
     </form>
-*}    
+<?php */ ?>
 
     <form method="post" action="<?php echo $GLOBALS["main"]; ?>?changepass<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">

@@ -10,8 +10,6 @@ include("header.php");
 <br>
 <?
 
-$tpl_prom = $tpl;
-
 function set_var($var, $value)
 {
         global $_GET, $_POST, $HTTP_GET_VARS, $HTTP_POST_VARS;
@@ -56,8 +54,6 @@ $Ts=$prefix.'_send_mails';
 $Tb=$prefix.'_banned';
 
 include("minibb/minibb.php");
-
-$tpl = $tpl_prom;
 
 TheEnd("");
 ?>

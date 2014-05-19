@@ -4,8 +4,6 @@ include("header.php");
 if ($users[clan] == 0)
     TheEnd("You are not in a clan!");
 
-$tpl_prom = $tpl;
-
 function set_var($var, $value)
 {
     global $_GET, $_POST, $HTTP_GET_VARS, $HTTP_POST_VARS;
@@ -63,8 +61,5 @@ $bb_admin='bb_admin.php';
 
 include("minibb/minibb.php");
 
-$tpl = $tpl_prom;
-
 TheEnd("");
-
 ?>

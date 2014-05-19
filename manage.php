@@ -120,7 +120,8 @@ if ($do_changetax) {
     $printmessage = 'Tax rate updated!';
 }
 if ($do_changestyle) {
-    $users[style] = $color_setting;
+    $new_style = array_search($color_setting, $styles);
+    $users[style] = $new_style;
     saveUserData($users,"style");
     header(str_replace('&amp;', '&', "Location: ?manage$authstr"));
     die();
@@ -179,7 +180,7 @@ foreach($rtags as $id => $race)
 $stylearray = array();
 foreach($stylenames as $i => $name)
     if(empty($adminstyles[$i]) || $users[disabled] == 2)
-        $stylearray[] = array('id' => $i, 'name' => $name);
+        $stylearray[] = array('id' => $styles[$i], 'name' => $name);
 template_display('manage.html');
 TheEnd("");
 ?>
