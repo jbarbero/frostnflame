@@ -40,25 +40,32 @@
 <br><br>
 
 <?php if(!$GLOBALS["crier"]): ?><h2>
-    <?php if($GLOBALS["count"] == 0): ?>    No events.    <?php endif; ?>
-    <?php if($GLOBALS["count"] == 1): ?>    1 event:
-    <?php else: ?>            <?php echo $GLOBALS["count"]; ?> events:
+    <?php if($GLOBALS["count"] == 0): ?>
+        No events.
+    <?php elseif($GLOBALS["count"] == 1): ?>
+        1 event:
+    <?php else: ?>
+        <?php echo $GLOBALS["count"]; ?> events:
     <?php endif; ?>
-</h2>
-<?php else: ?><br><?php endif; ?>
+    </h2>
+<?php else: ?>
+    <br>
+<?php endif; ?>
 
 <table style="width:90%">
 <?php if($GLOBALS["crier"]): ?><tr><th colspan="5">Recent News</th></tr><?php endif; ?>
 
-<tr class="inputtable2">
-    <th>Date/Time</th>
-    <th>Attacker</th>
-    <th>Defender</th>
-    <th>Outcome</th>
-    <th style="width:2">Times</th>
-</tr>
+<?php if($GLOBALS["count"]): ?>
+    <tr class="inputtable2">
+        <th>Date/Time</th>
+        <th>Attacker</th>
+        <th>Defender</th>
+        <th>Outcome</th>
+        <th style="width:2">Times</th>
+    </tr>
+<?php endif; ?>
 
-<?php foreach($news_disp as $loop_i): ?>
+<?php foreach($GLOBALS["news_disp"] as $loop_i): ?>
     <tr>
         <td><?php echo $loop_i["date"]; ?></td>
         <td><?php echo $loop_i["name2"]; ?><br>Clan: <?php echo $loop_i["clname2"]; ?></td>
@@ -71,10 +78,13 @@
 
 <?php endforeach; ?>
 
-<tr class="inputtable2">
-    <th>Date/Time</th>
-    <th>Attacker</th>
-    <th>Defender</th>
-    <th>Outcome</th>
-    <th style="width:2">Times</th>
-</tr>
+<?php if($GLOBALS["count"]): ?>
+    <tr class="inputtable2">
+        <th>Date/Time</th>
+        <th>Attacker</th>
+        <th>Defender</th>
+        <th>Outcome</th>
+        <th style="width:2">Times</th>
+    </tr>
+<?php endif; ?>
+

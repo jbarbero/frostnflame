@@ -4,6 +4,7 @@ if(!$crier)
 require_once("magicfun.php");
 
 global $authstr;
+$news_disp = array();
 
 $where = "(code > 201 AND code < 400) ";
 
