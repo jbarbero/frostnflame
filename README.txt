@@ -1,20 +1,16 @@
-###################################### N.B. ######################################
+Installation is super easy:
 
-The FAF codebase is NOT currently working. I am working on updating it to run on modern PHP. Please do not try installing this codebase.
-
-##################################################################################
-
-
-Installation steps:
 1. Unzip on your web server
+
 2. Copy config.php to local/ and edit it to set up your server.
+
 Directives are documented within the file.
 All you need to do to get a running game is to change the pertinent MySQL variables, but you may customize the game to your liking in detail if you wish.
 You do not need to do anything in the database, servers and everything are transparently installed.
       Note: if you have MySQL troubles, double-check your connection info
       and try setting $config['pconnect'] to 0 in config.php
 
-Congratulations! FAF is installed. Just browse to the game directory and log in with:
+3. Congratulations! FAF is installed. Just browse to the game directory and log in with:
 username: admin
 password: password
 
