@@ -123,9 +123,9 @@ else echo commas($users[networth] / 10);
     <tr><th class="aleft">Order by:</th>
         <td><input type="radio" name="order_by" value="rank" checked>Networth</td></tr>
     <tr><th></th>
-        <td><input type="radio" name="order_by" value="num"><?=$uera[empireC]?> Number</td></tr>
+        <td><input type="radio" name="order_by" value="num"><?=ucfirst($uera[empireC])?> Number</td></tr>
     <tr><th></th>
-        <td><input type="radio" name="order_by" value="empire"><?=$uera[empireC]?> Name</td></tr>
+        <td><input type="radio" name="order_by" value="empire"><?=ucfirst($uera[empireC])?> Name</td></tr>
     <tr><th></th>
         <td><input type="radio" name="order_by" value="clan">Clan</td></tr>
     <tr>
@@ -139,7 +139,7 @@ else echo 25;
     </table></td>
     <td><table class="inputtable">
         <tr><th class="aleft"><label><input type="radio" name="search_type" value="num">
-              <?=$uera[empireC]?> Number:</label></th>
+              <?=ucfirst($uera[empireC])?> Number:</label></th>
             <td><input type="text" name="search_num" size="4"></td></tr>
         <tr><th class="aleft"><label><input type="radio" name="search_type" value="string" checked> String Search:<br>(Only letters allowed.)</label></th>
             <td><input type="text" name="search_string" size="15"></td></tr>

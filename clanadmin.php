@@ -1,42 +1,34 @@
 <?php
-
-
 include("header.php");
 require("lib/libclan.php");
 
 if ($users[disabled] != 2)
     TheEnd("You are not an administrator!");
+
 // this function generates the drop down box for ally and war lists
-function listopt ($item)
-{
+function listopt ($item) {
     global $clandb, $uclan;
 
     ?>
-<select name="<?=$item?>" size="1">
-<option value="0"<?php if ($uclan[$item] == 0) print " selected";
+    <select name="<?=$item?>" size="1">
+    <option value="0"<?php if ($uclan[$item] == 0) print " selected"; ?>>None</option>
 
-    ?>>None</option>
-<?php $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
+    <?php
+    $list = db_safe_query("SELECT num,name,tag FROM $clandb WHERE members>0 ORDER BY num DESC;");
     while ($clan = mysqli_fetch_array($list)) {
-
         ?>
-<option value="<?=$clan[num]?>"<?php if ($clan[num] == $uclan[$item]) print " selected";
-
-        ?>><?=$clan[tag]?>: <?=$clan[name]?></option>
-<?php
+        <option value="<?=$clan[num]?>"<?php if ($clan[num] == $uclan[$item]) print " selected"; ?>><?=$clan[tag]?>: <?=$clan[name]?></option>
+        <?php
     } 
-
     ?>
-</select>
-<?php
-} 
+    </select>
+    <?php
+}
 
-        if ($do_createclan)
-        {
-        $create_founder=$_POST['create_founder'];
-        mkclan();
-                        
-        }
+if ($do_createclan) {
+    $create_founder=$_POST['create_founder'];
+    mkclan();
+}
 
 ?>
 <form method="post" action="?clanadmin<?=$authstr?>">
@@ -221,7 +213,7 @@ Clan Crier News (Viewable by everyone):<br>
 <input type="submit" name="do_changemotd" value="Change MOTD">
 </div>
 </form>
+
 <?php
 TheEnd("");
-
 ?>

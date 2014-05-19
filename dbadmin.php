@@ -1,6 +1,9 @@
 <?
 include("header.php");
 
+if ($users[num] != 1)
+    TheEnd("You are not the root administrator!");
+
 /*
 This tidbit sells all stocks and puts them in the Bank
 include("lib/stocks.php");
@@ -57,9 +60,6 @@ echo "</pre>";
 exit;
 */
 
-
-if ($users[num] != 1)
-    TheEnd("You are not the root administrator!");
 
 if(isset($_POST['do_reset'])) {
     $cur_admin_pass = db_safe_firstval("SELECT password FROM $playerdb WHERE num=1;");

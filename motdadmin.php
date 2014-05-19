@@ -1,6 +1,8 @@
-<?
+<?php
 include("header.php");
-global $prefix;
+
+if ($users[disabled] != 2)
+    TheEnd("You are not an administrator!");
 
 $users['motd'] = 0;  // set motd as read
 saveUserData($users, "motd");
@@ -33,6 +35,6 @@ if(isset($_POST['submit'])) {
     </tbody>
   </table>
 </form>
-<?
+<?php
 TheEnd("");
 ?>

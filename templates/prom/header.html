@@ -52,11 +52,13 @@
 <center>
 <table width="80%"><tr width="100%"><td width="50%"><p align="left">
 <?php if($GLOBALS["root"] == 1): ?>
-<a href="<?php echo $GLOBALS["main_url"]; ?>?admin<?php echo $GLOBALS["authstr"]; ?>">Server Administration</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?admin<?php echo $GLOBALS["authstr"]; ?>">ROOT: Server Administration</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?dbadmin<?php echo $GLOBALS["authstr"]; ?>">ROOT: Reset Server</a><br>
 <?php endif; ?>
 <a href="<?php echo $GLOBALS["main_url"]; ?>?clanadmin<?php echo $GLOBALS["authstr"]; ?>">Clan Administration</a><br>
 <a href="<?php echo $GLOBALS["main_url"]; ?>?useradmin<?php echo $GLOBALS["authstr"]; ?>">User Administration</a><br>
 <a href="<?php echo $GLOBALS["main_url"]; ?>?msgadmin<?php echo $GLOBALS["authstr"]; ?>">View Messages</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?motdadmin<?php echo $GLOBALS["authstr"]; ?>">Set MoTD</a><br>
 </p>
 </td>
 <td width="50%"><p align="right">

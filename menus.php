@@ -50,18 +50,16 @@ function menu_header_item($item, $sqlname, $show) {
 
 menu_header_item('Information', 'info', 1);
 menu_normal_item('Forums', 'forums', 0);
-menu_normal_item('Server News', 'motd', 0);
+menu_normal_item('Server Forum', 'serverforum', 1);
+#menu_normal_item('Server News', 'motd', 0);
 #menu_normal_item('Shout Box', 'shout', 1);
 menu_normal_item('Status', 'status', 1);
 menu_normal_item('Scores', 'scores', 1);
-menu_normal_item('The Map', 'map', 0);
+#menu_normal_item('The Map', 'map', 0);
 #menu_normal_item('Map Beta', 'map2', 0);
 menu_normal_item('Search', 'search', 0);
 menu_normal_item('Profiles', 'profiles', 0);
 menu_normal_item('News', 'news', 1);
-menu_normal_item('Contacts', 'contacts', 1);
-menu_normal_item('Server Forum', 'serverforum', 1);
-menu_normal_item('Clans', 'clancrier', 0);
 menu_header_item('Turns', 'turns', 1);
 menu_normal_item('Scout', 'land', 1);
 #menu_normal_item('Trade', 'cash', 1);
@@ -89,9 +87,10 @@ menu_normal_item('Intelligence', 'intel', 1);
 menu_normal_item($uera[wizards], 'magic', 1);
 menu_normal_item('Heroes', 'hero', 0);
 menu_header_item('Clans', 'clans', 1);
+menu_normal_item('Top Clans', 'clanstats', 0);
+menu_normal_item('Contacts', 'contacts', 0);
+menu_normal_item('Clan Criers', 'clancrier', 0);
 if ($users[clan] == 0) {
-    menu_normal_item('Top Clans', 'clanstats', 0);
-    menu_normal_item('Contacts', 'contacts', 0);
     menu_normal_item('Join Clan', 'clanjoin', 1);
     menu_normal_item('Create Clan', 'clan', 1);
 } else {
@@ -108,8 +107,6 @@ if ($users[clan] == 0) {
 //    menu_normal_item('Chat', 'chat&clan', 0);
     menu_normal_item('Treasury', 'treasury', 1);
     menu_normal_item('Market', 'clanmarketbuy', 0);
-    menu_normal_item('Top Clans', 'clanstats', 0);
-    menu_normal_item('Contacts', 'contacts', 0);
 } 
 menu_header_item('Management', 'manage', 1);
 //menu_normal_item('Game Chat', 'chat&global', 0);
