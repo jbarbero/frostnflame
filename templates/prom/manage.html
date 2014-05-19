@@ -46,7 +46,7 @@
     <table class="inputtable">
     <tr><th>Color Scheme</th></tr>
     <tr><td><label>
-    <select id="color_setting" name="color_setting" onChange="var l = document.getElementById('mainStyleSheet'); var s = document.getElementById('color_setting'); var n = s.options[s.selectedIndex].value; l.href=n;">
+    <select id="color_setting" name="color_setting" onChange="var l = document.getElementById('mainStyleSheet'); var s = document.getElementById('color_setting'); var n = s.options[s.selectedIndex].value; l.href='styles/' + n;">
     <?php foreach($GLOBALS["stylearray"] as $loop_stylesel): ?>
         <option value="<?php echo $loop_stylesel["id"]; ?>"<?php if($loop_stylesel["id"] == $GLOBALS["stylename"]): ?> selected="selected"<?php endif; ?>><?php echo $loop_stylesel["name"]; ?></option>
     <?php endforeach; ?>
