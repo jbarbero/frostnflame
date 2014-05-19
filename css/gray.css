@@ -1,0 +1,211 @@
+body {
+    background-color: #cecece;
+/*    color: #282828;    */
+    color: #000000;
+}
+
+/* Inherit Backgrounds */
+a, a.new, a.mally, a.mdead, a.proflinkdk, a:hover {
+        background: inherit;
+}
+
+a {    color: #282828;        }
+
+a:hover {
+    color: #555555;
+    background-color: #d9d9d9;
+}
+
+a.new {        color: #555555;        }
+a.mally {    color: #bfbfbf;        }
+a.mdead {    color: #555555;        }
+a.mnormal {    color: #ffffff;        background: inherit        }
+a.undecorated {    color: #ffffff;        background: inherit;        }
+a.undecorated:hover {
+    color: #000000;
+    background: #ffffff;
+}
+a.proflinkdk {
+    color: #000000;
+    text-decoration: underline;
+}
+
+table {        border: #000000 0px solid;    }
+.guide th {
+    color: #000000;
+    background: url("img/gray-cellpic1.gif");
+}
+
+.menus td {
+        color: #000000;
+        background: url("img/gray-cellpic3.gif");
+}
+.menus th {
+        color: #000000;
+        background: url("img/gray-cellpic1.gif");    
+}
+.stbl {
+    border: #000000 1px solid;
+}
+.stocks{
+    border: #000000 1px solid;
+}
+
+.stocks {
+    background-color: #dddddd;
+    color: inherit;
+}
+
+.inputtable td {
+    color: #000000;
+    
+}
+.inputtable th {
+    color: #000000;
+    background: url("img/gray-cellpic1.gif");
+}
+
+.race th {
+    color: #000000;
+    background: url("img/gray-cellpic1.gif");
+}
+
+.chatusers {
+    background-color:       #cecece;
+    color:            inherit;
+}
+
+.selectedusers {
+    background-color:       #a4a4a4;
+    color: inherit;
+}
+
+
+.mnormal {    color: #000000;    background: inherit;    }
+.mdisabled {    color: #c6c6c6;    background: inherit;    }
+.mself {    color: #4a4a4a;    background: inherit;    }
+.mprotected {    color: #454545;    background: inherit;    }
+.mgood {    color: #666666;    background: inherit;    }
+.mally {    color: #2e2e2e;    background: inherit;    }
+.mdead {    color: #555555;    background: inherit;    }
+.madmin {    color: #b2b2b2;    background: inherit;    }
+
+.cgood {    color: #666666;    background: inherit;    }
+.cwarn {    color: #c6c6c6;    background: inherit;    }
+.cbad {        color: #555555;    background: inherit;    }
+.cneutral {    color: #000000;    background: inherit;    }
+
+.era0 {
+    color: #ffffff;
+    background-color: #6b6b6b;
+    background: url("img/gray-gradient.gif");
+}
+.era1 {
+    color: #ffffff;
+    background-color: #6b6b6b;
+    background: url("img/gray-cellpic1.gif");
+}
+.era2 {
+    color: #ffffff;
+    background-color: #202020;
+    background: url("img/gray-cellpic1.gif");
+}
+.era3 {
+    color: #ffffff;
+    background-color: #2b2b2b;
+    background: url("img/gray-cellpic1.gif");
+}
+
+
+input {
+    background: #d9d9d9;
+    border: #616161 1px solid;
+    color: #000000;
+}
+
+select {
+    background-color: #d9d9d9;
+    color: #000000;
+}
+.dkbg {
+    background-color: #d9d9d9;
+    color: #000000;
+}
+textarea {
+    background: #d9d9d9;
+    border: #616161 1px solid;
+    color: #000000;
+}
+
+.dark {
+    background-color: inherit;
+    color: #000000;
+}
+
+
+/**** Stuff for Forums ****/
+
+/* Caption 1 (the one for displaying sub-headers like "topics, posted" etc) */
+td.caption1 {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+}
+
+/* Caption 2 color and properties (this one displaying main menu,  New Topic text bg, New Message text bg) */
+td.caption2 {
+    background: url("img/gray-cellpic1.gif");
+    background-color: #d3d3d3;
+    border: none;
+    color: inherit;
+}
+
+/* Caption 3 (used for Last Discussions, topic titles, Forums selection) */
+td.caption3 {
+    background: url("img/gray-cellpic1.gif");
+    background-color: #2d2d2d;
+    border: none;
+    color: inherit;
+}
+
+/* Caption 4 (the one for displaying not separate headers like Forum, Topic, Poster etc., Buttons menu, left info cell) */
+td.caption4 {
+    background: url("img/gray-cellpic1.gif");
+    background-color: #343434;
+    border: none;
+    color: inherit;
+}
+
+/* Caption 5 (used for user input like password/login and registration etc) */
+td.caption5 {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+}
+
+/* Caption 6 (this one is for displaying title headers (language, search). The same color as caption2, but different font size) */
+td.caption6 {
+    background-color: #2d2d2d;
+    border: none;
+    color: inherit;
+}
+
+/* Topics/forums/threads content cell color 1 */
+.tbCel1{
+/*     background: url("img/gray-cellpic3.gif");    */
+    background-color: #dbdbdb;
+    color: inherit;
+}
+
+/* Topics/forums/threads content cell color 2 */
+.tbCel2{
+/*    background: url("img/gray-cellpic3.gif");    */
+    background-color: #e7e7e7;
+    color: inherit;
+}
+
+/* General smart tables class */
+table.forums {
+/*    color: #a0a0a0;*/
+} 
+

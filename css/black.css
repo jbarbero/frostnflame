@@ -1,0 +1,212 @@
+body {
+    background: url("img/bgB.gif");
+    background-color: #000000;
+    color: #FFFFAA;
+}
+
+a {    color: #D6BF61;            }
+a:hover {
+    color: #000000;
+    background: #FFFFFF;
+}
+a.new {        color: #FFE44D;        }
+a.mally {    color: #9FBFDF;        }                            
+a.mdead {    color: red;        }
+a.mnormal {    color: white;        }
+a.mnormal:hover {    color: #000000;
+            background: #FFFFFF    }
+a.undecorated {    color: white;        }
+a.undecorated:hover {    color: #000000;
+            background: #FFFFFF    }
+a.proflinkdk { 
+    color: #000000;
+    text-decoration: underline;
+}
+
+
+table {        border: #000000 0px solid;    }
+.guide th {
+    color: white;
+    background-color: #4F4F4F;
+}
+
+.menus td {
+        color: white;
+        background-color: #2F2F2F;
+        background: url("img/sideunderfade.gif");
+}
+.menus th {
+        color: white;
+        background-color: #4F4F4F;
+        background: url("img/sidefade.gif");
+}
+
+.stbl {
+    border:    #FFFFFF 1px solid;
+}
+.stocks{
+    background-color: black;
+    border:    #FFFFFF 1px solid;
+}
+
+.sidebar {
+        width: 44px;
+        background-image: url(img/vine.gif)
+}
+
+.inputtable td {    color: white;            }
+.inputtable th {
+    color: white;
+    background-color: #4F4F4F;
+}
+.inputtable tt {     background-color: #000000; }
+.inputtable2 th {
+    color: white;
+    background-color: #4F4F4F;
+}
+.scorestable th {    color: white;            }
+
+.chatusers {
+    background-color:    #000000;
+}
+
+.selectedusers {
+    background-color:    #AA4444;
+}
+
+.mnormal {    color: white;    }
+.mdisabled {    color: yellow;    }
+.mself {    color: aqua;    }
+.mprotected {    color: #9FDF9F;    }
+.mgood {    color: lime;    }
+.mally {    color: #9FBFDF;    }
+.mdead {    color: red;    }
+.madmin {    color: #FF7FFF;    }
+
+.cgood {    color: lime;    }
+.cwarn, .warning {
+        color: yellow;    }
+.cbad {        color: red;    }
+.cneutral {    color: white;    }
+
+.era0 {
+    color: white;
+    background-color: maroon;
+    background: url("img/redfade.gif");
+}
+.era1 {
+    color: white;
+    background-color: maroon;
+    background: url("img/redfade.gif");
+}
+.era2 {
+    color: white;
+    background-color: #005F00;
+    background: url("img/greenfade.gif");
+}
+.era3 {
+    color: white;
+    background-color: navy;
+    background: url("img/bluefade.gif");
+}
+
+
+input {
+    background: #000000;
+    border: #606062 1px solid;
+    color: #D5D9DE;
+}
+select {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+.dkbg {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+textarea {
+    background: #000000;
+    border: #606062 1px solid;
+    color: #D5D9DE;
+}
+
+.dark {
+    color: #000000;
+}
+
+#QUOTE {
+    color: #333333;
+    background-color: #B5BCC3;
+    border: 1px solid black;
+}
+
+/**** Stuff for Forums ****/
+
+/* Caption 1 (the one for displaying sub-headers like "topics, posted" etc) */
+td.caption1 {
+    border: 1px #353637 solid;
+}
+
+/* Caption 2 color and properties (this one displaying main menu,  New Topic text bg, New Message text bg) */
+td.caption2 {
+    background-color: #292C31;
+    border: 1px #292C31 solid;
+}
+
+/* Caption 3 (used for Last Discussions, topic titles, Forums selection) */
+td.caption3 {
+    background-color: #292C31;
+}
+
+/* Table Caption 4 (displays BBcode options) */
+table.caption4 {
+    border: 0px #393A3B solid;
+    cellpadding: 0px;
+    cellspacing: 0px;
+    background: url("img/miniBB/skin/black_waterpaper_beveled.gif");
+    vertical-align: bottom;
+}
+
+/* Caption 4 (the one for displaying not separate headers like Forum, Topic, Poster etc., Buttons menu, left info cell) */
+td.caption4 {
+    background-color: #303439;
+    border: 1px #393A3B solid;
+}
+
+/* Caption 5 (used for user input like password/login and registration etc) */
+td.caption5 {
+    border: 1px #292C31 solid;
+}
+
+/* Caption 6 (this one is for displaying title headers (language, search). The same color as caption2, but different font size) */
+td.caption6 {
+    background-color: #292C31;
+    border: 1px #303439 solid;
+}
+
+/* Topics/forums/threads content cell color #1 */
+.tbCel1{
+    background: #2A2A2C;
+}
+
+/* Topics/forums/threads content cell color #2 */
+.tbCel2{
+    background: #2F2F31;
+}
+
+/* General smart tables class */
+table.forums {
+    border: 1px #353637 solid;
+    width: 60%;
+    color: #B3B7BC;
+}
+
+
+/** Wiki styles **/
+/*-- links to non-existent pages*/
+.NotFound * {
+   border-bottom: dashed 1px blue;
+}
+.NotFound a {
+   color: red;
+}

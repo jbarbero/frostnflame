@@ -1,0 +1,207 @@
+A
+{
+    text-decoration: none;
+    color: #999999;
+}
+A:hover
+{
+    color: #000000;
+       text-decoration: none;
+    background: #FFFFFF;
+}
+BODY {
+    background: url("img/bgB.gif");
+    color: #999999;
+    background-color: #000000;
+    font-size: 10pt;
+    font-family: arial;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.dkbg {
+    background-color: #888888;
+}
+TABLE
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+TD
+{
+    text-align: left;
+    font-size: 10pt;
+}
+TH
+{
+    text-align: center;
+    font-size: 10pt;
+}
+
+.sidebar {
+        width: 64px;
+        background-image: url(img/chain.gif)
+}
+
+.guide TD
+{
+    text-align: center;
+    color: white;
+    font-size: 10pt;
+}
+.guide TH
+{
+    font-size: 10pt;
+    color: black;
+    background-color: #4F4F4F;
+}
+.menus TD
+{
+    color: black;
+    text-align: center;
+    background-color: #2F2F2F;
+    background: url("img/sideunderfade.gif");
+}
+.menus TH
+{
+    color: black;
+    background-color: #4F4F4F;
+    background: url("img/sidefade.gif");
+}
+.inputtable TD
+{
+    font-size: 10pt;
+    color: white;
+}
+.inputtable TH
+{
+    font-size: 10pt;
+    color: black;
+    background-color: #4F4F4F;
+}
+TABLE.scorestable
+{
+    width: 100%;
+}
+.scorestable TH
+{
+    color: black;
+    font-size: 10pt;
+}
+.scorestable TD
+{
+    font-size: small;
+}
+.empstatus TH { text-align: left; }
+.empstatus TD { text-align: right; }
+
+.mnormal { color: #858585; }
+.mdisabled { color: yellow; }
+.mself { color: #42545E; }
+.mally { color: #9FBFDF; }
+.mprotected { color: #465B44; }
+.mdead { color: #752B2B; }
+.madmin { color: #3A4165; }
+
+.cgood { color: lime; }
+.cwarn { color: yellow; }
+.cbad { color: red; }
+.cneutral { color: white; }
+
+.era1, .era4
+{
+    color: white;
+    background-color: navy;
+    font-size: large;
+    background: url("img/bluefade.gif");
+}
+.era2, .era5
+{
+    color: white;
+    background-color: maroon;
+    font-size: large;
+    background: url("img/redfade.gif");
+}
+.era3, .era6
+{
+    color: white;
+    background-color: #005F00;
+    font-size: large;
+    background: url("img/greenfade.gif");
+}
+.era0
+{
+    color: white;
+    background-color: maroon;
+    font-size: large;
+    background: url("img/redfade.gif");
+}
+.aleft { text-align: left; }
+.acenter { text-align: center; }
+.aright { text-align: right; }
+
+input {
+    border: 1px solid #FFFFFF;
+    background-color: #888888;
+    }      
+.not {
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    }      
+select, textarea {
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    }
+
+/**** Stuff for Forums ****/
+
+/* Caption 1 (the one for displaying sub-headers like "topics, posted" etc) */
+td.caption1 {
+    border: 1px #353637 solid;
+}
+
+/* Caption 2 color and properties (this one displaying main menu,  New Topic text bg, New Message text bg) */
+td.caption2 {
+    background-color: #292C31;
+    border: 1px #292C31 solid;
+}
+
+/* Caption 3 (used for Last Discussions, topic titles, Forums selection) */
+td.caption3 {
+    background-color: #292C31;
+}
+
+/* Caption 4 (the one for displaying not separate headers like Forum, Topic, Poster etc., Buttons menu, left info cell) */
+td.caption4 {
+    background-color: #303439;
+    border: 1px #393A3B solid;
+}
+
+/* Caption 5 (used for user input like password/login and registration etc) */
+td.caption5 {
+    border: 1px #292C31 solid;
+}
+
+/* Caption 6 (this one is for displaying title headers (language, search). The same color as caption2, but different font size) */
+td.caption6 {
+    background-color: #292C31;
+    border: 1px #303439 solid;
+}
+
+/* Topics/forums/threads content cell color #1 */
+.tbCel1{
+    background: #2A2A2C;
+}
+
+/* Topics/forums/threads content cell color #2 */
+.tbCel2{
+    background: #2F2F31;
+}
+
+/* General smart tables class */
+table.forums {
+    border: 1px #353637 solid;
+    color: #B3B7BC;
+} 
