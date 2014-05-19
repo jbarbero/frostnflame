@@ -42,6 +42,22 @@ function escape_quotes($str) {
     return preg_replace("%(?<!\\\\)'%", "\\'", $str);
 }
 
+function cnum($amt) {
+    $pos = "+";
+    $neg = "-";
+    if ($nosign)
+        $neg = $pos = "";
+    $str = "<span class=";
+    if ($amt < 0)
+        $str .= '"cbad">'.$neg.$prefix;
+    elseif ($amt > 0) 
+        $str .= '"cgood">'.$pos.$prefix;
+    else    $str .= '"cneutral">';
+    $str .= commas(abs($amt));
+    $str .= "</span>";
+    return $str;
+}
+
 function template_display($file) {
     global $config;
     if(!isset($config['tpldir'])) {
