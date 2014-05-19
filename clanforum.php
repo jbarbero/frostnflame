@@ -4,36 +4,28 @@ include("header.php");
 if ($users[clan] == 0)
     TheEnd("You are not in a clan!");
 
+$uclan = loadClan($users[clan]);
+
+
 function set_var($var, $value)
 {
-    global $_GET, $_POST, $HTTP_GET_VARS, $HTTP_POST_VARS;
+    global $_GET, $_POST;
     $_GET[$var] = $value;
     $_POST[$var] = $value;
-    $HTTP_GET_VARS[$var] = $value;
-    $HTTP_POST_VARS[$var] = $value;
     global $$var;
     $$var = $value;
-} 
-
-set_var('forum', $users[clan]);
-if (empty($HTTP_GET_VARS['action']) && empty($HTTP_POST_VARS[action]))
-    set_var('action', 'vtopic');
+}
 
 $cookiename=$prefix.'_forum';
 
 $newtime = $time + 200000;
 $_COOKIE[$cookiename] = $users[igname].'|'.$users[password].'|'.$newtime;
 
-$indexphp = str_replace("&amp;", "&", "?clanforum$authstr&");
-
 $clForums = array();
 $roForums = array();
 $poForums = array();
 $userRanks = array();
 $regUsrForums = array();
-
-$uclan = loadClan($users[clan]);
-
 $mods = array($uclan[founder], $uclan[asst], $uclan[fa1], $uclan[fa2]);
 
 $DB='mysql';
@@ -59,7 +51,13 @@ $admin_email='spam@spam.com';
 
 $bb_admin='bb_admin.php';
 
-include("minibb/minibb.php");
+set_var('forum', $users[clan]);
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && empty($_GET['action']) && empty($_POST['action']))
+    set_var('action', 'vtopic');
+
+$indexphp = "?clanforum" . htmlspecialchars_decode($authstr) . "&";
+
+include(MINIBB_PATH."minibb.php");
 
 TheEnd("");
 ?>
