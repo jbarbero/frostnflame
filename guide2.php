@@ -70,7 +70,7 @@ if(strpos($section, "internal://") === 0) {
     define('DISPLAY', 1);
 }
 
-include_once("lib/ewiki.php");
+include_once("external/ewiki.inc");
 $faf_old_action = $action;
 $content = ewiki_page($section);
 $action = $faf_old_action;

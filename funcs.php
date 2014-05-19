@@ -5,7 +5,7 @@ require_once("lib/news-funcs.php");
 require_once("lib/turnuse.php");
 require_once("lib/crons.php");
 require_once("lib/status.php");
-require_once("nbbc.php");
+require_once("external/nbbc.inc");
 
 $hide_fatal_errors = false;
 

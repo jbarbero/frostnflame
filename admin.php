@@ -15,7 +15,7 @@ $_SESSION['mysql']['pass'] = $config['dbpass'];
 $_SESSION['mysql']['db'] = $config['dbname'];
 
 define('self', str_replace("&amp;", "&", "?admin$authstr"));
-include("minimyadmin.php");
+include("external/minimyadmin.inc");
 
 TheEnd("");
 
