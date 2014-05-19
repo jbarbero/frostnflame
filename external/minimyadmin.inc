@@ -1651,6 +1651,7 @@ h3 {
    text-align: left;
    padding-left: 4px;
    position: relative;
+   width: 75%;
 }
 
 #vasak {
@@ -1678,6 +1679,7 @@ h3 {
    margin-top: 2px;
    color: #fff;
    padding: 7px 0 0 8px;
+   width: 90%;
 }
 td {vertical-align: top;}
 fieldset {
