@@ -52,20 +52,20 @@
 <center>
 <table width="80%"><tr width="100%"><td width="50%"><p align="left">
 <?php if($GLOBALS["root"] == 1): ?>
-<a href="<?php echo $GLOBALS["main"]; ?>?admin<?php echo $GLOBALS["authstr"]; ?>">Server Administration</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?admin<?php echo $GLOBALS["authstr"]; ?>">Server Administration</a><br>
 <?php endif; ?>
-<a href="<?php echo $GLOBALS["main"]; ?>?clanadmin<?php echo $GLOBALS["authstr"]; ?>">Clan Administration</a><br>
-<a href="<?php echo $GLOBALS["main"]; ?>?useradmin<?php echo $GLOBALS["authstr"]; ?>">User Administration</a><br>
-<a href="<?php echo $GLOBALS["main"]; ?>?msgadmin<?php echo $GLOBALS["authstr"]; ?>">View Messages</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?clanadmin<?php echo $GLOBALS["authstr"]; ?>">Clan Administration</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?useradmin<?php echo $GLOBALS["authstr"]; ?>">User Administration</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?msgadmin<?php echo $GLOBALS["authstr"]; ?>">View Messages</a><br>
 </p>
 </td>
 <td width="50%"><p align="right">
 <?php if($GLOBALS["root"]): ?>
-<a href="<?php echo $GLOBALS["main"]; ?>?newsletter<?php echo $GLOBALS["authstr"]; ?>">Send Newsletter</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?newsletter<?php echo $GLOBALS["authstr"]; ?>">Send Newsletter</a><br>
 <?php endif; ?>
-<a href="<?php echo $GLOBALS["main"]; ?>?igletter<?php echo $GLOBALS["authstr"]; ?>">Mass In-Game Message</a><br>
-<a href="<?php echo $GLOBALS["main"]; ?>?forumadmin<?php echo $GLOBALS["authstr"]; ?>">Forums Moderation</a><br>
-<a href="<?php echo $GLOBALS["main"]; ?>?stockpanel<?php echo $GLOBALS["authstr"]; ?>">Stock Manipulation</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?igletter<?php echo $GLOBALS["authstr"]; ?>">Mass In-Game Message</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?forumadmin<?php echo $GLOBALS["authstr"]; ?>">Forums Moderation</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?stockpanel<?php echo $GLOBALS["authstr"]; ?>">Stock Manipulation</a><br>
 </p></td></tr>
 </table>
 </center>
@@ -75,14 +75,14 @@
    <center><span style="font-size:x-large"><?php echo $GLOBALS["gamename"]; ?> :: <?php echo $GLOBALS["config"]["servname"]; ?></span></center>
    Currently logged in as <span style="font-size:large"><?php echo $GLOBALS["empire"]; ?></span> <a class=proflink href=?profiles&amp;num=<?php echo $loop_num; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_num; ?>)</a><br><br>
    <b>Game News:</b> <?php echo $loop_news; ?><br>
-   <a href="<?php echo $GLOBALS["main"]; ?>?guide2&amp;section=<?php echo $GLOBALS["action"]; ?><?php echo $GLOBALS["authstr"]; ?>"><b>Game Guide</b></a> &middot;
+   <a href="<?php echo $GLOBALS["main_url"]; ?>?guide2&amp;section=<?php echo $GLOBALS["action"]; ?><?php echo $GLOBALS["authstr"]; ?>"><b>Game Guide</b></a> &middot;
    <a href="javascript:window.location.reload()">Refresh</a> &middot;
    <a href="http://frostnflame.org/forum/index.php?showforum=4" target="bugs">Suggestions &middot; Bugs</a>
    <br>
 
 <table style="width:100%">
 <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="font-size:medium" class="darklink">
-    <td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <td class="acenter"><a href="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
     <?php if($GLOBALS["newmail"]): ?>
       <b>New Mail!</b>
     <?php else: ?>
@@ -108,13 +108,13 @@
 
 <?php if($GLOBALS["validate1"] || $GLOBALS["validate2"]): ?>
 It is now necessary to validate your account. If you did not receive your validation email, you can have it resent.<br>
-<form method="post" action="<?php echo $GLOBALS["main"]; ?>?validate<?php echo $GLOBALS["authstr"]; ?>">
+<form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?validate<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable">
 <tr><td>Enter Validation Code:</td>
 <td class="aright"><input type="text" size="32" name="valcode" value="<?php echo $GLOBALS["valcode"]; ?>"></td></tr>
 <tr><th colspan="2" class="acenter"><input type="submit" name="do_validate" value="Validate"></th></tr>
 </table>
 </form>
-<a href="<?php echo $GLOBALS["main"]; ?>?revalidate<?php echo $GLOBALS["authstr"]; ?>">Resend Code</a><br>
-<a href="<?php echo $GLOBALS["main"]; ?>?delete<?php echo $GLOBALS["authstr"]; ?>">Delete Account</a>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?revalidate<?php echo $GLOBALS["authstr"]; ?>">Resend Code</a><br>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?delete<?php echo $GLOBALS["authstr"]; ?>">Delete Account</a>
 <?php endif; ?>

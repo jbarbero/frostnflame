@@ -42,7 +42,7 @@ function show(which) {
 <?php foreach($GLOBALS["message_array"] as $loop_v): ?>
     <?php foreach($GLOBALS["message_array"] as $loop_v): ?>
         <?php if($loop_v["read"] == 0 ): ?>
-        message_<?php echo $loop_v["id"]; ?> = ' <table class="inputtable">    <tr><th class="acenter">Viewing Message</th></tr><tr><td>      <form method="post" action="<?php echo $GLOBALS["config"]["sitedir"]; ?><?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">      <input type="hidden" name="msg_id" value="<?php echo $loop_v["id"]; ?>">      <input type="hidden" name="msg_src" value="<?php echo $loop_v["from_num"]; ?>">      <input type="hidden" name="msg_src_name" value="<?php echo $loop_v["from_name"]; ?>">      <input type="hidden" name="msg_title" value="<?php echo $loop_v["title"]; ?>">      <input type="hidden" name="msg_body" value="<?php echo escape_javascript($loop_v["msg_escaped"]); ?>">      <table>      <tr>      <td class="aleft">       <b>From:</b> <?php echo $loop_v["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_v["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_v["from_num"]; ?>)</a><br>       <b>Subject:</b> <?php echo $loop_v["title"]; ?><br>       <b>Date:</b> <?php echo escape_javascript($loop_v["date"]); ?><br>       <br><tt><?php echo escape_quotes($loop_v["msg"]); ?></tt>      </td>      </tr>      <tr><td><div align="center">      <input type="submit" name="do_reply" value="Reply">      <input type="submit" name="do_forward" value="Forward">      <input type="submit" name="do_delete" value="Delete">      </div></td></tr>      </table>      </form>      </td></tr><tr><th><hr></th></tr></table> ';
+        message_<?php echo $loop_v["id"]; ?> = ' <table class="inputtable">    <tr><th class="acenter">Viewing Message</th></tr><tr><td>      <form method="post" action="<?php echo $GLOBALS["config"]["sitedir"]; ?><?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">      <input type="hidden" name="msg_id" value="<?php echo $loop_v["id"]; ?>">      <input type="hidden" name="msg_src" value="<?php echo $loop_v["from_num"]; ?>">      <input type="hidden" name="msg_src_name" value="<?php echo $loop_v["from_name"]; ?>">      <input type="hidden" name="msg_title" value="<?php echo $loop_v["title"]; ?>">      <input type="hidden" name="msg_body" value="<?php echo escape_javascript($loop_v["msg_escaped"]); ?>">      <table>      <tr>      <td class="aleft">       <b>From:</b> <?php echo $loop_v["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_v["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_v["from_num"]; ?>)</a><br>       <b>Subject:</b> <?php echo $loop_v["title"]; ?><br>       <b>Date:</b> <?php echo escape_javascript($loop_v["date"]); ?><br>       <br><tt><?php echo escape_quotes($loop_v["msg"]); ?></tt>      </td>      </tr>      <tr><td><div align="center">      <input type="submit" name="do_reply" value="Reply">      <input type="submit" name="do_forward" value="Forward">      <input type="submit" name="do_delete" value="Delete">      </div></td></tr>      </table>      </form>      </td></tr><tr><th><hr></th></tr></table> ';
         <?php endif; ?>
     <?php endforeach; ?>
 <?php endforeach; ?>
@@ -54,15 +54,15 @@ function show(which) {
 
 <table class="inputtable" width="100%">
 <tr><th class="acenter">
-<a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["inbox"]; ?></a>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["inbox"]; ?></a>
 </th><th class="acenter">
-<a href="<?php echo $GLOBALS["main"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["sent"]; ?></a>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>"><?php echo $GLOBALS["sent"]; ?></a>
 </th></tr>
 </table>
 <br>
 <br>
 <?php if($GLOBALS["do_reply"]): ?>
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
     <div>
     Sending Reply To <?php echo $GLOBALS["replyname"]; ?> <a href=?profiles&amp;num=<?php echo $GLOBALS["replysrc"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["replysrc"]; ?>)</a><br>
     Message Title: <input type="text" name="msg_title" size="40" value="Re: <?php echo $GLOBALS["replytitle"]; ?>" maxlength="80"><br>
@@ -75,7 +75,7 @@ function show(which) {
 <?php endif; ?>
 
 <?php if($GLOBALS["do_forward"]): ?>
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
 
     Forward To:<select name="forward_num1" size="1">
     <?php foreach($GLOBALS["numbers"] as $loop_num_go): ?>
@@ -112,7 +112,7 @@ function show(which) {
     <table class="inputtable">
     <tr><th class="acenter">Viewing Message</th></tr><tr><td>
     <?php if($GLOBALS["sent"]==0): ?>
-      <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+      <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
 
       <input type="hidden" name="msg_id" value="<?php echo $GLOBALS["vmessage"]["id"]; ?>">
       <input type="hidden" name="msg_src" value="<?php echo $GLOBALS["vmessage"]["src"]; ?>">
@@ -141,7 +141,7 @@ function show(which) {
     <?php endif; ?>
 
     <?php if($GLOBALS["sent"]==1): ?>
-          <form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+          <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
           <input type="hidden" name="msg_body" value="<?php echo $GLOBALS["smessage"]["msg_escaped"]; ?>">
           <input type="hidden" name="msg_id" value="<?php echo $GLOBALS["smessage"]["id"]; ?>">
           <input type="hidden" name="msg_src_name" value="<?php echo $GLOBALS["vsrc"]["empire"]; ?>">
@@ -174,23 +174,23 @@ function show(which) {
 <?php if($GLOBALS["sent"]==0 && $GLOBALS["prof_target"]==""): ?>
     <?php if($GLOBALS["num_msgs"]>0): ?>
 
-        <form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"> <?php /* I want access to all the elements therein */ ?>
+        <form name="messages" method="post" action="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>"> <?php /* I want access to all the elements therein */ ?>
 
         <table class="scorestable">
         <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th colspan="4"><?php echo $GLOBALS["inbox"]; ?></th></tr>
 
         <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
         <th style="width:30%">
-        <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+        <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
         </th>
 
         <th style="width:30%">
-        <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
+        <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
         </th>
 
 
         <th style="width:15%">
-        <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
+        <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
         </th>
 
         <th style="width:15%">
@@ -201,12 +201,12 @@ function show(which) {
         <?php foreach($GLOBALS["message_array"] as $loop_sel): ?>
                 <tr>
                 <?php if($loop_sel["read"]==0): ?>
-                    <td><a style="font-weight: bold;" id="link_<?php echo $loop_sel["id"]; ?>" href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>" onclick="show(<?php echo $loop_sel["id"]; ?>); return false;"><?php echo $loop_sel["title"]; ?></a></td>
-                    <?php /*<td><a class="new" href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>*/ ?>
+                    <td><a style="font-weight: bold;" id="link_<?php echo $loop_sel["id"]; ?>" href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>" onclick="show(<?php echo $loop_sel["id"]; ?>); return false;"><?php echo $loop_sel["title"]; ?></a></td>
+                    <?php /*<td><a class="new" href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>*/ ?>
                 <?php endif; ?>
                 <?php if($loop_sel["read"]!=0): ?>
                     <?php /*<td><a href="JavaScript:show(<?php echo $loop_sel["id"]; ?>)<?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>*/ ?>
-                    <td><a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>
+                    <td><a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;view=<?php echo $loop_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_sel["title"]; ?></a></td>
                 <?php endif; ?>
                 <td class="acenter"><?php echo $loop_sel["from_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_sel["from_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_sel["from_num"]; ?>)</a></td>
                 <td class="acenter"><?php echo $loop_sel["date"]; ?></td>
@@ -218,16 +218,16 @@ function show(which) {
                 <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
 
                 <th style="width:30%">
-                <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+                <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
                 </th>
 
                 <th style="width:30%">
-                <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
+                <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=from&amp;asc=<?php echo $GLOBALS["from_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">From</a>
                 </th>
 
 
                 <th style="width:15%">
-                <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
+                <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
                 </th>
 
                 <th style="width:15%">
@@ -270,23 +270,23 @@ function show(which) {
 
 <?php if($GLOBALS["sent"]!=0): ?>
     <?php if($GLOBALS["num_msgs"]>0): ?>
-        <form name="messages" method="post" action="<?php echo $GLOBALS["main"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>">
+        <form name="messages" method="post" action="<?php echo $GLOBALS["main_url"]; ?>?sentmail<?php echo $GLOBALS["authstr"]; ?>">
 
         <table class="scorestable">
         <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th colspan="4"><?php echo $GLOBALS["sent"]; ?></th></tr>
 
         <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
         <th style="width:30%">
-        <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+        <a href="<?php echo $GLOBALS["main_url"]; ?>?sentmail&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
         </th>
 
         <th style="width:30%">
-        <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
+        <a href="<?php echo $GLOBALS["main_url"]; ?>?sentmail&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
         </th>
 
 
         <th style="width:15%">
-        <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
+        <a href="<?php echo $GLOBALS["main_url"]; ?>?sentmail&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
         </th>
 
         <th style="width:15%">
@@ -297,8 +297,8 @@ function show(which) {
 
         <?php foreach($GLOBALS["sent_message"] as $loop_s_sel): ?>
                 <tr>
-                <td> <a href="<?php echo $GLOBALS["main"]; ?>?sentmail&amp;view=<?php echo $loop_s_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_s_sel["title"]; ?></a></td>
-                <td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>"> <?php echo $loop_s_sel["to_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_s_sel["to_num"]; ?>)</a> </td>
+                <td> <a href="<?php echo $GLOBALS["main_url"]; ?>?sentmail&amp;view=<?php echo $loop_s_sel["id"]; ?><?php echo $GLOBALS["authstr"]; ?>"><?php echo $loop_s_sel["title"]; ?></a></td>
+                <td class="acenter"><a href="<?php echo $GLOBALS["main_url"]; ?>?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>"> <?php echo $loop_s_sel["to_name"]; ?> <a href=?profiles&amp;num=<?php echo $loop_s_sel["to_num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_s_sel["to_num"]; ?>)</a> </td>
                 <td class="acenter"><?php echo $loop_s_sel["date"]; ?></td>
                 <td class="acenter"><input type="checkbox" name="boxes[]" value="<?php echo $loop_s_sel["id"]; ?>"></td>
                  </td></tr>
@@ -308,16 +308,16 @@ function show(which) {
             <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>">
 
             <th style="width:30%">
-            <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
+            <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=title&amp;asc=<?php echo $GLOBALS["title_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">Title</a>
             </th>
 
             <th style="width:30%">
-            <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
+            <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=to&amp;asc=<?php echo $GLOBALS["to_order"]; ?><?php echo $GLOBALS["authstr"]; ?>">To</a>
             </th>
 
 
             <th style="width:15%">
-            <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
+            <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;order_by=date&amp;asc=<?php echo $GLOBALS["date_order"]; ?><?php echo $GLOBALS["authstr"]; ?>"> Date</a>
             </th>
 
             <th style="width:15%">
@@ -375,7 +375,7 @@ function updateMsgNums() {
 
 
 We currently have <?php echo $GLOBALS["users"]["msgcred"]; ?> message credits remaining.<br><br>
-<form method="post" action="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
+<form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
 <div>
 
 <?php if($GLOBALS["users"]["clan"] != 0): ?>

@@ -29,7 +29,7 @@
 
 <div align="center">
 
-        <form method="post" action="<?php echo $GLOBALS["main"]; ?>?profiles<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
+        <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?profiles<?php echo $GLOBALS["authstr"]; ?>" name="frmmsg">
             Read Profile of: <input type="text" name="num" size="5" maxlength="10" value="<?php echo $GLOBALS["selected"]; ?>" onChange="updateMsgNames()">
             <select name="msg_dest" onClick="updateMsgNums()" class="dkbg">
             <?php foreach($GLOBALS["warquery_array"] as $loop_dropsel): ?>
@@ -55,7 +55,7 @@
 
             <tr>
                 <th colspan="2">
-                    <b><?php echo $GLOBALS["enemy"]["empire"]; ?> <a class="proflink" href="<?php echo $GLOBALS["main"]; ?>?profiles&amp;num=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">(#<?php echo $GLOBALS["enemy"]["num"]; ?>)</a></b>
+                    <b><?php echo $GLOBALS["enemy"]["empire"]; ?> <a class="proflink" href="<?php echo $GLOBALS["main_url"]; ?>?profiles&amp;num=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">(#<?php echo $GLOBALS["enemy"]["num"]; ?>)</a></b>
                 </th>
             </tr>
 
@@ -96,7 +96,7 @@
                                     <th>Clan: </th>
                                     <td>
                                     <?php if($GLOBALS["clan"]["num"]!=0): ?>
-                                    <?php echo $GLOBALS["clan"]["name"]; ?> <a class="<?php echo $GLOBALS["ccolor"]; ?>" href="<?php echo $GLOBALS["main"]; ?>?clancrier&amp;sclan=<?php echo $GLOBALS["clan"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">(<?php echo $GLOBALS["clan"]["tag"]; ?>)</a>
+                                    <?php echo $GLOBALS["clan"]["name"]; ?> <a class="<?php echo $GLOBALS["ccolor"]; ?>" href="<?php echo $GLOBALS["main_url"]; ?>?clancrier&amp;sclan=<?php echo $GLOBALS["clan"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">(<?php echo $GLOBALS["clan"]["tag"]; ?>)</a>
                                     <?php else: ?>No Clan
                                     <?php endif; ?>
                                     </td>
@@ -147,7 +147,7 @@
                             </table>
 
                             <?php if($GLOBALS["loggedin"]==true): ?><br>
-                            <div align="center"><a href="<?php echo $GLOBALS["main"]; ?>?military&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Attack</a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?mercenary&amp;set=1&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Set Bounty On</a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?mercenary&amp;view_prof=1&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">View Bounties On <?php echo $GLOBALS["uera"]["empireC"]; ?></a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?aid&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Aid</a> &middot; <a href="<?php echo $GLOBALS["main"]; ?>?messages&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Message</a></div>
+                            <div align="center"><a href="<?php echo $GLOBALS["main_url"]; ?>?military&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Attack</a> &middot; <a href="<?php echo $GLOBALS["main_url"]; ?>?mercenary&amp;set=1&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Set Bounty On</a> &middot; <a href="<?php echo $GLOBALS["main_url"]; ?>?mercenary&amp;view_prof=1&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">View Bounties On <?php echo $GLOBALS["uera"]["empireC"]; ?></a> &middot; <a href="<?php echo $GLOBALS["main_url"]; ?>?aid&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Aid</a> &middot; <a href="<?php echo $GLOBALS["main_url"]; ?>?messages&amp;prof_target=<?php echo $GLOBALS["enemy"]["num"]; ?><?php echo $GLOBALS["authstr"]; ?>">Message</a></div>
                             <?php endif; ?>
                         </td>
                     </tr>

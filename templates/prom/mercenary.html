@@ -12,7 +12,7 @@
 <?php if($GLOBALS["editing"] == ""): ?>
 
     <table class="scorestable">
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
     <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 
@@ -50,7 +50,7 @@
 
 
 <?php if($GLOBALS["view"] == ""): ?>
-    <a href="<?php echo $GLOBALS["main"]; ?>?mercenary&amp;view=true<?php echo $GLOBALS["authstr"]; ?>">View Current Bounties</a><br><br><br>
+    <a href="<?php echo $GLOBALS["main_url"]; ?>?mercenary&amp;view=true<?php echo $GLOBALS["authstr"]; ?>">View Current Bounties</a><br><br><br>
 <?php endif; ?>
 
 
@@ -82,7 +82,7 @@ function updateMsgNums() {
 
 
 
-<form method="post" name="frmmsg" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
+<form method="post" name="frmmsg" action="<?php echo $GLOBALS["main_url"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
 <table class="inputtable">
 
 <br><br>
@@ -152,7 +152,7 @@ function updateMsgNums() {
 </form>
 
 <br><br><br>
-<form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
+<form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
 <input type="submit" name="do_recalc" value="Re-calculate completed bounties">
 
 <?php endif; ?>
@@ -161,7 +161,7 @@ function updateMsgNums() {
 <?php if($GLOBALS["editing"] == "yes"): ?>
 
     <table class="scorestable">
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
     <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>"><th style="width:30%">Bounty Target</th><th style="width:30%">Bounty Setter</th>
     <th style="width:15%" >Payment</th><th style="width:15%" >Drop Point</th><th style="width:15%" >Time</th>
 
@@ -191,7 +191,7 @@ function updateMsgNums() {
     </table>
 
 
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?mercenary<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr>
     <th>Add Cash (Max: <?php echo gamefactor($GLOBALS["cansend"]["cas"]); ?>)</th>

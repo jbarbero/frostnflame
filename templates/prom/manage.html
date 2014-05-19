@@ -6,7 +6,7 @@
 <table style="width:100%">
 <tr>
     <td class="acenter" style="width:30%">
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>" id="raceselform">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>" id="raceselform">
     <table class="inputtable">
     <tr><th>Change Race</th></tr>
     <tr><td class="acenter">Requires <?php echo $GLOBALS["config"]["initturns"]; ?> turns,<br><?php echo gamefactor($GLOBALS["users"]["land"])*3; ?> <?php echo $GLOBALS["uera"]["wizards"]; ?>, and<br>at least 75% health</td></tr>
@@ -20,7 +20,7 @@
 
     </td>
     <td class="acenter" style="width:30%">
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th colspan="2">Change Tax</th></tr>
     <tr><td>Tax Rate:</td>
@@ -29,7 +29,7 @@
     </table>
     </form>
 
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th colspan="2">Industry Settings</th></tr>
     <?php foreach($GLOBALS["troopnames"] as $loop_ind): ?>
@@ -42,7 +42,7 @@
 
     <br/><br/>
 
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th>Color Scheme</th></tr>
     <tr><td><label>
@@ -58,7 +58,7 @@
     </td>
     <td class="acenter" style="width:40%">
     <?php if($GLOBALS["protection"] && $GLOBALS["config"]["early_exit"]): ?>
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable"><tr><th>
     <input type="submit" name="leave_protection" value="Leave Protection">
     </th></tr></table>
@@ -66,7 +66,7 @@
     <?php endif; ?>
 
 <?php /* ?>
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th colspan="2">Change Styles Directory</th></tr>
     <tr><td colspan="2">New Directory:</td></tr>
@@ -79,7 +79,7 @@
     </form>
 <?php */ ?>
 
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?changepass<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?changepass<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th colspan="2">Change Password</th></tr>
     <tr><td>New:</td>
@@ -91,7 +91,7 @@
     </form>
 
     <?php if(!$GLOBALS["lastweek"]): ?>
-    <form method="post" action="<?php echo $GLOBALS["main"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
+    <form method="post" action="<?php echo $GLOBALS["main_url"]; ?>?manage<?php echo $GLOBALS["authstr"]; ?>">
     <table class="inputtable">
     <tr><th>Vacation</th></tr>
     <tr><td class="acenter">

@@ -2,7 +2,7 @@
 <?php if($GLOBALS["endbar"]): ?>
 <table style="width:100%">
 <tr class="era<?php echo $GLOBALS["users"]["era"]; ?>" style="font-size:medium" class="darklink">
-    <td class="acenter"><a href="<?php echo $GLOBALS["main"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
+    <td class="acenter"><a href="<?php echo $GLOBALS["main_url"]; ?>?messages<?php echo $GLOBALS["authstr"]; ?>">
     <?php if($GLOBALS["newmail"]): ?>
       <b>New Mail!</b>
     <?php else: ?>
@@ -28,9 +28,9 @@
 <a href="mailto:devari@gmail.com">Devari</a>, 
 <a href="mailto:nevadacow@nvbell.net">Nevadacow</a>
 <br>
-<a href="<?php echo $GLOBALS["main"]; ?>?credits<?php echo $GLOBALS["authstr"]; ?>">Full Credits</a> &middot;
-<a href="<?php echo $GLOBALS["main"]; ?>?license<?php echo $GLOBALS["authstr"]; ?>">License</a> &middot;
-<a href="<?php echo $GLOBALS["main"]; ?>?source&amp;script=<?php echo $GLOBALS["action"]; ?>">Source</a>
+<a href="<?php echo $GLOBALS["main_url"]; ?>?credits<?php echo $GLOBALS["authstr"]; ?>">Full Credits</a> &middot;
+<a href="<?php echo $GLOBALS["main_url"]; ?>?license<?php echo $GLOBALS["authstr"]; ?>">License</a> &middot;
+<a href="<?php echo $GLOBALS["main_url"]; ?>?source&amp;script=<?php echo $GLOBALS["action"]; ?>">Source</a>
 
 <?php endif; ?>
 

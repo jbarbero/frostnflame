@@ -61,7 +61,7 @@ if($users['condense'])
 
 $condense = $cnd;
 
-$main = $config['main'];
+$main_url = $config['main'];
 $troops = $config['troop'];
 $ctags = loadClanTags();
 
