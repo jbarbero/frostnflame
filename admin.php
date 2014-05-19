@@ -1,6 +1,8 @@
 <?php
 include("header.php");
 
+template_display('admin.html');
+
 if ($users[num] != 1)
     TheEnd("You are not the root administrator!");
 
