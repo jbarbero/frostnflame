@@ -12,8 +12,7 @@ foreach ($_SERVER as $var => $value) {
     $$var = $value;
 } 
 
-function getmicrotime ()
-{
+function getmicrotime() {
     list($usec, $sec) = explode(" ", microtime());
     return ((double)$usec + (double)$sec);
 } 

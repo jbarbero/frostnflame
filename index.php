@@ -39,7 +39,7 @@ else
     $db_link = @mysqli_connect($dbhost,$dbuser,$dbpass);
 
 if (mysqli_connect_error()) {
-    include("html.php");
+    require_once("html.php");
     HTMLbegincompact("Database Error!");
     print "The game database is currently unavailable. Please try again later.\n";
     HTMLendcompact();
