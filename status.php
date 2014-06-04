@@ -1,6 +1,6 @@
 <?
-include("header.php");
-include("lib/stocks.php");
+require_once("header.php");
+require_once("lib/stocks.php");
 require_once("lib/status.php");
 $ctags = loadClanTags();
 
