@@ -1612,6 +1612,7 @@ function doStatusBar($show) {
         template_display('footer.html');
         return;
     }
+    global $newmail, $turnsleft, $food_color, $cash_color, $land_color, $health_color, $main_url, $authstr, $endbar;
     $foodnet = calcFoodPro() - calcFoodCon();
     $netincome = calcIncome() - calcExpenses();
 //    $land = db_safe_firstval("SELECT SUM(land) FROM $playerdb WHERE turnsused>$config[turnsused] AND disabled != 2 AND disabled != 3;");
