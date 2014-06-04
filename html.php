@@ -55,13 +55,13 @@ function getTplDir()
     return $ret;
 } 
 // Begins a compact HTML page
-function HTMLbegincompact ($title)
+function HTMLbegincompact ($page_title)
 {
-    global $authstr;
     if(!defined("PROMISANCE"))
         die(" ");
 
-    global $tpl, $starttime, $templates, $gamename, $gamename_full, $config, $authstr, $uera, $skinstr, $menus;
+    global $authstr, $title, $starttime, $templates, $gamename, $gamename_full, $config, $authstr, $uera, $skinstr, $menus, $config;
+    $title = $page_title;
     $authstr = '&amp;srv='.SERVER;
     $uera = loadEra(1,1);
     $starttime = getmicrotime();
