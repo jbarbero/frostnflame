@@ -25,7 +25,7 @@ function realip()
            // Skip RFC 1918 IP's 10.0.0.0/8, 172.16.0.0/12 and
            // 192.168.0.0/16 -- jim kill me later with my regexp pattern
            // below.
-           if (!eregi ("^(10|172\.16|192\.168)\.", $ips[$i])) {
+           if (!preg_match ("/^(10|172\.16|192\.168)\./i", $ips[$i])) {
                $ip = $ips[$i];
                break;
            }
