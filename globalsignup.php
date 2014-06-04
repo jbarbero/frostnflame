@@ -39,7 +39,7 @@ if ($do_signup) {
         EndNow("You must select a password!");
     if ($signup_password != $signup_password2)
         EndNow("Passwords don't match!");
-    if(!(eregi("^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$",$signup_email,$matches)))
+    if(!(preg_match(8/"^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$/i",$signup_email,$matches)))
         EndNow("Please enter a valid E-mail address.");
     if ($signup_email != $signup_email_verify)
         EndNow("Your E-mail address does not match!");

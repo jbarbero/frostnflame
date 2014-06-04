@@ -57,7 +57,7 @@ if($do_profile) {
     $stuff = 'aim msn profile email';
     $stuffarr = explode(" ", $stuff);
 
-    if(!(eregi("^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$",$email,$matches)))
+    if(!(preg_match("/^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$/i",$email,$matches)))
         TheEnd("Invalid email address!");
 
     foreach($stuffarr as $var) {

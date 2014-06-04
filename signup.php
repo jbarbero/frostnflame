@@ -35,7 +35,7 @@ if ($do_signup) {
         EndNow("Nice try, but nobody has 'The' as part of their name.");
     if ($signup_username == "")
         EndNow("You must specify a username!");
-    if(!(eregi("^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$",$signup_email,$matches)))
+    if(!(preg_match("/^[_+A-Za-z0-9-]+(\\.[_+A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*$/i",$signup_email,$matches)))
         EndNow("Please enter a valid E-mail address.");
     if ($signup_email != $signup_email_verify)
         EndNow("Your E-mail address does not match!");
