@@ -18,7 +18,7 @@ function getmicrotime() {
 } 
 
 function getstyle() {
-    global $styles, $users, $authstr, $skinstr, $config, $tpl, $global;
+    global $config, $styles, $users, $authstr, $skinstr, $config, $tpl, $global;
     $ret;
 
     if(!empty($_GET['skin'])) {
@@ -27,8 +27,11 @@ function getstyle() {
 
         $authstr = $skinstr;
         $ret = $styles[$_GET['skin']];
+    } else if(is_array($users)) {
+        $style = $users[style];
+        $ret = $styles[$style];
     } else {
-        $ret = $styles[$users[style]];
+        $ret = $styles[1];
     }
 
     if(auth_global()) {
