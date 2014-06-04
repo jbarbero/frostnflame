@@ -75,8 +75,12 @@
 <?php endif; ?>
 
    <center><span style="font-size:x-large"><?php echo $GLOBALS["gamename"]; ?> :: <?php echo $GLOBALS["config"]["servname"]; ?></span></center>
-   Currently logged in as <span style="font-size:large"><?php echo $GLOBALS["empire"]; ?></span> <a class=proflink href=?profiles&amp;num=<?php echo $loop_num; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $loop_num; ?>)</a><br><br>
-   <b>Game News:</b> <?php echo $loop_news; ?><br>
+   Currently logged in as <?php echo $GLOBALS["empire"]; ?> <a class=proflink href=?profiles&amp;num=<?php echo $GLOBALS["num"]; ?><?php echo $GLOBALS["authstr"]; ?>>(#<?php echo $GLOBALS["num"]; ?>)</a>
+   <br/><br/>
+   <b>Game News:</b> <?php echo $GLOBALS["news"]; ?><br>
+   <?php if($GLOBALS["lockdb"]): ?>
+     Game database is currently locked.<br/>
+   <?php endif; ?>
    <a href="<?php echo $GLOBALS["main_url"]; ?>?guide2&amp;section=<?php echo $GLOBALS["action"]; ?><?php echo $GLOBALS["authstr"]; ?>"><b>Game Guide</b></a> &middot;
    <a href="javascript:window.location.reload()">Refresh</a> &middot;
    <a href="http://frostnflame.org/forum/index.php?showforum=4" target="bugs">Suggestions &middot; Bugs</a>
