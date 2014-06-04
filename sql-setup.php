@@ -364,6 +364,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$stockdb` (
   `days3` int(11) NOT NULL default '0',
   `bender` int(11) NOT NULL default '0',
   `boost` int(11) NOT NULL default '0',
+  `total_held` int(11) NOT NULL default '0',
   KEY `id` (`id`)
 ) AUTO_INCREMENT=11 ;");
 
