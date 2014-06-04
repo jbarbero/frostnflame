@@ -69,7 +69,7 @@ if($_POST['type'] == 'global') {
 function login_page() {
     HTMLbegincompact("Login");
 
-    global $servers, $config, $perserver_config, $tpl, $disp_servers, $login_news;
+    global $servers, $config, $config_global, $config_server, $tpl, $disp_servers, $login_news;
 
     $disp_servers = array();
     foreach($servers as $i => $s) {
@@ -77,10 +77,16 @@ function login_page() {
 
         $server = $i;
 
-        $n['hiddenlogin'] = $perserver_config[$i]['hiddenlogin'];
+        # TODO: rewrite this with a php 4 compatible version
+        $config_i = array();
+        $config_i = $config_global;
+        if(isset($config_server[$server]))
+            $config_i = array_replace_recursive($config_global, $config_server[$server]);
+
+        $n['hiddenlogin'] = $config_i['hiddenlogin'];
 
         $disp_servers[] = $n;
-        }
+    }
 
     $login_news = doForumNews();
 

@@ -66,26 +66,30 @@ if($_POST['type'] == 'global') {
 function login_page() {
     HTMLbegincompact("Login");
 
-    global $servers, $config, $prefixes, $dateformat, $global;
+    global $servers, $config, $config_global, $config_server, $prefixes, $dateformat, $global, $disp_servers, $login_news;
     $disp_servers = array();
     foreach($servers as $i => $s) {
         $n = array('num' => $i, 'name' => str_replace(' ', '&nbsp;', $s));
 
         $server = $i;
-//        include("config.php");        // call not needed -- using perserver_config now
-//        include("conf-proc.php");
+
+        # TODO: rewrite this with a php 4 compatible version
+        $config_i = array();
+        $config_i = $config_global;
+        if(isset($config_server[$server]))
+            $config_i = array_replace_recursive($config_global, $config_server[$server]);
 
         $playerdb = $prefixes[$i] . '_players';
 
-        $n['news'] = $config['news'];
-        $n['signupsclosed'] = $config['signupsclosed'];
-        $n['perminutes'] = $config['perminutes'];
-        $n['turnsper'] = $config['turnsper'];
-        $n['lockdb'] = $config['lockdb'];
-        $n['maxturns'] = $config['maxturns'];
-        $n['lastweek'] = $config['lastweek'];
-        $n['maxstoredturns'] = $config['maxstoredturns'];
-        $n['protection'] = $config['protection'];
+        $n['news'] = $config_i['news'];
+        $n['signupsclosed'] = $config_i['signupsclosed'];
+        $n['perminutes'] = $config_i['perminutes'];
+        $n['turnsper'] = $config_i['turnsper'];
+        $n['lockdb'] = $config_i['lockdb'];
+        $n['maxturns'] = $config_i['maxturns'];
+        $n['lastweek'] = $config_i['lastweek'];
+        $n['maxstoredturns'] = $config_i['maxstoredturns'];
+        $n['protection'] = $config_i['protection'];
 
         $active = "land>0 AND disabled<2";
         $numplayers = db_safe_firstval("SELECT COUNT(*) FROM $playerdb WHERE $active;");
@@ -95,17 +99,17 @@ function login_page() {
         else
             $avgnet = 0;
 
-#        $endtime = strtotime(preg_replace('/[^a-zA-Z0-9\- \t]/', '', $config['roundend']));
-        $endtime = strtotime($config['roundend']);
+#        $endtime = strtotime(preg_replace('/[^a-zA-Z0-9\- \t]/', '', $config_i['roundend']));
+        $endtime = strtotime($config_i['roundend']);
         
         if($endtime == -1)
-            $enddisp = $config['roundend'];
+            $enddisp = $config_i['roundend'];
         else
             $enddisp = date($dateformat, $endtime);
 
         $n['etime'] = $endtime;
         $n['roundend'] = $enddisp;
-//        $n['config'] = $config;
+//        $n['config_i'] = $config_i;
         $n['numplayers'] = $numplayers;
         $n['avgnet'] = commas($avgnet);
         $n['gameinfo'] = $gameinfo;
