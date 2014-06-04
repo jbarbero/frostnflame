@@ -671,7 +671,7 @@ function makeMsg($time, $src, $dst, $body, $title) {
 }
 
 // Example: saveUserData($users,"cash networth land food etc");
-function saveUserData (&$user, $data, $overrideDBlock = false) {
+function saveUserData ($user, $data, $overrideDBlock = false) {
     global $playerdb, $config, $marketdb, $lockdb, $hide_fatal_errors;
     if ($lockdb && !$overrideDBlock)
         return;
@@ -1148,23 +1148,24 @@ function takeTurns ($numturns, $action, $noutput = false, $displayturns=-1) {
                     <td>' . returnCNum(gamefactor($net_wizards), "", 0) . '</td></tr>
                     <tr><th>' . $uera[runes] . ':</th>
                     <td>' . returnCNum(gamefactor($net_runes), "", 0) . '</td></tr>';
+
             foreach($config[troop] as $num => $mktcost) {
-                    $turnoutput .= 
-                            '<tr><th>' . $uera["troop$num"] . ':</th>
-                            <td>' . returnCNum(gamefactor($net_troop[$num]), "", 0) . '</td></tr>';
+                $turnoutput .= 
+                    '<tr><th>' . $uera["troop$num"] . ':</th>
+                    <td>' . returnCNum(gamefactor($net_troop[$num]), "", 0) . '</td></tr>';
             }
 
-                $turnoutput .= '
-                    </table></td></tr>';
+            $turnoutput .= '
+                </table></td></tr>';
 
-                if ($net_peasants > 0)
-                    $turnoutput .= '
-                        <tr><td colspan="3"><center><span class="cgood">Your low tax rate is encouraging ' . $uera[peasants] . ' to join your ' . $uera[empire] . '!</center></td></tr>';
-            
-            
+            if ($net_peasants > 0)
                 $turnoutput .= '
-                    <tr><td colspan="3"><center><hr width="80%">' . $lackmessage . '</center></td></tr>
-                    <table>';
+                <tr><td colspan="3"><center><span class="cgood">Your low tax rate is encouraging ' . $uera[peasants] . ' to join your ' . $uera[empire] . '!</center></td></tr>';
+
+
+            $turnoutput .= '
+                <tr><td colspan="3"><center><hr width="80%">' . $lackmessage . '</center></td></tr>
+                <table>';
     } 
     // end print report
     saveUserData($users, "networth land freeland savings loan cash troops food health peasants runes wizards turnsused turns idle condense");
