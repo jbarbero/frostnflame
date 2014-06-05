@@ -383,6 +383,7 @@ function missionFight ()
         //bountyScan($users, $enemy);
     saveUserData($enemy,"networth homes shops industry barracks labs farms towers freeland land wizards offsucc defsucc");
     saveUserData($users,"freeland land offsucc defsucc");    // wizards get saved in takeTurns()
+    global $playerdb;
     db_safe_query("UPDATE $playerdb SET land=(homes+shops+industry+barracks+labs+farms+towers+freeland) WHERE num=$users[num];");
     db_safe_query("UPDATE $playerdb SET land=(homes+shops+industry+barracks+labs+farms+towers+freeland) WHERE num=$enemy[num];");
 }
