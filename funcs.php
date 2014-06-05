@@ -592,7 +592,7 @@ function loadEra ($era, $race = 1) {
     $uera['farms'] = $uera['nfarms'];
     $uera['peasantsC'] = $uera['peasants'];
     $uera['peasants'] = strtolower($uera['peasants']);
-    $uera['empireC'] = $uera['empire'];
+    $uera['empireC'] = ucfirst($uera['empire']);
     $uera['empire'] = strtolower($uera['empire']);
     return $uera;
 } 
