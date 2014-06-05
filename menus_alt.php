@@ -15,7 +15,10 @@ function menu_normal_item($item, $link, $sc = SERVER, $target = false) {
     if ($target)
         $trg = " target=\"$target\"";
     $item = str_replace(" ", "&nbsp;", $item);
-    $menus[] = array(    'link' => "?$link$srv",
+    if(strpos($link, "http://") !== 0 && strpos($link, "https://") !== 0 && strpos($link, "mailto:") !==0) {
+        $link = "?$link$srv";
+    }
+    $menus[] = array(    'link' => $link,
                 'trg'  => $trg,
                 'item' => $item,
                 'spec' => 0);
@@ -49,8 +52,8 @@ menu_normal_item('Player Rules', 'guide2&amp;section=Game+Rules');
 #menu_normal_item('Hall Of Fame', 'hfame', SERVER);
 menu_normal_item('Features', 'features');
 menu_normal_item('Credits', 'credits');
-menu_normal_item('Source Code', "source&amp;script=$GAME_ACTION");
-menu_normal_item('Download', "source&amp;bundle=tgz");
+menu_normal_item('Live Source', "source&amp;script=$GAME_ACTION");
+menu_normal_item('Download', "https://github.com/jbarbero/frostnflame");
 #menu_header_item('Affiliates');
 #menu_normal_item('Medieval&nbsp;Empires', '?redirect&amp;url=http://www.medievalempires.org/');
 
