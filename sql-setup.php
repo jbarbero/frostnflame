@@ -369,14 +369,14 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$stockdb` (
 ) AUTO_INCREMENT=11 ;");
 
 if(mysqli_num_rows(db_safe_query("SELECT * FROM $stockdb;")) == 0) {
-    db_safe_query("INSERT INTO `$stockdb` VALUES (1, 'TRP', 'Troops', 75391, 106955, 119687, 169893, 1802, 0);");
-    db_safe_query("INSERT INTO `$stockdb` VALUES (2, 'AIR', 'Aircraft', 76326, 110685, 123929, 173641, 1860, 0);");
-    db_safe_query("INSERT INTO `$stockdb` VALUES (3, 'TNK', 'Tanks', 91006, 115433, 130245, 59135, 1934, 0);");
-    db_safe_query("INSERT INTO `$stockdb` VALUES (4, 'NVL', 'Ships', 74335, 64065, 45281, 98711, 1952, 0);");
-    db_safe_query("INSERT INTO `$stockdb` VALUES (5, 'AGT', 'Agents', 106844, 181334, 189594, 40536, 1872, 0);");
-    db_safe_query("INSERT INTO `$stockdb` VALUES (6, 'LND', 'Land', 49881, 61542, 45782, 93362, 1820, 0);");
-    db_safe_query("INSERT INTO `$stockdb` VALUES (7, 'FD', 'Food', 122387, 58297, 35473, 124809, 1878, 0);");
-    db_safe_query("INSERT INTO `$stockdb` VALUES (8, 'NRG', 'Energy', 123095, 74644, 76824, 155084, 1842, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (1, 'TRP', 'Troops', 75391, 106955, 119687, 169893, 1802, 0, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (2, 'AIR', 'Aircraft', 76326, 110685, 123929, 173641, 1860, 0, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (3, 'TNK', 'Tanks', 91006, 115433, 130245, 59135, 1934, 0, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (4, 'NVL', 'Ships', 74335, 64065, 45281, 98711, 1952, 0, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (5, 'AGT', 'Agents', 106844, 181334, 189594, 40536, 1872, 0, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (6, 'LND', 'Land', 49881, 61542, 45782, 93362, 1820, 0, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (7, 'FD', 'Food', 122387, 58297, 35473, 124809, 1878, 0, 0);");
+    db_safe_query("INSERT INTO `$stockdb` VALUES (8, 'NRG', 'Energy', 123095, 74644, 76824, 155084, 1842, 0, 0);");
 }
 
 //table for score icons
