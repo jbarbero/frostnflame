@@ -160,6 +160,7 @@ function missionStruct ()
         $enemy[defsucc]++;
     }
     saveUserData($enemy,"networth shops homes industry barracks farms labs towers freeland");
+    global $playerdb;
     db_safe_query("UPDATE $playerdb SET land=(homes+shops+industry+barracks+labs+farms+towers+freeland) WHERE num=$enemy[num];");
 }
 
