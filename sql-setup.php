@@ -368,7 +368,7 @@ db_safe_query("CREATE TABLE IF NOT EXISTS `$stockdb` (
   KEY `id` (`id`)
 ) AUTO_INCREMENT=11 ;");
 
-if(mysqli_num_rows(db_safe_query("SELECT * FROM $stockdb;")) == 0) {
+if(db_safe_firstval("SELECT * FROM $stockdb;") == 0) {
     db_safe_query("INSERT INTO `$stockdb` VALUES (1, 'TRP', 'Troops', 75391, 106955, 119687, 169893, 1802, 0, 0);");
     db_safe_query("INSERT INTO `$stockdb` VALUES (2, 'AIR', 'Aircraft', 76326, 110685, 123929, 173641, 1860, 0, 0);");
     db_safe_query("INSERT INTO `$stockdb` VALUES (3, 'TNK', 'Tanks', 91006, 115433, 130245, 59135, 1934, 0, 0);");
