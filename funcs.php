@@ -1256,7 +1256,7 @@ function printSearchLine ($clan=true, $era=true) {
 } 
 
 function intelMainStats ($user, $race, $era, $esp=false, $other=null){
-    global $config, $prefix, $users, $time;
+    global $config, $prefix, $users, $time, $playerdb;
     $land = db_safe_firstval("SELECT SUM(land) FROM $playerdb WHERE turnsused>$config[protection] AND disabled != 2 AND disabled != 3;");
     $count = db_safe_firstval("SELECT COUNT(*) FROM $playerdb WHERE turnsused>$config[protection] AND disabled != 2 AND disabled != 3;");
     if($count == 0)
